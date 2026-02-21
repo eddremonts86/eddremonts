@@ -34,7 +34,7 @@ export const ExperienceTimeline = () => {
         <div className="flex flex-col lg:flex-row gap-20">
           <div className="lg:w-2/3 relative">
             {/* Timeline Line (Apple subtle gray base, Anime vibrant fill) */}
-            <div className="absolute left-0 md:left-8 top-0 bottom-0 w-[2px] bg-black/[0.04] hidden md:block rounded-full">
+            <div className="absolute left-8 top-0 bottom-0 w-[2px] bg-black/[0.04] hidden md:block rounded-full">
               <motion.div
                 className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary via-secondary to-accent rounded-full"
                 style={{ height: lineHeight }}
@@ -52,7 +52,7 @@ export const ExperienceTimeline = () => {
                   className="relative md:pl-28"
                 >
                   {/* Timeline Dot with Anime Neon Ring */}
-                  <div className="absolute left-[-21px] md:left-[19.5px] top-8 w-5 h-5 rounded-full bg-surface border-[4px] border-primary z-10 hidden md:block shadow-[0_0_15px_rgba(0,229,255,0.4)]" />
+                  <div className="absolute left-8 -translate-x-1/2 top-8 w-5 h-5 rounded-full bg-surface border-[4px] border-primary z-10 hidden md:block shadow-[0_0_15px_rgba(0,229,255,0.4)]" />
 
                   {/* Apple Style Floating Card */}
                   <div className="bg-surface rounded-[2rem] p-8 md:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] border border-black/[0.03] transition-all duration-500 group relative overflow-hidden">

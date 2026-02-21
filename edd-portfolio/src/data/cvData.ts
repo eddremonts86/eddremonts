@@ -98,35 +98,35 @@ export const projects = [
   {
     id: "zunzun",
     title: "Zunzun.io",
-    image: "https://eddremonts.dk/themes/thebakerdev-zenii/assets/dist/images/zunzun2.io.png",
+    image: "/project-placeholder.svg",
     link: "https://www.zunzun.io/",
     category: "Full Stack"
   },
   {
     id: "hbo-notify",
     title: "HBO - Be Notified",
-    image: "https://eddremonts.dk/themes/thebakerdev-zenii/assets/dist/images/hbo.png",
+    image: "/project-placeholder.svg",
     link: "https://demo-hbo-landing.netlify.app/versions/v1/getnotified/",
     category: "Frontend"
   },
   {
     id: "voirlematch",
     title: "Voirlematch.fr",
-    image: "https://eddremonts.dk/themes/thebakerdev-zenii/assets/dist/images/VMhead.png",
+    image: "/project-placeholder.svg",
     link: "https://www.voirlematch.fr/",
     category: "Frontend"
   },
   {
     id: "hbo-signup",
     title: "HBO - Sign up",
-    image: "https://eddremonts.dk/themes/thebakerdev-zenii/assets/dist/images/hbo2.png",
+    image: "/project-placeholder.svg",
     link: "https://demo-hbo-landing.netlify.app/versions/v1/voucher/",
     category: "Frontend"
   },
   {
     id: "sportal",
     title: "Sportal.se",
-    image: "https://eddremonts.dk/themes/thebakerdev-zenii/assets/dist/images/06.png",
+    image: "/project-placeholder.svg",
     link: "https://www.sportal.se/",
     category: "Full Stack"
   }

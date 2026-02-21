@@ -64,7 +64,8 @@
 
   /* Selection matches anime neon vibe */
   ::selection {
-    @apply bg-primary/30 text-foreground;
+    background-color: var(--primary);
+    color: var(--foreground);
   }
 }
 
