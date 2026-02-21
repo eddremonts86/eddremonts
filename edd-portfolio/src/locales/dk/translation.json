@@ -1,0 +1,109 @@
+{
+  "nav": {
+    "projects": "Projekter",
+    "contact": "Kontakt",
+    "resume": "Download CV",
+    "discover": "Opdag"
+  },
+  "hero": {
+    "available": "Ledig for nye muligheder",
+    "greeting": "Hej, jeg er",
+    "explore": "Udforsk mit Arbejde"
+  },
+  "personalInfo": {
+    "title": "Senior Full Stack Ingeniør & Tech Lead",
+    "description": "Jeg designer skalerbare webapplikationer, der bygger bro mellem kompleks forretningslogik og ubesmittede brugeroplevelser. Mit fokus er på React 19, Node.js og cloudekosystemer for at levere højtydende løsninger skabt til massiv skala.",
+    "location": "København, Danmark"
+  },
+  "about": {
+    "title": "Om &",
+    "titleAccent": "Tjenester",
+    "intro": "Jeg specialiserer mig i at transformere komplekse tekniske krav til strømlinede og brugercentrerede grænseflader. Ved at synergisere dyb backend-viden med frontend-finesse udvikler jeg robuste platforme, der accelererer virksomhedsvækst og sikrer kompromisløs ydeevne (90+ score på Lighthouse).",
+    "features": {
+      "0": {
+        "title": "Strategisk Samarbejdende Engineering",
+        "description": "Jeg trives i tværfunktionelle miljøer, der bygger bro mellem produktledere, UI/UX-designere og backend-infrastruktur-ingeniører for at sikre en justeret levering."
+      },
+      "1": {
+        "title": "Kontinuerlig Systemudvikling",
+        "description": "Dagens teknologilandskab er utilgivende. Jeg omfavner arkitektonisk refaktoriseringsarbejde og holder min teknologistak, testdækning og CI/CD-pipelines på forkant."
+      },
+      "2": {
+        "title": "Robust Skalerbarhed",
+        "description": "Hastighed betyder intet uden stabilitet. Jeg bygger robuste mikrotjenester og drager fordel af moderne Next.js/React meta-frameworks, der prioriterer overhalinger med nul nedetid."
+      }
+    },
+    "servicesTitle": "Hvad Jeg Leverer."
+  },
+  "services": {
+    "0": {
+      "title": "Avantgarde Frontend Arkitektur",
+      "description": "Jeg bygger ikke blot hjemmesider; jeg designer interaktive digitale økosystemer. Ved hjælp af React, Next.js og Framer Motion leverer jeg applikationer med indlæsning under 1 sekund, defineret af 60fps-animationer og urokkelig UX-præcision."
+    },
+    "1": {
+      "title": "Cloud & Backend Modstandsdygtighed",
+      "description": "En enestående frontend kræver en stenhård backend. Jeg designer robuste serverless API-lag, optimerer relationelle/NoSQL-databaseforespørgsler og etablerer automatiserede deploymentpipelines, der sikrer en oppetid på 99,9 %."
+    }
+  },
+  "experience": {
+    "title": "Professionel",
+    "titleAccent": "Rejse",
+    "techArsenal": "Teknologisk Arsenal",
+    "present": "Nu",
+    "items": {
+      "11": {
+        "role": "Senior Frontend Developer",
+        "description": "Arkitektarbejde og skaleringstrategier af høj-volumen data platforme til erhvervsejendomme. Jeg ledte migreringen mod Vue 3 og Nuxt 3 composition APIs for at optimere det globale state-flow og reducere de initielle rendering-tider med over 40% ved brug af hydrid-SSR teknikker."
+      },
+      "10": {
+        "role": "Senior Frontend Developer",
+        "description": "Ledte front-end implementationen for kritiske sundhedsadministrations-værktøjer med strenge medicinske forskrifter. Leverede ubesmittede økosystemer af Vuetify komponenter som radikalt forbedrede den daglige brugeroplevelse for interne medicinale forskere."
+      },
+      "9": {
+        "role": "Senior Frontend Developer",
+        "description": "Designede og opbyggede ultra-responsive og højt tilgængelige digitale kampagneflader til globale topklasse-kunder. Integrerede komplekse SCSS arkitekturer og C# backend APIs der sikrede nultid for peak-trafik ved markedsføring."
+      },
+      "8": {
+        "role": "Lead Frontend Developer",
+        "description": "Fungerede som teknisk leder, og instruerede et team på tværs af adskillelige CMS platforme (Laravel, Drupal, October). Ombyggede legacy-monolit systemer til modulære arkitekturer, og brobyggede high-performance MySQL databases med dynamiske UI."
+      },
+      "7": {
+        "role": "Frontend Developer",
+        "description": "Udviklede og forfinede high-conversion portaler i et affiliate-netværk. Implementerede og byggede hårde A/B tests interfaces hvilket accelererede farten for kundeerhvervelse."
+      },
+      "6": {
+        "role": "Full Stack Developer",
+        "description": "End-to-End udvikling for interne Dashboard produkter og eksterne sites hvor der blev formateret robuste LAMP/LEMP miljøer op i mod udvalgte skræddersyede Drupal/October CMS systemer."
+      }
+    }
+  },
+  "projects": {
+    "title": "Mine Seneste",
+    "titleAccent": "Projekter",
+    "subtitle": "En samling af digitale oplevelser der blander premium design med stabil systemteknik.",
+    "filters": {
+      "all": "Alle",
+      "frontend": "Frontend",
+      "fullStack": "Full Stack"
+    }
+  },
+  "contact": {
+    "title": "Lad os",
+    "titleAccent": "Forbinde",
+    "subtitle": "Klar på at gøre dit næste ambitiøse projekt til virkelighed? Drop en besked, og lad os designe noget exceptionelt.",
+    "form": {
+      "name": "Dit Navn",
+      "email": "Din Email",
+      "message": "Projekt Detaljer...",
+      "send": "Send Besked",
+      "target": "Start Forbindelse"
+    },
+    "info": {
+      "title": "Kontakt Information"
+    }
+  },
+  "footer": {
+    "rights": "Alle rettigheder forbeholdes.",
+    "builtWith": "Udviklet i React 19 og Anime minimalisme."
+  }
+}

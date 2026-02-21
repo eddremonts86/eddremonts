@@ -1,0 +1,109 @@
+{
+  "nav": {
+    "projects": "Projects",
+    "contact": "Contact",
+    "resume": "Download CV",
+    "discover": "Discover"
+  },
+  "hero": {
+    "available": "Available for new opportunities",
+    "greeting": "Hello, I'm",
+    "explore": "Explore My Work"
+  },
+  "personalInfo": {
+    "title": "Senior Full Stack Engineeer & Tech Lead",
+    "description": "I Architect scalable web applications that bridge intricate business logic with immaculate user experiences. My focus relies on React 19, Node.js, and cloud ecosystems to deliver high-performance solutions engineered for massive scale.",
+    "location": "Copenhagen, Denmark"
+  },
+  "about": {
+    "title": "About &",
+    "titleAccent": "Services",
+    "intro": "I specialize in transforming complex technical requirements into streamlined, user-centric interfaces. By synergizing deep backend knowledge with frontend finesse, I engineer resilient platforms that accelerate business growth and ensure uncompromising performance scoring 90+ on Lighthouse.",
+    "features": {
+      "0": {
+        "title": "Strategic Collaborative Engineering",
+        "description": "I thrive in cross-functional environments, bridging the gap between product managers, UI/UX designers, and backend infrastructure engineers to ensure aligned delivery."
+      },
+      "1": {
+        "title": "Continuous System Evolution",
+        "description": "The technological landscape is unforgiving. I embrace architectural refactoring, keeping my tech stack, testing coverage, and CI/CD pipelines at the bleeding edge."
+      },
+      "2": {
+        "title": "Resilient Scalability",
+        "description": "Speed means nothing without stability. I build robust microservices leveraging modern Next.js/React meta-frameworks prioritizing zero-downtime overhauls."
+      }
+    },
+    "servicesTitle": "What I Deliver."
+  },
+  "services": {
+    "0": {
+      "title": "Vanguard Frontend Architecture",
+      "description": "I don't just build websites; I engineer interactive digital ecosystems. Utilizing React, Next.js, and Framer Motion, I deliver sub-second loading applications defined by 60fps animations and uncompromising UX precision."
+    },
+    "1": {
+      "title": "Cloud & Backend Resiliency",
+      "description": "An exceptional frontend requires an ironclad backend. I design robust serverless API layers, optimize relational/NoSQL database queries, and establish automated deployment pipelines ensuring 99.9% uptime scalability."
+    }
+  },
+  "experience": {
+    "title": "Professional",
+    "titleAccent": "Journey",
+    "techArsenal": "Tech Arsenal",
+    "present": "Present day",
+    "items": {
+      "11": {
+        "role": "Senior Frontend Developer",
+        "description": "Architecting scaling strategies for high-volume enterprise real-estate data platforms. Spearheaded migration towards Vue 3 and Nuxt 3 composition APIs, optimizing global state throughput and reducing initial render times by over 40% using SSR hybrid techniques."
+      },
+      "10": {
+        "role": "Senior Frontend Developer",
+        "description": "Led front-end implementation for critical health administration tools complying with strict medical guidelines. Delivered immaculate Vuetify-based component ecosystems that significantly improved the daily UX for internal medical researchers."
+      },
+      "9": {
+        "role": "Senior Frontend Developer",
+        "description": "Engineered ultra-responsive and highly accessible digital campaign interfaces for top-tier global clients. Integrated complex SCSS architectures and C# backend APIs ensuring zero downtime during peak marketing traffic."
+      },
+      "8": {
+        "role": "Lead Frontend Developer",
+        "description": "Served as technical lead orchestrating a team spanning multiple CMS platforms (Laravel, Drupal, October). Overhauled legacy monolithic systems into modular structures bridging high-performance MySQL databases with dynamic UI interactions."
+      },
+      "7": {
+        "role": "Frontend Developer",
+        "description": "Developed and refined high-conversion affiliate network portals. Implemented rigorous A/B testing interfaces accelerating customer acquisition velocity."
+      },
+      "6": {
+        "role": "Full Stack Developer",
+        "description": "End-to-end development of internal dashboard products and external sites utilizing a robust LAMP/LEMP stack alongside bespoke Drupal/October CMS solutions."
+      }
+    }
+  },
+  "projects": {
+    "title": "My Recent",
+    "titleAccent": "Projects",
+    "subtitle": "A collection of digital experiences blending premium design and robust engineering.",
+    "filters": {
+      "all": "All",
+      "frontend": "Frontend",
+      "fullStack": "Full Stack"
+    }
+  },
+  "contact": {
+    "title": "Let's",
+    "titleAccent": "Connect",
+    "subtitle": "Ready to bring your next ambitious project to life? Drop me a message and let's craft something extraordinary.",
+    "form": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "message": "Project Details...",
+      "send": "Send Message",
+      "target": "Initiate Connection"
+    },
+    "info": {
+      "title": "Contact Details"
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "builtWith": "Engineered with React 19 & Anime minimalism."
+  }
+}

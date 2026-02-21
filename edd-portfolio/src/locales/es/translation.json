@@ -1,0 +1,109 @@
+{
+  "nav": {
+    "projects": "Proyectos",
+    "contact": "Contacto",
+    "resume": "Descargar CV",
+    "discover": "Descubrir"
+  },
+  "hero": {
+    "available": "Disponible para nuevas oportunidades",
+    "greeting": "Hola, soy",
+    "explore": "Explorar mi Trabajo"
+  },
+  "personalInfo": {
+    "title": "Ingeniero Full Stack Senior & Tech Lead",
+    "description": "Arquitecto aplicaciones web escalables que unen lógica de negocio compleja con experiencias de usuario inmaculadas. Mi enfoque se basa en React 19, Node.js y ecosistemas cloud para entregar soluciones de alto rendimiento diseñadas para gran escala.",
+    "location": "Copenhague, Dinamarca"
+  },
+  "about": {
+    "title": "Sobre mí &",
+    "titleAccent": "Servicios",
+    "intro": "Me especializo en transformar requisitos técnicos complejos en interfaces optimizadas y centradas en el usuario. Al sinergizar un profundo conocimiento backend con delicadeza frontend, creo plataformas resilientes que aceleran el crecimiento del negocio y aseguran un rendimiento sin compromisos, alcanzando 90+ en Lighthouse.",
+    "features": {
+      "0": {
+        "title": "Ingeniería Estratégica Colaborativa",
+        "description": "Tengo éxito en entornos multifuncionales, cerrando la brecha entre product managers, diseñadores UI/UX e ingenieros de infraestructura backend para garantizar una entrega alineada."
+      },
+      "1": {
+        "title": "Evolución Continua de Sistemas",
+        "description": "El panorama tecnológico no perdona. Adopto la refactorización arquitectónica, manteniendo mi stack técnico, cobertura de pruebas y pipelines CI/CD a la vanguardia."
+      },
+      "2": {
+        "title": "Escalabilidad Resiliente",
+        "description": "La velocidad no significa nada sin estabilidad. Construyo microservicios robustos aprovechando meta-frameworks modernos como Next.js/React, priorizando renovaciones con cero tiempo de inactividad."
+      }
+    },
+    "servicesTitle": "Lo que entrego."
+  },
+  "services": {
+    "0": {
+      "title": "Arquitectura Frontend de Vanguardia",
+      "description": "No solo construyo sitios web; ideo ecosistemas digitales interactivos. Utilizando React, Next.js y Framer Motion, entrego aplicaciones de carga sub-segundo definidas por animaciones a 60fps y una precisión UX inquebrantable."
+    },
+    "1": {
+      "title": "Resiliencia Cloud y Backend",
+      "description": "Un frontend excepcional requiere un backend férreo. Diseño capas API serverless robustas, optimizo consultas de bases de datos relacionales/NoSQL y establezco pipelines de despliegue automatizados garantizando una escalabilidad con un 99.9% de uptime."
+    }
+  },
+  "experience": {
+    "title": "Trayectoria",
+    "titleAccent": "Profesional",
+    "techArsenal": "Arsenal Tecnológico",
+    "present": "Actualidad",
+    "items": {
+      "11": {
+        "role": "Desarrollador Frontend Senior",
+        "description": "Arquitectando estrategias de escalado para plataformas de datos inmobiliarios empresariales de alto volumen. Lideré la migración hacia las APIs de composición de Vue 3 y Nuxt 3, optimizando el rendimiento del estado global y reduciendo los tiempos de renderizado inicial en más de un 40% usando técnicas híbridas SSR."
+      },
+      "10": {
+        "role": "Desarrollador Frontend Senior",
+        "description": "Lideré la implementación front-end para herramientas críticas de administración de salud, cumpliendo con estrictas pautas médicas. Entregué ecosistemas de componentes inmaculados basados en Vuetify que mejoraron significativamente la experiencia del usuario diaria para investigadores biomédicos internos."
+      },
+      "9": {
+        "role": "Desarrollador Frontend Senior",
+        "description": "Diseñé interfaces de campañas digitales extremadamente responsivas y altamente accesibles para clientes globales de primer nivel. Integré arquitecturas complejas de SCSS y APIs backend en C# asegurando cero caídas durante el tráfico máximo de marketing."
+      },
+      "8": {
+        "role": "Lead Frontend Developer",
+        "description": "Desempeñé el rol de líder técnico coordinando un equipo a través de múltiples plataformas CMS (Laravel, Drupal, October). Transformé sistemas monolíticos heredados en estructuras modulares uniendo bases de datos MySQL de alto rendimiento con interacciones UI dinámicas."
+      },
+      "7": {
+        "role": "Desarrollador Frontend",
+        "description": "Desarrollé y perfeccioné portales de la red de afiliados de alta conversión. Implementé interfaces de pruebas A/B rigurosas, acelerando la velocidad de adquisición de clientes."
+      },
+      "6": {
+        "role": "Desarrollador Full Stack",
+        "description": "Desarrollo de extremo a extremo de productos de panel interno y sitios externos utilizando una tecnología sólida de pila LAMP/LEMP junto con soluciones a medida en Drupal/October CMS."
+      }
+    }
+  },
+  "projects": {
+    "title": "Mis Proyectos",
+    "titleAccent": "Recientes",
+    "subtitle": "Una colección de experiencias digitales fusionando el diseño premium con una férrea ingeniería.",
+    "filters": {
+      "all": "Todos",
+      "frontend": "Frontend",
+      "fullStack": "Full Stack"
+    }
+  },
+  "contact": {
+    "title": "Vamos a",
+    "titleAccent": "Conectar",
+    "subtitle": "¿Listo para darle vida a tu próximo ambicioso proyecto? Déjame un mensaje y juntos crearemos algo extraordinario.",
+    "form": {
+      "name": "Tu Nombre",
+      "email": "Tu Correo",
+      "message": "Detalles del proyecto...",
+      "send": "Enviar Mensaje",
+      "target": "Iniciar Conexión"
+    },
+    "info": {
+      "title": "Detalles de Contacto"
+    }
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados.",
+    "builtWith": "Confeccionado con React 19 y Minimalismo Anime."
+  }
+}

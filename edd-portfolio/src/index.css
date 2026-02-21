@@ -1,0 +1,113 @@
+@import '@fontsource-variable/m-plus-1';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #F4F4F5; /* Tailwind zinc-100 for better surface contrast */
+    --foreground: #1D1D1F; /* Apple dark gray */
+    --surface: #FFFFFF;
+
+    --primary: #00E5FF; /* Electric Cyan */
+    --primary-foreground: #1D1D1F;
+
+    --secondary: #FF2A85; /* Neon Pink */
+    --secondary-foreground: #FFFFFF;
+
+    --accent: #8A2BE2; /* Deep Purple */
+    --accent-foreground: #FFFFFF;
+
+    --apple-glass: rgba(255, 255, 255, 0.72);
+    --apple-border: rgba(0, 0, 0, 0.08);
+
+    --scrollbar-thumb: rgba(0,0,0,0.15);
+    --scrollbar-thumb-hover: rgba(0,0,0,0.3);
+  }
+
+  .dark {
+    --background: #09090B; /* Tailwind zinc-950 purely dark */
+    --foreground: #F5F5F7; /* Apple light gray text */
+    --surface: #18181B; /* Tailwind zinc-900 for dark mode surface contrast */
+
+    --primary: #00E5FF; /* Keep Anime Vibrancy */
+    --primary-foreground: #000000;
+
+    --secondary: #FF2A85;
+    --secondary-foreground: #FFFFFF;
+
+    --accent: #B066FF; /* Slightly lighter purple for dark mode contrast */
+    --accent-foreground: #FFFFFF;
+
+    --apple-glass: rgba(28, 28, 30, 0.72);
+    --apple-border: rgba(255, 255, 255, 0.1);
+
+    --scrollbar-thumb: rgba(255,255,255,0.2);
+    --scrollbar-thumb-hover: rgba(255,255,255,0.4);
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased overflow-x-hidden transition-colors duration-500;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight text-foreground transition-colors duration-500;
+  }
+
+  /* Accessibility Focus Rings */
+  a, button, input, textarea, select {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-shadow;
+  }
+
+  /* Selection matches anime neon vibe */
+  ::selection {
+    @apply bg-primary/30 text-foreground;
+  }
+}
+
+@layer utilities {
+  /* Apple iOS Glassmorphism */
+  .apple-glass {
+    background-color: var(--apple-glass);
+    border-color: var(--apple-border);
+    @apply backdrop-blur-xl border shadow-[0_8px_32px_rgba(0,0,0,0.04)] transition-colors duration-500;
+    @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      backdrop-filter: blur(20px) saturate(180%);
+    }
+  }
+
+  /* Anime Neon Glow */
+  .neon-glow-cyan {
+    @apply shadow-[0_0_20px_rgba(0,229,255,0.4)];
+  }
+  .neon-glow-pink {
+    @apply shadow-[0_0_20px_rgba(255,42,133,0.4)];
+  }
+  .neon-glow-purple {
+    @apply shadow-[0_0_20px_rgba(138,43,226,0.4)];
+  }
+
+  /* Text gradient fusing Apple smoothness with Anime colors */
+  .text-gradient-anime {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
