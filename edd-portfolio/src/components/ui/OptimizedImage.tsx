@@ -6,7 +6,7 @@ interface OptimizedImageProps extends HTMLMotionProps<"img"> {
   src: string;
   alt: string;
   fallbackSrc?: string;
-  blurDataURL?: string; // Very low res base64 placeholder for true blur-up
+  blurDataURL?: string;
 }
 
 export const OptimizedImage: React.FC<OptimizedImageProps> = ({

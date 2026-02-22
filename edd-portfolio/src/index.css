@@ -5,6 +5,10 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   :root {
     --background: #F4F4F5; /* Tailwind zinc-100 for better surface contrast */
     --foreground: #1D1D1F; /* Apple dark gray */

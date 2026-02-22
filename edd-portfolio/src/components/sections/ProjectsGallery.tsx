@@ -5,6 +5,8 @@ import { ExternalLink } from 'lucide-react';
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+type Project = (typeof projects)[number];
+
 const categories = ["All", "Frontend", "Full Stack"];
 const categoryKeys: Record<string, string> = {
   "All": "all",
@@ -12,9 +14,7 @@ const categoryKeys: Record<string, string> = {
   "Full Stack": "fullStack",
 };
 
-// ... TiltCard implementation remains identical ...
-// 3D Tilt Card Sub-component
-const TiltCard = ({ project }: { project: any }) => {
+const TiltCard = ({ project }: { project: Project }) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
   // Motion values for 3D rotation
@@ -68,9 +68,12 @@ const TiltCard = ({ project }: { project: any }) => {
         className="aspect-[4/3] w-full overflow-hidden bg-black/5 relative"
       >
         <OptimizedImage
-          src={project.image}
-          alt={project.title}
+          src={`/projects/${project.id}-lg.webp`}
+          alt={`${project.title} project preview (${project.category})`}
+          fallbackSrc={project.image}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          srcSet={`/projects/${project.id}-thumb.webp 480w, /projects/${project.id}-md.webp 800w, /projects/${project.id}-lg.webp 1200w, /projects/${project.id}-full.webp 1600w`}
+          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
         />
         <div className="absolute inset-0 bg-white/20 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </motion.div>

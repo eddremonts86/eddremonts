@@ -5,30 +5,39 @@ import { motion } from 'framer-motion';
 import { ChevronDown, FileDown, Sparkles } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-// Mini component for Sakura/Neon particles
+const particleConfigs = Array.from({ length: 15 }, () => ({
+  width: `${Math.random() * 6 + 2}px`,
+  height: `${Math.random() * 6 + 2}px`,
+  left: `${Math.random() * 100}%`,
+  top: `${Math.random() * 100}%`,
+  animationDuration: `${Math.random() * 5 + 5}s`,
+  animationDelay: `${Math.random() * 5}s`,
+  offsetX: Math.random() * 20 - 10,
+  transitionDuration: Math.random() * 4 + 4,
+}));
+
 const ParticleLayer = () => {
   return (
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-      {/* Anime-style floating particles */}
-      {[...Array(15)].map((_, i) => (
+      {particleConfigs.map((config, i) => (
         <motion.div
           key={i}
           className={`absolute rounded-full ${i % 2 === 0 ? 'bg-secondary' : 'bg-primary'} blur-[1px] opacity-40`}
           style={{
-            width: Math.random() * 6 + 2 + 'px',
-            height: Math.random() * 6 + 2 + 'px',
-            left: Math.random() * 100 + '%',
-            top: Math.random() * 100 + '%',
-            animationDuration: (Math.random() * 5 + 5) + 's',
-            animationDelay: Math.random() * 5 + 's',
+            width: config.width,
+            height: config.height,
+            left: config.left,
+            top: config.top,
+            animationDuration: config.animationDuration,
+            animationDelay: config.animationDelay,
           }}
           animate={{
             y: [0, -40, 0],
-            x: [0, Math.random() * 20 - 10, 0],
+            x: [0, config.offsetX, 0],
             opacity: [0.2, 0.7, 0.2]
           }}
           transition={{
-            duration: Math.random() * 4 + 4,
+            duration: config.transitionDuration,
             repeat: Infinity,
             ease: "easeInOut"
           }}

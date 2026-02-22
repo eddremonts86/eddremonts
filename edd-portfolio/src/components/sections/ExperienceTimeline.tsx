@@ -4,6 +4,31 @@ import { MapPin } from 'lucide-react';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
+const techIconMap: Record<string, string> = {
+  React: '/tech-icons/react.svg',
+  Vuejs: '/tech-icons/vuedotjs.svg',
+  NextJs: '/tech-icons/nextdotjs.svg',
+  NuxtJs: '/tech-icons/nuxtjs.svg',
+  TypeScript: '/tech-icons/typescript.svg',
+  JavaScript: '/tech-icons/javascript.svg',
+  'Tailwind CSS': '/tech-icons/tailwindcss.svg',
+  HTML5: '/tech-icons/html5.svg',
+  CSS3: '/tech-icons/css3.svg',
+  SCSS: '/tech-icons/sass.svg',
+  SASS: '/tech-icons/sass.svg',
+  'Node js': '/tech-icons/nodedotjs.svg',
+  PHP: '/tech-icons/php.svg',
+  Laravel: '/tech-icons/laravel.svg',
+  Symfony: '/tech-icons/symfony.svg',
+  MySql: '/tech-icons/mysql.svg',
+  PostgreSql: '/tech-icons/postgresql.svg',
+  Git: '/tech-icons/git.svg',
+  Docker: '/tech-icons/docker.svg',
+  Linux: '/tech-icons/linux.svg',
+  MacOS: '/tech-icons/apple.svg',
+  'Framer Motion': '/tech-icons/framer.svg',
+};
+
 export const ExperienceTimeline = () => {
   const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -102,9 +127,17 @@ export const ExperienceTimeline = () => {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.03, ease: [0.16, 1, 0.3, 1] }}
-                      className="px-4 py-2 bg-surface border border-black/[0.05] rounded-full text-[13px] font-medium text-foreground/70 hover:text-primary hover:border-primary/30 hover:shadow-[0_0_12px_rgba(0,229,255,0.2)] hover:bg-white transition-all duration-300 cursor-default"
+                      className="px-4 py-2 bg-surface border border-black/[0.05] rounded-full text-[13px] font-medium text-foreground/70 hover:text-primary hover:border-primary/30 hover:shadow-[0_0_12px_rgba(0,229,255,0.2)] hover:bg-white transition-all duration-300 cursor-default flex items-center gap-2"
                     >
-                      {skill}
+                      {techIconMap[skill] && (
+                        <img
+                          src={techIconMap[skill]}
+                          alt={skill}
+                          loading="lazy"
+                          className="w-4 h-4 rounded-md"
+                        />
+                      )}
+                      <span>{skill}</span>
                     </motion.span>
                   ))}
                 </div>

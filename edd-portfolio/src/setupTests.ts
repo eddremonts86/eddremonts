@@ -30,11 +30,11 @@ class IntersectionObserverMock {
         rootBounds: null,
         time: Date.now()
       }
-    ], this as any);
+    ], this as unknown as IntersectionObserver);
   }
 
   unobserve() {}
   disconnect() {}
 }
 
-window.IntersectionObserver = IntersectionObserverMock as any;
+window.IntersectionObserver = IntersectionObserverMock as unknown as typeof IntersectionObserver;

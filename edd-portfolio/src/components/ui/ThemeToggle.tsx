@@ -1,4 +1,4 @@
-import { useTheme } from '@/contexts/ThemeContext';
+import { useTheme } from '@/contexts/ThemeContextBase';
 import { motion } from 'framer-motion';
 import { Moon, Sun } from 'lucide-react';
 

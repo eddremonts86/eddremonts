@@ -1,10 +1,11 @@
 import { aboutMe, services } from '@/data/cvData';
 import { motion } from 'framer-motion';
 import * as LucideIcons from 'lucide-react';
+import type { ComponentType } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const IconComponent = ({ name, className }: { name: string, className?: string }) => {
-  const IconMap: Record<string, any> = {
+  const IconMap: Record<string, ComponentType<{ className?: string }>> = {
     'users': LucideIcons.Users,
     'rocket': LucideIcons.Rocket,
     'shield': LucideIcons.ShieldCheck,
