@@ -1,4 +1,5 @@
 import { LanguageSelector } from '@/components/ui/LanguageSelector';
+import { ScrambleHover } from '@/components/ui/ScrambleHover';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { personalInfo } from '@/data/cvData';
 import { motion } from 'framer-motion';
@@ -84,7 +85,12 @@ export const HeroSection = () => {
           className="text-6xl md:text-8xl lg:text-[10rem] font-black mb-6 tracking-tighter leading-[0.9] text-foreground"
         >
           {t('hero.greeting')} <br/>
-          <span className="text-gradient-anime drop-shadow-sm pb-4 block">{personalInfo.name}</span>
+          <ScrambleHover
+            text={personalInfo.name}
+            hoverText="Eduardo Inerarte"
+            className="text-gradient-anime drop-shadow-sm pb-4 pr-4"
+            scrambleSpeed={15}
+          />
         </motion.h1>
 
         <motion.p

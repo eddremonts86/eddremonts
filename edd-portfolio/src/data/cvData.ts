@@ -2,7 +2,7 @@ import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
 
 export const personalInfo = {
   name: "Edd Remonts",
-  title: "Senior Full Stack Engineeer & Tech Lead",
+  title: "Senior Full-Stack/Frontend Engineer",
   description: "I Architect scalable web applications that bridge intricate business logic with immaculate user experiences. My focus relies on React 19, Node.js, and cloud ecosystems to deliver high-performance solutions engineered for massive scale.",
   email: "eddremonts@example.com", // Add real email if available
   phone: "(+45) 61436173",
