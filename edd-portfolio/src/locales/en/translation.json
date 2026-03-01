@@ -33,7 +33,8 @@
         "description": "Speed means nothing without stability. I build robust microservices leveraging modern Next.js/React meta-frameworks prioritizing zero-downtime overhauls."
       }
     },
-    "servicesTitle": "What I Deliver."
+    "servicesTitle": "What I Deliver.",
+    "servicesSub": "Delivering premium digital experiences."
   },
   "services": {
     "0": {
@@ -49,6 +50,7 @@
     "title": "Professional",
     "titleAccent": "Journey",
     "techArsenal": "Tech Arsenal",
+    "subtitle": "A timeline of my professional journey.",
     "present": "Present day",
     "items": {
       "11": {

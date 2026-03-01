@@ -1,5 +1,6 @@
 import { OptimizedImage } from '@/components/ui/OptimizedImage';
 import { projects } from '@/data/cvData';
+import { SectionHeader } from '@/components/ui/SectionHeader';
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import React, { useRef, useState } from 'react';
@@ -61,7 +62,7 @@ const TiltCard = ({ project }: { project: Project }) => {
         transformStyle: "preserve-3d",
         perspective: "1000px",
       }}
-      className="group relative rounded-[2rem] overflow-hidden bg-surface border border-black/[0.04] shadow-[0_12px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(0,229,255,0.12)] transition-shadow duration-500 will-change-transform"
+      className="group relative rounded-[2rem] overflow-hidden bg-surface border border-subtle shadow-[0_12px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(0,229,255,0.12)] transition-shadow duration-500 will-change-transform"
     >
       <motion.div
         style={{ filter: `brightness(${brightness})`, transform: "translateZ(30px)" }}
@@ -75,12 +76,12 @@ const TiltCard = ({ project }: { project: Project }) => {
           srcSet={`/projects/${project.id}-thumb.webp 480w, /projects/${project.id}-md.webp 800w, /projects/${project.id}-lg.webp 1200w, /projects/${project.id}-full.webp 1600w`}
           sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
         />
-        <div className="absolute inset-0 bg-white/20 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-foreground/10 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-500" />
       </motion.div>
 
       {/* Lift the content off the card slightly to accentuate 3D */}
       <div
-        className="absolute inset-x-0 bottom-0 p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 apple-glass border-t border-white/50 m-4 rounded-[1.5rem]"
+        className="absolute inset-x-0 bottom-0 p-6 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-all duration-500 apple-glass border-t border-apple-border m-4 rounded-[1.5rem]"
         style={{ transform: "translateZ(50px) translateY(0px)" }}
       >
         <div className="flex items-center justify-between mb-2">
@@ -91,7 +92,7 @@ const TiltCard = ({ project }: { project: Project }) => {
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-foreground shadow-sm hover:text-primary hover:scale-110 transition-transform duration-300"
+            className="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-foreground shadow-sm hover:text-primary hover:scale-110 transition-transform duration-300"
           >
             <ExternalLink className="w-4 h-4" />
           </a>
@@ -117,19 +118,13 @@ export const ProjectsGallery = () => {
     <section id="projects" className="py-32 bg-background relative z-10" ref={containerRef}>
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground mb-4 tracking-tighter">
-              {t('projects.title')} <span className="text-gradient-anime">{t('projects.titleAccent')}</span>
-            </h2>
-            <p className="text-xl text-foreground/70 max-w-2xl font-body">
-              {t('projects.subtitle')}
-            </p>
-          </motion.div>
+          <SectionHeader
+            title={t('projects.title')}
+            titleAccent={t('projects.titleAccent')}
+            subtitle={t('projects.subtitle')}
+            align="left"
+            className="mb-0"
+          />
 
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -144,8 +139,8 @@ export const ProjectsGallery = () => {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-6 py-2.5 rounded-xl transition-all whitespace-nowrap text-sm font-medium ${
                   activeCategory === cat
-                    ? "bg-white text-foreground shadow-[0_2px_8px_rgba(0,0,0,0.08)] scale-100"
-                    : "text-foreground/80 hover:text-foreground hover:bg-black/[0.02]"
+                    ? "bg-surface text-foreground shadow-[0_2px_8px_rgba(0,0,0,0.08)] scale-100"
+                    : "text-foreground/80 hover:text-foreground hover:bg-foreground/[0.02]"
                 }`}
               >
                 {t(`projects.filters.${categoryKeys[cat]}`)}

@@ -33,7 +33,8 @@
         "description": "La velocidad no significa nada sin estabilidad. Construyo microservicios robustos aprovechando meta-frameworks modernos como Next.js/React, priorizando renovaciones con cero tiempo de inactividad."
       }
     },
-    "servicesTitle": "Lo que entrego."
+    "servicesTitle": "Lo que entrego.",
+    "servicesSub": "Entregando experiencias digitales premium."
   },
   "services": {
     "0": {
@@ -49,6 +50,7 @@
     "title": "Trayectoria",
     "titleAccent": "Profesional",
     "techArsenal": "Arsenal Tecnológico",
+    "subtitle": "Una línea temporal de mi trayectoria profesional.",
     "present": "Actualidad",
     "items": {
       "11": {

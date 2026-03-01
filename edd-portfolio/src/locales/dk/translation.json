@@ -33,7 +33,8 @@
         "description": "Hastighed betyder intet uden stabilitet. Jeg bygger robuste mikrotjenester og drager fordel af moderne Next.js/React meta-frameworks, der prioriterer overhalinger med nul nedetid."
       }
     },
-    "servicesTitle": "Hvad Jeg Leverer."
+    "servicesTitle": "Hvad Jeg Leverer.",
+    "servicesSub": "Leverer premium digitale oplevelser."
   },
   "services": {
     "0": {
@@ -49,6 +50,7 @@
     "title": "Professionel",
     "titleAccent": "Rejse",
     "techArsenal": "Teknologisk Arsenal",
+    "subtitle": "En tidslinje over min professionelle rejse.",
     "present": "Nu",
     "items": {
       "11": {

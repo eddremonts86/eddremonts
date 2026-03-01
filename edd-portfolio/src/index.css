@@ -14,8 +14,8 @@
     --foreground: #1D1D1F; /* Apple dark gray */
     --surface: #FFFFFF;
 
-    --primary: #00E5FF; /* Electric Cyan */
-    --primary-foreground: #1D1D1F;
+    --primary: #0097A7; /* Accessible Cyan — WCAG AA on light bg */
+    --primary-foreground: #FFFFFF;
 
     --secondary: #FF2A85; /* Neon Pink */
     --secondary-foreground: #FFFFFF;
@@ -25,6 +25,9 @@
 
     --apple-glass: rgba(255, 255, 255, 0.72);
     --apple-border: rgba(0, 0, 0, 0.08);
+
+    --border-subtle: rgba(0, 0, 0, 0.04);
+    --border-default: rgba(0, 0, 0, 0.08);
 
     --scrollbar-thumb: rgba(0,0,0,0.15);
     --scrollbar-thumb-hover: rgba(0,0,0,0.3);
@@ -46,6 +49,9 @@
 
     --apple-glass: rgba(28, 28, 30, 0.72);
     --apple-border: rgba(255, 255, 255, 0.1);
+
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --border-default: rgba(255, 255, 255, 0.1);
 
     --scrollbar-thumb: rgba(255,255,255,0.2);
     --scrollbar-thumb-hover: rgba(255,255,255,0.4);
@@ -94,6 +100,16 @@
   }
   .neon-glow-purple {
     @apply shadow-[0_0_20px_rgba(138,43,226,0.4)];
+  }
+
+  /* Animation delay utility for staggered blobs */
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  /* Skip to content link */
+  .skip-to-content {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-foreground focus:text-background focus:rounded-2xl focus:font-semibold focus:shadow-lg;
   }
 
   /* Text gradient fusing Apple smoothness with Anime colors */

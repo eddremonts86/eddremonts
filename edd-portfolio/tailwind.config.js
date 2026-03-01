@@ -28,6 +28,10 @@ export default {
           border: 'var(--apple-border)',
         }
       },
+      borderColor: {
+        subtle: 'var(--border-subtle)',
+        default: 'var(--border-default)',
+      },
       fontFamily: {
         // System UI ensures San Francisco on Apple devices
         body: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],

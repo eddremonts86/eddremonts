@@ -17,6 +17,10 @@ function App() {
         className="min-h-screen bg-background text-foreground"
       >
         <SEO />
+        {/* Skip to content for keyboard a11y */}
+        <a href="#about" className="skip-to-content">
+          Skip to content
+        </a>
         {/* Main Navigation (Optional minimalist nav if needed, skipping for full immersive scroll) */}
         <main>
           <HeroSection />

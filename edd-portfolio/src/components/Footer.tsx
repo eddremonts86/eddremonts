@@ -7,7 +7,7 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-16 border-t border-black/[0.05] bg-surface text-center relative overflow-hidden">
+    <footer className="py-16 border-t border-default bg-surface text-center relative overflow-hidden">
       {/* Anime subtle footer glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[150%] h-[150px] bg-gradient-to-t from-primary/5 to-transparent rounded-[100%] blur-3xl opacity-50 pointer-events-none" />
 
@@ -28,7 +28,7 @@ export const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-14 h-14 rounded-2xl bg-surface shadow-sm border border-black/5 flex items-center justify-center text-foreground/70 hover:text-primary hover:shadow-[0_8px_20px_rgba(0,229,255,0.15)] hover:-translate-y-1 transition-all duration-300 group"
+                  className="w-14 h-14 rounded-2xl bg-surface shadow-sm border border-subtle flex items-center justify-center text-foreground/80 hover:text-primary hover:shadow-[0_8px_20px_rgba(0,229,255,0.15)] hover:-translate-y-1 transition-all duration-300 group"
                   aria-label={social.name}
                 >
                   <Icon className="w-5 h-5 group-hover:scale-110 transition-transform" />

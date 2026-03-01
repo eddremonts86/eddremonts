@@ -2,7 +2,7 @@ import { LanguageSelector } from '@/components/ui/LanguageSelector';
 import { ScrambleHover } from '@/components/ui/ScrambleHover';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { personalInfo } from '@/data/cvData';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ChevronDown, FileDown, Sparkles } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -18,6 +18,12 @@ const particleConfigs = Array.from({ length: 15 }, () => ({
 }));
 
 const ParticleLayer = () => {
+  const prefersReducedMotion = useReducedMotion();
+
+  if (prefersReducedMotion) {
+    return null;
+  }
+
   return (
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
       {particleConfigs.map((config, i) => (
@@ -97,7 +103,7 @@ export const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-xl md:text-3xl font-display font-medium text-foreground/70 max-w-3xl mb-8 tracking-tight"
+          className="text-xl md:text-3xl font-display font-medium text-foreground/80 max-w-3xl mb-8 tracking-tight"
         >
           {t('personalInfo.title')}
         </motion.p>
@@ -106,7 +112,7 @@ export const HeroSection = () => {
            initial={{ opacity: 0 }}
            animate={{ opacity: 1 }}
            transition={{ duration: 1, delay: 0.4 }}
-           className="text-base md:text-lg text-foreground/70 max-w-2xl mb-12 font-body font-light leading-relaxed"
+           className="text-base md:text-lg text-foreground/80 max-w-2xl mb-12 font-body font-light leading-relaxed"
         >
           {t('personalInfo.description')}
         </motion.p>
@@ -120,7 +126,7 @@ export const HeroSection = () => {
           {/* Neon Anime Button matching Apple's rounded shape */}
           <a
             href="#projects"
-            className="group relative px-8 py-4 bg-foreground text-background rounded-2xl font-semibold tracking-wide overflow-hidden transition-all hover:scale-[1.02] shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(0,229,255,0.3)]"
+            className="group relative px-8 py-4 bg-foreground text-background rounded-2xl font-semibold tracking-wide overflow-hidden transition-all hover:scale-[1.02] shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:shadow-[0_8px_30px_rgba(0,229,255,0.3)]"
           >
             <span className="relative z-10 flex items-center justify-center gap-2">
               {t('hero.explore')}
@@ -133,7 +139,7 @@ export const HeroSection = () => {
             href="https://eddremonts.dk/storage/app/media/Eduardo%20Valdes%20Inearte%20-%20Frontend%20Developer.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 px-8 py-4 apple-glass text-foreground rounded-2xl font-semibold tracking-wide transition-all hover:scale-[1.02] hover:bg-white/90"
+            className="flex items-center justify-center gap-2 px-8 py-4 apple-glass text-foreground rounded-2xl font-semibold tracking-wide transition-all hover:scale-[1.02] hover:bg-surface/90"
           >
             <span>{t('nav.resume')}</span>
             <FileDown className="w-5 h-5 text-foreground/70" />
@@ -148,7 +154,7 @@ export const HeroSection = () => {
         transition={{ delay: 1.2, duration: 1 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2"
       >
-        <a href="#about" aria-label="Scroll down" className="flex flex-col items-center gap-2 text-foreground/70 hover:text-primary transition-colors cursor-pointer group">
+        <a href="#about" aria-label="Scroll down" className="flex flex-col items-center gap-2 text-foreground/80 hover:text-primary transition-colors cursor-pointer group">
           <span className="text-xs uppercase tracking-widest font-semibold group-hover:text-primary transition-colors">{t('nav.discover')}</span>
           <ChevronDown className="w-6 h-6 animate-bounce" />
         </a>

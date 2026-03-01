@@ -1,4 +1,5 @@
 import { experiences, skills } from '@/data/cvData';
+import { SectionHeader } from '@/components/ui/SectionHeader';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin } from 'lucide-react';
 import { useRef } from 'react';
@@ -43,23 +44,18 @@ export const ExperienceTimeline = () => {
   return (
     <section id="experience" className="py-32 bg-surface relative" ref={containerRef}>
       <div className="container mx-auto px-6 max-w-7xl">
-        <motion.div
-           initial={{ opacity: 0, y: 30 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true, margin: "-100px" }}
-           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-           className="text-left mb-24 max-w-3xl"
-        >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground tracking-tighter mb-6">
-            {t('experience.title')} <span className="text-gradient-anime">{t('experience.titleAccent')}</span>
-          </h2>
-          <p className="text-xl text-foreground/70 font-body">{t('experience.subtitle', 'A timeline of my professional journey.')}</p>
-        </motion.div>
+        <SectionHeader
+          title={t('experience.title')}
+          titleAccent={t('experience.titleAccent')}
+          subtitle={t('experience.subtitle')}
+          align="left"
+          className="mb-24"
+        />
 
         <div className="flex flex-col lg:flex-row gap-20">
           <div className="lg:w-2/3 relative">
             {/* Timeline Line (Apple subtle gray base, Anime vibrant fill) */}
-            <div className="absolute left-8 top-0 bottom-0 w-[2px] bg-black/[0.04] hidden md:block rounded-full">
+            <div className="absolute left-8 top-0 bottom-0 w-[2px] bg-foreground/[0.04] hidden md:block rounded-full">
               <motion.div
                 className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary via-secondary to-accent rounded-full"
                 style={{ height: lineHeight }}
@@ -80,7 +76,7 @@ export const ExperienceTimeline = () => {
                   <div className="absolute left-8 -translate-x-1/2 top-8 w-5 h-5 rounded-full bg-surface border-[4px] border-primary z-10 hidden md:block shadow-[0_0_15px_rgba(0,229,255,0.4)]" />
 
                   {/* Apple Style Floating Card */}
-                  <div className="bg-surface rounded-[2rem] p-8 md:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] border border-black/[0.03] transition-all duration-500 group relative overflow-hidden">
+                  <div className="bg-surface rounded-[2rem] p-8 md:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] border border-subtle transition-all duration-500 group relative overflow-hidden">
                     {/* Subtle Anime accent in the corner */}
                     <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-accent/5 to-transparent rounded-bl-full transition-transform duration-700 group-hover:scale-125 pointer-events-none" />
 
@@ -117,7 +113,7 @@ export const ExperienceTimeline = () => {
                 className="apple-glass rounded-[2rem] p-8 shadow-[0_8px_40px_rgba(0,0,0,0.03)]"
               >
                 <h3 className="text-2xl font-black text-foreground mb-8 tracking-tighter">
-                  {t('experience.techArsenal').split(' ')[0]} <span className="text-accent">{t('experience.techArsenal').split(' ').slice(1).join(' ')}</span>
+                  {t('experience.techArsenal')}
                 </h3>
                 <div className="flex flex-wrap gap-2.5">
                   {skills.map((skill, index) => (
@@ -127,7 +123,7 @@ export const ExperienceTimeline = () => {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.03, ease: [0.16, 1, 0.3, 1] }}
-                      className="px-4 py-2 bg-surface border border-black/[0.05] rounded-full text-[13px] font-medium text-foreground/70 hover:text-primary hover:border-primary/30 hover:shadow-[0_0_12px_rgba(0,229,255,0.2)] hover:bg-white transition-all duration-300 cursor-default flex items-center gap-2"
+                      className="px-4 py-2 bg-surface border border-subtle rounded-full text-[13px] font-medium text-foreground/80 hover:text-primary hover:border-primary/30 hover:shadow-[0_0_12px_rgba(0,229,255,0.2)] hover:bg-surface transition-all duration-300 cursor-default flex items-center gap-2"
                     >
                       {techIconMap[skill] && (
                         <img
