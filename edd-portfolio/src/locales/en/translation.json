@@ -1,5 +1,7 @@
 {
   "nav": {
+    "about": "About",
+    "experience": "Experience",
     "projects": "Projects",
     "contact": "Contact",
     "resume": "Download CV",
@@ -103,6 +105,46 @@
     "info": {
       "title": "Contact Details"
     }
+  },
+  "stats": {
+    "yearsExperience": "Years Experience",
+    "companies": "Companies",
+    "technologies": "Technologies",
+    "lighthouse": "Lighthouse Score"
+  },
+  "testimonial": {
+    "quote": "Edd consistently delivered high-quality, performant solutions. His attention to detail and technical leadership elevated our entire frontend architecture.",
+    "author": "Engineering Lead",
+    "role": "Enterprise Client",
+    "initials": "EL"
+  },
+  "codeShowcase": {
+    "badge": "Under the Hood",
+    "title": "Clean Code,",
+    "titleAccent": "Real Impact.",
+    "description": "Every component I build follows strict architectural principles — typed, tested, and optimized. Here's a glimpse of how I define my engineering identity in code.",
+    "hint": "Switch tabs to explore the full config",
+    "principles": {
+      "architecture": {
+        "title": "Typed Architecture",
+        "sub": "End-to-end TypeScript with strict generics"
+      },
+      "performance": {
+        "title": "Performance First",
+        "sub": "Sub-second loads, 60fps animations"
+      },
+      "patterns": {
+        "title": "Modern Patterns",
+        "sub": "Composable, tree-shakeable modules"
+      },
+      "dx": {
+        "title": "Developer Experience",
+        "sub": "Linted, formatted, CI-enforced"
+      }
+    }
+  },
+  "codeBlock": {
+    "filename": "developer.ts"
   },
   "footer": {
     "rights": "All rights reserved.",

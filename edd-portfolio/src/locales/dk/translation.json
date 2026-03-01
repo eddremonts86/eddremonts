@@ -1,5 +1,7 @@
 {
   "nav": {
+    "about": "Om",
+    "experience": "Erfaring",
     "projects": "Projekter",
     "contact": "Kontakt",
     "resume": "Download CV",
@@ -103,6 +105,46 @@
     "info": {
       "title": "Kontakt Information"
     }
+  },
+  "stats": {
+    "yearsExperience": "Års Erfaring",
+    "companies": "Virksomheder",
+    "technologies": "Teknologier",
+    "lighthouse": "Lighthouse Score"
+  },
+  "testimonial": {
+    "quote": "Edd leverede konsekvent løsninger af høj kvalitet og ydeevne. Hans sans for detaljer og tekniske lederskab løftede hele vores frontend-arkitektur.",
+    "author": "Ingeniørleder",
+    "role": "Virksomhedskunde",
+    "initials": "IL"
+  },
+  "codeShowcase": {
+    "badge": "Under Motorhjelmen",
+    "title": "Ren Kode,",
+    "titleAccent": "Reel Effekt.",
+    "description": "Hver komponent jeg bygger følger strenge arkitektoniske principper — typet, testet og optimeret. Her er et glimt af, hvordan jeg definerer min ingeniøridentitet i kode.",
+    "hint": "Skift fane for at udforske den fulde konfiguration",
+    "principles": {
+      "architecture": {
+        "title": "Typet Arkitektur",
+        "sub": "End-to-end TypeScript med strenge generics"
+      },
+      "performance": {
+        "title": "Ydeevne Først",
+        "sub": "Indlæsning under 1 sekund, 60fps animationer"
+      },
+      "patterns": {
+        "title": "Moderne Mønstre",
+        "sub": "Sammensættelige, tree-shakeable moduler"
+      },
+      "dx": {
+        "title": "Udvikleroplevelse",
+        "sub": "Lintet, formateret, CI-håndhævet"
+      }
+    }
+  },
+  "codeBlock": {
+    "filename": "developer.ts"
   },
   "footer": {
     "rights": "Alle rettigheder forbeholdes.",

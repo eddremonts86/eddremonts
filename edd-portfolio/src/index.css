@@ -4,6 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Register custom property for gradient rotation animation */
+@property --gradient-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -115,6 +122,40 @@
   /* Text gradient fusing Apple smoothness with Anime colors */
   .text-gradient-anime {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+  }
+
+  /* Animated gradient border glow for cards */
+  .gradient-border-glow {
+    background: conic-gradient(
+      from var(--gradient-angle, 0deg),
+      var(--primary),
+      var(--secondary),
+      var(--accent),
+      var(--primary)
+    );
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    padding: 1.5px;
+    border-radius: inherit;
+    animation: gradient-rotate 4s linear infinite;
+  }
+
+  @keyframes gradient-rotate {
+    to {
+      --gradient-angle: 360deg;
+    }
+  }
+
+  /* Floating decorative shapes */
+  .floating-shape {
+    @apply absolute rounded-full pointer-events-none;
+    animation: float-gentle 6s ease-in-out infinite;
+  }
+
+  @keyframes float-gentle {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(8deg); }
   }
 }
 

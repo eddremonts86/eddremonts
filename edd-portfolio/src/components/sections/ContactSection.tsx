@@ -4,6 +4,14 @@ import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
+const floatingShapes = [
+  { size: 64, color: 'var(--primary)', top: '15%', left: '5%', delay: 0 },
+  { size: 40, color: 'var(--secondary)', top: '70%', right: '8%', delay: 1.5 },
+  { size: 28, color: 'var(--accent)', bottom: '20%', left: '12%', delay: 3 },
+  { size: 48, color: 'var(--primary)', top: '30%', right: '3%', delay: 2 },
+  { size: 20, color: 'var(--secondary)', top: '80%', left: '60%', delay: 4 },
+];
+
 export const ContactSection = () => {
   const { t } = useTranslation();
 
@@ -12,6 +20,26 @@ export const ContactSection = () => {
       {/* Background Anime Blurs on pure white */}
       <div className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-secondary/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute -bottom-[10%] -right-[10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+
+      {/* Floating decorative shapes */}
+      {floatingShapes.map((shape, i) => (
+        <div
+          key={i}
+          className="floating-shape opacity-10"
+          style={{
+            width: shape.size,
+            height: shape.size,
+            background: shape.color,
+            top: shape.top,
+            left: shape.left,
+            right: shape.right,
+            bottom: shape.bottom,
+            animationDelay: `${shape.delay}s`,
+            filter: 'blur(1px)',
+          }}
+          aria-hidden="true"
+        />
+      ))}
 
       <div className="container mx-auto px-6 relative z-10 max-w-6xl">
         <SectionHeader

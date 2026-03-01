@@ -45,13 +45,13 @@ export const LanguageSelector = () => {
     <div className="relative z-50" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 p-2 rounded-full apple-glass text-foreground hover:text-primary transition-colors"
+        className="flex items-center gap-2 p-2 transition-colors rounded-full apple-glass text-foreground hover:text-primary"
         aria-label="Select Language"
-        aria-expanded={isOpen}
-        aria-haspopup="true"
+        aria-haspopup="listbox"
+        aria-expanded={isOpen ? 'true' : 'false'}
       >
         <Globe className="w-5 h-5" />
-        <span className="text-sm font-semibold uppercase tracking-widest">{i18n.language}</span>
+        <span className="text-sm font-semibold tracking-widest uppercase">{i18n.language}</span>
       </button>
 
       <AnimatePresence>
@@ -61,23 +61,24 @@ export const LanguageSelector = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-12 right-0 mt-2 w-32 apple-glass rounded-2xl overflow-hidden shadow-lg border border-subtle p-1 flex flex-col gap-1"
-            role="menu"
+            className="absolute right-0 w-32 p-1 mt-2 overflow-hidden border shadow-lg top-12 apple-glass rounded-2xl border-subtle"
           >
-            {languages.map((lang) => (
-              <button
-                key={lang.code}
-                onClick={() => changeLanguage(lang.code)}
-                role="menuitem"
-                className={`text-left px-4 py-2 text-sm rounded-xl transition-colors font-medium ${
-                  i18n.language === lang.code
-                    ? 'bg-foreground/5 text-primary'
-                    : 'text-foreground/70 hover:bg-foreground/5 hover:text-foreground'
-                }`}
-              >
-                {lang.label}
-              </button>
-            ))}
+            <div role="menu" className="flex flex-col gap-1">
+              {languages.map((lang) => (
+                <button
+                  key={lang.code}
+                  onClick={() => changeLanguage(lang.code)}
+                  role="menuitem"
+                  className={`text-left px-4 py-2 text-sm rounded-xl transition-colors font-medium ${
+                    i18n.language === lang.code
+                      ? 'bg-foreground/5 text-primary'
+                      : 'text-foreground/70 hover:bg-foreground/5 hover:text-foreground'
+                  }`}
+                >
+                  {lang.label}
+                </button>
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

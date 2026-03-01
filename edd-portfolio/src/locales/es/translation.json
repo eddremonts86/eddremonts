@@ -1,5 +1,7 @@
 {
   "nav": {
+    "about": "Sobre mí",
+    "experience": "Experiencia",
     "projects": "Proyectos",
     "contact": "Contacto",
     "resume": "Descargar CV",
@@ -103,6 +105,46 @@
     "info": {
       "title": "Detalles de Contacto"
     }
+  },
+  "stats": {
+    "yearsExperience": "Años de Experiencia",
+    "companies": "Empresas",
+    "technologies": "Tecnologías",
+    "lighthouse": "Puntuación Lighthouse"
+  },
+  "testimonial": {
+    "quote": "Edd entregó consistentemente soluciones de alta calidad y rendimiento. Su atención al detalle y liderazgo técnico elevó toda nuestra arquitectura frontend.",
+    "author": "Líder de Ingeniería",
+    "role": "Cliente Empresarial",
+    "initials": "LI"
+  },
+  "codeShowcase": {
+    "badge": "Bajo el Capó",
+    "title": "Código Limpio,",
+    "titleAccent": "Impacto Real.",
+    "description": "Cada componente que construyo sigue principios arquitectónicos estrictos — tipado, testeado y optimizado. Aquí un vistazo de cómo defino mi identidad ingenieril en código.",
+    "hint": "Cambia de pestaña para explorar la configuración completa",
+    "principles": {
+      "architecture": {
+        "title": "Arquitectura Tipada",
+        "sub": "TypeScript end-to-end con genéricos estrictos"
+      },
+      "performance": {
+        "title": "Rendimiento Primero",
+        "sub": "Carga sub-segundo, animaciones a 60fps"
+      },
+      "patterns": {
+        "title": "Patrones Modernos",
+        "sub": "Módulos composables y tree-shakeable"
+      },
+      "dx": {
+        "title": "Experiencia Developer",
+        "sub": "Linted, formateado, CI reforzado"
+      }
+    }
+  },
+  "codeBlock": {
+    "filename": "developer.ts"
   },
   "footer": {
     "rights": "Todos los derechos reservados.",

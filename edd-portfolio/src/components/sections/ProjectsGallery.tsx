@@ -64,6 +64,8 @@ const TiltCard = ({ project }: { project: Project }) => {
       }}
       className="group relative rounded-[2rem] overflow-hidden bg-surface border border-subtle shadow-[0_12px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(0,229,255,0.12)] transition-shadow duration-500 will-change-transform"
     >
+      {/* Gradient border glow on hover */}
+      <div className="absolute inset-0 rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none gradient-border-glow z-10" />
       <motion.div
         style={{ filter: `brightness(${brightness})`, transform: "translateZ(30px)" }}
         className="aspect-[4/3] w-full overflow-hidden bg-black/5 relative"
