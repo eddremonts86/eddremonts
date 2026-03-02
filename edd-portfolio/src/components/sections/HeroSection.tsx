@@ -2,6 +2,7 @@ import { LanguageSelector } from '@/components/ui/LanguageSelector';
 import { ScrambleHover } from '@/components/ui/ScrambleHover';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { personalInfo } from '@/data/cvData';
+import { APPLE_EASE } from '@/lib/motion';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ChevronDown, FileDown, Sparkles } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -76,7 +77,7 @@ export const HeroSection = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} /* Apple custom ease */
+          transition={{ duration: 0.8, ease: APPLE_EASE }}
           className="mb-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-full apple-glass text-sm font-medium tracking-wide text-foreground shadow-sm"
         >
           <Sparkles className="w-4 h-4 text-primary animate-sparkle" />
@@ -87,7 +88,7 @@ export const HeroSection = () => {
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1, delay: 0.1, ease: APPLE_EASE }}
           className="text-6xl md:text-8xl lg:text-[10rem] font-black mb-6 tracking-tighter leading-[0.9] text-foreground"
         >
           {t('hero.greeting')} <br/>
@@ -102,7 +103,7 @@ export const HeroSection = () => {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1, delay: 0.2, ease: APPLE_EASE }}
           className="text-xl md:text-3xl font-display font-medium text-foreground/80 max-w-3xl mb-8 tracking-tight"
         >
           {t('personalInfo.title')}
@@ -120,7 +121,7 @@ export const HeroSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1, delay: 0.5, ease: APPLE_EASE }}
           className="flex flex-col sm:flex-row gap-5 items-center"
         >
           {/* Neon Anime Button matching Apple's rounded shape */}

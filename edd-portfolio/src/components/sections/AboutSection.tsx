@@ -1,6 +1,7 @@
 import { aboutMe, services } from '@/data/cvData';
 import { IconComponent } from '@/components/ui/IconComponent';
 import { SectionHeader } from '@/components/ui/SectionHeader';
+import { APPLE_EASE } from '@/lib/motion';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -28,7 +29,7 @@ export const AboutSection = () => {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.5, delay: index * 0.1, ease: APPLE_EASE }}
                 onClick={() => setActiveFeature(index)}
                 className={`group flex items-start gap-5 p-6 rounded-[1.5rem] text-left transition-all duration-300 border ${
                   activeFeature === index
@@ -60,7 +61,7 @@ export const AboutSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.6, ease: APPLE_EASE }}
             className="md:col-span-3 relative rounded-[2rem] bg-surface border border-subtle shadow-[0_4px_24px_rgba(0,0,0,0.03)] overflow-hidden min-h-[320px] flex items-center justify-center p-10"
           >
             {/* Gradient background accent */}
@@ -72,7 +73,7 @@ export const AboutSection = () => {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.35, ease: APPLE_EASE }}
                 className="relative z-10 text-center max-w-md"
               >
                 <div className="w-20 h-20 rounded-[1.5rem] bg-surface shadow-sm border border-subtle flex items-center justify-center mx-auto mb-8 group-hover:scale-105 transition-transform">
@@ -118,7 +119,7 @@ export const AboutSection = () => {
                 initial={{ opacity: 0, scale: 0.98 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.8, ease: APPLE_EASE }}
                 className="group relative flex flex-col sm:flex-row gap-6 p-8 rounded-[2rem] bg-surface border border-subtle shadow-[0_2px_12px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_32px_rgba(0,229,255,0.06)] transition-all duration-500 overflow-hidden"
               >
                 {/* Gradient border glow on hover */}

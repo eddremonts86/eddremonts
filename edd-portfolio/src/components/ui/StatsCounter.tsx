@@ -1,3 +1,4 @@
+import { APPLE_EASE } from '@/lib/motion';
 import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -52,7 +53,7 @@ export const StatsCounter = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, ease: APPLE_EASE }}
           className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4"
         >
           {stats.map((stat, index) => (
@@ -61,7 +62,7 @@ export const StatsCounter = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.6, delay: index * 0.1, ease: APPLE_EASE }}
               className="text-center group"
             >
               <div className="text-5xl md:text-6xl font-black text-foreground tracking-tighter font-display mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-secondary transition-all duration-500">

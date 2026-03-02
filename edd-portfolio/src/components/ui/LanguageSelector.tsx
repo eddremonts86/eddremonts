@@ -1,7 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Globe } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useClickOutside } from '@/hooks/useClickOutside';
 
 const languages = [
   { code: 'en', label: 'English' },
@@ -14,32 +15,14 @@ export const LanguageSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  const close = useCallback(() => setIsOpen(false), []);
+  useClickOutside(dropdownRef, close);
+
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
     localStorage.setItem('edd-portfolio-lang', lng);
     setIsOpen(false);
   };
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, []);
 
   return (
     <div className="relative z-50" ref={dropdownRef}>
@@ -48,7 +31,7 @@ export const LanguageSelector = () => {
         className="flex items-center gap-2 p-2 transition-colors rounded-full apple-glass text-foreground hover:text-primary"
         aria-label="Select Language"
         aria-haspopup="listbox"
-        aria-expanded={isOpen ? 'true' : 'false'}
+        aria-expanded={isOpen}
       >
         <Globe className="w-5 h-5" />
         <span className="text-sm font-semibold tracking-widest uppercase">{i18n.language}</span>

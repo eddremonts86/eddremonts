@@ -1,4 +1,5 @@
 import { CodeBlock } from '@/components/ui/CodeBlock';
+import { APPLE_EASE } from '@/lib/motion';
 import { motion } from 'framer-motion';
 import {
   Braces,
@@ -20,8 +21,7 @@ const principles = [
   { icon: Terminal, key: 'codeShowcase.principles.dx' },
 ] as const;
 
-/* Shared easing — Apple default spring curve */
-const appleEase = [0.16, 1, 0.3, 1] as const;
+
 
 /* ─────────────────────────────────────────────────────────
  * Presentational sub-components (Compound-like composition)
@@ -87,7 +87,7 @@ export const CodeShowcase = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: appleEase }}
+            transition={{ duration: 0.6, ease: APPLE_EASE }}
             className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/[0.08] border border-white/[0.1] backdrop-blur-sm text-xs font-semibold tracking-widest uppercase text-[#00e5ff] mb-10"
           >
             <Braces className="w-3.5 h-3.5" />
@@ -99,7 +99,7 @@ export const CodeShowcase = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: appleEase }}
+            transition={{ duration: 0.8, ease: APPLE_EASE }}
             className="mb-8 text-5xl font-black tracking-tighter text-white md:text-6xl lg:text-7xl"
           >
             {t('codeShowcase.title')}{' '}
@@ -113,7 +113,7 @@ export const CodeShowcase = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1, ease: appleEase }}
+            transition={{ duration: 0.8, delay: 0.1, ease: APPLE_EASE }}
             className="max-w-2xl mx-auto text-lg leading-relaxed md:text-xl text-white/55 font-body"
           >
             {t('codeShowcase.description')}
@@ -130,7 +130,7 @@ export const CodeShowcase = () => {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.15, ease: appleEase }}
+            transition={{ duration: 0.8, delay: 0.15, ease: APPLE_EASE }}
             className="lg:col-span-4 lg:sticky lg:top-32"
           >
             {/* Vertical list — more breathing room than 2×2 grid */}
@@ -144,7 +144,7 @@ export const CodeShowcase = () => {
                   transition={{
                     duration: 0.5,
                     delay: 0.2 + i * 0.08,
-                    ease: appleEase,
+                    ease: APPLE_EASE,
                   }}
                   className="group flex items-center gap-4 p-5 rounded-2xl hover:bg-white/[0.05] transition-all duration-300"
                 >
@@ -181,7 +181,7 @@ export const CodeShowcase = () => {
             initial={{ opacity: 0, y: 40, scale: 0.97 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 1, delay: 0.25, ease: appleEase }}
+            transition={{ duration: 1, delay: 0.25, ease: APPLE_EASE }}
             className="lg:col-span-8"
           >
             <CodeBlock />

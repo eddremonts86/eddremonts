@@ -1,4 +1,5 @@
 import { personalInfo } from '@/data/cvData';
+import { APPLE_EASE } from '@/lib/motion';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
@@ -16,7 +17,7 @@ export const Footer = () => {
            initial={{ opacity: 0, y: 20 }}
            whileInView={{ opacity: 1, y: 0 }}
            viewport={{ once: true }}
-           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+           transition={{ duration: 0.8, ease: APPLE_EASE }}
            className="flex flex-col items-center justify-center space-y-8"
         >
           <div className="flex gap-4">

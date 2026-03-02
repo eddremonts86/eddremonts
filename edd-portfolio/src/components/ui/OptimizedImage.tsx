@@ -1,3 +1,4 @@
+import { APPLE_EASE } from '@/lib/motion';
 import type { HTMLMotionProps } from 'framer-motion';
 import { motion } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
@@ -91,7 +92,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
             opacity: isLoaded ? 1 : 0,
             filter: isLoaded ? 'blur(0px)' : 'blur(20px)'
           }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, ease: APPLE_EASE }}
           className={`relative z-10 w-full h-full object-cover will-change-[opacity,filter] ${className}`}
           {...props}
         />

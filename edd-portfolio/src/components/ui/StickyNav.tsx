@@ -1,6 +1,7 @@
 import { LanguageSelector } from '@/components/ui/LanguageSelector';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { personalInfo } from '@/data/cvData';
+import { APPLE_EASE } from '@/lib/motion';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -29,7 +30,7 @@ export const StickyNav = () => {
           initial={{ y: -80, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -80, opacity: 0 }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.4, ease: APPLE_EASE }}
           className="fixed top-4 left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-4xl"
           aria-label="Main navigation"
         >

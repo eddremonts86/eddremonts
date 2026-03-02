@@ -1,5 +1,6 @@
 import { personalInfo } from '@/data/cvData';
 import { SectionHeader } from '@/components/ui/SectionHeader';
+import { APPLE_EASE } from '@/lib/motion';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -53,7 +54,7 @@ export const ContactSection = () => {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, ease: APPLE_EASE }}
             className="lg:col-span-2 space-y-8"
           >
             <div className="bg-surface p-10 rounded-[2rem] shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-subtle h-full relative overflow-hidden group">
@@ -88,7 +89,7 @@ export const ContactSection = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.2, ease: APPLE_EASE }}
             className="lg:col-span-3"
           >
             <form className="bg-surface p-10 rounded-[2rem] shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-subtle space-y-6" onSubmit={(e) => e.preventDefault()}>

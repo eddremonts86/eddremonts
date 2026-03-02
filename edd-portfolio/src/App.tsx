@@ -1,11 +1,9 @@
 import { AnimatePresence, motion } from 'framer-motion';
+import { lazy, Suspense } from 'react';
 import { Footer } from './components/Footer';
 import { AboutSection } from './components/sections/AboutSection';
-import { ContactSection } from './components/sections/ContactSection';
 import { ExperienceTimeline } from './components/sections/ExperienceTimeline';
 import { HeroSection } from './components/sections/HeroSection';
-import { ProjectsGallery } from './components/sections/ProjectsGallery';
-import { CodeShowcase } from './components/sections/CodeShowcase';
 import { DotNavigation } from './components/ui/DotNavigation';
 import { MouseFollower } from './components/ui/MouseFollower';
 import { SEO } from './components/ui/SEO';
@@ -13,6 +11,17 @@ import { SkillsMarquee } from './components/ui/SkillsMarquee';
 import { StatsCounter } from './components/ui/StatsCounter';
 import { StickyNav } from './components/ui/StickyNav';
 import { TestimonialBlock } from './components/ui/TestimonialBlock';
+
+/* ── Below-fold sections — code-split for faster initial load ── */
+const ProjectsGallery = lazy(() =>
+  import('./components/sections/ProjectsGallery').then((m) => ({ default: m.ProjectsGallery })),
+);
+const CodeShowcase = lazy(() =>
+  import('./components/sections/CodeShowcase').then((m) => ({ default: m.CodeShowcase })),
+);
+const ContactSection = lazy(() =>
+  import('./components/sections/ContactSection').then((m) => ({ default: m.ContactSection })),
+);
 
 function App() {
   return (
@@ -42,9 +51,11 @@ function App() {
           <SkillsMarquee />
           <ExperienceTimeline />
           <TestimonialBlock />
-          <ProjectsGallery />
-          <CodeShowcase />
-          <ContactSection />
+          <Suspense fallback={null}>
+            <ProjectsGallery />
+            <CodeShowcase />
+            <ContactSection />
+          </Suspense>
         </main>
         <Footer />
       </motion.div>

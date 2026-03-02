@@ -19,12 +19,12 @@ export const initialThemeState: ThemeProviderState = {
   setTheme: () => null,
 };
 
-export const ThemeProviderContext = createContext<ThemeProviderState>(initialThemeState);
+export const ThemeProviderContext = createContext<ThemeProviderState | null>(null);
 
 export const useTheme = () => {
   const context = useContext(ThemeProviderContext);
 
-  if (context === undefined) {
+  if (context === null) {
     throw new Error('useTheme must be used within a ThemeProvider');
   }
 

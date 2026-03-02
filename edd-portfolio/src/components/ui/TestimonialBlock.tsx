@@ -1,3 +1,4 @@
+import { APPLE_EASE } from '@/lib/motion';
 import { motion } from 'framer-motion';
 import { Quote } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -16,7 +17,7 @@ export const TestimonialBlock = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, ease: APPLE_EASE }}
           className="text-center"
         >
           <Quote className="w-12 h-12 text-primary/30 mx-auto mb-8 rotate-180" aria-hidden="true" />

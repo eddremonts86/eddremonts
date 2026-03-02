@@ -1,34 +1,11 @@
 import { experiences, skills } from '@/data/cvData';
+import { techIconMap } from '@/data/techIcons';
 import { SectionHeader } from '@/components/ui/SectionHeader';
+import { APPLE_EASE } from '@/lib/motion';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin } from 'lucide-react';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-
-const techIconMap: Record<string, string> = {
-  React: '/tech-icons/react.svg',
-  Vuejs: '/tech-icons/vuedotjs.svg',
-  NextJs: '/tech-icons/nextdotjs.svg',
-  NuxtJs: '/tech-icons/nuxtjs.svg',
-  TypeScript: '/tech-icons/typescript.svg',
-  JavaScript: '/tech-icons/javascript.svg',
-  'Tailwind CSS': '/tech-icons/tailwindcss.svg',
-  HTML5: '/tech-icons/html5.svg',
-  CSS3: '/tech-icons/css3.svg',
-  SCSS: '/tech-icons/sass.svg',
-  SASS: '/tech-icons/sass.svg',
-  'Node js': '/tech-icons/nodedotjs.svg',
-  PHP: '/tech-icons/php.svg',
-  Laravel: '/tech-icons/laravel.svg',
-  Symfony: '/tech-icons/symfony.svg',
-  MySql: '/tech-icons/mysql.svg',
-  PostgreSql: '/tech-icons/postgresql.svg',
-  Git: '/tech-icons/git.svg',
-  Docker: '/tech-icons/docker.svg',
-  Linux: '/tech-icons/linux.svg',
-  MacOS: '/tech-icons/apple.svg',
-  'Framer Motion': '/tech-icons/framer.svg',
-};
 
 export const ExperienceTimeline = () => {
   const { t } = useTranslation();
@@ -69,7 +46,7 @@ export const ExperienceTimeline = () => {
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.8, delay: index * 0.1, ease: APPLE_EASE }}
                   className="relative md:pl-28"
                 >
                   {/* Timeline Dot with Anime Neon Ring */}
@@ -109,7 +86,7 @@ export const ExperienceTimeline = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.8, ease: APPLE_EASE }}
                 className="apple-glass rounded-[2rem] p-8 shadow-[0_8px_40px_rgba(0,0,0,0.03)]"
               >
                 <h3 className="text-2xl font-black text-foreground mb-8 tracking-tighter">
@@ -122,7 +99,7 @@ export const ExperienceTimeline = () => {
                       initial={{ opacity: 0, scale: 0.9 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.03, ease: [0.16, 1, 0.3, 1] }}
+                      transition={{ duration: 0.5, delay: index * 0.03, ease: APPLE_EASE }}
                       className="px-4 py-2 bg-surface border border-subtle rounded-full text-[13px] font-medium text-foreground/80 hover:text-primary hover:border-primary/30 hover:shadow-[0_0_12px_rgba(0,229,255,0.2)] hover:bg-surface transition-all duration-300 cursor-default flex items-center gap-2"
                     >
                       {techIconMap[skill] && (

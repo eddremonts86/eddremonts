@@ -1,9 +1,10 @@
 import { OptimizedImage } from '@/components/ui/OptimizedImage';
 import { projects } from '@/data/cvData';
 import { SectionHeader } from '@/components/ui/SectionHeader';
+import { APPLE_EASE } from '@/lib/motion';
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 type Project = (typeof projects)[number];
@@ -27,24 +28,26 @@ const TiltCard = ({ project }: { project: Project }) => {
   const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-15, 15]), { stiffness: 150, damping: 20 });
   const brightness = useTransform(y, [-0.5, 0.5], [1.2, 0.8]);
 
-  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
+  const handleMouseMove = useCallback(
+    (event: React.MouseEvent<HTMLDivElement>) => {
+      if (!cardRef.current) return;
+      const rect = cardRef.current.getBoundingClientRect();
 
-    // Normalize mouse position between -0.5 and 0.5
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = event.clientX - rect.left;
-    const mouseY = event.clientY - rect.top;
+      const width = rect.width;
+      const height = rect.height;
+      const mouseX = event.clientX - rect.left;
+      const mouseY = event.clientY - rect.top;
 
-    x.set(mouseX / width - 0.5);
-    y.set(mouseY / height - 0.5);
-  };
+      x.set(mouseX / width - 0.5);
+      y.set(mouseY / height - 0.5);
+    },
+    [x, y],
+  );
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     x.set(0);
     y.set(0);
-  };
+  }, [x, y]);
 
   return (
     <motion.div
@@ -53,7 +56,7 @@ const TiltCard = ({ project }: { project: Project }) => {
       initial={{ opacity: 0, scale: 0.9, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.9, y: 20 }}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.5, ease: APPLE_EASE }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
@@ -112,8 +115,11 @@ export const ProjectsGallery = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const filteredProjects = projects.filter(
-    (project) => activeCategory === "All" || project.category === activeCategory
+  const filteredProjects = useMemo(
+    () => projects.filter(
+      (project) => activeCategory === "All" || project.category === activeCategory,
+    ),
+    [activeCategory],
   );
 
   return (
@@ -132,7 +138,7 @@ export const ProjectsGallery = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.2, ease: APPLE_EASE }}
             className="flex gap-2 p-1.5 apple-glass rounded-2xl overflow-x-auto w-full md:w-auto shadow-sm"
           >
             {categories.map((cat) => (
