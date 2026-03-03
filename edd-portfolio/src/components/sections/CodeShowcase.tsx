@@ -68,12 +68,6 @@ export const CodeShowcase = () => {
 
   return (
     <section className="relative py-40 overflow-hidden md:py-48 bg-[#0a1628]">
-      {/* ── Transition: gradient fade from previous section into blue ── */}
-      <div
-        className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-background to-[#0a1628]"
-        aria-hidden="true"
-      />
-
       <BackgroundAtmosphere />
 
       <div className="container relative z-10 px-6 mx-auto max-w-7xl">
@@ -188,12 +182,6 @@ export const CodeShowcase = () => {
           </motion.div>
         </div>
       </div>
-
-      {/* ── Transition: gradient fade from blue into next section ── */}
-      <div
-        className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-surface to-[#0a1628]"
-        aria-hidden="true"
-      />
     </section>
   );
 };
