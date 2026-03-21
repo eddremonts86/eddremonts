@@ -1,8 +1,8 @@
 import { OptimizedImage } from '@/components/ui/OptimizedImage';
-import { projects } from '@/data/cvData';
 import { SectionHeader } from '@/components/ui/SectionHeader';
+import { projects } from '@/data/cvData';
 import { APPLE_EASE } from '@/lib/motion';
-import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -18,6 +18,7 @@ const categoryKeys: Record<string, string> = {
 
 const TiltCard = ({ project }: { project: Project }) => {
   const cardRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   // Motion values for 3D rotation
   const x = useMotionValue(0);
@@ -60,8 +61,8 @@ const TiltCard = ({ project }: { project: Project }) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
-        rotateX,
-        rotateY,
+        rotateX: prefersReducedMotion ? 0 : rotateX,
+        rotateY: prefersReducedMotion ? 0 : rotateY,
         transformStyle: "preserve-3d",
         perspective: "1000px",
       }}
@@ -97,7 +98,8 @@ const TiltCard = ({ project }: { project: Project }) => {
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-foreground shadow-sm hover:text-primary hover:scale-110 transition-transform duration-300"
+            aria-label={`Ver proyecto ${project.title}`}
+            className="w-11 h-11 rounded-full bg-surface flex items-center justify-center text-foreground shadow-sm hover:text-primary hover:scale-110 transition-transform duration-300 min-w-[44px] min-h-[44px]"
           >
             <ExternalLink className="w-4 h-4" />
           </a>
@@ -145,7 +147,8 @@ export const ProjectsGallery = () => {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-6 py-2.5 rounded-xl transition-all whitespace-nowrap text-sm font-medium ${
+                aria-pressed={activeCategory === cat}
+                className={`px-6 py-2.5 rounded-xl transition-all whitespace-nowrap text-sm font-medium min-h-[44px] ${
                   activeCategory === cat
                     ? "bg-surface text-foreground shadow-[0_2px_8px_rgba(0,0,0,0.08)] scale-100"
                     : "text-foreground/80 hover:text-foreground hover:bg-foreground/[0.02]"
