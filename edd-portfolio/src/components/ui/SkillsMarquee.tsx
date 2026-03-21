@@ -9,17 +9,13 @@ export const SkillsMarquee = () => {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="py-8 bg-background overflow-hidden border-y border-subtle relative" aria-label="Technology skills">
-      {/* Fade edges */}
-      <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-
+    <section className="py-24 bg-primary text-background overflow-hidden relative rotate-2 scale-110 -my-12 z-20 shadow-2xl" aria-label="Technology skills">
       <motion.div
-        className="flex gap-8 items-center whitespace-nowrap"
+        className="flex gap-16 items-center whitespace-nowrap"
         animate={reduceMotion ? {} : { x: ['0%', '-33.333%'] }}
         transition={{
           x: {
-            duration: 40,
+            duration: 30,
             repeat: Infinity,
             ease: 'linear',
           },
@@ -28,19 +24,19 @@ export const SkillsMarquee = () => {
         {tripled.map((skill, i) => (
           <span
             key={`${skill}-${i}`}
-            className="flex items-center gap-2.5 text-foreground/60 text-sm font-medium tracking-wide shrink-0 select-none"
+            className="flex items-center gap-6 text-[4rem] md:text-[6rem] font-black uppercase tracking-tighter shrink-0 select-none opacity-90 hover:opacity-100 transition-opacity cursor-default mix-blend-difference text-foreground dark:text-white"
           >
             {techIconMap[skill] && (
               <img
                 src={techIconMap[skill]}
                 alt=""
                 aria-hidden="true"
-                className="w-5 h-5"
+                className="w-16 h-16 md:w-24 md:h-24 filter dark:invert dark:brightness-0"
                 loading="lazy"
               />
             )}
             <span>{skill}</span>
-            <span className="text-primary/40 ml-4" aria-hidden="true">•</span>
+            <span className="text-background/30 ml-8 text-4xl" aria-hidden="true">/</span>
           </span>
         ))}
       </motion.div>

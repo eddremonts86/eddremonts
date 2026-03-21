@@ -1,43 +1,38 @@
 import { APPLE_EASE } from '@/lib/motion';
 import { motion } from 'framer-motion';
-import { Quote } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 export const TestimonialBlock = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="py-24 bg-background relative overflow-hidden">
-      {/* Decorative blurs */}
-      <div className="absolute top-0 left-1/4 w-[40%] h-[60%] bg-primary/[0.03] rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[30%] h-[50%] bg-secondary/[0.03] rounded-full blur-[100px] pointer-events-none" />
-
-      <div className="container mx-auto px-6 max-w-4xl relative z-10">
+    <section className="py-32 bg-surface relative overflow-hidden border-y border-foreground/10">
+      <div className="container mx-auto px-6 max-w-[1600px] relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.8, ease: APPLE_EASE }}
-          className="text-center"
+          className="flex flex-col md:flex-row gap-12 md:gap-24 items-start"
         >
-          <Quote className="w-12 h-12 text-primary/30 mx-auto mb-8 rotate-180" aria-hidden="true" />
-
-          <blockquote className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-foreground tracking-tight leading-tight mb-8">
-            &ldquo;{t('testimonial.quote')}&rdquo;
-          </blockquote>
-
-          <div className="flex items-center justify-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-sm">
-              {t('testimonial.initials')}
-            </div>
-            <div className="text-left">
-              <p className="text-foreground font-semibold text-sm">
+          <div className="w-full md:w-1/3">
+            <span className="text-[15rem] leading-none font-black text-primary opacity-20 block -mt-20 -ml-10 select-none">
+              "
+            </span>
+            <div className="uppercase tracking-widest font-bold text-sm border-l-4 border-primary pl-4 -mt-16 relative z-10">
+              <p className="text-foreground">
                 {t('testimonial.author')}
               </p>
-              <p className="text-foreground/60 text-sm">
+              <p className="text-foreground/50">
                 {t('testimonial.role')}
               </p>
             </div>
+          </div>
+
+          <div className="w-full md:w-2/3">
+            <blockquote className="text-3xl md:text-5xl lg:text-7xl font-display font-black text-foreground uppercase tracking-tighter leading-[0.9]">
+              {t('testimonial.quote')}
+            </blockquote>
           </div>
         </motion.div>
       </div>

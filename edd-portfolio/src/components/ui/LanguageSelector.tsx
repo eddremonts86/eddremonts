@@ -1,8 +1,6 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import { Globe } from 'lucide-react';
+import { useClickOutside } from '@/hooks/useClickOutside';
 import { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useClickOutside } from '@/hooks/useClickOutside';
 
 const languages = [
   { code: 'en', label: 'English' },
@@ -20,51 +18,34 @@ export const LanguageSelector = () => {
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
+    document.documentElement.lang = lng;
     localStorage.setItem('edd-portfolio-lang', lng);
     setIsOpen(false);
   };
 
+  const toggleLanguage = () => {
+    const currentIndex = languages.findIndex(l => l.code === i18n.language);
+    const nextIndex = (currentIndex + 1) % languages.length;
+    const nextLangCode = languages[nextIndex].code;
+
+    // Change language and immediately apply to document
+    i18n.changeLanguage(nextLangCode);
+    document.documentElement.lang = nextLangCode;
+    localStorage.setItem('edd-portfolio-lang', nextLangCode);
+  };
+
+  const nextLang = languages[(languages.findIndex(l => l.code === i18n.language) + 1) % languages.length]?.code || 'en';
+
   return (
     <div className="relative z-50" ref={dropdownRef}>
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 p-2 transition-colors rounded-full apple-glass text-foreground hover:text-primary"
-        aria-label="Select Language"
-        aria-haspopup="listbox"
-        aria-expanded={isOpen}
+        onClick={toggleLanguage}
+        className="h-12 px-4 flex items-center justify-center border border-foreground/20 bg-background text-foreground font-bold tracking-widest text-xs hover:bg-foreground hover:text-background transition-colors duration-300 rounded-none shadow-sm min-w-[44px] min-h-[44px]"
+        aria-label={`Current language: ${i18n.language}. Click to change to ${nextLang.toUpperCase()}`}
       >
-        <Globe className="w-5 h-5" />
-        <span className="text-sm font-semibold tracking-widest uppercase">{i18n.language}</span>
+        <span className="uppercase">{i18n.language}</span>
       </button>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="absolute right-0 w-32 p-1 mt-2 overflow-hidden border shadow-lg top-12 apple-glass rounded-2xl border-subtle"
-          >
-            <div role="menu" className="flex flex-col gap-1">
-              {languages.map((lang) => (
-                <button
-                  key={lang.code}
-                  onClick={() => changeLanguage(lang.code)}
-                  role="menuitem"
-                  className={`text-left px-4 py-2 text-sm rounded-xl transition-colors font-medium ${
-                    i18n.language === lang.code
-                      ? 'bg-foreground/5 text-primary'
-                      : 'text-foreground/70 hover:bg-foreground/5 hover:text-foreground'
-                  }`}
-                >
-                  {lang.label}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 };

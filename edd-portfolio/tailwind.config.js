@@ -33,10 +33,12 @@ export default {
         default: 'var(--border-default)',
       },
       fontFamily: {
-        // System UI ensures San Francisco on Apple devices
-        body: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
-        // M PLUS 1 is a beautiful, modern Japanese-style font with great English glyphs
-        display: ['"M PLUS 1 Variable"', 'sans-serif'],
+        // Futuristic body
+        body: ['"JetBrains Mono"', 'monospace'],
+        // High-impact display font
+        display: ['"Syne"', 'sans-serif'],
+        // Elegant serif for accents
+        serif: ['"Cormorant Garamond"', 'serif'],
       },
       animation: {
         'blob': 'blob 10s infinite',

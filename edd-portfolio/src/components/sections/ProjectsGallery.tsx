@@ -1,10 +1,9 @@
 import { OptimizedImage } from '@/components/ui/OptimizedImage';
-import { SectionHeader } from '@/components/ui/SectionHeader';
 import { projects } from '@/data/cvData';
 import { APPLE_EASE } from '@/lib/motion';
-import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
+import { useMemo, useRef, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 type Project = (typeof projects)[number];
@@ -16,106 +15,28 @@ const categoryKeys: Record<string, string> = {
   "Full Stack": "fullStack",
 };
 
-const TiltCard = ({ project }: { project: Project }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const prefersReducedMotion = useReducedMotion();
-
-  // Motion values for 3D rotation
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  // Smooth springs for realistic physics
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [15, -15]), { stiffness: 150, damping: 20 });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-15, 15]), { stiffness: 150, damping: 20 });
-  const brightness = useTransform(y, [-0.5, 0.5], [1.2, 0.8]);
-
-  const handleMouseMove = useCallback(
-    (event: React.MouseEvent<HTMLDivElement>) => {
-      if (!cardRef.current) return;
-      const rect = cardRef.current.getBoundingClientRect();
-
-      const width = rect.width;
-      const height = rect.height;
-      const mouseX = event.clientX - rect.left;
-      const mouseY = event.clientY - rect.top;
-
-      x.set(mouseX / width - 0.5);
-      y.set(mouseY / height - 0.5);
-    },
-    [x, y],
-  );
-
-  const handleMouseLeave = useCallback(() => {
-    x.set(0);
-    y.set(0);
-  }, [x, y]);
-
-  return (
-    <motion.div
-      ref={cardRef}
-      layout
-      initial={{ opacity: 0, scale: 0.9, y: 20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.9, y: 20 }}
-      transition={{ duration: 0.5, ease: APPLE_EASE }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX: prefersReducedMotion ? 0 : rotateX,
-        rotateY: prefersReducedMotion ? 0 : rotateY,
-        transformStyle: "preserve-3d",
-        perspective: "1000px",
-      }}
-      className="group relative rounded-[2rem] overflow-hidden bg-surface border border-subtle shadow-[0_12px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(0,229,255,0.12)] transition-shadow duration-500 will-change-transform"
-    >
-      {/* Gradient border glow on hover */}
-      <div className="absolute inset-0 rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none gradient-border-glow z-10" />
-      <motion.div
-        style={{ filter: `brightness(${brightness})`, transform: "translateZ(30px)" }}
-        className="aspect-[4/3] w-full overflow-hidden bg-black/5 relative"
-      >
-        <OptimizedImage
-          src={`/projects/${project.id}-lg.webp`}
-          alt={`${project.title} project preview (${project.category})`}
-          fallbackSrc={project.image}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          srcSet={`/projects/${project.id}-thumb.webp 480w, /projects/${project.id}-md.webp 800w, /projects/${project.id}-lg.webp 1200w, /projects/${project.id}-full.webp 1600w`}
-          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-        />
-        <div className="absolute inset-0 bg-foreground/10 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-500" />
-      </motion.div>
-
-      {/* Lift the content off the card slightly to accentuate 3D */}
-      <div
-        className="absolute inset-x-0 bottom-0 p-6 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-all duration-500 apple-glass border-t border-apple-border m-4 rounded-[1.5rem]"
-        style={{ transform: "translateZ(50px) translateY(0px)" }}
-      >
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-[10px] font-black tracking-widest uppercase text-accent bg-accent/10 px-3 py-1 rounded-full">
-            {project.category}
-          </span>
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Ver proyecto ${project.title}`}
-            className="w-11 h-11 rounded-full bg-surface flex items-center justify-center text-foreground shadow-sm hover:text-primary hover:scale-110 transition-transform duration-300 min-w-[44px] min-h-[44px]"
-          >
-            <ExternalLink className="w-4 h-4" />
-          </a>
-        </div>
-        <h3 className="text-xl font-bold text-foreground font-display tracking-tight">
-          {project.title}
-        </h3>
-      </div>
-    </motion.div>
-  );
-};
-
 export const ProjectsGallery = () => {
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState("All");
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Floating Image State
+  const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  
+  const springConfig = { damping: 25, stiffness: 200, mass: 0.5 };
+  const cursorX = useSpring(mouseX, springConfig);
+  const cursorY = useSpring(mouseY, springConfig);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
 
   const filteredProjects = useMemo(
     () => projects.filter(
@@ -126,48 +47,107 @@ export const ProjectsGallery = () => {
 
   return (
     <section id="projects" className="py-32 bg-background relative z-10" ref={containerRef}>
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-          <SectionHeader
-            title={t('projects.title')}
-            titleAccent={t('projects.titleAccent')}
-            subtitle={t('projects.subtitle')}
-            align="left"
-            className="mb-0"
-          />
+      <div className="container mx-auto px-6 max-w-[1600px]">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 gap-8 border-b border-foreground/10 pb-12">
+          <h2 className="text-[14vw] md:text-[8rem] font-black uppercase tracking-tighter leading-[0.85] break-words">
+            SELECTED<br/>
+            <span className="font-serif italic lowercase font-light text-primary tracking-normal">works</span>
+          </h2>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2, ease: APPLE_EASE }}
-            className="flex gap-2 p-1.5 apple-glass rounded-2xl overflow-x-auto w-full md:w-auto shadow-sm"
-          >
+          <div className="flex gap-4 overflow-x-auto w-full md:w-auto pb-4 md:pb-0 hide-scrollbar mt-8 md:mt-0">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 aria-pressed={activeCategory === cat}
-                className={`px-6 py-2.5 rounded-xl transition-all whitespace-nowrap text-sm font-medium min-h-[44px] ${
+                className={`px-8 py-4 uppercase font-bold tracking-widest text-sm transition-all whitespace-nowrap min-h-[44px] border ${
                   activeCategory === cat
-                    ? "bg-surface text-foreground shadow-[0_2px_8px_rgba(0,0,0,0.08)] scale-100"
-                    : "text-foreground/80 hover:text-foreground hover:bg-foreground/[0.02]"
+                    ? "bg-foreground text-background border-foreground"
+                    : "bg-transparent text-foreground/50 border-foreground/20 hover:text-foreground hover:border-foreground"
                 }`}
               >
                 {t(`projects.filters.${categoryKeys[cat]}`)}
               </button>
             ))}
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 relative" style={{ perspective: "1200px" }}>
-          <AnimatePresence mode='popLayout'>
-            {filteredProjects.map((project) => (
-              <TiltCard key={project.id} project={project} />
+        {/* Huge Interactive List */}
+        <div className="relative border-t border-foreground/10">
+          <AnimatePresence mode='wait'>
+            {filteredProjects.map((project, index) => (
+              <motion.a
+                key={project.id}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                onMouseEnter={() => setHoveredProject(project)}
+                onMouseLeave={() => setHoveredProject(null)}
+                className="group flex flex-col md:flex-row items-start md:items-center justify-between py-12 md:py-16 border-b border-foreground/10 hover:bg-foreground hover:text-background transition-colors duration-500 px-4 md:px-8 cursor-pointer relative z-10"
+              >
+                <div className="flex flex-col mb-4 md:mb-0">
+                  <span className="text-sm font-mono tracking-widest opacity-50 mb-2">
+                    0{index + 1} // {project.category}
+                  </span>
+                  <h3 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter group-hover:pl-8 transition-all duration-500">
+                    {project.title}
+                  </h3>
+                </div>
+                
+                <div className="flex items-center gap-8">
+                  <span className="hidden md:block text-lg font-serif italic opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    View Live
+                  </span>
+                  <div className="w-16 h-16 rounded-full border border-foreground/20 flex items-center justify-center group-hover:bg-background group-hover:text-foreground group-hover:border-background transition-all duration-500 transform group-hover:-rotate-45">
+                    <ArrowUpRight className="w-6 h-6" />
+                  </div>
+                </div>
+              </motion.a>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
       </div>
+
+      {/* Floating Image Reveal (Desktop Only) */}
+      <motion.div
+        className="fixed top-0 left-0 w-[400px] h-[300px] pointer-events-none z-[100] hidden lg:block overflow-hidden"
+        style={{
+          x: cursorX,
+          y: cursorY,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ 
+          opacity: hoveredProject ? 1 : 0,
+          scale: hoveredProject ? 1 : 0.8,
+        }}
+        transition={{ duration: 0.4, ease: APPLE_EASE }}
+      >
+        <AnimatePresence mode="wait">
+          {hoveredProject && (
+            <motion.div
+              key={hoveredProject.id}
+              initial={{ opacity: 0, scale: 1.2 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.2 }}
+              transition={{ duration: 0.5, ease: APPLE_EASE }}
+              className="w-full h-full relative"
+            >
+              <OptimizedImage
+                src={`/projects/${hoveredProject.id}-md.webp`}
+                alt={hoveredProject.title}
+                fallbackSrc={hoveredProject.image}
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0"
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
     </section>
   );
 };

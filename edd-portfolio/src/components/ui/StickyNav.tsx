@@ -1,6 +1,5 @@
 import { LanguageSelector } from '@/components/ui/LanguageSelector';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
-import { personalInfo } from '@/data/cvData';
 import { APPLE_EASE } from '@/lib/motion';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { useState } from 'react';
@@ -19,7 +18,6 @@ export const StickyNav = () => {
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
-    // Show after scrolling past the hero (~90vh)
     setVisible(latest > window.innerHeight * 0.85);
   });
 
@@ -27,29 +25,30 @@ export const StickyNav = () => {
     <AnimatePresence>
       {visible && (
         <motion.nav
-          initial={{ y: -80, opacity: 0 }}
+          initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -80, opacity: 0 }}
-          transition={{ duration: 0.4, ease: APPLE_EASE }}
-          className="fixed top-4 left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-4xl"
+          exit={{ y: -100, opacity: 0 }}
+          transition={{ duration: 0.5, ease: APPLE_EASE }}
+          className="fixed top-0 left-0 w-full z-[100] bg-background border-b-2 border-foreground"
           aria-label="Main navigation"
         >
-          <div className="apple-glass rounded-2xl px-6 py-3 flex items-center justify-between gap-4 shadow-[0_8px_32px_rgba(0,0,0,0.08)]">
-            {/* Brand */}
+          <div className="container mx-auto px-4 md:px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+            
+            {/* Brand / Logo */}
             <a
               href="#"
-              className="text-sm font-black tracking-tighter text-foreground font-display hover:text-primary transition-colors whitespace-nowrap"
+              className="text-xl md:text-2xl font-black uppercase tracking-tighter text-foreground hover:text-primary transition-colors whitespace-nowrap leading-none"
             >
-              {personalInfo.name}
+              EDD_R
             </a>
 
-            {/* Nav Links */}
-            <div className="hidden sm:flex items-center gap-1">
+            {/* Nav Links - Scrollable on mobile, flex on desktop */}
+            <div className="flex items-center gap-4 md:gap-8 overflow-x-auto hide-scrollbar w-full md:w-auto order-3 md:order-2 pb-2 md:pb-0">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="px-3 py-1.5 text-[13px] font-medium text-foreground/70 hover:text-foreground rounded-lg hover:bg-foreground/[0.04] transition-all"
+                  className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground/50 hover:text-foreground transition-colors whitespace-nowrap"
                 >
                   {t(link.key)}
                 </a>
@@ -57,7 +56,7 @@ export const StickyNav = () => {
             </div>
 
             {/* Controls */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-4 order-2 md:order-3">
               <LanguageSelector />
               <ThemeToggle />
             </div>

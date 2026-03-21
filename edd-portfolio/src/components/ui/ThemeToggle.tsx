@@ -19,7 +19,7 @@ export const ThemeToggle = () => {
   return (
     <button
       onClick={next}
-      className="p-2 rounded-full apple-glass text-foreground hover:text-primary transition-colors flex items-center justify-center group relative overflow-hidden"
+      className="w-12 h-12 flex items-center justify-center border border-foreground/20 bg-background text-foreground hover:bg-foreground hover:text-background transition-colors duration-300 rounded-none shadow-sm min-w-[44px] min-h-[44px] group relative overflow-hidden"
       aria-label={`Theme: ${theme}. Click to switch.`}
     >
       <motion.div

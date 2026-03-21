@@ -8,18 +8,26 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-16 border-t border-default bg-surface text-center relative overflow-hidden">
-      {/* Anime subtle footer glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[150%] h-[150px] bg-gradient-to-t from-primary/5 to-transparent rounded-[100%] blur-3xl opacity-50 pointer-events-none" />
-
-      <div className="container mx-auto px-6 relative z-10">
+    <footer className="py-24 border-t border-foreground/10 bg-background relative overflow-hidden">
+      <div className="container mx-auto px-6 max-w-[1600px] relative z-10">
         <motion.div
            initial={{ opacity: 0, y: 20 }}
            whileInView={{ opacity: 1, y: 0 }}
            viewport={{ once: true }}
            transition={{ duration: 0.8, ease: APPLE_EASE }}
-           className="flex flex-col items-center justify-center space-y-8"
+           className="flex flex-col md:flex-row items-center justify-between gap-12"
         >
+          {/* Logo / Branding */}
+          <div className="text-center md:text-left">
+            <h2 className="text-3xl font-black uppercase tracking-tighter mb-2">
+              EDD <span className="text-primary">REMONTS</span>
+            </h2>
+            <p className="text-foreground/50 text-xs font-bold tracking-widest uppercase">
+              {t('footer.inspired', 'Engineered with Precision.')}
+            </p>
+          </div>
+
+          {/* Massive Social Links */}
           <div className="flex gap-4">
             {personalInfo.socials.map((social) => {
               const Icon = social.icon;
@@ -29,19 +37,20 @@ export const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-14 h-14 rounded-2xl bg-surface shadow-sm border border-subtle flex items-center justify-center text-foreground/80 hover:text-primary hover:shadow-[0_8px_20px_rgba(0,229,255,0.15)] hover:-translate-y-1 transition-all duration-300 group"
+                  className="w-16 h-16 bg-surface border border-foreground/10 flex items-center justify-center text-foreground hover:bg-foreground hover:text-background transition-colors duration-300 group"
                   aria-label={social.name}
                 >
-                  <Icon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  <Icon className="w-6 h-6 group-hover:scale-110 transition-transform" />
                 </a>
               );
             })}
           </div>
 
-          <p className="text-foreground/60 text-sm font-medium tracking-tight">
-            © {currentYear} {personalInfo.name}. {t('footer.inspired', 'Inspired by Apple. Powered by Anime.')}<br/>
-            <span className="opacity-80 text-xs mt-2 block">{t('footer.tech', 'React 19 & Framer Motion')}</span>
-          </p>
+          {/* Copyright */}
+          <div className="text-center md:text-right font-mono text-sm opacity-60">
+            <p>© {currentYear} {personalInfo.name}.</p>
+            <p className="mt-2 text-xs">V.1.0.0 // STATUS: ONLINE</p>
+          </div>
         </motion.div>
       </div>
     </footer>

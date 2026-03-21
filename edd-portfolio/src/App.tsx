@@ -1,11 +1,12 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { Footer } from './components/Footer';
 import { AboutSection } from './components/sections/AboutSection';
 import { ExperienceTimeline } from './components/sections/ExperienceTimeline';
 import { HeroSection } from './components/sections/HeroSection';
 import { DotNavigation } from './components/ui/DotNavigation';
 import { MouseFollower } from './components/ui/MouseFollower';
+import { Preloader } from './components/ui/Preloader';
 import { SEO } from './components/ui/SEO';
 import { SkillsMarquee } from './components/ui/SkillsMarquee';
 import { StatsCounter } from './components/ui/StatsCounter';
@@ -24,41 +25,44 @@ const ContactSection = lazy(() =>
 );
 
 function App() {
-  return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="min-h-screen bg-background text-foreground"
-      >
-        <SEO />
-        {/* Skip to content for keyboard a11y */}
-        <a href="#about" className="skip-to-content">
-          Skip to content
-        </a>
-        {/* Ambient mouse follower (desktop only) */}
-        <MouseFollower />
-        {/* Sticky glassmorphism nav (shows after hero) */}
-        <StickyNav />
-        {/* Dot section indicator (desktop only) */}
-        <DotNavigation />
+  const [loading, setLoading] = useState(true);
 
-        <main>
-          <HeroSection />
-          <StatsCounter />
-          <AboutSection />
-          <SkillsMarquee />
-          <ExperienceTimeline />
-          <TestimonialBlock />
-          <Suspense fallback={null}>
-            <ProjectsGallery />
-            <CodeShowcase />
-            <ContactSection />
-          </Suspense>
-        </main>
-        <Footer />
-      </motion.div>
+  return (
+    <AnimatePresence mode="wait">
+      {loading ? (
+        <Preloader key="preloader" onComplete={() => setLoading(false)} />
+      ) : (
+        <motion.div
+          key="main-content"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="min-h-screen bg-background text-foreground"
+        >
+          <SEO />
+          <a href="#about" className="skip-to-content">
+            Skip to content
+          </a>
+          <MouseFollower />
+          <StickyNav />
+          <DotNavigation />
+
+          <main>
+            <HeroSection />
+            <StatsCounter />
+            <AboutSection />
+            <SkillsMarquee />
+            <ExperienceTimeline />
+            <TestimonialBlock />
+            <Suspense fallback={null}>
+              <ProjectsGallery />
+              <CodeShowcase />
+              <ContactSection />
+            </Suspense>
+          </main>
+          <Footer />
+        </motion.div>
+      )}
     </AnimatePresence>
   );
 }

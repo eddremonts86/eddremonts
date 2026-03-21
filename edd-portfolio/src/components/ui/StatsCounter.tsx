@@ -44,31 +44,28 @@ export const StatsCounter = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="py-20 bg-surface relative overflow-hidden">
-      {/* Subtle bg accent */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/[0.02] via-transparent to-secondary/[0.02] pointer-events-none" />
-
-      <div className="container mx-auto px-6 max-w-5xl relative z-10">
+    <section className="bg-foreground text-background relative overflow-hidden py-10 md:py-0">
+      <div className="container mx-auto px-0 max-w-full relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: APPLE_EASE }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4"
+          className="flex flex-col md:flex-row md:divide-x divide-background/20"
         >
           {stats.map((stat, index) => (
             <motion.div
               key={stat.labelKey}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1, ease: APPLE_EASE }}
-              className="text-center group"
+              className="flex-1 text-center group py-16 px-8 hover:bg-background hover:text-foreground transition-colors duration-500 flex flex-col justify-center items-center cursor-default"
             >
-              <div className="text-5xl md:text-6xl font-black text-foreground tracking-tighter font-display mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-secondary transition-all duration-500">
+              <div className="text-[15vw] md:text-[8vw] lg:text-[6vw] font-black tracking-tighter leading-none mb-6">
                 <AnimatedNumber value={stat.value} suffix={stat.suffix} />
               </div>
-              <p className="text-sm text-foreground/60 font-medium tracking-wide uppercase">
+              <p className="text-sm md:text-base font-body font-bold tracking-[0.3em] uppercase opacity-60 group-hover:text-primary transition-colors duration-500">
                 {t(stat.labelKey)}
               </p>
             </motion.div>
