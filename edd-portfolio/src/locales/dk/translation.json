@@ -14,14 +14,14 @@
     "scroll": "Rul ned"
   },
   "personalInfo": {
-    "title": "Senior Full-Stack/Frontend Ingeniør",
-    "description": "Jeg designer skalerbare webapplikationer, der bygger bro mellem kompleks forretningslogik og ubesmittede brugeroplevelser. Mit fokus er på React 19, Node.js og cloudekosystemer for at levere højtydende løsninger skabt til massiv skala.",
+    "title": "Senior Frontend Engineer med Full-Stack baggrund",
+    "description": "Frontend-fokuseret engineer med full-stack baggrund og næsten to årtiers erfaring siden 2007. Jeg bygger skalerbare webprodukter, der omsætter kompleks forretningslogik til hurtige og intuitive interfaces med React, Vue, Node.js og cloud-platforme.",
     "location": "København, Danmark"
   },
   "about": {
     "title": "Om &",
     "titleAccent": "Tjenester",
-    "intro": "Jeg specialiserer mig i at transformere komplekse tekniske krav til strømlinede og brugercentrerede grænseflader. Ved at synergisere dyb backend-viden med frontend-finesse udvikler jeg robuste platforme, der accelererer virksomhedsvækst og sikrer kompromisløs ydeevne (90+ score på Lighthouse).",
+    "intro": "Jeg begyndte min karriere i Cuba i 2007, hvor jeg arbejdede med institutionelle platforme, medieprodukter og skræddersyet software, før jeg flyttede til Danmark og specialiserede mig yderligere i frontend engineering. Den end-to-end baggrund præger stadig min måde at arbejde på i dag: jeg forstår hele leverancekæden, samarbejder naturligt med produkt, design og backend, og bygger interfaces der forbliver vedligeholdelige, når produkter vokser.",
     "features": {
       "0": {
         "title": "Strategisk Samarbejdende Engineering",
@@ -53,32 +53,52 @@
     "title": "Professionel",
     "titleAccent": "Rejse",
     "techArsenal": "Teknologisk Arsenal",
-    "subtitle": "En tidslinje over min professionelle rejse.",
+    "subtitle": "Fra offentlige platforme i Cuba til product teams i København, en tidslinje der spænder fra 2007 til i dag.",
     "present": "Nu",
     "items": {
       "11": {
         "role": "Senior Frontend Developer",
-        "description": "Arkitektarbejde og skaleringstrategier af høj-volumen data platforme til erhvervsejendomme. Jeg ledte migreringen mod Vue 3 og Nuxt 3 composition APIs for at optimere det globale state-flow og reducere de initielle rendering-tider med over 40% ved brug af hydrid-SSR teknikker."
+        "description": "Leder frontend-udviklingen af Resights webapplikationer og dataprodukter med Vue 2/3, Nuxt 2/3, TypeScript, Pinia/Vuex, Node.js og Vuetify for at skalere komplekse workflows i ejendomsdomænet."
       },
       "10": {
         "role": "Senior Frontend Developer",
-        "description": "Ledte front-end implementationen for kritiske sundhedsadministrations-værktøjer med strenge medicinske forskrifter. Leverede ubesmittede økosystemer af Vuetify komponenter som radikalt forbedrede den daglige brugeroplevelse for interne medicinale forskere."
+        "description": "Byggede interne sundheds- og administrationsværktøjer for Novo Nordisk med Vue, Vuetify, HTML og CSS med fokus på stabile UI-fundamenter til regulerede medicinske teams."
       },
       "9": {
         "role": "Senior Frontend Developer",
-        "description": "Designede og opbyggede ultra-responsive og højt tilgængelige digitale kampagneflader til globale topklasse-kunder. Integrerede komplekse SCSS arkitekturer og C# backend APIs der sikrede nultid for peak-trafik ved markedsføring."
+        "description": "Leverede tilgængelige kampagner og landing pages for Wunderman Nordic med Vue, SCSS, Bootstrap og C#-integrationer, så lanceringer med høj trafik kunne køre på en stabil frontend-arkitektur."
       },
       "8": {
         "role": "Lead Frontend Developer",
-        "description": "Fungerede som teknisk leder, og instruerede et team på tværs af adskillelige CMS platforme (Laravel, Drupal, October). Ombyggede legacy-monolit systemer til modulære arkitekturer, og brobyggede high-performance MySQL databases med dynamiske UI."
+        "description": "Ledte frontend-udviklingen hos GiG Media Copenhagen på tværs af affiliate- og content-produkter, moderniserede legacy-platforme bygget i Laravel, Drupal, October CMS, MySQL, jQuery, Bootstrap og PHP, og koordinerede outsourcede vedligeholdelsesopgaver."
       },
       "7": {
         "role": "Frontend Developer",
-        "description": "Udviklede og forfinede high-conversion portaler i et affiliate-netværk. Implementerede og byggede hårde A/B tests interfaces hvilket accelererede farten for kundeerhvervelse."
+        "description": "Arbejdede på high-conversion affiliate-produkter hos Rebel Penguins og leverede frontend-forbedringer, eksperimenter og UI-iterationer på platforme baseret på Drupal, Laravel, October CMS, Bootstrap og MySQL."
       },
       "6": {
         "role": "Full Stack Developer",
-        "description": "End-to-End udvikling for interne Dashboard produkter og eksterne sites hvor der blev formateret robuste LAMP/LEMP miljøer op i mod udvalgte skræddersyede Drupal/October CMS systemer."
+        "description": "Udviklede interne dashboards og eksterne websites end-to-end hos Rebel Penguins med PHP, MySQL, jQuery, Bootstrap, Drupal, October CMS og Laravel."
+      },
+      "5": {
+        "role": "Volunteer",
+        "description": "Støttede Plan Denmarks sponsorafdeling med registrering og validering af dokumenter og var med til at holde de administrative processer rene, strukturerede og pålidelige."
+      },
+      "4": {
+        "role": "Full Stack Developer",
+        "description": "Grundlagde Viruta Studio Creativo og byggede skræddersyede produkter for lokale organisationer og medier, herunder websites som Radio Guama, med PHP, MySQL, PostgreSQL, Joomla, Drupal, Bootstrap og Ext JS."
+      },
+      "3": {
+        "role": "Full Stack Developer",
+        "description": "Byggede interne systemer i GEOCUBAs forsknings- og udviklingsafdeling ved at kombinere PHP, MySQL, PostgreSQL, Ext JS, jQuery, Bootstrap og geospatiale værktøjer til operationelle og informationsmæssige behov."
+      },
+      "2": {
+        "role": "Full Stack Developer",
+        "description": "Udviklede statistiske og administrative løsninger for den provinsielle ONEI-kontor med PHP, MySQL, HTML, CSS, Ext JS, Drupal og Joomla."
+      },
+      "1": {
+        "role": "Full Stack Developer - Junior Developers Manager",
+        "description": "Startede min professionelle karriere på National Library-projektet ved UCI, hvor jeg byggede løsninger i Drupal, PHP og MySQL og samtidig koordinerede juniorudviklere, efterhånden som teamet voksede."
       }
     }
   },

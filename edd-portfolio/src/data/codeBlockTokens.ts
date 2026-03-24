@@ -121,7 +121,7 @@ export const tabs: FileTab[] = [
       B,
       I1, { type: 'brace', text: '}' }, COMMA,
       B,
-      I1, { type: 'property', text: 'experience' }, { type: 'operator', text: ': ' }, { type: 'brace', text: '{ ' }, { type: 'property', text: 'years' }, { type: 'operator', text: ': ' }, { type: 'number', text: '8' }, { type: 'operator', text: ', ' }, { type: 'property', text: 'companies' }, { type: 'operator', text: ': ' }, { type: 'number', text: '6' }, { type: 'operator', text: ' ' }, { type: 'brace', text: '}' }, COMMA,
+      I1, { type: 'property', text: 'experience' }, { type: 'operator', text: ': ' }, { type: 'brace', text: '{ ' }, { type: 'property', text: 'years' }, { type: 'operator', text: ': ' }, { type: 'number', text: '19' }, { type: 'operator', text: ', ' }, { type: 'property', text: 'companies' }, { type: 'operator', text: ': ' }, { type: 'number', text: '10' }, { type: 'operator', text: ' ' }, { type: 'brace', text: '}' }, COMMA,
       B,
       I1, { type: 'property', text: 'passion' }, { type: 'operator', text: ': ' }, { type: 'brace', text: '() => ' }, { type: 'string', text: "'Building beautiful interfaces'" }, COMMA,
       B,

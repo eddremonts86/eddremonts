@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { motion, useMotionValue, useReducedMotion, useSpring, AnimatePresence } from 'framer-motion';
+import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion';
 
 const INTERACTIVE_SELECTOR = 'a, button, [role="button"], input, textarea, select';
 

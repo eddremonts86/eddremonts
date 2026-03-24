@@ -2,8 +2,8 @@ import { Github, Linkedin, Mail, Facebook } from 'lucide-react';
 
 export const personalInfo = {
   name: "Edd Remonts",
-  title: "Senior Full-Stack/Frontend Engineer",
-  description: "I Architect scalable web applications that bridge intricate business logic with immaculate user experiences. My focus relies on React 19, Node.js, and cloud ecosystems to deliver high-performance solutions engineered for massive scale.",
+  title: "Senior Frontend Engineer with Full-Stack Roots",
+  description: "Frontend-first engineer with full-stack roots and nearly two decades of experience since 2007. I build scalable web products that turn complex business rules into fast, intuitive interfaces using React, Vue, Node.js, and cloud platforms.",
   email: "eddremonts86@gmail.com",
   phone: "(+45) 61436173",
   location: "Copenhagen, Denmark",
@@ -16,7 +16,7 @@ export const personalInfo = {
 };
 
 export const aboutMe = {
-  intro: "Originally from Cuba, where I founded my first creative studio, I have built my career on a steadfast commitment to technological excellence and continuous growth. I specialize in transforming complex technical requirements into user-centric interfaces. By synergizing deep backend knowledge with frontend finesse, I engineer resilient platforms that accelerate business growth and ensure uncompromising performance.",
+  intro: "I started my career in Cuba in 2007, working across institutional platforms, media products, and custom business software before moving to Denmark and specializing further in frontend engineering. That end-to-end background still shapes how I work today: I understand the full delivery chain, collaborate comfortably with product, design, and backend teams, and build interfaces that stay maintainable as products grow.",
   features: [
     {
       title: "Strategic Collaborative Engineering",
@@ -24,14 +24,14 @@ export const aboutMe = {
       icon: "users"
     },
     {
-      title: "Fast, Robust, & Scalable",
-      description: "Speed means nothing without stability. Driven by the philosophy that a unique business requires a unique platform, I love tackling difficult problems from new angles, ensuring applications are both technically robust and exceptionally intuitive.",
-      icon: "zap"
-    },
-    {
       title: "Continuous System Evolution",
       description: "The technological landscape is unforgiving. I embrace architectural refactoring, keeping my tech stack, testing coverage, and CI/CD pipelines at the bleeding edge.",
       icon: "rocket"
+    },
+    {
+      title: "Fast, Robust, & Scalable",
+      description: "Speed means nothing without stability. Driven by the philosophy that a unique business requires a unique platform, I love tackling difficult problems from new angles, ensuring applications are both technically robust and exceptionally intuitive.",
+      icon: "zap"
     }
   ]
 };
@@ -43,7 +43,7 @@ export const experiences = [
     role: "Senior Frontend Developer",
     company: "Resights Aps",
     location: "Copenhagen (Denmark)",
-    description: "Architecting scaling strategies for high-volume enterprise real-estate data platforms. Spearheaded migration towards Vue 3 and Nuxt 3 composition APIs, optimizing global state throughput and reducing initial render times by over 40% using SSR hybrid techniques."
+    description: "Leading frontend development for Resights web applications and data products, working with Vue 2/3, Nuxt 2/3, TypeScript, Pinia/Vuex, Node.js, and Vuetify to scale complex real-estate workflows."
   },
   {
     id: 10,
@@ -51,7 +51,7 @@ export const experiences = [
     role: "Senior Frontend Developer",
     company: "Novo Nordisk",
     location: "Copenhagen (Denmark)",
-    description: "Led front-end implementation for critical health administration tools complying with strict medical guidelines. Delivered immaculate Vuetify-based component ecosystems that significantly improved the daily UX for internal medical researchers."
+    description: "Built internal health and administration tools for Novo Nordisk with Vue, Vuetify, HTML, and CSS, focusing on reliable UI foundations for regulated medical teams."
   },
   {
     id: 9,
@@ -59,7 +59,7 @@ export const experiences = [
     role: "Senior Frontend Developer",
     company: "Wunderman Nordic",
     location: "Copenhagen (Denmark)",
-    description: "Engineered ultra-responsive and highly accessible digital campaign interfaces for top-tier global clients. Integrated complex SCSS architectures and C# backend APIs ensuring zero downtime during peak marketing traffic."
+    description: "Delivered accessible campaign and landing experiences for Wunderman Nordic using Vue, SCSS, Bootstrap, and C# integrations, supporting high-traffic launches with stable frontend architecture."
   },
   {
     id: 8,
@@ -67,7 +67,7 @@ export const experiences = [
     role: "Lead Frontend Developer",
     company: "GIG Media Copenhagen",
     location: "Copenhagen (Denmark)",
-    description: "Served as technical lead orchestrating a team spanning multiple CMS platforms (Laravel, Drupal, October). Overhauled legacy monolithic systems into modular structures bridging high-performance MySQL databases with dynamic UI interactions."
+    description: "Led frontend development at GiG Media Copenhagen across affiliate and content platforms, modernizing legacy estates built on Laravel, Drupal, October CMS, MySQL, jQuery, Bootstrap, and PHP while coordinating outsourced maintenance work."
   },
   {
     id: 7,
@@ -75,7 +75,7 @@ export const experiences = [
     role: "Frontend Developer",
     company: "Rebel Penguins Aps",
     location: "Copenhagen (Denmark)",
-    description: "Developed and refined high-conversion affiliate network portals. Implemented rigorous A/B testing interfaces accelerating customer acquisition velocity."
+    description: "Worked on high-conversion affiliate products at Rebel Penguins, shipping frontend improvements, experiments, and UI iterations across Drupal, Laravel, October CMS, Bootstrap, and MySQL-backed platforms."
   },
   {
     id: 6,
@@ -83,7 +83,47 @@ export const experiences = [
     role: "Full Stack Developer",
     company: "Rebel Penguins Aps",
     location: "Copenhagen (Denmark)",
-    description: "End-to-end development of internal dashboard products and external sites utilizing a robust LAMP/LEMP stack alongside bespoke Drupal/October CMS solutions."
+    description: "Developed internal dashboards and external client sites end to end at Rebel Penguins using PHP, MySQL, jQuery, Bootstrap, Drupal, October CMS, and Laravel."
+  },
+  {
+    id: 5,
+    period: "01/05/2015 - 31/10/2015",
+    role: "Volunteer",
+    company: "Plan Denmark",
+    location: "Copenhagen (Denmark)",
+    description: "Supported Plan Denmark's sponsorship department by registering and validating documents, helping keep administrative workflows clean, structured, and reliable."
+  },
+  {
+    id: 4,
+    period: "01/12/2014 - 01/05/2015",
+    role: "Full Stack Developer",
+    company: "Viruta Studio Creativo",
+    location: "Pinar del Rio (Cuba)",
+    description: "Founded Viruta Studio Creativo and built custom products for local organizations and media outlets, including sites such as Radio Guama, using PHP, MySQL, PostgreSQL, Joomla, Drupal, Bootstrap, and Ext JS."
+  },
+  {
+    id: 3,
+    period: "01/10/2012 - 01/06/2014",
+    role: "Full Stack Developer",
+    company: "I & D Agency, GEOCUBA",
+    location: "Pinar del Rio (Cuba)",
+    description: "Built internal systems at GEOCUBA's R&D agency, combining PHP, MySQL, PostgreSQL, Ext JS, jQuery, Bootstrap, and geospatial tooling for operational and information-management needs."
+  },
+  {
+    id: 2,
+    period: "01/09/2010 - 01/10/2012",
+    role: "Full Stack Developer",
+    company: "Provincial Office ONEI",
+    location: "Pinar del Rio (Cuba)",
+    description: "Developed statistical and administrative solutions for the Provincial Office of ONEI using PHP, MySQL, HTML, CSS, Ext JS, Drupal, and Joomla."
+  },
+  {
+    id: 1,
+    period: "01/02/2007 - 01/06/2010",
+    role: "Full Stack Developer - Junior Developers Manager",
+    company: "Project 'National Library'. UCI",
+    location: "Havana (Cuba)",
+    description: "Started my professional career on the National Library project at UCI, building Drupal, PHP, and MySQL solutions while coordinating junior developers as the team matured."
   }
 ];
 
@@ -99,7 +139,7 @@ export const projects = [
   {
     id: "zunzun",
     title: "Zunzun.io",
-    image: "/projects/zunzun-cover.svg",
+    image: "/projects/zunzun-cover.png",
     link: "https://www.zunzun.io/",
     category: "Full Stack"
   },
@@ -113,7 +153,7 @@ export const projects = [
   {
     id: "voirlematch",
     title: "Voirlematch.fr",
-    image: "/projects/voirlematch-cover.svg",
+    image: "/projects/voirlematch-cover.png",
     link: "https://www.voirlematch.fr/",
     category: "Frontend"
   },
@@ -148,7 +188,7 @@ export const projects = [
   {
     id: "livefodboldstreams",
     title: "Livefodboldstreams.dk",
-    image: "/projects/livefodboldstreams-cover.svg",
+    image: "/projects/livefodboldstreams-cover.png",
     link: "https://www.livefodboldstreams.dk/",
     category: "Frontend"
   },
@@ -162,7 +202,7 @@ export const projects = [
   {
     id: "watchonlinehorseracing",
     title: "Watch Online Horse Racing",
-    image: "/projects/watchonlinehorseracing-cover.svg",
+    image: "/projects/watchonlinehorseracing-cover.png",
     link: "https://www.watchonlinehorseracing.co.uk/",
     category: "Full Stack"
   },
@@ -176,7 +216,7 @@ export const projects = [
   {
     id: "windows-terminal",
     title: "Windows Terminal Config Generator",
-    image: "/projects/windows-terminal-cover.png",
+    image: "/projects/windows-terminal-cover.jpg",
     link: "https://windowsterminalsetting.netlify.app/",
     category: "Full Stack"
   },

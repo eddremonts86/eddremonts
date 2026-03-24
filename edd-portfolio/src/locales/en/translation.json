@@ -14,14 +14,14 @@
     "scroll": "Scroll"
   },
   "personalInfo": {
-    "title": "Senior Full-Stack/Frontend Engineer",
-    "description": "I Architect scalable web applications that bridge intricate business logic with immaculate user experiences. My focus relies on React 19, Node.js, and cloud ecosystems to deliver high-performance solutions engineered for massive scale.",
+    "title": "Senior Frontend Engineer with Full-Stack Roots",
+    "description": "Frontend-first engineer with full-stack roots and nearly two decades of experience since 2007. I build scalable web products that turn complex business rules into fast, intuitive interfaces using React, Vue, Node.js, and cloud platforms.",
     "location": "Copenhagen, Denmark"
   },
   "about": {
     "title": "About &",
     "titleAccent": "Services",
-    "intro": "I specialize in transforming complex technical requirements into streamlined, user-centric interfaces. By synergizing deep backend knowledge with frontend finesse, I engineer resilient platforms that accelerate business growth and ensure uncompromising performance scoring 90+ on Lighthouse.",
+    "intro": "I started my career in Cuba in 2007, working across institutional platforms, media products, and custom business software before moving to Denmark and specializing further in frontend engineering. That end-to-end background still shapes how I work today: I understand the full delivery chain, collaborate comfortably with product, design, and backend teams, and build interfaces that stay maintainable as products grow.",
     "features": {
       "0": {
         "title": "Strategic Collaborative Engineering",
@@ -53,32 +53,52 @@
     "title": "Professional",
     "titleAccent": "Journey",
     "techArsenal": "Tech Arsenal",
-    "subtitle": "A timeline of my professional journey.",
+    "subtitle": "From public-sector platforms in Cuba to product teams in Copenhagen, a timeline spanning 2007 to today.",
     "present": "Present day",
     "items": {
       "11": {
         "role": "Senior Frontend Developer",
-        "description": "Architecting scaling strategies for high-volume enterprise real-estate data platforms. Spearheaded migration towards Vue 3 and Nuxt 3 composition APIs, optimizing global state throughput and reducing initial render times by over 40% using SSR hybrid techniques."
+        "description": "Leading frontend development for Resights web applications and data products, working with Vue 2/3, Nuxt 2/3, TypeScript, Pinia/Vuex, Node.js, and Vuetify to scale complex real-estate workflows."
       },
       "10": {
         "role": "Senior Frontend Developer",
-        "description": "Led front-end implementation for critical health administration tools complying with strict medical guidelines. Delivered immaculate Vuetify-based component ecosystems that significantly improved the daily UX for internal medical researchers."
+        "description": "Built internal health and administration tools for Novo Nordisk with Vue, Vuetify, HTML, and CSS, focusing on reliable UI foundations for regulated medical teams."
       },
       "9": {
         "role": "Senior Frontend Developer",
-        "description": "Engineered ultra-responsive and highly accessible digital campaign interfaces for top-tier global clients. Integrated complex SCSS architectures and C# backend APIs ensuring zero downtime during peak marketing traffic."
+        "description": "Delivered accessible campaign and landing experiences for Wunderman Nordic using Vue, SCSS, Bootstrap, and C# integrations, supporting high-traffic launches with stable frontend architecture."
       },
       "8": {
         "role": "Lead Frontend Developer",
-        "description": "Served as technical lead orchestrating a team spanning multiple CMS platforms (Laravel, Drupal, October). Overhauled legacy monolithic systems into modular structures bridging high-performance MySQL databases with dynamic UI interactions."
+        "description": "Led frontend development at GiG Media Copenhagen across affiliate and content platforms, modernizing legacy estates built on Laravel, Drupal, October CMS, MySQL, jQuery, Bootstrap, and PHP while coordinating outsourced maintenance work."
       },
       "7": {
         "role": "Frontend Developer",
-        "description": "Developed and refined high-conversion affiliate network portals. Implemented rigorous A/B testing interfaces accelerating customer acquisition velocity."
+        "description": "Worked on high-conversion affiliate products at Rebel Penguins, shipping frontend improvements, experiments, and UI iterations across Drupal, Laravel, October CMS, Bootstrap, and MySQL-backed platforms."
       },
       "6": {
         "role": "Full Stack Developer",
-        "description": "End-to-end development of internal dashboard products and external sites utilizing a robust LAMP/LEMP stack alongside bespoke Drupal/October CMS solutions."
+        "description": "Developed internal dashboards and external client sites end to end at Rebel Penguins using PHP, MySQL, jQuery, Bootstrap, Drupal, October CMS, and Laravel."
+      },
+      "5": {
+        "role": "Volunteer",
+        "description": "Supported Plan Denmark's sponsorship department by registering and validating documents, helping keep administrative workflows clean, structured, and reliable."
+      },
+      "4": {
+        "role": "Full Stack Developer",
+        "description": "Founded Viruta Studio Creativo and built custom products for local organizations and media outlets, including sites such as Radio Guama, using PHP, MySQL, PostgreSQL, Joomla, Drupal, Bootstrap, and Ext JS."
+      },
+      "3": {
+        "role": "Full Stack Developer",
+        "description": "Built internal systems at GEOCUBA's R&D agency, combining PHP, MySQL, PostgreSQL, Ext JS, jQuery, Bootstrap, and geospatial tooling for operational and information-management needs."
+      },
+      "2": {
+        "role": "Full Stack Developer",
+        "description": "Developed statistical and administrative solutions for the Provincial Office of ONEI using PHP, MySQL, HTML, CSS, Ext JS, Drupal, and Joomla."
+      },
+      "1": {
+        "role": "Full Stack Developer - Junior Developers Manager",
+        "description": "Started my professional career on the National Library project at UCI, building Drupal, PHP, and MySQL solutions while coordinating junior developers as the team matured."
       }
     }
   },

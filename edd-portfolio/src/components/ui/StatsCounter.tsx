@@ -1,3 +1,4 @@
+import { experiences, skills } from '@/data/cvData';
 import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -8,10 +9,23 @@ interface StatItem {
   labelKey: string;
 }
 
+const extractYears = (period: string) => {
+  const matches = period.match(/\b\d{4}\b/g);
+  return matches ? matches.map(Number) : [];
+};
+
+const getYearsExperience = () => {
+  const years = experiences.flatMap((experience) => extractYears(experience.period));
+  const firstYear = Math.min(...years);
+  return Number.isFinite(firstYear) ? new Date().getFullYear() - firstYear : 0;
+};
+
+const getCompaniesCount = () => new Set(experiences.map((experience) => experience.company)).size;
+
 const stats: StatItem[] = [
-  { value: 8, suffix: '+', labelKey: 'stats.yearsExperience' },
-  { value: 6, suffix: '+', labelKey: 'stats.companies' },
-  { value: 22, suffix: '+', labelKey: 'stats.technologies' },
+  { value: getYearsExperience(), suffix: '+', labelKey: 'stats.yearsExperience' },
+  { value: getCompaniesCount(), suffix: '+', labelKey: 'stats.companies' },
+  { value: skills.length, suffix: '+', labelKey: 'stats.technologies' },
   { value: 90, suffix: '+', labelKey: 'stats.lighthouse' },
 ];
 

@@ -1,13 +1,12 @@
 import { LanguageSelector } from '@/components/ui/LanguageSelector';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export const HeroSection = () => {
   const { t } = useTranslation();
-  const prefersReducedMotion = useReducedMotion();
   const containerRef = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll({

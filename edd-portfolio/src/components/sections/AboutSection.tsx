@@ -1,5 +1,5 @@
 import { IconComponent } from '@/components/ui/IconComponent';
-import { aboutMe, services } from '@/data/cvData';
+import { aboutMe } from '@/data/cvData';
 import type { MotionValue } from 'framer-motion';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';

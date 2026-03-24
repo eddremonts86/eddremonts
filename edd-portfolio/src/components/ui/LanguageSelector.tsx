@@ -1,5 +1,4 @@
-import { useClickOutside } from '@/hooks/useClickOutside';
-import { useCallback, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const languages = [
@@ -10,18 +9,7 @@ const languages = [
 
 export const LanguageSelector = () => {
   const { i18n } = useTranslation();
-  const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-
-  const close = useCallback(() => setIsOpen(false), []);
-  useClickOutside(dropdownRef, close);
-
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-    document.documentElement.lang = lng;
-    localStorage.setItem('edd-portfolio-lang', lng);
-    setIsOpen(false);
-  };
 
   const toggleLanguage = () => {
     const currentIndex = languages.findIndex(l => l.code === i18n.language);
