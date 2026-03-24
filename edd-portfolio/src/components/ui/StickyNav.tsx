@@ -1,6 +1,5 @@
 import { LanguageSelector } from '@/components/ui/LanguageSelector';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
-import { APPLE_EASE } from '@/lib/motion';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -28,8 +27,8 @@ export const StickyNav = () => {
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
-          transition={{ duration: 0.5, ease: APPLE_EASE }}
-          className="fixed top-0 left-0 w-full z-[100] bg-background border-b-2 border-foreground"
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="fixed top-0 left-0 w-full z-[100] bg-background/80 backdrop-blur-xl border-b border-subtle"
           aria-label="Main navigation"
         >
           <div className="container mx-auto px-4 md:px-6 py-4 flex flex-wrap items-center justify-between gap-4">
@@ -37,18 +36,18 @@ export const StickyNav = () => {
             {/* Brand / Logo */}
             <a
               href="#"
-              className="text-xl md:text-2xl font-black uppercase tracking-tighter text-foreground hover:text-primary transition-colors whitespace-nowrap leading-none"
+              className="text-lg md:text-xl font-serif italic text-foreground hover:text-primary transition-colors whitespace-nowrap leading-none"
             >
-              EDD_R
+              Edd~R
             </a>
 
             {/* Nav Links - Scrollable on mobile, flex on desktop */}
-            <div className="flex items-center gap-4 md:gap-8 overflow-x-auto hide-scrollbar w-full md:w-auto order-3 md:order-2 pb-2 md:pb-0">
+            <div className="flex items-center gap-6 md:gap-8 overflow-x-auto hide-scrollbar w-full md:w-auto order-3 md:order-2 pb-2 md:pb-0">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground/50 hover:text-foreground transition-colors whitespace-nowrap"
+                  className="text-[11px] font-mono uppercase tracking-widest text-foreground/50 hover:text-foreground hover:opacity-100 transition-all whitespace-nowrap"
                 >
                   {t(link.key)}
                 </a>

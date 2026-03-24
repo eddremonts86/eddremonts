@@ -54,7 +54,7 @@ export const DotNavigation = () => {
 
   return (
     <nav
-      className="fixed right-6 top-1/2 -translate-y-1/2 z-[90] hidden lg:flex flex-col gap-3"
+      className="fixed right-6 top-1/2 -translate-y-1/2 z-[90] hidden lg:flex flex-col gap-4"
       aria-label="Section navigation"
     >
       {sections.map((id) => (
@@ -62,21 +62,19 @@ export const DotNavigation = () => {
           key={id}
           href={id === 'hero' ? '#' : `#${id}`}
           aria-label={sectionLabels[id]}
-          className="group relative flex items-center justify-end"
+          className="group relative flex items-center justify-end h-4"
         >
           {/* Label tooltip */}
-          <span className="absolute right-7 px-2 py-1 text-[11px] font-medium text-foreground bg-surface apple-glass rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none shadow-sm">
+          <span className="absolute right-6 px-2 py-1 text-[10px] font-mono uppercase tracking-widest text-foreground/70 bg-surface border border-subtle rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
             {sectionLabels[id]}
           </span>
 
           <motion.div
-            className={`w-2.5 h-2.5 rounded-full border-2 transition-all duration-300 ${
+            className={`transition-all duration-500 rounded-full ${
               activeSection === id
-                ? 'bg-primary border-primary shadow-[0_0_8px_rgba(0,229,255,0.5)] scale-125'
-                : 'bg-transparent border-foreground/20 hover:border-foreground/50'
+                ? 'bg-primary w-1.5 h-6'
+                : 'bg-foreground/20 w-1.5 h-1.5 hover:bg-foreground/50'
             }`}
-            animate={activeSection === id ? { scale: [1, 1.3, 1] } : {}}
-            transition={{ duration: 0.5 }}
           />
         </a>
       ))}

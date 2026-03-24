@@ -3,8 +3,8 @@ import { motion, useMotionValue, useReducedMotion, useSpring, AnimatePresence } 
 
 const INTERACTIVE_SELECTOR = 'a, button, [role="button"], input, textarea, select';
 
-/** Spring config for a snappier, mechanical feel */
-const springCfg = { damping: 20, stiffness: 300, mass: 0.2 };
+/** Spring config for a soft, fluid feel */
+const springCfg = { damping: 30, stiffness: 200, mass: 0.5 };
 
 export const MouseFollower = () => {
   const [isHovering, setIsHovering] = useState(false);
@@ -53,17 +53,17 @@ export const MouseFollower = () => {
 
   if (reduceMotion) return null;
 
-  // Brutalist crosshair sizes
-  const size = isHovering ? 100 : 20;
+  // Elegant sizing
+  const size = isHovering ? 60 : 12;
   const offset = size / 2;
 
   return (
     <motion.div
-      className="pointer-events-none fixed inset-0 z-[9999] hidden lg:block mix-blend-difference"
+      className="pointer-events-none fixed inset-0 z-[9999] hidden lg:block"
       aria-hidden="true"
     >
       <motion.div
-        className="absolute flex items-center justify-center bg-white rounded-full overflow-hidden"
+        className="absolute flex items-center justify-center rounded-full border border-primary/50 bg-primary/10 backdrop-blur-[2px]"
         style={{
           x: springX,
           y: springY,
@@ -75,22 +75,9 @@ export const MouseFollower = () => {
         animate={{
           width: size,
           height: size,
-          scale: isHovering ? 1 : 1,
         }}
-        transition={springCfg}
+        transition={{ type: "spring", stiffness: 150, damping: 20 }}
       >
-        <AnimatePresence>
-          {isHovering && (
-            <motion.span 
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.5 }}
-              className="text-black font-black text-xs tracking-widest uppercase"
-            >
-              EXPLORE
-            </motion.span>
-          )}
-        </AnimatePresence>
       </motion.div>
     </motion.div>
   );

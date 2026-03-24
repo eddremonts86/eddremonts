@@ -11,6 +11,15 @@ importers:
       '@fontsource-variable/m-plus-1':
         specifier: ^5.2.9
         version: 5.2.9
+      '@fontsource/cinzel':
+        specifier: ^5.2.8
+        version: 5.2.8
+      '@fontsource/epilogue':
+        specifier: ^5.2.8
+        version: 5.2.8
+      '@fontsource/jetbrains-mono':
+        specifier: ^5.2.8
+        version: 5.2.8
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -454,6 +463,15 @@ packages:
 
   '@fontsource-variable/m-plus-1@5.2.9':
     resolution: {integrity: sha512-Ywv6bYdJiBa9TCctTQlggsKkI8y6UiHpofVTik8fUJajIS90INYFhL69eK8DUzmcNQJxGUVmGcb5cZr6g7FAxw==}
+
+  '@fontsource/cinzel@5.2.8':
+    resolution: {integrity: sha512-B9WeF/jPlOJOrcXfX96cy4KfM+s1QcU2C9W2hE3azBOBzPvzFkNpBovT5JmhAeicE/s4HZWKF9LF5hmEcqlbsw==}
+
+  '@fontsource/epilogue@5.2.8':
+    resolution: {integrity: sha512-+V1T+G9RXtLiImA1khsXG6jd5Io/UMJ6LJgYyAYShU9nzZJtI3G/4Hof9Zi6KUMmmH+oTxVN0rXdZc6AOK8Sqg==}
+
+  '@fontsource/jetbrains-mono@5.2.8':
+    resolution: {integrity: sha512-6w8/SG4kqvIMu7xd7wt6x3idn1Qux3p9N62s6G3rfldOUYHpWcc2FKrqf+Vo44jRvqWj2oAtTHrZXEP23oSKwQ==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2183,6 +2201,12 @@ snapshots:
   '@exodus/bytes@1.14.1': {}
 
   '@fontsource-variable/m-plus-1@5.2.9': {}
+
+  '@fontsource/cinzel@5.2.8': {}
+
+  '@fontsource/epilogue@5.2.8': {}
+
+  '@fontsource/jetbrains-mono@5.2.8': {}
 
   '@humanfs/core@0.19.1': {}
 

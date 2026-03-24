@@ -9,13 +9,13 @@ export const SkillsMarquee = () => {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="py-24 bg-primary text-background overflow-hidden relative rotate-2 scale-110 -my-12 z-20 shadow-2xl" aria-label="Technology skills">
+    <section className="py-12 bg-surface border-y border-subtle overflow-hidden relative z-20" aria-label="Technology skills">
       <motion.div
-        className="flex gap-16 items-center whitespace-nowrap"
+        className="flex gap-12 items-center whitespace-nowrap"
         animate={reduceMotion ? {} : { x: ['0%', '-33.333%'] }}
         transition={{
           x: {
-            duration: 30,
+            duration: 40,
             repeat: Infinity,
             ease: 'linear',
           },
@@ -24,19 +24,19 @@ export const SkillsMarquee = () => {
         {tripled.map((skill, i) => (
           <span
             key={`${skill}-${i}`}
-            className="flex items-center gap-6 text-[4rem] md:text-[6rem] font-black uppercase tracking-tighter shrink-0 select-none opacity-90 hover:opacity-100 transition-opacity cursor-default mix-blend-difference text-foreground dark:text-white"
+            className="flex items-center gap-4 text-2xl md:text-3xl font-serif italic tracking-tight shrink-0 select-none opacity-60 hover:opacity-100 transition-opacity duration-500 cursor-default text-foreground"
           >
             {techIconMap[skill] && (
               <img
                 src={techIconMap[skill]}
                 alt=""
                 aria-hidden="true"
-                className="w-16 h-16 md:w-24 md:h-24 filter dark:invert dark:brightness-0"
+                className="w-6 h-6 md:w-8 md:h-8 grayscale opacity-70"
                 loading="lazy"
               />
             )}
             <span>{skill}</span>
-            <span className="text-background/30 ml-8 text-4xl" aria-hidden="true">/</span>
+            <span className="text-foreground/20 ml-6 text-xl" aria-hidden="true">•</span>
           </span>
         ))}
       </motion.div>

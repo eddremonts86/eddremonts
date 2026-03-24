@@ -10,7 +10,8 @@
   "hero": {
     "available": "Disponible para nuevas oportunidades",
     "greeting": "Hola, soy",
-    "explore": "Explorar mi Trabajo"
+    "explore": "Explorar Mi Trabajo",
+    "scroll": "Deslizar"
   },
   "personalInfo": {
     "title": "Ingeniero Senior Full-Stack/Frontend",
@@ -85,6 +86,7 @@
     "title": "Mis Proyectos",
     "titleAccent": "Recientes",
     "subtitle": "Una colección de experiencias digitales fusionando el diseño premium con una férrea ingeniería.",
+    "view": "Ver Proyecto",
     "filters": {
       "all": "Todos",
       "frontend": "Frontend",
@@ -100,6 +102,7 @@
       "email": "Tu Correo",
       "message": "Detalles del proyecto...",
       "send": "Enviar Mensaje",
+      "submitting": "Enviando...",
       "target": "Iniciar Conexión"
     },
     "info": {
@@ -112,12 +115,28 @@
     "technologies": "Tecnologías",
     "lighthouse": "Puntuación Lighthouse"
   },
-  "testimonial": {
-    "quote": "Edd entregó consistentemente soluciones de alta calidad y rendimiento. Su atención al detalle y liderazgo técnico elevó toda nuestra arquitectura frontend.",
-    "author": "Líder de Ingeniería",
-    "role": "Cliente Empresarial",
-    "initials": "LI"
-  },
+  "testimonials": [
+    {
+      "quote": "Eduardo será un gran activo para cualquier empresa que lo contrate, en especial para compañías tecnológicas multiculturales. Cuenta con mi más alta recomendación.",
+      "author": "Jonas Warrer",
+      "role": "Director General, Media Gaming Innovation Group"
+    },
+    {
+      "quote": "Puede trabajar de forma totalmente independiente, pero también en estrecha colaboración. Ha demostrado poder entregar un producto viable con requisitos mínimos, así como seguir de cerca requisitos muy detallados.",
+      "author": "Sarah Braun",
+      "role": "Backend Developer, GiG"
+    },
+    {
+      "quote": "Eduardo siempre ha sido una persona enfocada y con una gran voluntad de aprender. Su energía en el lugar de trabajo siempre fue muy valorada; a nivel personal, es un placer trabajar con él.",
+      "author": "Sergi Torres",
+      "role": "Xarxa de Transmissions Santiago"
+    },
+    {
+      "quote": "Eduardo tiene habilidades excepcionales en frontend y fue nuestro desarrollador principal. También se le asignó liderar el equipo que maneja nuestros sitios antiguos e hizo un trabajo encomiable allí.",
+      "author": "Naveen Kumar Vasudevan",
+      "role": "Team Lead, GiG"
+    }
+  ],
   "codeShowcase": {
     "badge": "Bajo el Capó",
     "title": "Código Limpio,",

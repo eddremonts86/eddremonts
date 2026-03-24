@@ -40,7 +40,7 @@ export const LanguageSelector = () => {
     <div className="relative z-50" ref={dropdownRef}>
       <button
         onClick={toggleLanguage}
-        className="h-12 px-4 flex items-center justify-center border border-foreground/20 bg-background text-foreground font-bold tracking-widest text-xs hover:bg-foreground hover:text-background transition-colors duration-300 rounded-none shadow-sm min-w-[44px] min-h-[44px]"
+        className="h-10 px-4 flex items-center justify-center border border-foreground/10 bg-transparent text-foreground font-medium tracking-widest text-[10px] hover:bg-foreground hover:text-background transition-colors duration-500 rounded-full shadow-sm min-w-[44px]"
         aria-label={`Current language: ${i18n.language}. Click to change to ${nextLang.toUpperCase()}`}
       >
         <span className="uppercase">{i18n.language}</span>

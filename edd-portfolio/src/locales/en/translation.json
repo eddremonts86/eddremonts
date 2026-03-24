@@ -10,7 +10,8 @@
   "hero": {
     "available": "Available for new opportunities",
     "greeting": "Hello, I'm",
-    "explore": "Explore My Work"
+    "explore": "Explore My Work",
+    "scroll": "Scroll"
   },
   "personalInfo": {
     "title": "Senior Full-Stack/Frontend Engineer",
@@ -85,6 +86,7 @@
     "title": "My Recent",
     "titleAccent": "Projects",
     "subtitle": "A collection of digital experiences blending premium design and robust engineering.",
+    "view": "View Project",
     "filters": {
       "all": "All",
       "frontend": "Frontend",
@@ -100,6 +102,7 @@
       "email": "Your Email",
       "message": "Project Details...",
       "send": "Send Message",
+      "submitting": "Sending...",
       "target": "Initiate Connection"
     },
     "info": {
@@ -112,12 +115,28 @@
     "technologies": "Technologies",
     "lighthouse": "Lighthouse Score"
   },
-  "testimonial": {
-    "quote": "Edd consistently delivered high-quality, performant solutions. His attention to detail and technical leadership elevated our entire frontend architecture.",
-    "author": "Engineering Lead",
-    "role": "Enterprise Client",
-    "initials": "EL"
-  },
+  "testimonials": [
+    {
+      "quote": "Eduardo will be an asset for any company that employs him – in particular tech companies with a multitude of cultures - and he has my highest recommendations.",
+      "author": "Jonas Warrer",
+      "role": "Managing Director, Media Gaming Innovation Group"
+    },
+    {
+      "quote": "He can work entirely independently, but also in close cooperation. He has shown that he can deliver a viable product with minimal requirements, substituting what's missing, as well as following extensive requirements closely.",
+      "author": "Sarah Braun",
+      "role": "Backend Developer, GiG"
+    },
+    {
+      "quote": "Eduardo has been always a focused individual, with the will and focus to learn everything we required from him. The energy he always brought to the workplace was also very valued.",
+      "author": "Sergi Torres",
+      "role": "Xarxa de Transmissions Santiago"
+    },
+    {
+      "quote": "Eduardo Inerarte has exceptional frontend skills, and was our lead frontend developer. He had also been assigned to lead the outsourcing team that handles our legacy sites and he did a commendable job there.",
+      "author": "Naveen Kumar Vasudevan",
+      "role": "Team Lead, GiG"
+    }
+  ],
   "codeShowcase": {
     "badge": "Under the Hood",
     "title": "Clean Code,",

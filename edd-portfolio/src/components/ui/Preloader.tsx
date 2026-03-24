@@ -20,7 +20,7 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
         setTimeout(() => {
           onComplete();
           document.body.style.overflow = '';
-        }, 400);
+        }, 500);
       } else {
         setProgress(currentProgress);
       }
@@ -35,34 +35,34 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ y: 0 }}
+        initial={{ opacity: 1 }}
         exit={{
-          y: '-100vh',
-          transition: { duration: 1.2, ease: [0.76, 0, 0.24, 1], delay: 0.2 }
+          opacity: 0,
+          transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }
         }}
-        className="fixed inset-0 z-[99999] bg-foreground text-background flex flex-col items-center justify-center overflow-hidden"
+        className="fixed inset-0 z-[99999] bg-background text-foreground flex flex-col items-center justify-center overflow-hidden"
       >
         <motion.div
-          exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.4 } }}
-          className="container px-6 max-w-[1600px] w-full flex flex-col justify-between h-full py-12 md:py-24 relative z-10"
+          exit={{ opacity: 0, y: -20, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }}
+          className="container px-6 max-w-[1400px] w-full flex flex-col justify-between h-full py-12 md:py-24 relative z-10"
         >
-          <div className="flex justify-between items-start w-full font-mono text-sm uppercase tracking-widest opacity-50">
-            <span>System Initialization</span>
-            <span>v.1.0.0</span>
+          <div className="flex justify-between items-start w-full font-mono text-[11px] uppercase tracking-widest opacity-40">
+            <span>Loading experience</span>
+            <span>2024</span>
           </div>
 
           <div className="flex flex-col items-center justify-center w-full">
             <motion.div
-              className="text-[20vw] md:text-[15vw] font-black uppercase tracking-tighter leading-none"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
+              className="text-7xl md:text-[8rem] font-light tracking-tight leading-none font-serif text-foreground/80 lowercase"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
               {progress}%
             </motion.div>
-            <div className="w-full max-w-md h-[2px] bg-background/20 mt-8 relative overflow-hidden">
+            <div className="w-full max-w-xs h-[1px] bg-subtle mt-12 relative overflow-hidden">
               <motion.div
-                className="absolute top-0 left-0 h-full bg-primary"
+                className="absolute top-0 left-0 h-full bg-foreground"
                 initial={{ width: '0%' }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.1 }}
@@ -70,8 +70,8 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
             </div>
           </div>
 
-          <div className="flex justify-between items-end w-full font-mono text-sm uppercase tracking-widest opacity-50">
-            <span>Loading Assets</span>
+          <div className="flex justify-between items-end w-full font-mono text-[11px] uppercase tracking-widest opacity-40">
+            <span>Stand by</span>
             <span>Edd Remonts</span>
           </div>
         </motion.div>

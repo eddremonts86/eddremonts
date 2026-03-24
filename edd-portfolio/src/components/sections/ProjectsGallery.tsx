@@ -1,7 +1,6 @@
 import { OptimizedImage } from '@/components/ui/OptimizedImage';
 import { projects } from '@/data/cvData';
-import { APPLE_EASE } from '@/lib/motion';
-import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
+import { AnimatePresence, motion, useSpring, useMotionValue } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { useMemo, useRef, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -46,12 +45,12 @@ export const ProjectsGallery = () => {
   );
 
   return (
-    <section id="projects" className="py-32 bg-background relative z-10" ref={containerRef}>
-      <div className="container mx-auto px-6 max-w-[1600px]">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 gap-8 border-b border-foreground/10 pb-12">
-          <h2 className="text-[14vw] md:text-[8rem] font-black uppercase tracking-tighter leading-[0.85] break-words">
-            SELECTED<br/>
-            <span className="font-serif italic lowercase font-light text-primary tracking-normal">works</span>
+    <section id="projects" className="py-24 md:py-40 bg-background relative z-10" ref={containerRef}>
+      <div className="container mx-auto px-6 max-w-[1400px]">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8 border-b border-subtle pb-12">
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-light tracking-tight">
+            SELECTED
+            <span className="block font-serif italic text-primary mt-2">works</span>
           </h2>
 
           <div className="flex gap-4 overflow-x-auto w-full md:w-auto pb-4 md:pb-0 hide-scrollbar mt-8 md:mt-0">
@@ -60,10 +59,10 @@ export const ProjectsGallery = () => {
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 aria-pressed={activeCategory === cat}
-                className={`px-8 py-4 uppercase font-bold tracking-widest text-sm transition-all whitespace-nowrap min-h-[44px] border ${
+                className={`px-6 py-2 uppercase font-mono tracking-widest text-[11px] transition-all whitespace-nowrap min-h-[44px] rounded-full border ${
                   activeCategory === cat
                     ? "bg-foreground text-background border-foreground"
-                    : "bg-transparent text-foreground/50 border-foreground/20 hover:text-foreground hover:border-foreground"
+                    : "bg-transparent text-foreground/50 border-subtle hover:text-foreground hover:border-foreground/30"
                 }`}
               >
                 {t(`projects.filters.${categoryKeys[cat]}`)}
@@ -72,8 +71,8 @@ export const ProjectsGallery = () => {
           </div>
         </div>
 
-        {/* Huge Interactive List */}
-        <div className="relative border-t border-foreground/10">
+        {/* Elegant Interactive List */}
+        <div className="relative border-t border-subtle">
           <AnimatePresence mode='wait'>
             {filteredProjects.map((project, index) => (
               <motion.a
@@ -84,26 +83,26 @@ export const ProjectsGallery = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 onMouseEnter={() => setHoveredProject(project)}
                 onMouseLeave={() => setHoveredProject(null)}
-                className="group flex flex-col md:flex-row items-start md:items-center justify-between py-12 md:py-16 border-b border-foreground/10 hover:bg-foreground hover:text-background transition-colors duration-500 px-4 md:px-8 cursor-pointer relative z-10"
+                className="group flex flex-col md:flex-row items-start md:items-center justify-between py-10 md:py-12 border-b border-subtle hover:bg-surface transition-colors duration-500 px-4 rounded-xl -mx-4 cursor-pointer relative z-10"
               >
                 <div className="flex flex-col mb-4 md:mb-0">
-                  <span className="text-sm font-mono tracking-widest opacity-50 mb-2">
+                  <span className="text-[11px] font-mono tracking-widest opacity-50 mb-3 text-primary">
                     0{index + 1} // {project.category}
                   </span>
-                  <h3 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter group-hover:pl-8 transition-all duration-500">
+                  <h3 className="text-3xl md:text-5xl lg:text-6xl font-serif tracking-tight group-hover:pl-4 transition-all duration-500">
                     {project.title}
                   </h3>
                 </div>
                 
-                <div className="flex items-center gap-8">
-                  <span className="hidden md:block text-lg font-serif italic opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    View Live
+                <div className="flex items-center gap-6 shrink-0 mt-4 md:mt-0">
+                  <span className="hidden md:block text-sm font-mono uppercase tracking-widest text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500 whitespace-nowrap">
+                    {t('projects.view', 'View Project')}
                   </span>
-                  <div className="w-16 h-16 rounded-full border border-foreground/20 flex items-center justify-center group-hover:bg-background group-hover:text-foreground group-hover:border-background transition-all duration-500 transform group-hover:-rotate-45">
-                    <ArrowUpRight className="w-6 h-6" />
+                  <div className="w-12 h-12 shrink-0 rounded-full flex items-center justify-center text-foreground group-hover:bg-primary group-hover:text-white transition-all duration-500 transform group-hover:rotate-45">
+                    <ArrowUpRight className="w-5 h-5" />
                   </div>
                 </div>
               </motion.a>
@@ -114,35 +113,35 @@ export const ProjectsGallery = () => {
 
       {/* Floating Image Reveal (Desktop Only) */}
       <motion.div
-        className="fixed top-0 left-0 w-[400px] h-[300px] pointer-events-none z-[100] hidden lg:block overflow-hidden"
+        className="fixed top-0 left-0 w-[450px] h-[320px] pointer-events-none z-[100] hidden lg:block overflow-hidden rounded-xl shadow-2xl"
         style={{
           x: cursorX,
           y: cursorY,
           translateX: "-50%",
           translateY: "-50%",
         }}
-        initial={{ opacity: 0, scale: 0.8 }}
+        initial={{ opacity: 0, scale: 0.95 }}
         animate={{ 
           opacity: hoveredProject ? 1 : 0,
-          scale: hoveredProject ? 1 : 0.8,
+          scale: hoveredProject ? 1 : 0.95,
         }}
-        transition={{ duration: 0.4, ease: APPLE_EASE }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       >
         <AnimatePresence mode="wait">
           {hoveredProject && (
             <motion.div
               key={hoveredProject.id}
-              initial={{ opacity: 0, scale: 1.2 }}
+              initial={{ opacity: 0, scale: 1.1 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.2 }}
-              transition={{ duration: 0.5, ease: APPLE_EASE }}
+              exit={{ opacity: 0, scale: 1.1 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="w-full h-full relative"
             >
               <OptimizedImage
                 src={`/projects/${hoveredProject.id}-md.webp`}
                 alt={hoveredProject.title}
                 fallbackSrc={hoveredProject.image}
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0"
+                className="w-full h-full object-cover grayscale-0"
               />
             </motion.div>
           )}

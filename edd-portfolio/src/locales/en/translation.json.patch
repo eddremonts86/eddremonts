@@ -1,0 +1,17 @@
+  "hero": {
+...
+    "scroll": "Scroll"
+  },
+  "projects": {
+...
+    "view": "View Project"
+  },
+  "contact": {
+    "form": {
+...
+      "submitting": "Sending..."
+  },
+  "footer": {
+...
+    "rights": "All rights reserved."
+  }

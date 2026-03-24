@@ -10,7 +10,8 @@
   "hero": {
     "available": "Ledig for nye muligheder",
     "greeting": "Hej, jeg er",
-    "explore": "Udforsk mit Arbejde"
+    "explore": "Udforsk mit arbejde",
+    "scroll": "Rul ned"
   },
   "personalInfo": {
     "title": "Senior Full-Stack/Frontend Ingeniør",
@@ -85,6 +86,7 @@
     "title": "Mine Seneste",
     "titleAccent": "Projekter",
     "subtitle": "En samling af digitale oplevelser der blander premium design med stabil systemteknik.",
+    "view": "Se Projekt",
     "filters": {
       "all": "Alle",
       "frontend": "Frontend",
@@ -100,6 +102,7 @@
       "email": "Din Email",
       "message": "Projekt Detaljer...",
       "send": "Send Besked",
+      "submitting": "Sender...",
       "target": "Start Forbindelse"
     },
     "info": {
@@ -112,12 +115,28 @@
     "technologies": "Teknologier",
     "lighthouse": "Lighthouse Score"
   },
-  "testimonial": {
-    "quote": "Edd leverede konsekvent løsninger af høj kvalitet og ydeevne. Hans sans for detaljer og tekniske lederskab løftede hele vores frontend-arkitektur.",
-    "author": "Ingeniørleder",
-    "role": "Virksomhedskunde",
-    "initials": "IL"
-  },
+  "testimonials": [
+    {
+      "quote": "Eduardo vil være et aktiv for enhver virksomhed, der ansætter ham – især teknologivirksomheder med en mangfoldighed af kulturer - og han har mine varmeste anbefalinger.",
+      "author": "Jonas Warrer",
+      "role": "Managing Director, Media Gaming Innovation Group"
+    },
+    {
+      "quote": "Han kan arbejde helt selvstændigt, men også i tæt samarbejde. Han har vist, at han kan levere et levedygtigt produkt med minimale krav, og samtidig følge omfattende krav tæt.",
+      "author": "Sarah Braun",
+      "role": "Backend Developer, GiG"
+    },
+    {
+      "quote": "Eduardo har altid været en fokuseret person, med viljen til at lære alt det, vi krævede af ham. Hans energi på arbejdspladsen var også værdsat, og på et personligt plan er han en fornøjelse at arbejde med.",
+      "author": "Sergi Torres",
+      "role": "Xarxa de Transmissions Santiago"
+    },
+    {
+      "quote": "Eduardo har exceptionelle frontend-kompetencer og var vores ledende frontend-udvikler. Han fik også ansvaret for at lede det team, der håndterer vores ældre sites, og gjorde et fremragende stykke arbejde der.",
+      "author": "Naveen Kumar Vasudevan",
+      "role": "Team Lead, GiG"
+    }
+  ],
   "codeShowcase": {
     "badge": "Under Motorhjelmen",
     "title": "Ren Kode,",

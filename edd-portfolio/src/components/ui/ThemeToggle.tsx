@@ -1,6 +1,5 @@
 import { useTheme } from '@/contexts/ThemeContextBase';
 import type { Theme } from '@/contexts/ThemeContextBase';
-import { APPLE_EASE } from '@/lib/motion';
 import { motion } from 'framer-motion';
 import { Monitor, Moon, Sun } from 'lucide-react';
 
@@ -19,7 +18,7 @@ export const ThemeToggle = () => {
   return (
     <button
       onClick={next}
-      className="w-12 h-12 flex items-center justify-center border border-foreground/20 bg-background text-foreground hover:bg-foreground hover:text-background transition-colors duration-300 rounded-none shadow-sm min-w-[44px] min-h-[44px] group relative overflow-hidden"
+      className="w-10 h-10 flex items-center justify-center border border-subtle bg-surface text-foreground/70 hover:text-foreground transition-colors duration-500 rounded-full min-w-[40px] min-h-[40px] group relative overflow-hidden shadow-sm"
       aria-label={`Theme: ${theme}. Click to switch.`}
     >
       <motion.div
@@ -28,10 +27,10 @@ export const ThemeToggle = () => {
           rotate: isActive('dark') ? 0 : 90,
           scale: isActive('dark') ? 1 : 0,
         }}
-        transition={{ duration: 0.2, ease: APPLE_EASE }}
+        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
         className="absolute"
       >
-        <Moon className="w-5 h-5" />
+        <Moon className="w-4 h-4 text-foreground/70 group-hover:text-foreground transition-colors" />
       </motion.div>
       <motion.div
         initial={false}
@@ -39,10 +38,10 @@ export const ThemeToggle = () => {
           rotate: isActive('light') ? 0 : -90,
           scale: isActive('light') ? 1 : 0,
         }}
-        transition={{ duration: 0.2, ease: APPLE_EASE }}
+        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
         className="absolute"
       >
-        <Sun className="w-5 h-5" />
+        <Sun className="w-4 h-4 text-foreground/70 group-hover:text-foreground transition-colors" />
       </motion.div>
       <motion.div
         initial={false}
@@ -50,12 +49,12 @@ export const ThemeToggle = () => {
           rotate: isActive('system') ? 0 : -90,
           scale: isActive('system') ? 1 : 0,
         }}
-        transition={{ duration: 0.2, ease: APPLE_EASE }}
+        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
         className="absolute"
       >
-        <Monitor className="w-5 h-5" />
+        <Monitor className="w-4 h-4 text-foreground/70 group-hover:text-foreground transition-colors" />
       </motion.div>
-      <span className="w-5 h-5 invisible" aria-hidden="true" />
+      <span className="w-4 h-4 invisible" aria-hidden="true" />
     </button>
   );
 };

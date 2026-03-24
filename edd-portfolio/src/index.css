@@ -1,4 +1,9 @@
-@import '@fontsource-variable/m-plus-1';
+@import '@fontsource/epilogue/latin-400.css';
+@import '@fontsource/epilogue/latin-700.css';
+@import '@fontsource/epilogue/latin-900.css';
+@import '@fontsource/cinzel/latin-400.css';
+@import '@fontsource/cinzel/latin-700.css';
+@import '@fontsource/jetbrains-mono/latin-400.css';
 
 @tailwind base;
 @tailwind components;
@@ -17,51 +22,51 @@
   }
 
   :root {
-    --background: #F4F4F5; /* Tailwind zinc-100 for better surface contrast */
-    --foreground: #1D1D1F; /* Apple dark gray */
+    --background: #FBFAF9; /* Soft paper white */
+    --foreground: #101010; /* Deep ink black */
     --surface: #FFFFFF;
 
-    --primary: #0097A7; /* Accessible Cyan — WCAG AA on light bg */
+    --primary: #D13426; /* Deep elegant red / crimson */
     --primary-foreground: #FFFFFF;
 
-    --secondary: #FF2A85; /* Neon Pink */
-    --secondary-foreground: #FFFFFF;
+    --secondary: #A08C73; /* Warm taupe */
+    --secondary-foreground: #101010;
 
-    --accent: #8A2BE2; /* Deep Purple */
+    --accent: #2E3339; /* Deep slate */
     --accent-foreground: #FFFFFF;
 
-    --apple-glass: rgba(255, 255, 255, 0.72);
-    --apple-border: rgba(0, 0, 0, 0.08);
+    --apple-glass: rgba(251, 250, 249, 0.72);
+    --apple-border: rgba(0, 0, 0, 0.05);
 
-    --border-subtle: rgba(0, 0, 0, 0.04);
-    --border-default: rgba(0, 0, 0, 0.08);
+    --border-subtle: rgba(16, 16, 16, 0.06);
+    --border-default: rgba(16, 16, 16, 0.15);
 
-    --scrollbar-thumb: rgba(0,0,0,0.15);
-    --scrollbar-thumb-hover: rgba(0,0,0,0.3);
+    --scrollbar-thumb: rgba(0,0,0,0.1);
+    --scrollbar-thumb-hover: rgba(0,0,0,0.25);
   }
 
   .dark {
-    --background: #09090B; /* Tailwind zinc-950 purely dark */
-    --foreground: #F5F5F7; /* Apple light gray text */
-    --surface: #18181B; /* Tailwind zinc-900 for dark mode surface contrast */
+    --background: #0A0A0A; /* True void black */
+    --foreground: #EFEFEF; /* Soft light grey text */
+    --surface: #111111;
 
-    --primary: #00E5FF; /* Keep Anime Vibrancy */
+    --primary: #FF4A3A; /* Vibrant red in dark mode */
     --primary-foreground: #000000;
 
-    --secondary: #FF2A85;
-    --secondary-foreground: #FFFFFF;
+    --secondary: #C8B6A1; /* Warm taupe offset */
+    --secondary-foreground: #000000;
 
-    --accent: #B066FF; /* Slightly lighter purple for dark mode contrast */
+    --accent: #43484E;
     --accent-foreground: #FFFFFF;
 
-    --apple-glass: rgba(28, 28, 30, 0.72);
-    --apple-border: rgba(255, 255, 255, 0.1);
+    --apple-glass: rgba(10, 10, 10, 0.72);
+    --apple-border: rgba(255, 255, 255, 0.05);
 
-    --border-subtle: rgba(255, 255, 255, 0.06);
-    --border-default: rgba(255, 255, 255, 0.1);
+    --border-subtle: rgba(255, 255, 255, 0.05);
+    --border-default: rgba(255, 255, 255, 0.12);
 
-    --scrollbar-thumb: rgba(255,255,255,0.2);
-    --scrollbar-thumb-hover: rgba(255,255,255,0.4);
+    --scrollbar-thumb: rgba(255,255,255,0.15);
+    --scrollbar-thumb-hover: rgba(255,255,255,0.3);
   }
 
   body {
@@ -76,8 +81,8 @@
     inset: 0;
     z-index: 9999;
     pointer-events: none;
-    opacity: 0.04;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   }
 
   h1, h2, h3, h4, h5, h6 {

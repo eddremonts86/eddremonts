@@ -1,5 +1,4 @@
 import { personalInfo } from '@/data/cvData';
-import { APPLE_EASE } from '@/lib/motion';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
@@ -8,27 +7,27 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-24 border-t border-foreground/10 bg-background relative overflow-hidden">
-      <div className="container mx-auto px-6 max-w-[1600px] relative z-10">
+    <footer className="py-16 md:py-24 border-t border-subtle bg-background relative overflow-hidden">
+      <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
         <motion.div
            initial={{ opacity: 0, y: 20 }}
            whileInView={{ opacity: 1, y: 0 }}
            viewport={{ once: true }}
-           transition={{ duration: 0.8, ease: APPLE_EASE }}
+           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
            className="flex flex-col md:flex-row items-center justify-between gap-12"
         >
           {/* Logo / Branding */}
           <div className="text-center md:text-left">
-            <h2 className="text-3xl font-black uppercase tracking-tighter mb-2">
-              EDD <span className="text-primary">REMONTS</span>
+            <h2 className="text-2xl font-light tracking-tight mb-2">
+              EDD <span className="font-serif italic text-primary">REMONTS</span>
             </h2>
-            <p className="text-foreground/50 text-xs font-bold tracking-widest uppercase">
-              {t('footer.inspired', 'Engineered with Precision.')}
+            <p className="text-foreground/40 text-[10px] font-mono tracking-widest uppercase">
+              {t('footer.inspired', 'Crafted with intent.')}
             </p>
           </div>
 
-          {/* Massive Social Links */}
-          <div className="flex gap-4">
+          {/* Elegant Social Links */}
+          <div className="flex flex-wrap justify-center gap-6">
             {personalInfo.socials.map((social) => {
               const Icon = social.icon;
               return (
@@ -37,19 +36,19 @@ export const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-16 h-16 bg-surface border border-foreground/10 flex items-center justify-center text-foreground hover:bg-foreground hover:text-background transition-colors duration-300 group"
+                  className="w-12 h-12 rounded-full border border-subtle flex items-center justify-center text-foreground hover:bg-surface hover:text-primary transition-all duration-300 group shrink-0"
                   aria-label={social.name}
                 >
-                  <Icon className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                  <Icon className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
                 </a>
               );
             })}
           </div>
 
           {/* Copyright */}
-          <div className="text-center md:text-right font-mono text-sm opacity-60">
+          <div className="text-center md:text-right font-mono text-[11px] opacity-50 uppercase tracking-widest mt-8 md:mt-0">
             <p>© {currentYear} {personalInfo.name}.</p>
-            <p className="mt-2 text-xs">V.1.0.0 // STATUS: ONLINE</p>
+            <p className="mt-2 text-[10px]">{t('footer.rights', 'ALL RIGHTS RESERVED')}</p>
           </div>
         </motion.div>
       </div>

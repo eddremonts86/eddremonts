@@ -34,11 +34,12 @@ export default {
       },
       fontFamily: {
         // Futuristic body
-        body: ['"JetBrains Mono"', 'monospace'],
+        body: ['"Epilogue"', 'sans-serif'],
         // High-impact display font
-        display: ['"Syne"', 'sans-serif'],
+        display: ['"Epilogue"', 'sans-serif'],
         // Elegant serif for accents
-        serif: ['"Cormorant Garamond"', 'serif'],
+        serif: ['"Cinzel"', 'serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
       },
       animation: {
         'blob': 'blob 10s infinite',

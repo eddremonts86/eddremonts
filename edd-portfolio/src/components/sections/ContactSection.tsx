@@ -1,7 +1,7 @@
 import { personalInfo } from '@/data/cvData';
 import { APPLE_EASE } from '@/lib/motion';
 import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle2, AlertCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle2, AlertCircle, Mail, MapPin } from 'lucide-react';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -30,156 +30,179 @@ export const ContactSection = () => {
       } else {
         setFormStatus('error');
       }
-    } catch (error) {
+    } catch (err) {
       setFormStatus('error');
     }
   };
 
   return (
-    <section id="contact" className="py-32 relative bg-foreground text-background overflow-hidden">
-      {/* Abstract massive background text */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden whitespace-nowrap pointer-events-none opacity-5">
-        <h2 className="text-[20vw] font-black uppercase tracking-tighter leading-none">
-          LET'S TALK LET'S TALK LET'S TALK
+    <section id="contact" className="py-24 md:py-32 relative bg-foreground text-background overflow-hidden selection:bg-primary selection:text-white">
+      {/* Subtle Abstract Background */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none flex items-center justify-center overflow-hidden">
+        <h2 className="text-[25vw] font-black uppercase tracking-tighter leading-none whitespace-nowrap">
+          {t('nav.contact')}
         </h2>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 max-w-[1600px]">
-        <div className="grid lg:grid-cols-2 gap-24 items-start">
+      <div className="container mx-auto px-6 relative z-10 max-w-7xl">
+        <div className="grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
           
+          {/* Left Column: Info */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: APPLE_EASE }}
-            className="flex flex-col h-full justify-between"
+            className="flex flex-col justify-center"
           >
-            <div>
-              <div className="inline-flex items-center gap-3 px-4 py-2 border border-primary/30 bg-primary/10 text-primary rounded-none mb-8">
-                <span className="relative flex h-3 w-3">
+            <div className="mb-12">
+              <div className="inline-flex items-center gap-3 px-4 py-2 border border-background/20 bg-background/5 text-background rounded-full mb-8 backdrop-blur-sm">
+                <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                 </span>
-                <span className="text-xs font-bold tracking-widest uppercase">
-                  LIMITED AVAILABILITY FOR 2026
+                <span className="text-xs font-bold tracking-wider uppercase text-background/80">
+                  {t('hero.available', 'Available for new opportunities')}
                 </span>
               </div>
-              <h2 className="text-[14vw] md:text-8xl font-black uppercase tracking-tighter mb-8 leading-[0.85] break-words">
-                INITIATE<br/>
-                <span className="text-primary">PROTOCOL</span>
+              
+              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-6 leading-tight">
+                {t('contact.title')} <br/>
+                <span className="text-primary">{t('contact.titleAccent')}</span>
               </h2>
-              <p className="text-xl md:text-2xl font-body opacity-70 max-w-md leading-relaxed mb-16">
-                Only accepting projects that push boundaries. Tell me what we're building.
+              
+              <p className="text-lg md:text-xl font-body opacity-80 max-w-md leading-relaxed">
+                {t('contact.subtitle')}
               </p>
             </div>
 
-            <div className="space-y-8 font-display break-all md:break-normal">
-              <a href={`mailto:${personalInfo.email}`} className="block group">
-                <span className="text-sm font-bold tracking-widest uppercase opacity-50 block mb-2">Email</span>
-                <span className="text-[7vw] md:text-4xl lg:text-5xl font-black uppercase tracking-tight group-hover:text-primary transition-colors">
-                  {personalInfo.email}
-                </span>
+            <div className="space-y-8 font-display">
+              <a href={`mailto:${personalInfo.email}`} className="flex items-center gap-6 group w-fit">
+                <div className="w-14 h-14 rounded-full bg-background/5 flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
+                  <Mail className="w-6 h-6 text-background group-hover:text-white transition-colors duration-300" />
+                </div>
+                <div>
+                  <span className="text-xs font-bold tracking-widest uppercase opacity-50 block mb-1">Email</span>
+                  <span className="text-xl md:text-2xl font-black tracking-wide group-hover:text-primary transition-colors">
+                    {personalInfo.email}
+                  </span>
+                </div>
               </a>
-              <div className="block">
-                <span className="text-sm font-bold tracking-widest uppercase opacity-50 block mb-2">Location</span>
-                <span className="text-2xl md:text-3xl font-black uppercase tracking-tight">
-                  {personalInfo.location}
-                </span>
+              
+              <div className="flex items-center gap-6 w-fit cursor-default">
+                <div className="w-14 h-14 rounded-full bg-background/5 flex items-center justify-center">
+                  <MapPin className="w-6 h-6 text-background" />
+                </div>
+                <div>
+                  <span className="text-xs font-bold tracking-widest uppercase opacity-50 block mb-1">Location</span>
+                  <span className="text-xl md:text-2xl font-black tracking-wide">
+                    {personalInfo.location}
+                  </span>
+                </div>
               </div>
             </div>
           </motion.div>
 
+          {/* Right Column: Form */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.2, ease: APPLE_EASE }}
-            className="bg-background text-foreground p-10 md:p-16 rounded-none shadow-2xl"
+            className="bg-background text-foreground p-8 md:p-12 lg:p-14 rounded-2xl shadow-2xl relative overflow-hidden"
           >
-            <form className="space-y-12" onSubmit={handleSubmit}>
+            {/* Soft glow behind the form */}
+            <div className="absolute -top-32 -right-32 w-64 h-64 bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
+            
+            <form className="space-y-8 relative z-10" onSubmit={handleSubmit}>
               {formStatus === 'success' ? (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-center justify-center text-center py-20 space-y-6"
+                  className="flex flex-col items-center justify-center text-center py-16 space-y-6"
                 >
-                  <CheckCircle2 className="w-24 h-24 text-primary mb-4" />
-                  <h4 className="text-4xl font-black uppercase tracking-tighter">Message Sent</h4>
-                  <p className="text-lg opacity-70 font-body">Thanks for reaching out. I'll get back to you soon.</p>
+                  <div className="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center mb-2">
+                    <CheckCircle2 className="w-10 h-10 text-green-500" />
+                  </div>
+                  <h4 className="text-3xl font-black uppercase tracking-tighter">Message Sent</h4>
+                  <p className="text-base opacity-70 font-body">Thanks for reaching out! I'll get back to you as soon as possible.</p>
                   <button
                     type="button"
                     onClick={() => setFormStatus('idle')}
-                    className="mt-8 px-8 py-4 bg-foreground text-background uppercase font-bold tracking-widest text-sm hover:bg-primary transition-colors"
+                    className="mt-6 px-8 py-3 bg-foreground text-background uppercase font-bold tracking-widest text-xs hover:bg-primary transition-colors rounded-full"
                   >
                     Send Another
                   </button>
                 </motion.div>
               ) : (
                 <>
-                  <div className="space-y-10">
-                    <div className="relative group">
+                  <div className="space-y-6">
+                    {/* Name Input */}
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="contact-name" className="text-sm font-bold uppercase tracking-wider opacity-70 ml-1">
+                        {t('contact.form.name')}
+                      </label>
                       <input
                         id="contact-name"
                         name="name"
                         type="text"
                         required
-                        className="w-full bg-transparent border-b-2 border-foreground/20 px-0 py-4 text-2xl font-display uppercase tracking-tight focus:outline-none focus:border-primary transition-colors peer placeholder-transparent"
+                        className="w-full bg-foreground/5 border-2 border-transparent focus:bg-transparent focus:border-primary px-5 py-4 text-lg font-body rounded-xl outline-none transition-all placeholder:text-foreground/30"
                         placeholder="John Doe"
                       />
-                      <label htmlFor="contact-name" className="absolute left-0 top-4 text-xl uppercase tracking-tight opacity-40 transition-all peer-focus:-top-6 peer-focus:text-sm peer-focus:text-primary peer-focus:opacity-100 peer-valid:-top-6 peer-valid:text-sm peer-valid:opacity-100 cursor-text">
-                        {t('contact.form.name')}
-                      </label>
                     </div>
                     
-                    <div className="relative group">
+                    {/* Email Input */}
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="contact-email" className="text-sm font-bold uppercase tracking-wider opacity-70 ml-1">
+                        {t('contact.form.email')}
+                      </label>
                       <input
                         id="contact-email"
                         name="email"
                         type="email"
                         required
-                        className="w-full bg-transparent border-b-2 border-foreground/20 px-0 py-4 text-2xl font-display uppercase tracking-tight focus:outline-none focus:border-primary transition-colors peer placeholder-transparent"
+                        className="w-full bg-foreground/5 border-2 border-transparent focus:bg-transparent focus:border-primary px-5 py-4 text-lg font-body rounded-xl outline-none transition-all placeholder:text-foreground/30"
                         placeholder="john@example.com"
                       />
-                      <label htmlFor="contact-email" className="absolute left-0 top-4 text-xl uppercase tracking-tight opacity-40 transition-all peer-focus:-top-6 peer-focus:text-sm peer-focus:text-primary peer-focus:opacity-100 peer-valid:-top-6 peer-valid:text-sm peer-valid:opacity-100 cursor-text">
-                        {t('contact.form.email')}
-                      </label>
                     </div>
 
-                    <div className="relative group pt-4">
+                    {/* Message Input */}
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="contact-message" className="text-sm font-bold uppercase tracking-wider opacity-70 ml-1">
+                        {t('contact.form.message')}
+                      </label>
                       <textarea
                         id="contact-message"
                         name="message"
-                        rows={4}
+                        rows={5}
                         required
-                        className="w-full bg-transparent border-b-2 border-foreground/20 px-0 py-4 text-xl font-body focus:outline-none focus:border-primary transition-colors peer placeholder-transparent resize-none"
-                        placeholder={t('contact.form.message')}
+                        className="w-full bg-foreground/5 border-2 border-transparent focus:bg-transparent focus:border-primary px-5 py-4 text-lg font-body rounded-xl outline-none transition-all placeholder:text-foreground/30 resize-none"
+                        placeholder="..."
                       />
-                      <label htmlFor="contact-message" className="absolute left-0 top-8 text-xl uppercase tracking-tight opacity-40 transition-all peer-focus:-top-2 peer-focus:text-sm peer-focus:text-primary peer-focus:opacity-100 peer-valid:-top-2 peer-valid:text-sm peer-valid:opacity-100 cursor-text">
-                        {t('contact.form.message')}
-                      </label>
                     </div>
                   </div>
 
                   {formStatus === 'error' && (
-                    <div className="flex items-center gap-4 text-red-500 bg-red-500/10 p-6 border-l-4 border-red-500">
-                      <AlertCircle className="w-6 h-6 flex-shrink-0" />
-                      <span className="text-sm font-bold uppercase tracking-wider">Error sending message. Try emailing directly.</span>
+                    <div className="flex items-center gap-4 text-red-600 bg-red-500/10 p-4 rounded-xl border border-red-500/20">
+                      <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                      <span className="text-sm font-bold tracking-wide">Error. Please try emailing me directly.</span>
                     </div>
                   )}
 
-                  <div className="pt-8">
+                  <div className="pt-2">
                     <button
                       type="submit"
                       disabled={formStatus === 'submitting'}
-                      className="group relative w-full flex items-center justify-between px-8 py-6 bg-primary text-background uppercase font-black tracking-widest text-xl overflow-hidden transition-all hover:bg-white hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="group relative w-full flex items-center justify-center gap-3 px-8 py-5 bg-primary text-white rounded-xl uppercase font-bold tracking-widest text-sm overflow-hidden transition-all hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-1 disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none disabled:cursor-not-allowed"
                     >
                       <span className="relative z-10">
-                        {formStatus === 'submitting' ? 'SECURE SPOT...' : 'SUBMIT PROPOSAL'}
+                        {formStatus === 'submitting' ? t('contact.form.submitting', 'SENDING...') : t('contact.form.send', 'SEND MESSAGE')}
                       </span>
                       {formStatus === 'submitting' ? (
-                        <div className="relative z-10 w-6 h-6 border-4 border-background/30 border-t-background rounded-full animate-spin" />
+                        <div className="relative z-10 w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                       ) : (
-                        <ArrowRight className="relative z-10 w-8 h-8 group-hover:translate-x-2 transition-transform" />
+                        <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                       )}
                     </button>
                   </div>
