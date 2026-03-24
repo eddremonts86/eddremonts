@@ -56,6 +56,10 @@
     "subtitle": "From public-sector platforms in Cuba to product teams in Copenhagen, a timeline spanning 2007 to today.",
     "present": "Present day",
     "items": {
+      "12": {
+        "role": "Senior Frontend Developer",
+        "description": "Leading frontend development for Schilling web applications and data products, working with React 18/19, TypeScript, Node.js, Tailwind and Shadcn UI to scale complex real-estate workflows."
+      },
       "11": {
         "role": "Senior Frontend Developer",
         "description": "Leading frontend development for Resights web applications and data products, working with Vue 2/3, Nuxt 2/3, TypeScript, Pinia/Vuex, Node.js, and Vuetify to scale complex real-estate workflows."

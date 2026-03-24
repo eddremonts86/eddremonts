@@ -72,7 +72,7 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
 
           <div className="flex justify-between items-end w-full font-mono text-[11px] uppercase tracking-widest opacity-40">
             <span>Stand by</span>
-            <span>Edd Remonts</span>
+            <span>Eduardo Inerarte</span>
           </div>
         </motion.div>
       </motion.div>

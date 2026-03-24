@@ -63,7 +63,7 @@ export const tabs: FileTab[] = [
     name: 'edd.config.ts',
     icon: '⚙',
     tokens: [
-      { type: 'comment', text: '// @ts-check — Edd Remonts developer manifest' },
+      { type: 'comment', text: '// @ts-check — Eduardo Inerarte developer manifest' },
       B, B,
       { type: 'keyword', text: 'interface ' },
       { type: 'type', text: 'Stack' },
@@ -105,7 +105,7 @@ export const tabs: FileTab[] = [
       { type: 'operator', text: ' = ' },
       { type: 'brace', text: '{' },
       B,
-      I1, { type: 'property', text: 'name' }, { type: 'operator', text: ':    ' }, { type: 'string', text: "'Edd Remonts'" }, COMMA,
+      I1, { type: 'property', text: 'name' }, { type: 'operator', text: ':    ' }, { type: 'string', text: "'Eduardo Inerarte'" }, COMMA,
       B,
       I1, { type: 'property', text: 'role' }, { type: 'operator', text: ':    ' }, { type: 'string', text: "'Senior Frontend Engineer'" }, COMMA,
       B,

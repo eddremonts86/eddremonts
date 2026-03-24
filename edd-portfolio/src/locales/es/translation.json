@@ -56,6 +56,10 @@
     "subtitle": "Desde plataformas del sector público en Cuba hasta equipos de producto en Copenhague, una línea temporal que abarca desde 2007 hasta hoy.",
     "present": "Actualidad",
     "items": {
+      "12": {
+        "role": "Desarrollador Frontend Senior",
+        "description": "Liderando el desarrollo frontend de las aplicaciones web y productos de datos de Schilling, trabajando con React 18/19, TypeScript, Node.js, Tailwind y Shadcn UI para escalar flujos de trabajo complejos en el sector inmobiliario."
+      },
       "11": {
         "role": "Desarrollador Frontend Senior",
         "description": "Liderando el desarrollo frontend de las aplicaciones y productos de datos de Resights, trabajando con Vue 2/3, Nuxt 2/3, TypeScript, Pinia/Vuex, Node.js y Vuetify para escalar flujos complejos del sector inmobiliario."

@@ -2,19 +2,45 @@ import { LanguageSelector } from '@/components/ui/LanguageSelector';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { useRef, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useTheme } from '@/contexts/ThemeContextBase';
 
 export const HeroSection = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { theme } = useTheme();
   const containerRef = useRef<HTMLElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+
+  // Resolve effective theme (handle 'system')
+  const resolvedTheme = useMemo(() => {
+    if (theme === 'system') {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    return theme;
+  }, [theme]);
+
+  // Pick the right CV based on current language + theme
+  const cvUrl = useMemo(() => {
+    const lang = (['en', 'es', 'dk'].includes(i18n.language) ? i18n.language : 'en');
+    return `/cv/Eduardo_Inerarte_CV_${lang}_${resolvedTheme}.pdf`;
+  }, [i18n.language, resolvedTheme]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
 
+
+ const dynamicBG = useMemo(() => {
+    
+    if (resolvedTheme === 'dark') {
+      return '/edd/edd_dark.jpg';
+    }
+    return '/edd/edd_light.jpg';
+  }, [resolvedTheme]);
+console.log( `Using background image: ${dynamicBG} for theme: ${resolvedTheme}`); // Debug log
+  
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
   const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
@@ -46,7 +72,7 @@ export const HeroSection = () => {
             <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/90 via-black/20 to-black/60 mix-blend-multiply" />
             
             <img
-              src="/edd/hero-portrait.jpg" 
+              src={dynamicBG}
               alt="Edd Portrait Background"
               className="w-full h-full object-cover object-[center_15%] grayscale contrast-125"
             />
@@ -168,7 +194,7 @@ export const HeroSection = () => {
                 <ArrowRight className="w-3 h-3 transition-transform shrink-0 group-hover:translate-x-1" />
               </a>
               <a
-                href="/cv/Edd_Remonts_CV.pdf"
+                href={cvUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`inline-flex items-center justify-center gap-4 px-6 py-3 border rounded-full font-bold uppercase tracking-widest text-[11px] md:text-xs transition-all duration-700 whitespace-nowrap ${textColor} ${borderColor} ${buttonHover}`}

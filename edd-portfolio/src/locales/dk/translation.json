@@ -56,6 +56,10 @@
     "subtitle": "Fra offentlige platforme i Cuba til product teams i København, en tidslinje der spænder fra 2007 til i dag.",
     "present": "Nu",
     "items": {
+      "12": {
+        "role": "Senior Frontend Udvikler",
+        "description": "Leder frontend-udviklingen af Schillings webapplikationer og dataprodukter, med fokus på React 18/19, TypeScript, Node.js, Tailwind og Shadcn UI til at skalere komplekse ejendomsworkflows."
+      },
       "11": {
         "role": "Senior Frontend Developer",
         "description": "Leder frontend-udviklingen af Resights webapplikationer og dataprodukter med Vue 2/3, Nuxt 2/3, TypeScript, Pinia/Vuex, Node.js og Vuetify for at skalere komplekse workflows i ejendomsdomænet."

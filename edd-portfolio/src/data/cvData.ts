@@ -1,7 +1,7 @@
 import { Github, Linkedin, Mail, Facebook } from 'lucide-react';
 
 export const personalInfo = {
-  name: "Edd Remonts",
+  name: "Eduardo Inerarte",
   title: "Senior Frontend Engineer with Full-Stack Roots",
   description: "Frontend-first engineer with full-stack roots and nearly two decades of experience since 2007. I build scalable web products that turn complex business rules into fast, intuitive interfaces using React, Vue, Node.js, and cloud platforms.",
   email: "eddremonts86@gmail.com",
@@ -38,8 +38,16 @@ export const aboutMe = {
 
 export const experiences = [
   {
+    id: 12,
+    period: "01/08/2024 - Present day",
+    role: "Senior Frontend Developer",
+    company: "Schilling Aps",
+    location: "Copenhagen (Denmark)",
+    description: "Leading frontend development for Schilling web applications and data products, working with React 18/19, TypeScript, Node.js, Tailwind and Shadcn UI to scale complex real-estate workflows."
+  },
+  {
     id: 11,
-    period: "01/08/2022 - Present day",
+    period: "01/08/2022 - 30/07/2024",
     role: "Senior Frontend Developer",
     company: "Resights Aps",
     location: "Copenhagen (Denmark)",
