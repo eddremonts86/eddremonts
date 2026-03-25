@@ -8,7 +8,7 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-16 md:py-24 border-t border-subtle bg-background relative overflow-hidden">
+    <footer className="py-16 md:py-24 border-t border-subtle bg-background relative overflow-hidden pb-[max(4rem,env(safe-area-inset-bottom))] md:pb-[max(6rem,env(safe-area-inset-bottom))]">
       <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
         <motion.div
            {...fadeInView()}

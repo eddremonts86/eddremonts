@@ -73,6 +73,8 @@
     @apply bg-background text-foreground font-body antialiased overflow-x-hidden transition-colors duration-500;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
   }
 
   body::after {
@@ -157,9 +159,10 @@
       var(--accent),
       var(--primary)
     );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: exclude;
     -webkit-mask-composite: xor;
+    mask-composite: exclude;
     padding: 1.5px;
     border-radius: inherit;
     animation: gradient-rotate 4s linear infinite;

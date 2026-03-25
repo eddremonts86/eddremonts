@@ -34,7 +34,7 @@ export const StickyNav = () => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
           transition={{ duration: 0.5, ease: APPLE_EASE }}
-          className="fixed top-0 left-0 w-full z-[100] bg-background/80 backdrop-blur-xl border-b border-subtle"
+          className="fixed top-0 left-0 w-full z-[100] bg-background/80 backdrop-blur-xl border-b border-subtle pt-[env(safe-area-inset-top)]"
           aria-label="Main navigation"
         >
           <div className="container mx-auto px-4 py-3 md:py-4 md:px-6 flex items-center justify-between gap-3 md:gap-4">

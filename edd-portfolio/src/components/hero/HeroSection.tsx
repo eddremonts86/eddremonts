@@ -42,7 +42,7 @@ export const HeroSection = () => {
   return (
     <section
       ref={containerRef}
-      className={`relative min-h-[100svh] flex flex-col justify-end pb-24 md:pb-32 overflow-hidden transition-colors duration-1000 ${isHovered ? "bg-black" : "bg-background"}`}
+      className={`relative min-h-screen min-h-[100svh] flex flex-col justify-end pb-24 md:pb-32 overflow-hidden transition-colors duration-1000 ${isHovered ? "bg-black" : "bg-background"}`}
     >
       <AnimatePresence>
         {isHovered && <BackgroundReveal src={dynamicBG} />}
