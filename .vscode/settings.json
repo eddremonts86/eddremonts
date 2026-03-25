@@ -1,0 +1,4 @@
+{
+  "typescript.tsdk": "edd-portfolio/node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
+}

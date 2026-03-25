@@ -14,11 +14,6 @@ export interface ThemeProviderState {
   setTheme: (theme: Theme) => void;
 }
 
-export const initialThemeState: ThemeProviderState = {
-  theme: 'system',
-  setTheme: () => null,
-};
-
 export const ThemeProviderContext = createContext<ThemeProviderState | null>(null);
 
 export const useTheme = () => {

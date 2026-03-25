@@ -1,0 +1,10 @@
+{
+  "extends": "./edd-portfolio/tsconfig.app.json",
+  "compilerOptions": {
+    "baseUrl": "./edd-portfolio",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["edd-portfolio/src"]
+}
