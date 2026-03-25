@@ -6,13 +6,13 @@ interface StatusBadgeProps {
 /** Pulsing availability dot + label — shared by Hero & Contact sections. */
 export const StatusBadge = ({ label, className = '' }: StatusBadgeProps) => (
   <div
-    className={`inline-flex items-center gap-3 px-4 py-2 border border-current/20 bg-current/5 rounded-full backdrop-blur-sm ${className}`}
+    className={`border-current/20 bg-current/5 inline-flex items-center gap-3 rounded-full border px-4 py-2 backdrop-blur-sm ${className}`}
   >
     <span className="relative flex h-2 w-2 shrink-0">
-      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-      <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+      <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
     </span>
-    <span className="text-[10px] md:text-xs font-mono uppercase tracking-[0.2em] font-medium">
+    <span className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] md:text-xs">
       {label}
     </span>
   </div>

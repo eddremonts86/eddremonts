@@ -1,9 +1,8 @@
 import { useSyncExternalStore } from 'react';
 import { useTheme } from '@/contexts/ThemeContextBase';
 
-const mql = typeof window !== 'undefined'
-  ? window.matchMedia('(prefers-color-scheme: dark)')
-  : null;
+const mql =
+  typeof window !== 'undefined' ? window.matchMedia('(prefers-color-scheme: dark)') : null;
 
 function subscribeSystemTheme(cb: () => void) {
   mql?.addEventListener('change', cb);
@@ -20,6 +19,10 @@ function getSystemSnapshot(): 'light' | 'dark' {
  */
 export function useResolvedTheme(): 'light' | 'dark' {
   const { theme } = useTheme();
-  const systemTheme = useSyncExternalStore(subscribeSystemTheme, getSystemSnapshot, () => 'light' as const);
-  return theme === 'system' ? systemTheme : theme as 'light' | 'dark';
+  const systemTheme = useSyncExternalStore(
+    subscribeSystemTheme,
+    getSystemSnapshot,
+    () => 'light' as const,
+  );
+  return theme === 'system' ? systemTheme : (theme as 'light' | 'dark');
 }

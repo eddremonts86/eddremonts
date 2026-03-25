@@ -3,7 +3,7 @@ import type { HTMLMotionProps } from 'framer-motion';
 import { m } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 
-interface OptimizedImageProps extends HTMLMotionProps<"img"> {
+interface OptimizedImageProps extends HTMLMotionProps<'img'> {
   src: string;
   alt: string;
   fallbackSrc?: string;
@@ -34,8 +34,8 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
       },
       {
         rootMargin: '50px', // Start loading slightly before it enters the viewport
-        threshold: 0.1
-      }
+        threshold: 0.1,
+      },
     );
 
     if (imgRef.current) {
@@ -58,10 +58,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const currentSrc = hasError && fallbackSrc ? fallbackSrc : src;
 
   return (
-    <div
-      className={`relative overflow-hidden bg-black/5 ${className}`}
-      ref={imgRef}
-    >
+    <div className={`relative overflow-hidden bg-black/5 ${className}`} ref={imgRef}>
       {/*
         Blur placeholder:
         If a tiny base64 blurDataURL is provided, we show it stretched and blurred.
@@ -70,13 +67,18 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
       {!isLoaded && (
         <div className="absolute inset-0 z-0 flex items-center justify-center">
           {blurDataURL ? (
-             <img src={blurDataURL} alt="" aria-hidden="true" className="w-full h-full object-cover blur-2xl scale-110" />
+            <img
+              src={blurDataURL}
+              alt=""
+              aria-hidden="true"
+              className="h-full w-full scale-110 object-cover blur-2xl"
+            />
           ) : (
-             <m.div
-               animate={{ opacity: [0.3, 0.7, 0.3] }}
-               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-               className="w-full h-full bg-surface"
-             />
+            <m.div
+              animate={{ opacity: [0.3, 0.7, 0.3] }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              className="h-full w-full bg-surface"
+            />
           )}
         </div>
       )}
@@ -90,10 +92,10 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
           initial={{ opacity: 0, filter: 'blur(8px)' }}
           animate={{
             opacity: isLoaded ? 1 : 0,
-            filter: isLoaded ? 'blur(0px)' : 'blur(8px)'
+            filter: isLoaded ? 'blur(0px)' : 'blur(8px)',
           }}
           transition={{ duration: 0.8, ease: APPLE_EASE }}
-          className={`relative z-10 w-full h-full object-cover will-change-[opacity,filter] ${className}`}
+          className={`relative z-10 h-full w-full object-cover will-change-[opacity,filter] ${className}`}
           {...props}
         />
       )}

@@ -15,8 +15,8 @@ export const FloatingImagePreview = ({
   cursorY: MotionValue<number>;
 }) => (
   <m.div
-    className="fixed top-0 left-0 w-[450px] h-[320px] pointer-events-none z-[100] hidden lg:block overflow-hidden rounded-xl shadow-2xl"
-    style={{ x: cursorX, y: cursorY, translateX: "-50%", translateY: "-50%" }}
+    className="pointer-events-none fixed left-0 top-0 z-[100] hidden h-[320px] w-[450px] overflow-hidden rounded-xl shadow-2xl lg:block"
+    style={{ x: cursorX, y: cursorY, translateX: '-50%', translateY: '-50%' }}
     initial={{ opacity: 0, scale: 0.95 }}
     animate={{ opacity: project ? 1 : 0, scale: project ? 1 : 0.95 }}
     transition={{ duration: 0.5, ease: APPLE_EASE }}
@@ -29,13 +29,13 @@ export const FloatingImagePreview = ({
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 1.1 }}
           transition={{ duration: 0.6, ease: APPLE_EASE }}
-          className="w-full h-full relative"
+          className="relative h-full w-full"
         >
           <OptimizedImage
             src={`/projects/${project.id}-md.webp`}
             alt={project.title}
             fallbackSrc={project.image}
-            className="w-full h-full object-cover grayscale-0"
+            className="h-full w-full object-cover grayscale-0"
           />
         </m.div>
       )}

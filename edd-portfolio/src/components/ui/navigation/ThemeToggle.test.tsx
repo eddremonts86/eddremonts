@@ -8,7 +8,7 @@ describe('ThemeToggle', () => {
     render(
       <ThemeProvider defaultTheme="light">
         <ThemeToggle />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
 
     const button = screen.getByRole('button', { name: /toggle theme/i });

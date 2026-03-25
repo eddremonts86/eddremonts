@@ -7,7 +7,7 @@ export const TechArsenal = () => {
 
   return (
     <div className="sticky top-32">
-      <h3 className="text-sm font-mono tracking-widest uppercase text-foreground/50 mb-8 border-b border-subtle pb-4">
+      <h3 className="text-foreground/50 mb-8 border-b border-subtle pb-4 font-mono text-sm uppercase tracking-widest">
         {t('experience.techArsenal')}
       </h3>
       <div className="flex flex-wrap gap-2">

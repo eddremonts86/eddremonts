@@ -14,10 +14,13 @@ export const ContactForm = ({
   const { t } = useTranslation();
 
   return (
-    <form className="space-y-8 relative z-10" onSubmit={onSubmit}>
+    <form className="relative z-10 space-y-8" onSubmit={onSubmit}>
       <div className="space-y-6">
         <div className="flex flex-col gap-2">
-          <label htmlFor="contact-name" className="text-sm font-bold uppercase tracking-wider opacity-70 ml-1">
+          <label
+            htmlFor="contact-name"
+            className="ml-1 text-sm font-bold uppercase tracking-wider opacity-70"
+          >
             {t('contact.form.name')}
           </label>
           <input
@@ -25,13 +28,16 @@ export const ContactForm = ({
             name="name"
             type="text"
             required
-            className="w-full bg-foreground/5 border-2 border-transparent focus:bg-transparent focus:border-primary px-5 py-4 text-lg font-body rounded-xl outline-none transition-all placeholder:text-foreground/30"
+            className="bg-foreground/5 placeholder:text-foreground/30 w-full rounded-xl border-2 border-transparent px-5 py-4 font-body text-lg outline-none transition-all focus:border-primary focus:bg-transparent"
             placeholder="John Doe"
           />
         </div>
 
         <div className="flex flex-col gap-2">
-          <label htmlFor="contact-email" className="text-sm font-bold uppercase tracking-wider opacity-70 ml-1">
+          <label
+            htmlFor="contact-email"
+            className="ml-1 text-sm font-bold uppercase tracking-wider opacity-70"
+          >
             {t('contact.form.email')}
           </label>
           <input
@@ -39,13 +45,16 @@ export const ContactForm = ({
             name="email"
             type="email"
             required
-            className="w-full bg-foreground/5 border-2 border-transparent focus:bg-transparent focus:border-primary px-5 py-4 text-lg font-body rounded-xl outline-none transition-all placeholder:text-foreground/30"
+            className="bg-foreground/5 placeholder:text-foreground/30 w-full rounded-xl border-2 border-transparent px-5 py-4 font-body text-lg outline-none transition-all focus:border-primary focus:bg-transparent"
             placeholder="john@example.com"
           />
         </div>
 
         <div className="flex flex-col gap-2">
-          <label htmlFor="contact-message" className="text-sm font-bold uppercase tracking-wider opacity-70 ml-1">
+          <label
+            htmlFor="contact-message"
+            className="ml-1 text-sm font-bold uppercase tracking-wider opacity-70"
+          >
             {t('contact.form.message')}
           </label>
           <textarea
@@ -53,16 +62,18 @@ export const ContactForm = ({
             name="message"
             rows={5}
             required
-            className="w-full bg-foreground/5 border-2 border-transparent focus:bg-transparent focus:border-primary px-5 py-4 text-lg font-body rounded-xl outline-none transition-all placeholder:text-foreground/30 resize-none"
+            className="bg-foreground/5 placeholder:text-foreground/30 w-full resize-none rounded-xl border-2 border-transparent px-5 py-4 font-body text-lg outline-none transition-all focus:border-primary focus:bg-transparent"
             placeholder="..."
           />
         </div>
       </div>
 
       {status === 'error' && (
-        <div className="flex items-center gap-4 text-red-600 bg-red-500/10 p-4 rounded-xl border border-red-500/20">
-          <AlertCircle className="w-5 h-5 flex-shrink-0" />
-          <span className="text-sm font-bold tracking-wide">Error. Please try emailing me directly.</span>
+        <div className="flex items-center gap-4 rounded-xl border border-red-500/20 bg-red-500/10 p-4 text-red-600">
+          <AlertCircle className="h-5 w-5 flex-shrink-0" />
+          <span className="text-sm font-bold tracking-wide">
+            Error. Please try emailing me directly.
+          </span>
         </div>
       )}
 
@@ -70,15 +81,17 @@ export const ContactForm = ({
         <button
           type="submit"
           disabled={status === 'submitting'}
-          className="group relative w-full flex items-center justify-center gap-3 px-8 py-5 bg-primary text-white rounded-xl uppercase font-bold tracking-widest text-sm overflow-hidden transition-all hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-1 disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none disabled:cursor-not-allowed"
+          className="hover:shadow-primary/30 group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-xl bg-primary px-8 py-5 text-sm font-bold uppercase tracking-widest text-white transition-all hover:-translate-y-1 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
         >
           <span className="relative z-10">
-            {status === 'submitting' ? t('contact.form.submitting', 'SENDING...') : t('contact.form.send', 'SEND MESSAGE')}
+            {status === 'submitting'
+              ? t('contact.form.submitting', 'SENDING...')
+              : t('contact.form.send', 'SEND MESSAGE')}
           </span>
           {status === 'submitting' ? (
-            <div className="relative z-10 w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            <div className="relative z-10 h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
           ) : (
-            <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="relative z-10 h-5 w-5 transition-transform group-hover:translate-x-1" />
           )}
         </button>
       </div>

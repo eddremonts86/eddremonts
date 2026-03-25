@@ -8,18 +8,22 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-16 md:py-24 border-t border-subtle bg-background relative overflow-hidden pb-[max(4rem,env(safe-area-inset-bottom))] md:pb-[max(6rem,env(safe-area-inset-bottom))]">
-      <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
+    <footer className="relative overflow-hidden border-t border-subtle bg-background py-16 pb-[max(4rem,env(safe-area-inset-bottom))] md:py-24 md:pb-[max(6rem,env(safe-area-inset-bottom))]">
+      <div className="container relative z-10 mx-auto max-w-[1400px] px-6">
         <m.div
-           {...fadeInView()}
-           className="flex flex-col md:flex-row items-center justify-between gap-12"
+          {...fadeInView()}
+          className="flex flex-col items-center justify-between gap-12 md:flex-row"
         >
           {/* Logo / Branding */}
           <div className="text-center md:text-left">
-            <h2 className="text-2xl font-light tracking-tight mb-2">
-              EDD <span className="font-serif italic text-primary">REMONTS</span>
-            </h2>
-            <p className="text-foreground/40 text-[10px] font-mono tracking-widest uppercase">
+            <a href="#hero" className="inline-block transition-opacity hover:opacity-80">
+              <img
+                src="/logo.svg"
+                alt="Inerarte — Eduardo, Senior Full-Stack / Frontend Engineer"
+                className="mb-3 h-16 w-auto md:h-28"
+              />
+            </a>
+            <p className="text-foreground/40 font-mono text-[10px] uppercase tracking-widest">
               {t('footer.inspired', 'Crafted with intent.')}
             </p>
           </div>
@@ -34,18 +38,20 @@ export const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full border border-subtle flex items-center justify-center text-foreground hover:bg-surface hover:text-primary transition-all duration-300 group shrink-0"
+                  className="group flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-subtle text-foreground transition-all duration-300 hover:bg-surface hover:text-primary"
                   aria-label={social.name}
                 >
-                  <Icon className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
+                  <Icon className="h-4 w-4 opacity-70 transition-opacity group-hover:opacity-100" />
                 </a>
               );
             })}
           </div>
 
           {/* Copyright */}
-          <div className="text-center md:text-right font-mono text-[11px] opacity-50 uppercase tracking-widest mt-8 md:mt-0">
-            <p>&copy; {currentYear} {personalInfo.name}.</p>
+          <div className="mt-8 text-center font-mono text-[11px] uppercase tracking-widest opacity-50 md:mt-0 md:text-right">
+            <p>
+              &copy; {currentYear} {personalInfo.name}.
+            </p>
             <p className="mt-2 text-[10px]">{t('footer.rights', 'ALL RIGHTS RESERVED')}</p>
           </div>
         </m.div>

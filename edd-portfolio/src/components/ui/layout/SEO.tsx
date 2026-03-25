@@ -67,26 +67,29 @@ export const SEO = ({ title, description, image, url }: SEOProps) => {
       {/* JSON-LD Structured Data */}
       <script type="application/ld+json">
         {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Person",
-          "name": personalInfo.name,
-          "jobTitle": personalInfo.title,
-          "description": personalInfo.description,
-          "url": SITE_URL,
-          "image": OG_IMAGE,
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Copenhagen",
-            "addressCountry": "DK"
+          '@context': 'https://schema.org',
+          '@type': 'Person',
+          name: personalInfo.name,
+          jobTitle: personalInfo.title,
+          description: personalInfo.description,
+          url: SITE_URL,
+          image: OG_IMAGE,
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Copenhagen',
+            addressCountry: 'DK',
           },
-          "knowsAbout": [
-            "React", "Vue.js", "TypeScript", "Node.js",
-            "Frontend Engineering", "Full-Stack Development",
-            "Cloud Platforms", "Web Performance"
+          knowsAbout: [
+            'React',
+            'Vue.js',
+            'TypeScript',
+            'Node.js',
+            'Frontend Engineering',
+            'Full-Stack Development',
+            'Cloud Platforms',
+            'Web Performance',
           ],
-          "sameAs": personalInfo.socials
-            .map(s => s.url)
-            .filter(u => !u.startsWith('mailto:'))
+          sameAs: personalInfo.socials.map((s) => s.url).filter((u) => !u.startsWith('mailto:')),
         })}
       </script>
     </Helmet>

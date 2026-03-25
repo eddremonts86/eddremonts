@@ -44,7 +44,7 @@ export const MouseFollower = () => {
       aria-hidden="true"
     >
       <m.div
-        className="absolute flex items-center justify-center rounded-full border border-primary/50 bg-primary/10 backdrop-blur-[2px]"
+        className="border-primary/50 bg-primary/10 absolute flex items-center justify-center rounded-full border backdrop-blur-[2px]"
         style={{
           x: springX,
           y: springY,
@@ -57,9 +57,8 @@ export const MouseFollower = () => {
           width: size,
           height: size,
         }}
-        transition={{ type: "spring", stiffness: 150, damping: 20 }}
-      >
-      </m.div>
+        transition={{ type: 'spring', stiffness: 150, damping: 20 }}
+      ></m.div>
     </m.div>
   );
 };

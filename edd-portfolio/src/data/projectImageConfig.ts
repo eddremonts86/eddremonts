@@ -1,10 +1,6 @@
 import { projects } from '@/data/cvData';
 
-export type ProjectImageLicense =
-  | 'CC0'
-  | 'CC BY'
-  | 'Royalty Free - Paid'
-  | 'Custom';
+export type ProjectImageLicense = 'CC0' | 'CC BY' | 'Royalty Free - Paid' | 'Custom';
 
 export interface ImageSourceMeta {
   provider: 'AI' | 'Unsplash' | 'Pexels' | 'Custom' | 'Other';
@@ -41,7 +37,7 @@ const buildPromptForProject = (project: (typeof projects)[number]): ProjectImage
       ? 'showing both analytics dashboard and backend infrastructure hints,'
       : 'focused on premium marketing landing page layout,',
     'clean Apple-level visual design with subtle anime neon accents,',
-    'no text, no logos, aspect ratio 3:2, high resolution 1200x800px'
+    'no text, no logos, aspect ratio 3:2, high resolution 1200x800px',
   ].join(' ');
 
   const searchKeywords = [
@@ -64,4 +60,3 @@ const buildPromptForProject = (project: (typeof projects)[number]): ProjectImage
 };
 
 export const projectImageConfigs: ProjectImageConfig[] = projects.map(buildPromptForProject);
-

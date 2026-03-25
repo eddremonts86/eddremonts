@@ -25,7 +25,7 @@ export const ContactSection = () => {
       const response = await fetch('https://formspree.io/f/xgonbeaj', {
         method: 'POST',
         body: data,
-        headers: { 'Accept': 'application/json' },
+        headers: { Accept: 'application/json' },
       });
 
       if (response.ok) {
@@ -40,17 +40,19 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 relative bg-foreground text-background overflow-hidden selection:bg-primary selection:text-white">
+    <section
+      id="contact"
+      className="relative overflow-hidden bg-foreground py-24 text-background selection:bg-primary selection:text-white md:py-32"
+    >
       {/* Subtle Abstract Background */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none flex items-center justify-center overflow-hidden">
-        <h2 className="text-[25vw] font-black uppercase tracking-tighter leading-none whitespace-nowrap">
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden opacity-[0.03]">
+        <h2 className="whitespace-nowrap text-[25vw] font-black uppercase leading-none tracking-tighter">
           {t('nav.contact')}
         </h2>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 max-w-7xl">
-        <div className="grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
-          
+      <div className="container relative z-10 mx-auto max-w-7xl px-6">
+        <div className="grid items-center gap-16 md:gap-24 lg:grid-cols-2">
           {/* Left Column: Info */}
           <m.div
             {...fadeInView({ distance: 30, axis: 'x' })}
@@ -59,15 +61,15 @@ export const ContactSection = () => {
             <div className="mb-12">
               <StatusBadge
                 label={t('hero.available', 'Available for new opportunities')}
-                className="mb-8 border-background/20 bg-background/5 text-background/80"
+                className="border-background/20 bg-background/5 text-background/80 mb-8"
               />
-              
-              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-6 leading-tight">
-                {t('contact.title')} <br/>
+
+              <h2 className="mb-6 text-5xl font-black uppercase leading-tight tracking-tighter md:text-7xl lg:text-8xl">
+                {t('contact.title')} <br />
                 <span className="text-primary">{t('contact.titleAccent')}</span>
               </h2>
-              
-              <p className="text-lg md:text-xl font-body opacity-80 max-w-md leading-relaxed">
+
+              <p className="max-w-md font-body text-lg leading-relaxed opacity-80 md:text-xl">
                 {t('contact.subtitle')}
               </p>
             </div>
@@ -79,21 +81,17 @@ export const ContactSection = () => {
                 value={personalInfo.email}
                 href={`mailto:${personalInfo.email}`}
               />
-              <ContactInfoItem
-                icon={MapPin}
-                label="Location"
-                value={personalInfo.location}
-              />
+              <ContactInfoItem icon={MapPin} label="Location" value={personalInfo.location} />
             </div>
           </m.div>
 
           {/* Right Column: Form */}
           <m.div
             {...fadeInView({ delay: 0.2 })}
-            className="bg-background text-foreground p-8 md:p-12 lg:p-14 rounded-2xl shadow-2xl relative overflow-hidden"
+            className="relative overflow-hidden rounded-2xl bg-background p-8 text-foreground shadow-2xl md:p-12 lg:p-14"
           >
-            <div className="absolute -top-32 -right-32 w-64 h-64 bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
-            
+            <div className="bg-primary/10 pointer-events-none absolute -right-32 -top-32 h-64 w-64 rounded-full blur-[100px]" />
+
             {formStatus === 'success' ? (
               <SuccessMessage onReset={() => setFormStatus('idle')} />
             ) : (

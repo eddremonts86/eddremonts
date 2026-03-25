@@ -18,13 +18,13 @@ export const HeroSection = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   const cvUrl = useMemo(() => {
-    const lang = (['en', 'es', 'dk'].includes(i18n.language) ? i18n.language : 'en');
+    const lang = ['en', 'es', 'dk'].includes(i18n.language) ? i18n.language : 'en';
     return `/cv/Eduardo_Inerarte_CV_${lang}_${resolvedTheme}.pdf`;
   }, [i18n.language, resolvedTheme]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end start"],
+    offset: ['start start', 'end start'],
   });
 
   const dynamicBG = resolvedTheme === 'dark' ? '/edd/edd_dark.jpg' : '/edd/edd_light.jpg';
@@ -33,20 +33,20 @@ export const HeroSection = () => {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
   const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
-  const textColor = isHovered ? "text-white" : "text-foreground";
-  const mutedTextColor = isHovered ? "text-white/80" : "text-foreground/80";
-  const sublineTextColor = isHovered ? "text-white/60" : "text-foreground/60";
-  const borderColor = isHovered ? "border-white/20" : "border-foreground/20";
-  const buttonHover = isHovered ? "hover:bg-white hover:text-black" : "hover:bg-foreground hover:text-background";
+  const textColor = isHovered ? 'text-white' : 'text-foreground';
+  const mutedTextColor = isHovered ? 'text-white/80' : 'text-foreground/80';
+  const sublineTextColor = isHovered ? 'text-white/60' : 'text-foreground/60';
+  const borderColor = isHovered ? 'border-white/20' : 'border-foreground/20';
+  const buttonHover = isHovered
+    ? 'hover:bg-white hover:text-black'
+    : 'hover:bg-foreground hover:text-background';
 
   return (
     <section
       ref={containerRef}
-      className={`relative min-h-screen min-h-[100svh] flex flex-col justify-end pb-24 md:pb-32 overflow-hidden transition-colors duration-1000 ${isHovered ? "bg-black" : "bg-background"}`}
+      className={`relative flex min-h-[100svh] min-h-screen flex-col justify-end overflow-hidden pb-24 transition-colors duration-1000 md:pb-32 ${isHovered ? 'bg-black' : 'bg-background'}`}
     >
-      <AnimatePresence>
-        {isHovered && <BackgroundReveal src={dynamicBG} />}
-      </AnimatePresence>
+      <AnimatePresence>{isHovered && <BackgroundReveal src={dynamicBG} />}</AnimatePresence>
 
       <AmbientLight hidden={isHovered} />
 
@@ -55,24 +55,21 @@ export const HeroSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
-        className={`absolute top-6 right-6 lg:top-10 lg:right-10 z-50 flex items-center gap-6 transition-colors duration-700 ${textColor}`}
+        className={`absolute right-6 top-6 z-50 flex items-center gap-6 transition-colors duration-700 lg:right-10 lg:top-10 ${textColor}`}
       >
         <LanguageSelector />
         <ThemeToggle />
       </m.div>
 
       {/* Main Content */}
-      <m.div
-        style={{ opacity, scale, y }}
-        className="container relative z-10 w-full px-6 mx-auto"
-      >
-        <div className="w-full max-w-[1400px] mx-auto xl:pl-12">
+      <m.div style={{ opacity, scale, y }} className="container relative z-10 mx-auto w-full px-6">
+        <div className="mx-auto w-full max-w-[1400px] xl:pl-12">
           {/* Top Label */}
           <m.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 1, ease: APPLE_EASE }}
-            className="flex flex-col items-baseline gap-4 mb-4 sm:flex-row sm:items-center md:mb-8"
+            className="mb-4 flex flex-col items-baseline gap-4 sm:flex-row sm:items-center md:mb-8"
           >
             <StatusBadge
               label={t('hero.available', 'STATUS: ACCEPTING SELECT PROJECTS')}
@@ -82,35 +79,37 @@ export const HeroSection = () => {
 
           {/* Huge Typography */}
           <div className="relative z-10 w-full">
-            <h1 className={`flex flex-col text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[7.5rem] leading-[0.9] font-light tracking-tight mb-8 md:mb-12 w-full transition-colors duration-700 ${textColor}`}>
+            <h1
+              className={`mb-8 flex w-full flex-col text-[12vw] font-light leading-[0.9] tracking-tight transition-colors duration-700 sm:text-[10vw] md:mb-12 md:text-[8vw] lg:text-[7.5rem] ${textColor}`}
+            >
               <m.span
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.2, ease: APPLE_EASE, delay: 0.3 }}
-                className={`relative w-fit font-serif transition-colors duration-700 cursor-crosshair group ${isHovered ? "text-white" : "text-primary"}`}
+                className={`group relative w-fit cursor-crosshair font-serif transition-colors duration-700 ${isHovered ? 'text-white' : 'text-primary'}`}
                 onPointerEnter={() => setIsHovered(true)}
                 onPointerLeave={() => setIsHovered(false)}
               >
                 <span className="relative z-10 transition-colors duration-500">
                   {t('hero.greeting', "Hello, I'm")} Edd.
                 </span>
-                <span className="absolute left-0 right-0 -bottom-2 md:-bottom-4 h-[2px] md:h-[4px] bg-primary/30 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 ease-out" />
+                <span className="bg-primary/30 absolute -bottom-2 left-0 right-0 h-[2px] origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100 md:-bottom-4 md:h-[4px]" />
               </m.span>
 
               <m.span
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.2, ease: APPLE_EASE, delay: 0.4 }}
-                className="block mt-2 font-medium tracking-tighter font-display mix-blend-difference md:mt-4"
+                className="mt-2 block font-display font-medium tracking-tighter mix-blend-difference md:mt-4"
               >
                 Frontend
               </m.span>
-              
+
               <m.span
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.2, ease: APPLE_EASE, delay: 0.5 }}
-                className="block font-serif italic opacity-70 ml-[10%] sm:ml-[15%] lg:ml-[20%]"
+                className="ml-[10%] block font-serif italic opacity-70 sm:ml-[15%] lg:ml-[20%]"
               >
                 Craftsman.
               </m.span>
@@ -118,14 +117,16 @@ export const HeroSection = () => {
           </div>
 
           {/* Description & CTAs */}
-          <div className="flex flex-col gap-8 mt-12 md:flex-row md:items-end md:mt-24">
+          <div className="mt-12 flex flex-col gap-8 md:mt-24 md:flex-row md:items-end">
             <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 1.5 }}
               className="flex-1"
             >
-              <p className={`text-base md:text-xl font-body leading-relaxed font-light max-w-xl transition-colors duration-700 ${mutedTextColor}`}>
+              <p
+                className={`max-w-xl font-body text-base font-light leading-relaxed transition-colors duration-700 md:text-xl ${mutedTextColor}`}
+              >
                 {t('personalInfo.description')}
               </p>
             </m.div>
@@ -134,20 +135,20 @@ export const HeroSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 1.5 }}
-              className="flex flex-col items-start gap-3 shrink-0"
+              className="flex shrink-0 flex-col items-start gap-3"
             >
               <a
                 href="#projects"
-                className={`group inline-flex items-center justify-center gap-4 px-6 py-3 bg-transparent border rounded-full font-medium uppercase tracking-widest text-[11px] md:text-xs transition-all duration-700 whitespace-nowrap ${textColor} ${borderColor} ${buttonHover}`}
+                className={`group inline-flex items-center justify-center gap-4 whitespace-nowrap rounded-full border bg-transparent px-6 py-3 text-[11px] font-medium uppercase tracking-widest transition-all duration-700 md:text-xs ${textColor} ${borderColor} ${buttonHover}`}
               >
                 <span>{t('hero.explore')}</span>
-                <ArrowRight className="w-3 h-3 transition-transform shrink-0 group-hover:translate-x-1" />
+                <ArrowRight className="h-3 w-3 shrink-0 transition-transform group-hover:translate-x-1" />
               </a>
               <a
                 href={cvUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center justify-center gap-4 px-6 py-3 border rounded-full font-bold uppercase tracking-widest text-[11px] md:text-xs transition-all duration-700 whitespace-nowrap ${textColor} ${borderColor} ${buttonHover}`}
+                className={`inline-flex items-center justify-center gap-4 whitespace-nowrap rounded-full border px-6 py-3 text-[11px] font-bold uppercase tracking-widest transition-all duration-700 md:text-xs ${textColor} ${borderColor} ${buttonHover}`}
               >
                 <span>{t('nav.resume')}</span>
               </a>

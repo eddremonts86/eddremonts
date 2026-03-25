@@ -7,24 +7,27 @@ export const ExperienceTimeline = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="experience" className="py-24 md:py-40 bg-background relative border-t border-subtle">
-      <div className="container mx-auto px-6 max-w-[1400px]">
-        <div className="flex flex-col md:flex-row gap-12 justify-between mb-24 md:mb-32">
-          <h2 className="text-4xl md:text-5xl lg:text-7xl font-light tracking-tight">
+    <section
+      id="experience"
+      className="relative border-t border-subtle bg-background py-24 md:py-40"
+    >
+      <div className="container mx-auto max-w-[1400px] px-6">
+        <div className="mb-24 flex flex-col justify-between gap-12 md:mb-32 md:flex-row">
+          <h2 className="text-4xl font-light tracking-tight md:text-5xl lg:text-7xl">
             {t('experience.titleAccent')}
-            <span className="block font-serif italic text-primary mt-2">
+            <span className="mt-2 block font-serif italic text-primary">
               {t('experience.title')}
             </span>
           </h2>
-          <div className="max-w-md md:text-right md:self-end">
-            <p className="text-sm md:text-base text-foreground/50 font-mono tracking-wide uppercase">
+          <div className="max-w-md md:self-end md:text-right">
+            <p className="text-foreground/50 font-mono text-sm uppercase tracking-wide md:text-base">
               {t('experience.subtitle')}
             </p>
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
-          <div className="lg:col-span-8 flex flex-col">
+        <div className="grid gap-16 lg:grid-cols-12 lg:gap-24">
+          <div className="flex flex-col lg:col-span-8">
             <div className="border-t border-subtle">
               {experiences.map((exp, index) => (
                 <ExperienceCard key={exp.id} exp={exp} index={index} />

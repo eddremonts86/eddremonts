@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 
-const categories = ["All", "Frontend", "Full Stack"];
+const categories = ['All', 'Frontend', 'Full Stack'];
 const categoryKeys: Record<string, string> = {
-  "All": "all",
-  "Frontend": "frontend",
-  "Full Stack": "fullStack",
+  All: 'all',
+  Frontend: 'frontend',
+  'Full Stack': 'fullStack',
 };
 
 export const CategoryFilter = ({
@@ -17,16 +17,16 @@ export const CategoryFilter = ({
   const { t } = useTranslation();
 
   return (
-    <div className="flex gap-4 overflow-x-auto w-full md:w-auto pb-4 md:pb-0 hide-scrollbar mt-8 md:mt-0">
+    <div className="hide-scrollbar mt-8 flex w-full gap-4 overflow-x-auto pb-4 md:mt-0 md:w-auto md:pb-0">
       {categories.map((cat) => (
         <button
           key={cat}
           onClick={() => onSelect(cat)}
           aria-pressed={active === cat}
-          className={`px-6 py-2 uppercase font-mono tracking-widest text-[11px] transition-all whitespace-nowrap min-h-[44px] rounded-full border ${
+          className={`min-h-[44px] whitespace-nowrap rounded-full border px-6 py-2 font-mono text-[11px] uppercase tracking-widest transition-all ${
             active === cat
-              ? "bg-foreground text-background border-foreground"
-              : "bg-transparent text-foreground/50 border-subtle hover:text-foreground hover:border-foreground/30"
+              ? 'border-foreground bg-foreground text-background'
+              : 'text-foreground/50 hover:border-foreground/30 border-subtle bg-transparent hover:text-foreground'
           }`}
         >
           {t(`projects.filters.${categoryKeys[cat]}`)}

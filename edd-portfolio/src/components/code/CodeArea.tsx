@@ -17,7 +17,7 @@ export const CodeArea = ({
   <div className="flex">
     {/* Line numbers gutter */}
     <div
-      className="select-none shrink-0 py-6 pl-4 pr-4 text-right font-mono text-[11px] tracking-widest leading-[1.7] text-white/20 border-r border-white/5"
+      className="shrink-0 select-none border-r border-white/5 py-6 pl-4 pr-4 text-right font-mono text-[11px] leading-[1.7] tracking-widest text-white/20"
       aria-hidden="true"
     >
       {Array.from({ length: lineCount }, (_, i) => (
@@ -27,7 +27,7 @@ export const CodeArea = ({
 
     {/* Token stream */}
     <m.pre
-      className="flex-1 py-6 px-6 font-mono text-[13px] leading-[1.7] overflow-x-auto scrollbar-none"
+      className="scrollbar-none flex-1 overflow-x-auto px-6 py-6 font-mono text-[13px] leading-[1.7]"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -49,9 +49,14 @@ export const CodeArea = ({
         })}
         {/* Blinking cursor */}
         <m.span
-          className="inline-block w-[2px] h-[1.2em] bg-white opacity-50 align-text-bottom ml-1"
+          className="ml-1 inline-block h-[1.2em] w-[2px] bg-white align-text-bottom opacity-50"
           animate={{ opacity: [0.7, 0] }}
-          transition={{ duration: 0.9, repeat: Infinity, repeatType: 'reverse', ease: 'anticipate' }}
+          transition={{
+            duration: 0.9,
+            repeat: Infinity,
+            repeatType: 'reverse',
+            ease: 'anticipate',
+          }}
           aria-hidden="true"
         />
       </code>

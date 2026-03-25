@@ -39,31 +39,31 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
         initial={{ opacity: 1 }}
         exit={{
           opacity: 0,
-          transition: { duration: 1.2, ease: APPLE_EASE, delay: 0.2 }
+          transition: { duration: 1.2, ease: APPLE_EASE, delay: 0.2 },
         }}
-        className="fixed inset-0 z-[99999] bg-background text-foreground flex flex-col items-center justify-center overflow-hidden"
+        className="fixed inset-0 z-[99999] flex flex-col items-center justify-center overflow-hidden bg-background text-foreground"
       >
         <m.div
           exit={{ opacity: 0, y: -20, transition: { duration: 0.8, ease: APPLE_EASE } }}
-          className="container px-6 max-w-[1400px] w-full flex flex-col justify-between h-full py-12 md:py-24 relative z-10"
+          className="container relative z-10 flex h-full w-full max-w-[1400px] flex-col justify-between px-6 py-12 md:py-24"
         >
-          <div className="flex justify-between items-start w-full font-mono text-[11px] uppercase tracking-widest opacity-40">
+          <div className="flex w-full items-start justify-between font-mono text-[11px] uppercase tracking-widest opacity-40">
             <span>Loading experience</span>
             <span>2024</span>
           </div>
 
-          <div className="flex flex-col items-center justify-center w-full">
+          <div className="flex w-full flex-col items-center justify-center">
             <m.div
-              className="text-7xl md:text-[8rem] font-light tracking-tight leading-none font-serif text-foreground/80 lowercase"
+              className="text-foreground/80 font-serif text-7xl font-light lowercase leading-none tracking-tight md:text-[8rem]"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: APPLE_EASE }}
             >
               {progress}%
             </m.div>
-            <div className="w-full max-w-xs h-[1px] bg-subtle mt-12 relative overflow-hidden">
+            <div className="bg-subtle relative mt-12 h-[1px] w-full max-w-xs overflow-hidden">
               <m.div
-                className="absolute top-0 left-0 h-full bg-foreground"
+                className="absolute left-0 top-0 h-full bg-foreground"
                 initial={{ width: '0%' }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.1 }}
@@ -71,7 +71,7 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
             </div>
           </div>
 
-          <div className="flex justify-between items-end w-full font-mono text-[11px] uppercase tracking-widest opacity-40">
+          <div className="flex w-full items-end justify-between font-mono text-[11px] uppercase tracking-widest opacity-40">
             <span>Stand by</span>
             <span>Eduardo Inerarte</span>
           </div>

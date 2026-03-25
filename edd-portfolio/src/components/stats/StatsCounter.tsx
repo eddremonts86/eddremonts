@@ -57,25 +57,25 @@ export const StatsCounter = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="bg-background relative overflow-hidden py-10 md:py-0 border-y border-subtle">
-      <div className="container mx-auto px-0 max-w-full relative z-10">
+    <section className="relative overflow-hidden border-y border-subtle bg-background py-10 md:py-0">
+      <div className="container relative z-10 mx-auto max-w-full px-0">
         <m.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: APPLE_EASE }}
-          className="flex flex-col md:flex-row md:divide-x divide-subtle"
+          className="flex flex-col divide-subtle md:flex-row md:divide-x"
         >
           {stats.map((stat, index) => (
             <m.div
               key={stat.labelKey}
               {...fadeInView({ delay: index * 0.1 })}
-              className="flex-1 text-center group py-16 px-8 hover:bg-surface transition-colors duration-500 flex flex-col justify-center items-center cursor-default bg-background"
+              className="group flex flex-1 cursor-default flex-col items-center justify-center bg-background px-8 py-16 text-center transition-colors duration-500 hover:bg-surface"
             >
-              <div className="text-6xl md:text-7xl lg:text-8xl font-serif text-foreground tracking-tight leading-none mb-4 group-hover:text-primary transition-colors duration-500">
+              <div className="mb-4 font-serif text-6xl leading-none tracking-tight text-foreground transition-colors duration-500 group-hover:text-primary md:text-7xl lg:text-8xl">
                 <AnimatedNumber value={stat.value} suffix={stat.suffix} />
               </div>
-              <p className="text-[11px] font-mono tracking-widest uppercase text-foreground/50">
+              <p className="text-foreground/50 font-mono text-[11px] uppercase tracking-widest">
                 {t(stat.labelKey)}
               </p>
             </m.div>

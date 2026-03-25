@@ -9,9 +9,12 @@ export const SkillsMarquee = () => {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="py-12 bg-surface border-y border-subtle overflow-hidden relative z-20" aria-label="Technology skills">
+    <section
+      className="relative z-20 overflow-hidden border-y border-subtle bg-surface py-12"
+      aria-label="Technology skills"
+    >
       <m.div
-        className="flex gap-12 items-center whitespace-nowrap"
+        className="flex items-center gap-12 whitespace-nowrap"
         animate={reduceMotion ? {} : { x: ['0%', '-33.333%'] }}
         transition={{
           x: {
@@ -24,19 +27,21 @@ export const SkillsMarquee = () => {
         {tripled.map((skill, i) => (
           <span
             key={`${skill}-${i}`}
-            className="flex items-center gap-4 text-2xl md:text-3xl font-serif italic tracking-tight shrink-0 select-none opacity-60 hover:opacity-100 transition-opacity duration-500 cursor-default text-foreground"
+            className="flex shrink-0 cursor-default select-none items-center gap-4 font-serif text-2xl italic tracking-tight text-foreground opacity-60 transition-opacity duration-500 hover:opacity-100 md:text-3xl"
           >
             {techIconMap[skill] && (
               <img
                 src={techIconMap[skill]}
                 alt=""
                 aria-hidden="true"
-                className="w-6 h-6 md:w-8 md:h-8 grayscale opacity-70"
+                className="h-6 w-6 opacity-70 grayscale md:h-8 md:w-8"
                 loading="lazy"
               />
             )}
             <span>{skill}</span>
-            <span className="text-foreground/20 ml-6 text-xl" aria-hidden="true">•</span>
+            <span className="text-foreground/20 ml-6 text-xl" aria-hidden="true">
+              •
+            </span>
           </span>
         ))}
       </m.div>

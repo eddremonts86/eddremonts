@@ -12,7 +12,7 @@ export const LanguageSelector = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleLanguage = () => {
-    const currentIndex = languages.findIndex(l => l.code === i18n.language);
+    const currentIndex = languages.findIndex((l) => l.code === i18n.language);
     const nextIndex = (currentIndex + 1) % languages.length;
     const nextLangCode = languages[nextIndex].code;
 
@@ -22,18 +22,19 @@ export const LanguageSelector = () => {
     localStorage.setItem('edd-portfolio-lang', nextLangCode);
   };
 
-  const nextLang = languages[(languages.findIndex(l => l.code === i18n.language) + 1) % languages.length]?.code || 'en';
+  const nextLang =
+    languages[(languages.findIndex((l) => l.code === i18n.language) + 1) % languages.length]
+      ?.code || 'en';
 
   return (
     <div className="relative z-50" ref={dropdownRef}>
       <button
         onClick={toggleLanguage}
-        className="h-10 px-4 flex items-center justify-center border border-foreground/10 bg-transparent text-foreground font-medium tracking-widest text-[10px] hover:bg-foreground hover:text-background transition-colors duration-500 rounded-full shadow-sm min-w-[44px]"
+        className="border-foreground/10 flex h-10 min-w-[44px] items-center justify-center rounded-full border bg-transparent px-4 text-[10px] font-medium tracking-widest text-foreground shadow-sm transition-colors duration-500 hover:bg-foreground hover:text-background"
         aria-label={`Current language: ${i18n.language}. Click to change to ${nextLang.toUpperCase()}`}
       >
         <span className="uppercase">{i18n.language}</span>
       </button>
-
     </div>
   );
 };

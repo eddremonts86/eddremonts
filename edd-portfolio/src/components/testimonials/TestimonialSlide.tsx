@@ -41,14 +41,16 @@ export const TestimonialSlide = ({
       opacity: { duration: 0.4 },
       filter: { duration: 0.4 },
     }}
-    className="absolute w-full flex flex-col items-center px-4"
+    className="absolute flex w-full flex-col items-center px-4"
   >
-    <blockquote className="text-xl md:text-3xl lg:text-4xl font-light text-foreground leading-[1.5] tracking-tight mb-10 italic font-serif">
+    <blockquote className="mb-10 font-serif text-xl font-light italic leading-[1.5] tracking-tight text-foreground md:text-3xl lg:text-4xl">
       {testimonial?.quote}
     </blockquote>
     <div className="flex flex-col items-center gap-2">
-      <p className="text-sm font-medium text-foreground tracking-wide">{testimonial?.author}</p>
-      <p className="text-xs font-mono uppercase tracking-widest text-foreground/50">{testimonial?.role}</p>
+      <p className="text-sm font-medium tracking-wide text-foreground">{testimonial?.author}</p>
+      <p className="text-foreground/50 font-mono text-xs uppercase tracking-widest">
+        {testimonial?.role}
+      </p>
     </div>
   </m.div>
 );

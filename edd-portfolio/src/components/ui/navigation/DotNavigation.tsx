@@ -30,7 +30,7 @@ export const DotNavigation = () => {
             }
           });
         },
-        { threshold: 0.3 }
+        { threshold: 0.3 },
       );
 
       observer.observe(el);
@@ -47,7 +47,7 @@ export const DotNavigation = () => {
 
   return (
     <nav
-      className="fixed right-6 top-1/2 -translate-y-1/2 z-[90] hidden lg:flex flex-col gap-4"
+      className="fixed right-6 top-1/2 z-[90] hidden -translate-y-1/2 flex-col gap-4 lg:flex"
       aria-label="Section navigation"
     >
       {NAV_SECTIONS.map(({ id, labelKey }) => (
@@ -55,18 +55,18 @@ export const DotNavigation = () => {
           key={id}
           href={id === 'hero' ? '#' : `#${id}`}
           aria-label={t(labelKey)}
-          className="group relative flex items-center justify-end h-4"
+          className="group relative flex h-4 items-center justify-end"
         >
           {/* Label tooltip */}
-          <span className="absolute right-6 px-2 py-1 text-[10px] font-mono uppercase tracking-widest text-foreground/70 bg-surface border border-subtle rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+          <span className="text-foreground/70 pointer-events-none absolute right-6 whitespace-nowrap rounded border border-subtle bg-surface px-2 py-1 font-mono text-[10px] uppercase tracking-widest opacity-0 transition-opacity duration-300 group-hover:opacity-100">
             {t(labelKey)}
           </span>
 
           <m.div
-            className={`transition-all duration-500 rounded-full ${
+            className={`rounded-full transition-all duration-500 ${
               activeSection === id
-                ? 'bg-primary w-1.5 h-6'
-                : 'bg-foreground/20 w-1.5 h-1.5 hover:bg-foreground/50'
+                ? 'h-6 w-1.5 bg-primary'
+                : 'bg-foreground/20 hover:bg-foreground/50 h-1.5 w-1.5'
             }`}
           />
         </a>

@@ -25,23 +25,23 @@ export const ProjectListItem = ({
       {...fadeInView({ delay: index * 0.1 })}
       onMouseEnter={() => onHover(project)}
       onMouseLeave={() => onHover(null)}
-      className="group flex flex-col md:flex-row items-start md:items-center justify-between py-10 md:py-12 border-b border-subtle hover:bg-surface transition-colors duration-500 px-4 rounded-xl -mx-4 cursor-pointer relative z-10"
+      className="group relative z-10 -mx-4 flex cursor-pointer flex-col items-start justify-between rounded-xl border-b border-subtle px-4 py-10 transition-colors duration-500 hover:bg-surface md:flex-row md:items-center md:py-12"
     >
-      <div className="flex flex-col mb-4 md:mb-0">
-        <span className="text-[11px] font-mono tracking-widest opacity-50 mb-3 text-primary">
+      <div className="mb-4 flex flex-col md:mb-0">
+        <span className="mb-3 font-mono text-[11px] tracking-widest text-primary opacity-50">
           0{index + 1} // {project.category}
         </span>
-        <h3 className="text-3xl md:text-5xl lg:text-6xl font-serif tracking-tight group-hover:pl-4 transition-all duration-500">
+        <h3 className="font-serif text-3xl tracking-tight transition-all duration-500 group-hover:pl-4 md:text-5xl lg:text-6xl">
           {project.title}
         </h3>
       </div>
-      
-      <div className="flex items-center gap-6 shrink-0 mt-4 md:mt-0">
-        <span className="hidden md:block text-sm font-mono uppercase tracking-widest text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500 whitespace-nowrap">
+
+      <div className="mt-4 flex shrink-0 items-center gap-6 md:mt-0">
+        <span className="hidden whitespace-nowrap font-mono text-sm uppercase tracking-widest text-primary opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:block">
           {t('projects.view', 'View Project')}
         </span>
-        <div className="w-12 h-12 shrink-0 rounded-full flex items-center justify-center text-foreground group-hover:bg-primary group-hover:text-white transition-all duration-500 transform group-hover:rotate-45">
-          <ArrowUpRight className="w-5 h-5" />
+        <div className="flex h-12 w-12 shrink-0 transform items-center justify-center rounded-full text-foreground transition-all duration-500 group-hover:rotate-45 group-hover:bg-primary group-hover:text-white">
+          <ArrowUpRight className="h-5 w-5" />
         </div>
       </div>
     </m.a>

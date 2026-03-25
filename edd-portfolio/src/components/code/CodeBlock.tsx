@@ -23,10 +23,10 @@ export const CodeBlock = () => {
   const lineCount = countLines(activeTokens);
 
   return (
-    <div className="relative max-w-3xl mx-auto group/block">
+    <div className="group/block relative mx-auto max-w-3xl">
       <WindowChrome activeTab={activeTab} onTabChange={setActiveTab} />
 
-      <div className="bg-[#0A0A0A] rounded-b-xl overflow-hidden shadow-2xl border border-white/[0.02]">
+      <div className="overflow-hidden rounded-b-xl border border-white/[0.02] bg-[#0A0A0A] shadow-2xl">
         <AnimatePresence mode="wait">
           <m.div
             key={activeTab}

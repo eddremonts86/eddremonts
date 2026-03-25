@@ -24,7 +24,7 @@ export const StickyNav = () => {
 
   const closeMobile = useCallback(() => setMobileOpen(false), []);
 
-  const navLinks = NAV_SECTIONS.filter(s => s.id !== 'hero');
+  const navLinks = NAV_SECTIONS.filter((s) => s.id !== 'hero');
 
   return (
     <AnimatePresence>
@@ -34,26 +34,26 @@ export const StickyNav = () => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
           transition={{ duration: 0.5, ease: APPLE_EASE }}
-          className="fixed top-0 left-0 w-full z-[100] bg-background/80 backdrop-blur-xl border-b border-subtle pt-[env(safe-area-inset-top)]"
+          className="bg-background/80 fixed left-0 top-0 z-[100] w-full border-b border-subtle pt-[env(safe-area-inset-top)] backdrop-blur-xl"
           aria-label="Main navigation"
         >
-          <div className="container mx-auto px-4 py-3 md:py-4 md:px-6 flex items-center justify-between gap-3 md:gap-4">
-            
+          <div className="container mx-auto flex items-center justify-between gap-3 px-4 py-3 md:gap-4 md:px-6 md:py-4">
             {/* Brand / Logo */}
-            <a
-              href="#hero"
-              className="text-lg md:text-xl font-serif italic text-foreground hover:text-primary transition-colors whitespace-nowrap leading-none shrink-0"
-            >
-              Edd~R
+            <a href="#hero" className="shrink-0 transition-opacity hover:opacity-80">
+              <img
+                src="/logo.svg"
+                alt="Inerarte — Eduardo, Senior Full-Stack / Frontend Engineer"
+                className="h-10 w-auto md:h-12"
+              />
             </a>
 
             {/* Nav Links — hidden on mobile, visible on md+ */}
-            <div className="hidden md:flex items-center gap-6 lg:gap-8 overflow-x-auto hide-scrollbar">
+            <div className="hide-scrollbar hidden items-center gap-6 overflow-x-auto md:flex lg:gap-8">
               {navLinks.map(({ id, labelKey }) => (
                 <a
                   key={id}
                   href={`#${id}`}
-                  className="text-[11px] font-mono uppercase tracking-widest text-foreground/50 hover:text-foreground transition-all whitespace-nowrap"
+                  className="text-foreground/50 whitespace-nowrap font-mono text-[11px] uppercase tracking-widest transition-all hover:text-foreground"
                 >
                   {t(labelKey)}
                 </a>
@@ -61,14 +61,14 @@ export const StickyNav = () => {
             </div>
 
             {/* Controls */}
-            <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+            <div className="flex shrink-0 items-center gap-2 sm:gap-4">
               <LanguageSelector />
               <ThemeToggle />
 
               {/* Hamburger — visible only on mobile */}
               <button
-                onClick={() => setMobileOpen(prev => !prev)}
-                className="md:hidden w-10 h-10 flex items-center justify-center border border-subtle bg-surface text-foreground/70 hover:text-foreground transition-colors duration-300 rounded-full"
+                onClick={() => setMobileOpen((prev) => !prev)}
+                className="text-foreground/70 flex h-10 w-10 items-center justify-center rounded-full border border-subtle bg-surface transition-colors duration-300 hover:text-foreground md:hidden"
                 aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={mobileOpen}
               >
@@ -81,7 +81,7 @@ export const StickyNav = () => {
                       exit={{ rotate: 90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <X className="w-4 h-4" />
+                      <X className="h-4 w-4" />
                     </m.span>
                   ) : (
                     <m.span
@@ -91,7 +91,7 @@ export const StickyNav = () => {
                       exit={{ rotate: -90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Menu className="w-4 h-4" />
+                      <Menu className="h-4 w-4" />
                     </m.span>
                   )}
                 </AnimatePresence>
@@ -107,9 +107,9 @@ export const StickyNav = () => {
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.3, ease: APPLE_EASE }}
-                className="md:hidden overflow-hidden border-t border-subtle"
+                className="overflow-hidden border-t border-subtle md:hidden"
               >
-                <div className="container mx-auto px-4 py-4 flex flex-col gap-3">
+                <div className="container mx-auto flex flex-col gap-3 px-4 py-4">
                   {navLinks.map(({ id, labelKey }, i) => (
                     <m.a
                       key={id}
@@ -118,7 +118,7 @@ export const StickyNav = () => {
                       initial={{ x: -16, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: i * 0.05, duration: 0.3, ease: APPLE_EASE }}
-                      className="text-xs font-mono uppercase tracking-widest text-foreground/60 hover:text-foreground py-2 transition-colors"
+                      className="text-foreground/60 py-2 font-mono text-xs uppercase tracking-widest transition-colors hover:text-foreground"
                     >
                       {t(labelKey)}
                     </m.a>

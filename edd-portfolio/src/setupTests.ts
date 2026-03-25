@@ -20,17 +20,20 @@ class IntersectionObserverMock {
   }
 
   observe(element: Element) {
-    this.callback([
-      {
-        isIntersecting: true,
-        target: element,
-        boundingClientRect: element.getBoundingClientRect(),
-        intersectionRatio: 1,
-        intersectionRect: element.getBoundingClientRect(),
-        rootBounds: null,
-        time: Date.now()
-      }
-    ], this as unknown as IntersectionObserver);
+    this.callback(
+      [
+        {
+          isIntersecting: true,
+          target: element,
+          boundingClientRect: element.getBoundingClientRect(),
+          intersectionRatio: 1,
+          intersectionRect: element.getBoundingClientRect(),
+          rootBounds: null,
+          time: Date.now(),
+        },
+      ],
+      this as unknown as IntersectionObserver,
+    );
   }
 
   unobserve() {}

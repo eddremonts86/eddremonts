@@ -18,7 +18,7 @@ export const RevealWord = ({
   const y = useTransform(scrollYProgress, [start, end], [10, 0]);
 
   return (
-    <m.span style={{ opacity, y }} className="inline-block relative">
+    <m.span style={{ opacity, y }} className="relative inline-block">
       {word}
     </m.span>
   );

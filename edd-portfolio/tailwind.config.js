@@ -1,10 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: 'class',
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -26,7 +23,7 @@ export default {
         apple: {
           glass: 'var(--apple-glass)',
           border: 'var(--apple-border)',
-        }
+        },
       },
       borderColor: {
         subtle: 'var(--border-subtle)',
@@ -42,11 +39,11 @@ export default {
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       animation: {
-        'blob': 'blob 10s infinite',
+        blob: 'blob 10s infinite',
         'fade-in': 'fade-in 1s ease-out forwards',
         'slide-up': 'slide-up 0.5s ease-out forwards',
-        'float': 'float 6s ease-in-out infinite',
-        'sparkle': 'sparkle 2s ease-in-out infinite',
+        float: 'float 6s ease-in-out infinite',
+        sparkle: 'sparkle 2s ease-in-out infinite',
       },
       keyframes: {
         blob: {
@@ -63,17 +60,17 @@ export default {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
-        'float': {
+        float: {
           '0%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-20px)' },
           '100%': { transform: 'translateY(0px)' },
         },
-        'sparkle': {
+        sparkle: {
           '0%, 100%': { opacity: 0, transform: 'scale(0)' },
           '50%': { opacity: 1, transform: 'scale(1)' },
-        }
-      }
+        },
+      },
     },
   },
   plugins: [],
-}
+};

@@ -12,19 +12,21 @@ const resources = {
 };
 
 // Retrieve saved language or default to generic browser navigator
-const savedLanguage = localStorage.getItem('edd-portfolio-lang') ||
-  (navigator.language.split('-')[0] === 'es' ? 'es' :
-   navigator.language.split('-')[0] === 'da' ? 'dk' : 'en');
+const savedLanguage =
+  localStorage.getItem('edd-portfolio-lang') ||
+  (navigator.language.split('-')[0] === 'es'
+    ? 'es'
+    : navigator.language.split('-')[0] === 'da'
+      ? 'dk'
+      : 'en');
 
-i18n
-  .use(initReactI18next)
-  .init({
-    resources,
-    lng: savedLanguage,
-    fallbackLng: 'en',
-    interpolation: {
-      escapeValue: false,
-    },
-  });
+i18n.use(initReactI18next).init({
+  resources,
+  lng: savedLanguage,
+  fallbackLng: 'en',
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 export default i18n;

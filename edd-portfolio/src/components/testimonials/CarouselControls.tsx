@@ -18,14 +18,14 @@ export const CarouselControls = ({
     initial={{ opacity: 0 }}
     whileInView={{ opacity: 1 }}
     viewport={{ once: true }}
-    className="flex items-center gap-6 mt-12 md:mt-16"
+    className="mt-12 flex items-center gap-6 md:mt-16"
   >
     <button
       onClick={onPrev}
-      className="w-10 h-10 rounded-full border border-subtle flex items-center justify-center text-foreground/50 hover:text-foreground hover:border-foreground/30 hover:bg-foreground/5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50"
+      className="text-foreground/50 hover:border-foreground/30 hover:bg-foreground/5 focus:ring-primary/50 flex h-10 w-10 items-center justify-center rounded-full border border-subtle transition-all duration-300 hover:text-foreground focus:outline-none focus:ring-2"
       aria-label="Previous testimonial"
     >
-      <ChevronLeft className="w-4 h-4 ml-[-1px]" />
+      <ChevronLeft className="ml-[-1px] h-4 w-4" />
     </button>
     <div className="flex gap-3">
       {Array.from({ length: total }, (_, idx) => (
@@ -33,9 +33,7 @@ export const CarouselControls = ({
           key={`dot-${idx}`}
           onClick={() => onGoto(idx)}
           className={`h-2 rounded-full transition-all duration-500 focus:outline-none ${
-            idx === current
-              ? 'bg-primary w-6'
-              : 'bg-foreground/10 hover:bg-foreground/30 w-2'
+            idx === current ? 'w-6 bg-primary' : 'bg-foreground/10 hover:bg-foreground/30 w-2'
           }`}
           aria-label={`Go to testimonial ${idx + 1}`}
         />
@@ -43,10 +41,10 @@ export const CarouselControls = ({
     </div>
     <button
       onClick={onNext}
-      className="w-10 h-10 rounded-full border border-subtle flex items-center justify-center text-foreground/50 hover:text-foreground hover:border-foreground/30 hover:bg-foreground/5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50"
+      className="text-foreground/50 hover:border-foreground/30 hover:bg-foreground/5 focus:ring-primary/50 flex h-10 w-10 items-center justify-center rounded-full border border-subtle transition-all duration-300 hover:text-foreground focus:outline-none focus:ring-2"
       aria-label="Next testimonial"
     >
-      <ChevronRight className="w-4 h-4 mr-[-1px]" />
+      <ChevronRight className="mr-[-1px] h-4 w-4" />
     </button>
   </m.div>
 );

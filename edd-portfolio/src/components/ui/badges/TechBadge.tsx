@@ -14,14 +14,14 @@ export const TechBadge = ({ skill, index = 0 }: TechBadgeProps) => (
     whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay: index * 0.05, ease: APPLE_EASE }}
-    className="px-4 py-2 bg-surface text-xs font-mono rounded-full border border-subtle text-foreground/70 hover:text-foreground hover:border-foreground/30 transition-all duration-300 flex items-center gap-2"
+    className="text-foreground/70 hover:border-foreground/30 flex items-center gap-2 rounded-full border border-subtle bg-surface px-4 py-2 font-mono text-xs transition-all duration-300 hover:text-foreground"
   >
     {techIconMap[skill] && (
       <img
         src={techIconMap[skill]}
         alt={skill}
         loading="lazy"
-        className="w-3.5 h-3.5 grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all"
+        className="h-3.5 w-3.5 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0"
       />
     )}
     <span>{skill}</span>

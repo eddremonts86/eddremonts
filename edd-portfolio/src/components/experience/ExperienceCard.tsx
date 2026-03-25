@@ -15,26 +15,26 @@ export const ExperienceCard = ({ exp, index }: ExperienceCardProps) => {
   return (
     <m.div
       {...fadeInView({ delay: index * 0.1 })}
-      className="group relative flex flex-col md:flex-row justify-between py-10 border-b border-subtle hover:bg-surface transition-colors duration-500 cursor-default px-4 -mx-4 rounded-xl"
+      className="group relative -mx-4 flex cursor-default flex-col justify-between rounded-xl border-b border-subtle px-4 py-10 transition-colors duration-500 hover:bg-surface md:flex-row"
     >
-      <div className="flex flex-col mb-4 md:mb-0 w-full md:w-1/3 md:pr-8">
-        <span className="text-[11px] font-mono tracking-widest text-primary mb-2">
+      <div className="mb-4 flex w-full flex-col md:mb-0 md:w-1/3 md:pr-8">
+        <span className="mb-2 font-mono text-[11px] tracking-widest text-primary">
           {exp.period.replace('Present', t('experience.present') || 'Present')}
         </span>
-        <h4 className="text-lg md:text-xl font-medium tracking-tight mb-1">{exp.company}</h4>
-        <span className="text-xs text-foreground/40 font-mono uppercase tracking-wider">
+        <h4 className="mb-1 text-lg font-medium tracking-tight md:text-xl">{exp.company}</h4>
+        <span className="text-foreground/40 font-mono text-xs uppercase tracking-wider">
           {exp.location}
         </span>
       </div>
 
-      <div className="w-full md:w-2/3 flex flex-col justify-center">
-        <div className="flex justify-between items-start mb-3 gap-4">
-          <h3 className="text-xl md:text-2xl font-serif text-foreground group-hover:text-primary transition-colors duration-500 break-words">
+      <div className="flex w-full flex-col justify-center md:w-2/3">
+        <div className="mb-3 flex items-start justify-between gap-4">
+          <h3 className="break-words font-serif text-xl text-foreground transition-colors duration-500 group-hover:text-primary md:text-2xl">
             {t(`experience.items.${exp.id}.role`, exp.role)}
           </h3>
-          <ArrowUpRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 group-hover:-translate-y-1 transition-all duration-500 text-primary hidden md:block shrink-0" />
+          <ArrowUpRight className="hidden h-5 w-5 shrink-0 -translate-x-2 transform text-primary opacity-0 transition-all duration-500 group-hover:-translate-y-1 group-hover:translate-x-0 group-hover:opacity-100 md:block" />
         </div>
-        <p className="text-sm md:text-base text-foreground/70 leading-relaxed font-light">
+        <p className="text-foreground/70 text-sm font-light leading-relaxed md:text-base">
           {t(`experience.items.${exp.id}.description`, exp.description)}
         </p>
       </div>

@@ -22,18 +22,18 @@
   }
 
   :root {
-    --background: #FBFAF9; /* Soft paper white */
+    --background: #fbfaf9; /* Soft paper white */
     --foreground: #101010; /* Deep ink black */
-    --surface: #FFFFFF;
+    --surface: #ffffff;
 
-    --primary: #D13426; /* Deep elegant red / crimson */
-    --primary-foreground: #FFFFFF;
+    --primary: #d13426; /* Deep elegant red / crimson */
+    --primary-foreground: #ffffff;
 
-    --secondary: #A08C73; /* Warm taupe */
+    --secondary: #a08c73; /* Warm taupe */
     --secondary-foreground: #101010;
 
-    --accent: #2E3339; /* Deep slate */
-    --accent-foreground: #FFFFFF;
+    --accent: #2e3339; /* Deep slate */
+    --accent-foreground: #ffffff;
 
     --apple-glass: rgba(251, 250, 249, 0.72);
     --apple-border: rgba(0, 0, 0, 0.05);
@@ -41,23 +41,23 @@
     --border-subtle: rgba(16, 16, 16, 0.06);
     --border-default: rgba(16, 16, 16, 0.15);
 
-    --scrollbar-thumb: rgba(0,0,0,0.1);
-    --scrollbar-thumb-hover: rgba(0,0,0,0.25);
+    --scrollbar-thumb: rgba(0, 0, 0, 0.1);
+    --scrollbar-thumb-hover: rgba(0, 0, 0, 0.25);
   }
 
   .dark {
-    --background: #0A0A0A; /* True void black */
-    --foreground: #EFEFEF; /* Soft light grey text */
+    --background: #0a0a0a; /* True void black */
+    --foreground: #efefef; /* Soft light grey text */
     --surface: #111111;
 
-    --primary: #FF4A3A; /* Vibrant red in dark mode */
+    --primary: #ff4a3a; /* Vibrant red in dark mode */
     --primary-foreground: #000000;
 
-    --secondary: #C8B6A1; /* Warm taupe offset */
+    --secondary: #c8b6a1; /* Warm taupe offset */
     --secondary-foreground: #000000;
 
-    --accent: #43484E;
-    --accent-foreground: #FFFFFF;
+    --accent: #43484e;
+    --accent-foreground: #ffffff;
 
     --apple-glass: rgba(10, 10, 10, 0.72);
     --apple-border: rgba(255, 255, 255, 0.05);
@@ -65,12 +65,12 @@
     --border-subtle: rgba(255, 255, 255, 0.05);
     --border-default: rgba(255, 255, 255, 0.12);
 
-    --scrollbar-thumb: rgba(255,255,255,0.15);
-    --scrollbar-thumb-hover: rgba(255,255,255,0.3);
+    --scrollbar-thumb: rgba(255, 255, 255, 0.15);
+    --scrollbar-thumb-hover: rgba(255, 255, 255, 0.3);
   }
 
   body {
-    @apply bg-background text-foreground font-body antialiased overflow-x-hidden transition-colors duration-500;
+    @apply overflow-x-hidden bg-background font-body text-foreground antialiased transition-colors duration-500;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: transparent;
@@ -78,7 +78,7 @@
   }
 
   body::after {
-    content: "";
+    content: '';
     position: fixed;
     inset: 0;
     z-index: 9999;
@@ -87,13 +87,22 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-display tracking-tight text-foreground transition-colors duration-500;
   }
 
   /* Accessibility Focus Rings */
-  a, button, input, textarea, select {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-shadow;
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    @apply transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background;
   }
 
   /* Selection matches anime neon vibe */
@@ -108,7 +117,7 @@
   .apple-glass {
     background-color: var(--apple-glass);
     border-color: var(--apple-border);
-    @apply backdrop-blur-xl border shadow-[0_8px_32px_rgba(0,0,0,0.04)] transition-colors duration-500;
+    @apply border shadow-[0_8px_32px_rgba(0,0,0,0.04)] backdrop-blur-xl transition-colors duration-500;
     @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
       -webkit-backdrop-filter: blur(20px) saturate(180%);
       backdrop-filter: blur(20px) saturate(180%);
@@ -133,7 +142,7 @@
 
   /* Skip to content link */
   .skip-to-content {
-    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-foreground focus:text-background focus:rounded-2xl focus:font-semibold focus:shadow-lg;
+    @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-2xl focus:bg-foreground focus:px-6 focus:py-3 focus:font-semibold focus:text-background focus:shadow-lg;
   }
 
   /* Hide scrollbar but keep scroll functionality */
@@ -147,7 +156,7 @@
 
   /* Text gradient fusing Apple smoothness with Anime colors */
   .text-gradient-anime {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
   }
 
   /* Animated gradient border glow for cards */
@@ -159,8 +168,12 @@
       var(--accent),
       var(--primary)
     );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     padding: 1.5px;
@@ -176,13 +189,18 @@
 
   /* Floating decorative shapes */
   .floating-shape {
-    @apply absolute rounded-full pointer-events-none;
+    @apply pointer-events-none absolute rounded-full;
     animation: float-gentle 6s ease-in-out infinite;
   }
 
   @keyframes float-gentle {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(8deg); }
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(8deg);
+    }
   }
 }
 
