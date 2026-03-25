@@ -9,7 +9,10 @@ export default defineConfig({
     react(),
     Sitemap({
       hostname: 'https://eddremonts.dk',
-      dynamicRoutes: ['/', '/#about', '/#experience', '/#projects', '/#contact'],
+      dynamicRoutes: [],
+      changefreq: 'monthly',
+      priority: 1.0,
+      lastmod: new Date(),
     })
   ],
   resolve: {
