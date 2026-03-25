@@ -1,6 +1,6 @@
 import { projects } from '@/data/cvData';
 import { fadeInView } from '@/lib/motion';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -18,7 +18,7 @@ export const ProjectListItem = ({
   const { t } = useTranslation();
 
   return (
-    <motion.a
+    <m.a
       href={project.link}
       target="_blank"
       rel="noopener noreferrer"
@@ -44,6 +44,6 @@ export const ProjectListItem = ({
           <ArrowUpRight className="w-5 h-5" />
         </div>
       </div>
-    </motion.a>
+    </m.a>
   );
 };

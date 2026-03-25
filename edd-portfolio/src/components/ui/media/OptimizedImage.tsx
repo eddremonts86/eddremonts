@@ -1,6 +1,6 @@
 import { APPLE_EASE } from '@/lib/motion';
 import type { HTMLMotionProps } from 'framer-motion';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 
 interface OptimizedImageProps extends HTMLMotionProps<"img"> {
@@ -72,7 +72,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
           {blurDataURL ? (
              <img src={blurDataURL} alt="" aria-hidden="true" className="w-full h-full object-cover blur-2xl scale-110" />
           ) : (
-             <motion.div
+             <m.div
                animate={{ opacity: [0.3, 0.7, 0.3] }}
                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                className="w-full h-full bg-surface"
@@ -82,15 +82,15 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
       )}
 
       {isInView && (
-        <motion.img
+        <m.img
           src={currentSrc}
           alt={alt}
           onLoad={handleLoad}
           onError={handleError}
-          initial={{ opacity: 0, filter: 'blur(20px)' }}
+          initial={{ opacity: 0, filter: 'blur(8px)' }}
           animate={{
             opacity: isLoaded ? 1 : 0,
-            filter: isLoaded ? 'blur(0px)' : 'blur(20px)'
+            filter: isLoaded ? 'blur(0px)' : 'blur(8px)'
           }}
           transition={{ duration: 0.8, ease: APPLE_EASE }}
           className={`relative z-10 w-full h-full object-cover will-change-[opacity,filter] ${className}`}

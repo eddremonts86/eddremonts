@@ -1,13 +1,13 @@
 import { IconComponent } from '@/components/ui/media/IconComponent';
 import { fadeInView } from '@/lib/motion';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 export const FeatureCard = ({ icon, index }: { icon: string; index: number }) => {
   const { t } = useTranslation();
 
   return (
-    <motion.div
+    <m.div
       {...fadeInView({ delay: index * 0.15 })}
       className="group relative flex flex-col sm:flex-row gap-6 md:gap-12 items-start"
     >
@@ -33,6 +33,6 @@ export const FeatureCard = ({ icon, index }: { icon: string; index: number }) =>
           {t(`about.features.${index}.description`)}
         </p>
       </div>
-    </motion.div>
+    </m.div>
   );
 };

@@ -1,6 +1,6 @@
 import { useMousePosition } from '@/hooks/useMousePosition';
 import { useEffect, useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 
 const INTERACTIVE_SELECTOR = 'a, button, [role="button"], input, textarea, select';
 
@@ -39,11 +39,11 @@ export const MouseFollower = () => {
   const offset = size / 2;
 
   return (
-    <motion.div
+    <m.div
       className="pointer-events-none fixed inset-0 z-[9999] hidden lg:block"
       aria-hidden="true"
     >
-      <motion.div
+      <m.div
         className="absolute flex items-center justify-center rounded-full border border-primary/50 bg-primary/10 backdrop-blur-[2px]"
         style={{
           x: springX,
@@ -59,7 +59,7 @@ export const MouseFollower = () => {
         }}
         transition={{ type: "spring", stiffness: 150, damping: 20 }}
       >
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 };

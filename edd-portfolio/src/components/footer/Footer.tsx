@@ -1,6 +1,6 @@
 import { personalInfo } from '@/data/cvData';
 import { fadeInView } from '@/lib/motion';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 export const Footer = () => {
@@ -10,7 +10,7 @@ export const Footer = () => {
   return (
     <footer className="py-16 md:py-24 border-t border-subtle bg-background relative overflow-hidden pb-[max(4rem,env(safe-area-inset-bottom))] md:pb-[max(6rem,env(safe-area-inset-bottom))]">
       <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
-        <motion.div
+        <m.div
            {...fadeInView()}
            className="flex flex-col md:flex-row items-center justify-between gap-12"
         >
@@ -48,7 +48,7 @@ export const Footer = () => {
             <p>&copy; {currentYear} {personalInfo.name}.</p>
             <p className="mt-2 text-[10px]">{t('footer.rights', 'ALL RIGHTS RESERVED')}</p>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </footer>
   );

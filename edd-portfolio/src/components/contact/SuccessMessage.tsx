@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { CheckCircle2 } from 'lucide-react';
 
 export const SuccessMessage = ({ onReset }: { onReset: () => void }) => (
-  <motion.div
+  <m.div
     initial={{ opacity: 0, scale: 0.95 }}
     animate={{ opacity: 1, scale: 1 }}
     className="flex flex-col items-center justify-center text-center py-16 space-y-6"
@@ -19,5 +19,5 @@ export const SuccessMessage = ({ onReset }: { onReset: () => void }) => (
     >
       Send Another
     </button>
-  </motion.div>
+  </m.div>
 );

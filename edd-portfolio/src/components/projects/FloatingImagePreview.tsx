@@ -1,7 +1,7 @@
 import { OptimizedImage } from '@/components/ui/media/OptimizedImage';
 import { projects } from '@/data/cvData';
 import { APPLE_EASE } from '@/lib/motion';
-import { AnimatePresence, motion, type MotionValue } from 'framer-motion';
+import { AnimatePresence, m, type MotionValue } from 'framer-motion';
 
 type Project = (typeof projects)[number];
 
@@ -14,7 +14,7 @@ export const FloatingImagePreview = ({
   cursorX: MotionValue<number>;
   cursorY: MotionValue<number>;
 }) => (
-  <motion.div
+  <m.div
     className="fixed top-0 left-0 w-[450px] h-[320px] pointer-events-none z-[100] hidden lg:block overflow-hidden rounded-xl shadow-2xl"
     style={{ x: cursorX, y: cursorY, translateX: "-50%", translateY: "-50%" }}
     initial={{ opacity: 0, scale: 0.95 }}
@@ -23,7 +23,7 @@ export const FloatingImagePreview = ({
   >
     <AnimatePresence mode="wait">
       {project && (
-        <motion.div
+        <m.div
           key={project.id}
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -37,8 +37,8 @@ export const FloatingImagePreview = ({
             fallbackSrc={project.image}
             className="w-full h-full object-cover grayscale-0"
           />
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
-  </motion.div>
+  </m.div>
 );

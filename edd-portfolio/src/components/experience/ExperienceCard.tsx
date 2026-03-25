@@ -1,6 +1,6 @@
 import { experiences } from '@/data/cvData';
 import { fadeInView } from '@/lib/motion';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -13,7 +13,7 @@ export const ExperienceCard = ({ exp, index }: ExperienceCardProps) => {
   const { t } = useTranslation();
 
   return (
-    <motion.div
+    <m.div
       {...fadeInView({ delay: index * 0.1 })}
       className="group relative flex flex-col md:flex-row justify-between py-10 border-b border-subtle hover:bg-surface transition-colors duration-500 cursor-default px-4 -mx-4 rounded-xl"
     >
@@ -38,6 +38,6 @@ export const ExperienceCard = ({ exp, index }: ExperienceCardProps) => {
           {t(`experience.items.${exp.id}.description`, exp.description)}
         </p>
       </div>
-    </motion.div>
+    </m.div>
   );
 };

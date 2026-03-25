@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { colorMap, type Token } from './codeBlockTokens';
 
 export const CodeArea = ({
@@ -21,12 +21,12 @@ export const CodeArea = ({
       aria-hidden="true"
     >
       {Array.from({ length: lineCount }, (_, i) => (
-        <div key={i}>{String(i + 1).padStart(2, '0')}</div>
+        <div key={`ln-${i}`}>{String(i + 1).padStart(2, '0')}</div>
       ))}
     </div>
 
     {/* Token stream */}
-    <motion.pre
+    <m.pre
       className="flex-1 py-6 px-6 font-mono text-[13px] leading-[1.7] overflow-x-auto scrollbar-none"
       variants={containerVariants}
       initial="hidden"
@@ -35,26 +35,26 @@ export const CodeArea = ({
     >
       <code>
         {tokens.map((token, i) => {
-          if (token.type === 'break') return <br key={i} />;
-          if (token.type === 'indent') return <span key={i}>{token.text}</span>;
+          if (token.type === 'break') return <br key={`${tabKey}-br-${i}`} />;
+          if (token.type === 'indent') return <span key={`${tabKey}-ind-${i}`}>{token.text}</span>;
           return (
-            <motion.span
+            <m.span
               key={`${tabKey}-${i}`}
               className={colorMap[token.type] || 'text-white/60'}
               variants={tokenVariants}
             >
               {token.text}
-            </motion.span>
+            </m.span>
           );
         })}
         {/* Blinking cursor */}
-        <motion.span
+        <m.span
           className="inline-block w-[2px] h-[1.2em] bg-white opacity-50 align-text-bottom ml-1"
           animate={{ opacity: [0.7, 0] }}
           transition={{ duration: 0.9, repeat: Infinity, repeatType: 'reverse', ease: 'anticipate' }}
           aria-hidden="true"
         />
       </code>
-    </motion.pre>
+    </m.pre>
   </div>
 );

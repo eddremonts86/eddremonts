@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, m, useReducedMotion } from 'framer-motion';
 import { useState } from 'react';
 import { countLines, tabs } from './codeBlockTokens';
 import { CodeArea } from './CodeArea';
@@ -28,7 +28,7 @@ export const CodeBlock = () => {
 
       <div className="bg-[#0A0A0A] rounded-b-xl overflow-hidden shadow-2xl border border-white/[0.02]">
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={activeTab}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -42,7 +42,7 @@ export const CodeBlock = () => {
               containerVariants={containerVariants}
               tokenVariants={tokenVariants}
             />
-          </motion.div>
+          </m.div>
         </AnimatePresence>
 
         <StatusBar lineCount={lineCount} />

@@ -1,0 +1,115 @@
+Script started on Wed Mar 25 18:46:18 2026
+[0m[38;5;238m[49m[39m[27m[24m[K
+
+[2A7[0m[49m[39m[38;5;238m╭─[0m[38;5;238m[49m[34m[0m[34m[44m[38;5;254m /[1m[38;5;254m[44m[38;5;255mVolumes[0m[38;5;255m[44m[44m[38;5;254m/[38;5;250mW[0m[38;5;250m[44m[44m[38;5;254m/[38;5;250mg[0m[38;5;250m[44m[44m[38;5;254m/[1m[38;5;254m[44m[38;5;255meddremonts[0m[38;5;255m[44m[44m[38;5;254m/[1m[38;5;254m[44m[38;5;255medd-portfolio[0m[38;5;255m[44m[44m[38;5;254m[0m[38;5;254m[44m[44m[38;5;254m [0m[38;5;254m[44m[49m[34m[0m[34m[49m[39m[38;5;238m
+[0m[38;5;238m[49m[39m[38;5;238m╰─[0m[38;5;238m[49m[39m[0m[49m[39m [0m[49m[39m[?2004h[?25l8[0m[38;5;254m[49m[39m[27m[24m[J[0m[27m[24m[J[0m[38;5;238m[49m[39m
+[A[38;5;238m╭─[0m[38;5;238m[49m[34m[0m[34m[44m[38;5;254m /[1m[38;5;254m[44m[38;5;255mVolumes[0m[38;5;255m[44m[44m[38;5;254m/[38;5;250mW[0m[38;5;250m[44m[44m[38;5;254m/[38;5;250mg[0m[38;5;250m[44m[44m[38;5;254m/[1m[38;5;254m[44m[38;5;255meddremonts[0m[38;5;255m[44m[44m[38;5;254m/[1m[38;5;254m[44m[38;5;255medd-portfolio[0m[38;5;255m[44m[44m[38;5;254m[0m[38;5;254m[44m[44m[38;5;254m [0m[38;5;254m[44m[43m[34m[0m[34m[43m[43m[30m on [30mmain [30m!32 [30m?1[0m[30m[43m[43m[30m [0m[30m[43m[49m[33m[0m[33m[49m[39m[38;5;238m
+[0m[38;5;238m[49m[39m[38;5;238m╰─[0m[38;5;238m[49m[39m[0m[49m[39m [0m[49m[39m[K[10C[0m[49m[39m[38;5;238m─╯[39m[12D[?25h[?2004h[?2004l
+[1m[7m%[27m[1m[0m                [0m[49m[39m[K
+[0m[27m[24m[J[0m[38;5;238m[49m[39m
+[A[38;5;238m╭─[0m[38;5;238m[49m[34m[0m[34m[44m[38;5;254m /[1m[38;5;254m[44m[38;5;255mVolumes[0m[38;5;255m[44m[44m[38;5;254m/[38;5;250mW[0m[38;5;250m[44m[44m[38;5;254m/[38;5;250mg[0m[38;5;250m[44m[44m[38;5;254m/[1m[38;5;254m[44m[38;5;255meddremonts[0m[38;5;255m[44m[44m[38;5;254m/[1m[38;5;254m[44m[38;5;255medd-portfolio[0m[38;5;255m[44m[44m[38;5;254m[0m[38;5;254m[44m[44m[38;5;254m [0m[38;5;254m[44m[43m[34m[0m[34m[43m[43m[30m on [30mmain [30m!32 [30m?1[0m[30m[43m[43m[30m [0m[30m[43m[49m[33m[0m[33m[49m[39m[38;5;238m
+[0m[38;5;238m[49m[39m[38;5;238m╰─[0m[38;5;238m[49m[39m[0m[49m[39m [0m[49m[39m[K[10C[0m[49m[39m[38;5;238m─╯[39m[12D[?2004h  echo "TER[KMIN [KAAL_READY"[?2004l
+TERMINAL_READY
+[1m[7m%[27m[1m[0m                [0m[49m[39m[K
+[0m[27m[24m[J[0m[38;5;238m[49m[39m
+[A[38;5;238m╭─[0m[38;5;238m[49m[34m[0m[34m[44m[38;5;254m /[1m[38;5;254m[44m[38;5;255mVolumes[0m[38;5;255m[44m[44m[38;5;254m/[38;5;250mW[0m[38;5;250m[44m[44m[38;5;254m/[38;5;250mg[0m[38;5;250m[44m[44m[38;5;254m/[1m[38;5;254m[44m[38;5;255meddremonts[0m[38;5;255m[44m[44m[38;5;254m/[1m[38;5;254m[44m[38;5;255medd-portfolio[0m[38;5;255m[44m[44m[38;5;254m[0m[38;5;254m[44m[44m[38;5;254m [0m[38;5;254m[44m[43m[34m[0m[34m[43m[43m[30m on [30mmain [30m!32 [30m?1[0m[30m[43m[43m[30m [0m[30m[43m[49m[33m[0m[33m[49m[39m[38;5;238m
+[0m[38;5;238m[49m[39m[38;5;238m╰─[0m[38;5;238m[49m[39m[0m[49m[39m [0m[49m[39m[K[10C[0m[49m[39m[38;5;238m─╯[39m[12D[?2004h[?2004l
+[1m[7m%[27m[1m[0m                [0m[49m[39m[K
+[0m[27m[24m[J[0m[38;5;238m[49m[39m
+[A[38;5;238m╭─[0m[38;5;238m[49m[34m[0m[34m[44m[38;5;254m /[1m[38;5;254m[44m[38;5;255mVolumes[0m[38;5;255m[44m[44m[38;5;254m/[38;5;250mW[0m[38;5;250m[44m[44m[38;5;254m/[38;5;250mg[0m[38;5;250m[44m[44m[38;5;254m/[1m[38;5;254m[44m[38;5;255meddremonts[0m[38;5;255m[44m[44m[38;5;254m/[1m[38;5;254m[44m[38;5;255medd-portfolio[0m[38;5;255m[44m[44m[38;5;254m[0m[38;5;254m[44m[44m[38;5;254m [0m[38;5;254m[44m[43m[34m[0m[34m[43m[43m[30m on [30mmain [30m!32 [30m?1[0m[30m[43m[43m[30m [0m[30m[43m[49m[33m[0m[33m[49m[39m[38;5;238m
+[0m[38;5;238m[49m[39m[38;5;238m╰─[0m[38;5;238m[49m[39m[0m[49m[39m [0m[49m[39m[K[10C[0m[49m[39m[38;5;238m─╯[39m[12D[?2004h  python3 /[Ktmp [K//migrate_motion_ [Kjjsx.py[?2004l
+  components/about/AboutSection.tsx: 2 replacements
+  components/about/FeatureCard.tsx: 2 replacements
+  components/about/RevealWord.tsx: 2 replacements
+  components/code/CodeArea.tsx: 5 replacements
+  components/code/CodeBlock.tsx: 2 replacements
+  components/code/CodeShowcase.tsx: 4 replacements
+  components/contact/ContactSection.tsx: 4 replacements
+  components/contact/SuccessMessage.tsx: 2 replacements
+  components/experience/ExperienceCard.tsx: 2 replacements
+  components/footer/Footer.tsx: 2 replacements
+  components/hero/AmbientLight.tsx: 2 replacements
+  components/hero/BackgroundReveal.tsx: 2 replacements
+  components/hero/HeroSection.tsx: 16 replacements
+  components/hero/ScrollIndicator.tsx: 3 replacements
+  components/projects/FloatingImagePreview.tsx: 4 replacements
+  components/projects/ProjectListItem.tsx: 2 replacements
+  components/skills/SkillsMarquee.tsx: 2 replacements
+  components/stats/StatsCounter.tsx: 4 replacements
+  components/testimonials/CarouselControls.tsx: 2 replacements
+  components/testimonials/TestimonialBlock.tsx: 2 replacements
+  components/testimonials/TestimonialSlide.tsx: 2 replacements
+  components/ui/badges/TechBadge.tsx: 2 replacements
+  components/ui/layout/MouseFollower.tsx: 4 replacements
+  components/ui/layout/Preloader.tsx: 7 replacements
+  components/ui/media/OptimizedImage.tsx: 2 replacements
+  components/ui/navigation/DotNavigation.tsx: 1 replacements
+  components/ui/navigation/StickyNav.tsx: 10 replacements
+  components/ui/navigation/ThemeToggle.tsx: 6 replacements
+
+Total: 100 replacements across 45 files
+[1m[7m%[27m[1m[0m                [0m[49m[39m[K
+[0m[27m[24m[J[0m[38;5;238m[49m[39m
+[A[38;5;238m╭─[0m[38;5;238m[49m[34m[0m[34m[44m[38;5;254m /[1m[38;5;254m[44m[38;5;255mVolumes[0m[38;5;255m[44m[44m[38;5;254m/[38;5;250mW[0m[38;5;250m[44m[44m[38;5;254m/[38;5;250mg[0m[38;5;250m[44m[44m[38;5;254m/[1m[38;5;254m[44m[38;5;255meddremonts[0m[38;5;255m[44m[44m[38;5;254m/[1m[38;5;254m[44m[38;5;255medd-portfolio[0m[38;5;255m[44m[44m[38;5;254m[0m[38;5;254m[44m[44m[38;5;254m [0m[38;5;254m[44m[43m[34m[0m[34m[43m[43m[30m on [30mmain [30m!32 [30m?1[0m[30m[43m[43m[30m [0m[30m[43m[49m[33m[0m[33m[49m[39m[38;5;238m
+[0m[38;5;238m[49m[39m[38;5;238m╰─[0m[38;5;238m[49m[39m[0m[49m[39m [0m[49m[39m[K[10C[0m[49m[39m[38;5;238m─╯[39m[12D[?2004h  cd /Volum[Kes/ [KWWorks/github/edd [Krremonts/edd-port [Kffolio && npx tsc [K  --noEmit --pret [Ktty 2>&1 | head - [K440[?2004l
+[1m[7m%[27m[1m[0m                [0m[49m[39m[K
+[0m[27m[24m[J[0m[38;5;238m[49m[39m
+[A[38;5;238m╭─[0m[38;5;238m[49m[34m[0m[34m[44m[38;5;254m /[1m[38;5;254m[44m[38;5;255mVolumes[0m[38;5;255m[44m[44m[38;5;254m/[38;5;250mW[0m[38;5;250m[44m[44m[38;5;254m/[38;5;250mg[0m[38;5;250m[44m[44m[38;5;254m/[1m[38;5;254m[44m[38;5;255meddremonts[0m[38;5;255m[44m[44m[38;5;254m/[1m[38;5;254m[44m[38;5;255medd-portfolio[0m[38;5;255m[44m[44m[38;5;254m[0m[38;5;254m[44m[44m[38;5;254m [0m[38;5;254m[44m[43m[34m[0m[34m[43m[43m[30m on [30mmain [30m!32 [30m?1[0m[30m[43m[43m[30m [0m[30m[43m[49m[33m[0m[33m[49m[39m[38;5;238m
+[0m[38;5;238m[49m[39m[38;5;238m╰─[0m[38;5;238m[49m[39m[0m[49m[39m [0m[49m[39m[K[10C[0m[49m[39m[38;5;238m─╯[39m[12D[?2004h  cd /Volum[Kes/ [KWWorks/github/edd [Krremonts/edd-port [Kffolio && npx tsc [K  --noEmit 2>&1[?2004l
+⠙[1G[0K[1m[7m%[27m[1m[0m                [0m[49m[39m[K
+[0m[27m[24m[J[0m[38;5;238m[49m[39m
+[A[38;5;238m╭─[0m[38;5;238m[49m[34m[0m[34m[44m[38;5;254m /[1m[38;5;254m[44m[38;5;255mVolumes[0m[38;5;255m[44m[44m[38;5;254m/[38;5;250mW[0m[38;5;250m[44m[44m[38;5;254m/[38;5;250mg[0m[38;5;250m[44m[44m[38;5;254m/[1m[38;5;254m[44m[38;5;255meddremonts[0m[38;5;255m[44m[44m[38;5;254m/[1m[38;5;254m[44m[38;5;255medd-portfolio[0m[38;5;255m[44m[44m[38;5;254m[0m[38;5;254m[44m[44m[38;5;254m [0m[38;5;254m[44m[43m[34m[0m[34m[43m[43m[30m on [30mmain [30m!32 [30m?1[0m[30m[43m[43m[30m [0m[30m[43m[49m[33m[0m[33m[49m[39m[38;5;238m
+[0m[38;5;238m[49m[39m[38;5;238m╰─[0m[38;5;238m[49m[39m[0m[49m[39m [0m[49m[39m[K[10C[0m[49m[39m[38;5;238m─╯[39m[12D[?2004h  cd /Volum[Kes/ [KWWorks/github/edd [Krremonts/edd-port [Kffolio && npx rea [Kcct-doctor --verb [Koose --offline -- [Knno-dead-code 2>& [K1[?2004l
+react-doctor v0.0.30
+
+[32m✔[39m Select projects to scan [2m›[22m edd-portfolio
+[?25l[2K[1G[36m?[39m [1mFound 29 uncommitted changed files. Only scan current changes?[22m [90m›[39m [90m(Y/n)[39m[2K[1A[2K[1A[2K[1A[2K[1A[2K[G[2K[1G[32m✔[39m [1mFound 29 uncommitted changed files. Only scan current changes?[22m [90m…[39m no
+[?25h[2mScanning /Volumes/Works/github/eddremonts/edd-portfolio...[22m
+
+[?25l[?2026h[1G[36m⠋[39m Detecting framework. Found [36mVite[39m.[?2026l[1G[0K[1A[0K[1A[0K[?25h[32m✔[39m Detecting framework. Found [36mVite[39m.
+[?25l[?2026h[1G[36m⠋[39m Detecting React version. Found [36mReact ^19.2.0[39m.[?2026l[1G[0K[1A[0K[1A[0K[?25h[32m✔[39m Detecting React version. Found [36mReact ^19.2.0[39m.
+[?25l[?2026h[1G[36m⠋[39m Detecting language. Found [36mTypeScript[39m.[?2026l[1G[0K[1A[0K[1A[0K[?25h[32m✔[39m Detecting language. Found [36mTypeScript[39m.
+[?25l[?2026h[1G[36m⠋[39m Detecting React Compiler. Not found.[?2026l[1G[0K[1A[0K[1A[0K[?25h[32m✔[39m Detecting React Compiler. Not found.
+[?25l[?2026h[1G[36m⠋[39m Found [36m62[39m source files.[?2026l[1G[0K[1A[0K[?25h[32m✔[39m Found [36m62[39m source files.
+
+[?25l[?2026h[1G[36m⠋[39m Running lint checks...[?2026l[?2026h[1G[0K[1A[0K[36m⠋[39m Running lint checks...[?2026l[?2026h[1G[0K[1A[0K[36m⠙[39m Running lint checks...[?2026l[1G[0K[1A[0K[?25h[32m✔[39m Running lint checks.
+  [33m⚠[39m useEffect simulating an event handler — move logic to an actual event handler instead
+[2m    Move the conditional logic into onClick, onChange, or onSubmit handlers directly[22m
+[2m    src/components/stats/StatsCounter.tsx: 39[22m
+
+  [33m⚠[39m Array index "i" used as key — causes bugs when list is reordered or filtered[33m (7)[39m
+[2m    Use a stable unique identifier: `key={item.id}` or `key={item.slug}` — index keys break on reorder/filter[22m
+[2m    src/components/code/CodeArea.tsx: 24, 38, 39, 42[22m
+[2m    src/components/about/ScrollRevealText.tsx: 18[22m
+[2m    src/components/testimonials/CarouselControls.tsx: 33[22m
+[2m    src/components/skills/SkillsMarquee.tsx: 26[22m
+
+  [33m⚠[39m 4 setState calls in a single useEffect — consider using useReducer or deriving state
+[2m    Combine into useReducer: `const [state, dispatch] = useReducer(reducer, initialState)`[22m
+[2m    src/components/ui/layout/Preloader.tsx: 8[22m
+
+  [2m┌────────────────────────────────────────────────────┐[22m
+  [2m│[22m [32m┌─────┐[39m                                            [2m│[22m
+  [2m│[22m [32m│ ◠ ◠ │[39m                                            [2m│[22m
+  [2m│[22m [32m│  ▽  │[39m                                            [2m│[22m
+  [2m│[22m [32m└─────┘[39m                                            [2m│[22m
+  [2m│[22m React Doctor [2m(www.react.doctor)[22m                    [2m│[22m
+  [2m│[22m                                                    [2m│[22m
+  [2m│[22m [32m98[39m / 100  [32mGreat[39m                                    [2m│[22m
+  [2m│[22m                                                    [2m│[22m
+  [2m│[22m [32m█████████████████████████████████████████████████[39m[2m░[22m [2m│[22m
+  [2m│[22m                                                    [2m│[22m
+  [2m│[22m [33m⚠ 9 warnings[39m  [2macross 6/62 files[22m  [2min 254ms[22m          [2m│[22m
+  [2m└────────────────────────────────────────────────────┘[22m
+
+[2m  Full diagnostics written to /var/folders/4b/rdf9gc7x5r5c2sk2qz_380gw0000gn/T/react-doctor-e5f0673a-bbb7-48e7-ab03-deeeaecc43e5[22m
+
+[?25h⠙[1G[0K[1m[7m%[27m[1m[0m                [0m[49m[39m[K
+[0m[27m[24m[J[0m[38;5;238m[49m[39m
+[A[38;5;238m╭─[0m[38;5;238m[49m[34m[0m[34m[44m[38;5;254m /[1m[38;5;254m[44m[38;5;255mVolumes[0m[38;5;255m[44m[44m[38;5;254m/[38;5;250mW[0m[38;5;250m[44m[44m[38;5;254m/[38;5;250mg[0m[38;5;250m[44m[44m[38;5;254m/[1m[38;5;254m[44m[38;5;255meddremonts[0m[38;5;255m[44m[44m[38;5;254m/[1m[38;5;254m[44m[38;5;255medd-portfolio[0m[38;5;255m[44m[44m[38;5;254m[0m[38;5;254m[44m[44m[38;5;254m [0m[38;5;254m[44m[43m[34m[0m[34m[43m[43m[30m on [30mmain [30m!32 [30m?1[0m[30m[43m[43m[30m [0m[30m[43m[49m[33m[0m[33m[49m[39m[38;5;238m
+[0m[38;5;238m[49m[39m[38;5;238m╰─[0m[38;5;238m[49m[39m[0m[49m[39m [0m[49m[39m[K[10C[0m[49m[39m[38;5;238m─╯[39m[12D[?2004hY[?2004l
+zsh: command not found: Y
+[1m[7m%[27m[1m[0m                [0m[49m[39m[K
+[0m[27m[24m[J[0m[38;5;238m[49m[39m
+[A[38;5;238m╭─[0m[38;5;238m[49m[34m[0m[34m[44m[38;5;254m /[1m[38;5;254m[44m[38;5;255mVolumes[0m[38;5;255m[44m[44m[38;5;254m/[38;5;250mW[0m[38;5;250m[44m[44m[38;5;254m/[38;5;250mg[0m[38;5;250m[44m[44m[38;5;254m/[1m[38;5;254m[44m[38;5;255meddremonts[0m[38;5;255m[44m[44m[38;5;254m/[1m[38;5;254m[44m[38;5;255medd-portfolio[0m[38;5;255m[44m[44m[38;5;254m[0m[38;5;254m[44m[44m[38;5;254m [0m[38;5;254m[44m[43m[34m[0m[34m[43m[43m[30m on [30mmain [30m!32 [30m?1[0m[30m[43m[43m[30m [0m[30m[43m[49m[33m[0m[33m[49m[39m[38;5;238m
+[0m[38;5;238m[49m[39m[38;5;238m╰─[0m[38;5;238m[49m[39m[0m[49m[39m [0m[49m[39m[K[10C[0m[49m[39m[38;5;238m─╯[39m[12D[?2004h

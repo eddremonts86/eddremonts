@@ -1,6 +1,6 @@
 import { experiences, skills } from '@/data/cvData';
 import { APPLE_EASE, fadeInView } from '@/lib/motion';
-import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
+import { m, useInView, useMotionValue, useSpring } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -43,12 +43,11 @@ const AnimatedNumber = ({ value, suffix }: { value: number; suffix: string }) =>
   }, [isInView, motionValue, value]);
 
   useEffect(() => {
-    const unsubscribe = springValue.on('change', (latest) => {
+    return springValue.on('change', (latest) => {
       if (ref.current) {
         ref.current.textContent = `${Math.floor(latest)}${suffix}`;
       }
     });
-    return unsubscribe;
   }, [springValue, suffix]);
 
   return <span ref={ref}>0{suffix}</span>;
@@ -60,7 +59,7 @@ export const StatsCounter = () => {
   return (
     <section className="bg-background relative overflow-hidden py-10 md:py-0 border-y border-subtle">
       <div className="container mx-auto px-0 max-w-full relative z-10">
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -68,7 +67,7 @@ export const StatsCounter = () => {
           className="flex flex-col md:flex-row md:divide-x divide-subtle"
         >
           {stats.map((stat, index) => (
-            <motion.div
+            <m.div
               key={stat.labelKey}
               {...fadeInView({ delay: index * 0.1 })}
               className="flex-1 text-center group py-16 px-8 hover:bg-surface transition-colors duration-500 flex flex-col justify-center items-center cursor-default bg-background"
@@ -79,9 +78,9 @@ export const StatsCounter = () => {
               <p className="text-[11px] font-mono tracking-widest uppercase text-foreground/50">
                 {t(stat.labelKey)}
               </p>
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

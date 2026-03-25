@@ -1,8 +1,8 @@
 import { APPLE_EASE } from '@/lib/motion';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 export const BackgroundReveal = ({ src }: { src: string }) => (
-  <motion.div
+  <m.div
     initial={{ opacity: 0, scale: 1.05 }}
     animate={{ opacity: 1, scale: 1 }}
     exit={{ opacity: 0, scale: 1.05 }}
@@ -16,5 +16,5 @@ export const BackgroundReveal = ({ src }: { src: string }) => (
       alt="Edd Portrait Background"
       className="w-full h-full object-cover object-[center_15%] grayscale contrast-125"
     />
-  </motion.div>
+  </m.div>
 );

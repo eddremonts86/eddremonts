@@ -2,7 +2,7 @@ import { LanguageSelector } from '@/components/ui/navigation/LanguageSelector';
 import { ThemeToggle } from '@/components/ui/navigation/ThemeToggle';
 import { NAV_SECTIONS } from '@/data/navigation';
 import { APPLE_EASE } from '@/lib/motion';
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
+import { AnimatePresence, m, useMotionValueEvent, useScroll } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -29,7 +29,7 @@ export const StickyNav = () => {
   return (
     <AnimatePresence>
       {visible && (
-        <motion.nav
+        <m.nav
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
@@ -41,7 +41,7 @@ export const StickyNav = () => {
             
             {/* Brand / Logo */}
             <a
-              href="#"
+              href="#hero"
               className="text-lg md:text-xl font-serif italic text-foreground hover:text-primary transition-colors whitespace-nowrap leading-none shrink-0"
             >
               Edd~R
@@ -74,7 +74,7 @@ export const StickyNav = () => {
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {mobileOpen ? (
-                    <motion.span
+                    <m.span
                       key="close"
                       initial={{ rotate: -90, opacity: 0 }}
                       animate={{ rotate: 0, opacity: 1 }}
@@ -82,9 +82,9 @@ export const StickyNav = () => {
                       transition={{ duration: 0.2 }}
                     >
                       <X className="w-4 h-4" />
-                    </motion.span>
+                    </m.span>
                   ) : (
-                    <motion.span
+                    <m.span
                       key="menu"
                       initial={{ rotate: 90, opacity: 0 }}
                       animate={{ rotate: 0, opacity: 1 }}
@@ -92,7 +92,7 @@ export const StickyNav = () => {
                       transition={{ duration: 0.2 }}
                     >
                       <Menu className="w-4 h-4" />
-                    </motion.span>
+                    </m.span>
                   )}
                 </AnimatePresence>
               </button>
@@ -102,7 +102,7 @@ export const StickyNav = () => {
           {/* Mobile dropdown menu */}
           <AnimatePresence>
             {mobileOpen && (
-              <motion.div
+              <m.div
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
@@ -111,7 +111,7 @@ export const StickyNav = () => {
               >
                 <div className="container mx-auto px-4 py-4 flex flex-col gap-3">
                   {navLinks.map(({ id, labelKey }, i) => (
-                    <motion.a
+                    <m.a
                       key={id}
                       href={`#${id}`}
                       onClick={closeMobile}
@@ -121,13 +121,13 @@ export const StickyNav = () => {
                       className="text-xs font-mono uppercase tracking-widest text-foreground/60 hover:text-foreground py-2 transition-colors"
                     >
                       {t(labelKey)}
-                    </motion.a>
+                    </m.a>
                   ))}
                 </div>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
-        </motion.nav>
+        </m.nav>
       )}
     </AnimatePresence>
   );

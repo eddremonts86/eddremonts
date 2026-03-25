@@ -2,7 +2,7 @@ import { ContactInfoItem } from '@/components/ui/badges/ContactInfoItem';
 import { StatusBadge } from '@/components/ui/badges/StatusBadge';
 import { personalInfo } from '@/data/cvData';
 import { fadeInView } from '@/lib/motion';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Mail, MapPin } from 'lucide-react';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -52,7 +52,7 @@ export const ContactSection = () => {
         <div className="grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
           
           {/* Left Column: Info */}
-          <motion.div
+          <m.div
             {...fadeInView({ distance: 30, axis: 'x' })}
             className="flex flex-col justify-center"
           >
@@ -85,10 +85,10 @@ export const ContactSection = () => {
                 value={personalInfo.location}
               />
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Right Column: Form */}
-          <motion.div
+          <m.div
             {...fadeInView({ delay: 0.2 })}
             className="bg-background text-foreground p-8 md:p-12 lg:p-14 rounded-2xl shadow-2xl relative overflow-hidden"
           >
@@ -99,7 +99,7 @@ export const ContactSection = () => {
             ) : (
               <ContactForm status={formStatus} onSubmit={handleSubmit} />
             )}
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

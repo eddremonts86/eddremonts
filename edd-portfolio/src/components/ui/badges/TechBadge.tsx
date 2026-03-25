@@ -1,6 +1,6 @@
 import { techIconMap } from '@/data/techIcons';
 import { APPLE_EASE } from '@/lib/motion';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 interface TechBadgeProps {
   skill: string;
@@ -9,7 +9,7 @@ interface TechBadgeProps {
 
 /** Animated skill pill with optional tech icon. */
 export const TechBadge = ({ skill, index = 0 }: TechBadgeProps) => (
-  <motion.span
+  <m.span
     initial={{ opacity: 0, scale: 0.95 }}
     whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true }}
@@ -25,5 +25,5 @@ export const TechBadge = ({ skill, index = 0 }: TechBadgeProps) => (
       />
     )}
     <span>{skill}</span>
-  </motion.span>
+  </m.span>
 );

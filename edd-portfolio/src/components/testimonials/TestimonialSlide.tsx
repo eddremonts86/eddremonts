@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 const slideVariants = {
   enter: (direction: number) => ({
@@ -29,8 +29,8 @@ export const TestimonialSlide = ({
   index: number;
   direction: number;
 }) => (
-  <motion.div
-    key={index}
+  <m.div
+    key={testimonial.author}
     custom={direction}
     variants={slideVariants}
     initial="enter"
@@ -50,5 +50,5 @@ export const TestimonialSlide = ({
       <p className="text-sm font-medium text-foreground tracking-wide">{testimonial?.author}</p>
       <p className="text-xs font-mono uppercase tracking-widest text-foreground/50">{testimonial?.role}</p>
     </div>
-  </motion.div>
+  </m.div>
 );

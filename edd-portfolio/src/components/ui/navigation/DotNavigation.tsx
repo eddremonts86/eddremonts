@@ -1,5 +1,5 @@
 import { NAV_SECTIONS } from '@/data/navigation';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -62,7 +62,7 @@ export const DotNavigation = () => {
             {t(labelKey)}
           </span>
 
-          <motion.div
+          <m.div
             className={`transition-all duration-500 rounded-full ${
               activeSection === id
                 ? 'bg-primary w-1.5 h-6'

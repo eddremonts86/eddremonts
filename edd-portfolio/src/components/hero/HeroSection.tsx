@@ -3,7 +3,7 @@ import { StatusBadge } from '@/components/ui/badges/StatusBadge';
 import { ThemeToggle } from '@/components/ui/navigation/ThemeToggle';
 import { useResolvedTheme } from '@/hooks/useResolvedTheme';
 import { APPLE_EASE } from '@/lib/motion';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { m, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useRef, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -51,7 +51,7 @@ export const HeroSection = () => {
       <AmbientLight hidden={isHovered} />
 
       {/* Header Utilities */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
@@ -59,16 +59,16 @@ export const HeroSection = () => {
       >
         <LanguageSelector />
         <ThemeToggle />
-      </motion.div>
+      </m.div>
 
       {/* Main Content */}
-      <motion.div
+      <m.div
         style={{ opacity, scale, y }}
         className="container relative z-10 w-full px-6 mx-auto"
       >
         <div className="w-full max-w-[1400px] mx-auto xl:pl-12">
           {/* Top Label */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 1, ease: APPLE_EASE }}
@@ -78,12 +78,12 @@ export const HeroSection = () => {
               label={t('hero.available', 'STATUS: ACCEPTING SELECT PROJECTS')}
               className={`transition-colors duration-700 ${sublineTextColor}`}
             />
-          </motion.div>
+          </m.div>
 
           {/* Huge Typography */}
           <div className="relative z-10 w-full">
             <h1 className={`flex flex-col text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[7.5rem] leading-[0.9] font-light tracking-tight mb-8 md:mb-12 w-full transition-colors duration-700 ${textColor}`}>
-              <motion.span
+              <m.span
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.2, ease: APPLE_EASE, delay: 0.3 }}
@@ -95,31 +95,31 @@ export const HeroSection = () => {
                   {t('hero.greeting', "Hello, I'm")} Edd.
                 </span>
                 <span className="absolute left-0 right-0 -bottom-2 md:-bottom-4 h-[2px] md:h-[4px] bg-primary/30 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 ease-out" />
-              </motion.span>
+              </m.span>
 
-              <motion.span
+              <m.span
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.2, ease: APPLE_EASE, delay: 0.4 }}
                 className="block mt-2 font-medium tracking-tighter font-display mix-blend-difference md:mt-4"
               >
                 Frontend
-              </motion.span>
+              </m.span>
               
-              <motion.span
+              <m.span
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.2, ease: APPLE_EASE, delay: 0.5 }}
                 className="block font-serif italic opacity-70 ml-[10%] sm:ml-[15%] lg:ml-[20%]"
               >
                 Craftsman.
-              </motion.span>
+              </m.span>
             </h1>
           </div>
 
           {/* Description & CTAs */}
           <div className="flex flex-col gap-8 mt-12 md:flex-row md:items-end md:mt-24">
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 1.5 }}
@@ -128,9 +128,9 @@ export const HeroSection = () => {
               <p className={`text-base md:text-xl font-body leading-relaxed font-light max-w-xl transition-colors duration-700 ${mutedTextColor}`}>
                 {t('personalInfo.description')}
               </p>
-            </motion.div>
+            </m.div>
 
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 1.5 }}
@@ -151,10 +151,10 @@ export const HeroSection = () => {
               >
                 <span>{t('nav.resume')}</span>
               </a>
-            </motion.div>
+            </m.div>
           </div>
         </div>
-      </motion.div>
+      </m.div>
 
       <ScrollIndicator label={t('hero.scroll', 'Scroll')} isHovered={isHovered} />
     </section>

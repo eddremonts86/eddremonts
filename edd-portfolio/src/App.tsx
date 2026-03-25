@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, domAnimation, LazyMotion, m } from 'framer-motion';
 import { lazy, Suspense, useState } from 'react';
 import { AboutSection } from './components/about/AboutSection';
 import { ExperienceTimeline } from './components/experience/ExperienceTimeline';
@@ -28,42 +28,44 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   return (
-    <AnimatePresence mode="wait">
-      {loading ? (
-        <Preloader key="preloader" onComplete={() => setLoading(false)} />
-      ) : (
-        <motion.div
-          key="main-content"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="min-h-screen bg-background text-foreground"
-        >
-          <SEO />
-          <a href="#about" className="skip-to-content">
-            Skip to content
-          </a>
-          <MouseFollower />
-          <StickyNav />
-          <DotNavigation />
+    <LazyMotion features={domAnimation} strict>
+      <AnimatePresence mode="wait">
+        {loading ? (
+          <Preloader key="preloader" onComplete={() => setLoading(false)} />
+        ) : (
+          <m.div
+            key="main-content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="min-h-screen bg-background text-foreground"
+          >
+            <SEO />
+            <a href="#about" className="skip-to-content">
+              Skip to content
+            </a>
+            <MouseFollower />
+            <StickyNav />
+            <DotNavigation />
 
-          <main>
-            <HeroSection />
-            <StatsCounter />
-            <AboutSection />
-            <SkillsMarquee />
-            <ExperienceTimeline />
-            <TestimonialBlock />
-            <Suspense fallback={null}>
-              <ProjectsGallery />
-              <CodeShowcase />
-              <ContactSection />
-            </Suspense>
-          </main>
-          <Footer />
-        </motion.div>
-      )}
-    </AnimatePresence>
+            <main>
+              <HeroSection />
+              <StatsCounter />
+              <AboutSection />
+              <SkillsMarquee />
+              <ExperienceTimeline />
+              <TestimonialBlock />
+              <Suspense fallback={null}>
+                <ProjectsGallery />
+                <CodeShowcase />
+                <ContactSection />
+              </Suspense>
+            </main>
+            <Footer />
+          </m.div>
+        )}
+      </AnimatePresence>
+    </LazyMotion>
   );
 }
 

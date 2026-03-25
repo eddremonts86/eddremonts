@@ -1,6 +1,6 @@
 import { aboutMe } from '@/data/cvData';
 import { fadeInView } from '@/lib/motion';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { FeatureCard } from './FeatureCard';
 import { ScrollRevealText } from './ScrollRevealText';
@@ -18,7 +18,7 @@ export const AboutSection = () => {
 
           {/* Left Column */}
           <div className="lg:col-span-4 flex flex-col">
-            <motion.div
+            <m.div
               {...fadeInView()}
               className="sticky top-32"
             >
@@ -32,7 +32,7 @@ export const AboutSection = () => {
               <p className="text-sm uppercase tracking-widest text-foreground/40 font-mono">
                 {t('about.servicesSub', 'Refined & Scalable')}
               </p>
-            </motion.div>
+            </m.div>
           </div>
 
           {/* Right Column */}

@@ -1,6 +1,6 @@
 import { CodeBlock } from './CodeBlock';
 import { fadeInView } from '@/lib/motion';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 export const CodeShowcase = () => {
@@ -19,7 +19,7 @@ export const CodeShowcase = () => {
         <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-center">
           
           {/* Left: Refined typography */}
-          <motion.div
+          <m.div
             {...fadeInView({ distance: 30, axis: 'x' })}
             className="lg:col-span-5"
           >
@@ -37,10 +37,10 @@ export const CodeShowcase = () => {
             <p className="text-sm md:text-base font-light text-foreground/70 leading-relaxed max-w-md">
               {t('codeShowcase.description')}
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Right: The CodeBlock in an elegant frame */}
-          <motion.div
+          <m.div
             {...fadeInView({ delay: 0.2, distance: 40 })}
             className="lg:col-span-7"
           >
@@ -49,7 +49,7 @@ export const CodeShowcase = () => {
                 <CodeBlock />
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

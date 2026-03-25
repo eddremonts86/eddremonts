@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { APPLE_EASE } from '@/lib/motion';
 import { useEffect, useState } from 'react';
 
@@ -35,7 +35,7 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
 
   return (
     <AnimatePresence>
-      <motion.div
+      <m.div
         initial={{ opacity: 1 }}
         exit={{
           opacity: 0,
@@ -43,7 +43,7 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
         }}
         className="fixed inset-0 z-[99999] bg-background text-foreground flex flex-col items-center justify-center overflow-hidden"
       >
-        <motion.div
+        <m.div
           exit={{ opacity: 0, y: -20, transition: { duration: 0.8, ease: APPLE_EASE } }}
           className="container px-6 max-w-[1400px] w-full flex flex-col justify-between h-full py-12 md:py-24 relative z-10"
         >
@@ -53,16 +53,16 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
           </div>
 
           <div className="flex flex-col items-center justify-center w-full">
-            <motion.div
+            <m.div
               className="text-7xl md:text-[8rem] font-light tracking-tight leading-none font-serif text-foreground/80 lowercase"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: APPLE_EASE }}
             >
               {progress}%
-            </motion.div>
+            </m.div>
             <div className="w-full max-w-xs h-[1px] bg-subtle mt-12 relative overflow-hidden">
-              <motion.div
+              <m.div
                 className="absolute top-0 left-0 h-full bg-foreground"
                 initial={{ width: '0%' }}
                 animate={{ width: `${progress}%` }}
@@ -75,8 +75,8 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
             <span>Stand by</span>
             <span>Eduardo Inerarte</span>
           </div>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </AnimatePresence>
   );
 };

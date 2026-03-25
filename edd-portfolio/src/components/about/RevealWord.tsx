@@ -1,5 +1,5 @@
 import type { MotionValue } from 'framer-motion';
-import { motion, useTransform } from 'framer-motion';
+import { m, useTransform } from 'framer-motion';
 
 export const RevealWord = ({
   word,
@@ -18,8 +18,8 @@ export const RevealWord = ({
   const y = useTransform(scrollYProgress, [start, end], [10, 0]);
 
   return (
-    <motion.span style={{ opacity, y }} className="inline-block relative">
+    <m.span style={{ opacity, y }} className="inline-block relative">
       {word}
-    </motion.span>
+    </m.span>
   );
 };

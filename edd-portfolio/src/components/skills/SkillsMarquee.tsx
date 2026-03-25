@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 import { skills } from '@/data/cvData';
 import { techIconMap } from '@/data/techIcons';
 
@@ -10,7 +10,7 @@ export const SkillsMarquee = () => {
 
   return (
     <section className="py-12 bg-surface border-y border-subtle overflow-hidden relative z-20" aria-label="Technology skills">
-      <motion.div
+      <m.div
         className="flex gap-12 items-center whitespace-nowrap"
         animate={reduceMotion ? {} : { x: ['0%', '-33.333%'] }}
         transition={{
@@ -39,7 +39,7 @@ export const SkillsMarquee = () => {
             <span className="text-foreground/20 ml-6 text-xl" aria-hidden="true">•</span>
           </span>
         ))}
-      </motion.div>
+      </m.div>
     </section>
   );
 };

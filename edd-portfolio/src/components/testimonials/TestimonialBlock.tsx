@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CarouselControls } from './CarouselControls';
@@ -60,14 +60,14 @@ export const TestimonialBlock = () => {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          <motion.span 
+          <m.span 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-8xl font-serif text-primary opacity-20 block mb-8 leading-[0]"
           >
             "
-          </motion.span>
+          </m.span>
           
           <div className="relative w-full max-w-4xl mx-auto min-h-[350px] md:min-h-[220px] flex items-center justify-center overflow-hidden">
             <AnimatePresence initial={false} custom={direction} mode="wait">

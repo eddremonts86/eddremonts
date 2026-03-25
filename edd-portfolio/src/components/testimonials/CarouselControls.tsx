@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const CarouselControls = ({
@@ -14,7 +14,7 @@ export const CarouselControls = ({
   onNext: () => void;
   onGoto: (idx: number) => void;
 }) => (
-  <motion.div
+  <m.div
     initial={{ opacity: 0 }}
     whileInView={{ opacity: 1 }}
     viewport={{ once: true }}
@@ -30,7 +30,7 @@ export const CarouselControls = ({
     <div className="flex gap-3">
       {Array.from({ length: total }, (_, idx) => (
         <button
-          key={idx}
+          key={`dot-${idx}`}
           onClick={() => onGoto(idx)}
           className={`h-2 rounded-full transition-all duration-500 focus:outline-none ${
             idx === current
@@ -48,5 +48,5 @@ export const CarouselControls = ({
     >
       <ChevronRight className="w-4 h-4 mr-[-1px]" />
     </button>
-  </motion.div>
+  </m.div>
 );
