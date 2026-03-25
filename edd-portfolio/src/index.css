@@ -134,6 +134,15 @@
     @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-foreground focus:text-background focus:rounded-2xl focus:font-semibold focus:shadow-lg;
   }
 
+  /* Hide scrollbar but keep scroll functionality */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
   /* Text gradient fusing Apple smoothness with Anime colors */
   .text-gradient-anime {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
