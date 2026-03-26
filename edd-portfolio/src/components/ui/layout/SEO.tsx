@@ -59,10 +59,10 @@ export const SEO = ({ title, description, image, url }: SEOProps) => {
       <meta name="twitter:image" content={siteImage} />
 
       {/* Hreflang alternates */}
-      <link rel="alternate" hreflang="en" href={SITE_URL} />
-      <link rel="alternate" hreflang="es" href={`${SITE_URL}?lang=es`} />
-      <link rel="alternate" hreflang="da" href={`${SITE_URL}?lang=dk`} />
-      <link rel="alternate" hreflang="x-default" href={SITE_URL} />
+      <link rel="alternate" hrefLang="en" href={SITE_URL} />
+      <link rel="alternate" hrefLang="es" href={`${SITE_URL}?lang=es`} />
+      <link rel="alternate" hrefLang="da" href={`${SITE_URL}?lang=dk`} />
+      <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
 
       {/* JSON-LD Structured Data */}
       <script type="application/ld+json">

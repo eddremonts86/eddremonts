@@ -79,7 +79,6 @@ export const TestimonialBlock = () => {
             <AnimatePresence initial={false} custom={direction} mode="wait">
               <TestimonialSlide
                 testimonial={currentTestimonial}
-                index={safeIndex}
                 direction={direction}
               />
             </AnimatePresence>

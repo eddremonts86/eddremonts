@@ -22,11 +22,9 @@ export interface Testimonial {
 
 export const TestimonialSlide = ({
   testimonial,
-  index,
   direction,
 }: {
   testimonial: Testimonial;
-  index: number;
   direction: number;
 }) => (
   <m.div
