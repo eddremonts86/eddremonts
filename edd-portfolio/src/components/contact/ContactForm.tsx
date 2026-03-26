@@ -29,7 +29,7 @@ export const ContactForm = ({
             type="text"
             required
             className="bg-foreground/5 placeholder:text-foreground/30 w-full rounded-xl border-2 border-transparent px-5 py-4 font-body text-lg outline-none transition-all focus:border-primary focus:bg-transparent"
-            placeholder="John Doe"
+            placeholder={t('contact.form.namePlaceholder')}
           />
         </div>
 
@@ -46,7 +46,7 @@ export const ContactForm = ({
             type="email"
             required
             className="bg-foreground/5 placeholder:text-foreground/30 w-full rounded-xl border-2 border-transparent px-5 py-4 font-body text-lg outline-none transition-all focus:border-primary focus:bg-transparent"
-            placeholder="john@example.com"
+            placeholder={t('contact.form.emailPlaceholder')}
           />
         </div>
 
@@ -71,9 +71,7 @@ export const ContactForm = ({
       {status === 'error' && (
         <div className="flex items-center gap-4 rounded-xl border border-red-500/20 bg-red-500/10 p-4 text-red-600">
           <AlertCircle className="h-5 w-5 flex-shrink-0" />
-          <span className="text-sm font-bold tracking-wide">
-            Error. Please try emailing me directly.
-          </span>
+          <span className="text-sm font-bold tracking-wide">{t('contact.form.error')}</span>
         </div>
       )}
 

@@ -1,0 +1,72 @@
+# Project Images — Data Layer
+
+`src/data/projectImageConfig.ts` contiene metadata de licencia y configuración de las imágenes usadas en los proyectos.
+
+---
+
+## Estructura
+
+```typescript
+export const projectImageConfig = {
+  licenses: {
+    [projectId: string]: {
+      source: string;      // Origen de la imagen
+      license: string;     // Tipo de licencia
+      attribution?: string; // Atribución requerida
+    };
+  },
+  aiPrompts: {
+    [projectId: string]: string; // Prompt template para generar la imagen con AI
+  },
+};
+```
+
+---
+
+## Convención de naming para imágenes
+
+Las imágenes de proyectos siguen este patrón de nombres:
+
+```
+public/projects/
+├── {project-id}-thumb.webp     # Thumbnail (pequeño, para previews)
+├── {project-id}-md.webp        # Mediano (para la lista de proyectos)
+├── {project-id}-lg.webp        # Grande (para modal o full view)
+└── {project-id}-full.webp      # Full resolution
+```
+
+El `project-id` es el campo `id` del proyecto en `cvData.projects`.
+
+---
+
+## Requisitos de imagen
+
+| Propiedad | Especificación |
+|-----------|---------------|
+| Formato | **WebP** (obligatorio) |
+| Tamaño máximo | **200KB** por imagen |
+| Dimensiones recomendadas (md) | 1200 × 800 px |
+| Color profile | sRGB |
+
+---
+
+## Generación automática de screenshots
+
+El script `tools/screenshots/shoot.bash` captura screenshots de proyectos en vivo:
+
+```bash
+# Captura screenshots de todos los proyectos con URL
+bash tools/screenshots/shoot.bash
+```
+
+Usa Playwright CLI para renderizar la página a 1200×800 y guardar como WebP.
+
+---
+
+## Consumidores
+
+| Componente | Uso |
+|-----------|-----|
+| `ProjectListItem` | Muestra la imagen del proyecto |
+| `FloatingImagePreview` | Preview flotante que sigue el cursor |
+| `OptimizedImage` | Componente wrapper que lazy-loads la imagen |

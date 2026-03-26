@@ -77,11 +77,15 @@ export const ContactSection = () => {
             <div className="space-y-8 font-display">
               <ContactInfoItem
                 icon={Mail}
-                label="Email"
+                label={t('contact.info.emailLabel')}
                 value={personalInfo.email}
                 href={`mailto:${personalInfo.email}`}
               />
-              <ContactInfoItem icon={MapPin} label="Location" value={personalInfo.location} />
+              <ContactInfoItem
+                icon={MapPin}
+                label={t('contact.info.locationLabel')}
+                value={personalInfo.location}
+              />
             </div>
           </m.div>
 

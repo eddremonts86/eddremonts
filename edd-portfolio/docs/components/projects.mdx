@@ -1,0 +1,107 @@
+# Projects Gallery
+
+Sección con la galería de proyectos filtrable con preview flotante que sigue al cursor.
+
+---
+
+## Componentes
+
+### `ProjectsGallery`
+
+**Archivo**: `src/components/projects/ProjectsGallery.tsx`
+
+Contenedor principal. Gestiona el filtro de categorías, el proyecto en hover y la posición del cursor.
+
+**Estado interno:**
+- `activeCategory: string` — categoría seleccionada ("All", "Frontend", "Full Stack")
+- `hoveredProject: Project | null` — proyecto actualmente en hover
+
+**Datos:**
+- `cvData.projects` → array de proyectos
+- `useMousePosition()` → posición del mouse para `FloatingImagePreview`
+
+**Import:** `React.lazy()` — se carga cuando la sección entra al viewport.
+
+---
+
+### `CategoryFilter`
+
+**Archivo**: `src/components/projects/CategoryFilter.tsx`
+
+Grupo de botones para filtrar proyectos por categoría.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `active` | `string` | Categoría activa actual |
+| `onSelect` | `(category: string) => void` | Callback al seleccionar categoría |
+
+**Categorías:** Se derivan automáticamente de las categorías únicas en `cvData.projects` + "All".
+
+---
+
+### `ProjectListItem`
+
+**Archivo**: `src/components/projects/ProjectListItem.tsx`
+
+Fila individual de un proyecto. Al hacer hover, activa el preview flotante.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `project` | `Project` | Datos del proyecto |
+| `index` | `number` | Posición para stagger de animación |
+| `onHover` | `(project: Project \| null) => void` | Callback de hover in/out |
+
+**Contenido:** Título del proyecto, categoría, tecnologías, link externo.
+
+---
+
+### `FloatingImagePreview`
+
+**Archivo**: `src/components/projects/FloatingImagePreview.tsx`
+
+Imagen de preview del proyecto que sigue la posición del cursor con spring smoothing.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `project` | `Project \| null` | Proyecto a previsualizar (null = oculto) |
+| `cursorX` | `MotionValue<number>` | Posición X del cursor (spring) |
+| `cursorY` | `MotionValue<number>` | Posición Y del cursor (spring) |
+
+**Comportamiento:**
+- Position `fixed`, desplazado respecto al cursor
+- Aparece/desaparece con transición de opacity + scale
+- La imagen se carga desde `public/projects/`
+
+---
+
+## Flujo visual
+
+```
+┌─────────────────────────────────────────────┐
+│                                             │
+│  PROJECTS                                   │
+│                                             │
+│  [All] [Frontend] [Full Stack]              │  CategoryFilter
+│                                             │
+│  ─────────────────────────────────────────  │
+│  01  Project Name          Frontend    →    │  ProjectListItem
+│  ─────────────────────────────────────────  │
+│  02  Project Name          Full Stack  →    │  ProjectListItem
+│  ─────────────────────────────────────────  │
+│  03  Project Name    ┌──────────┐  →       │
+│  ───────────────────│  Preview  │──────── │  FloatingImagePreview
+│  04  Project Name    │  (sigue  │  →       │  (sigue el cursor)
+│  ───────────────────│  cursor)  │──────── │
+│                      └──────────┘          │
+└─────────────────────────────────────────────┘
+```
+
+## Dependencias
+
+- `@/data/cvData` → `projects`
+- `@/hooks/useMousePosition` → posición del cursor con spring
+- `@/components/ui/media/OptimizedImage`
+- `@/lib/motion` → `fadeInView()`, `APPLE_EASE`
+- `framer-motion` → `motion`, `AnimatePresence`, `useMotionValue`
+- `react-i18next` → `useTranslation`
+- `lucide-react` → `ArrowUpRight`

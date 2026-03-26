@@ -1,0 +1,154 @@
+# Internationalization (i18n)
+
+El portfolio soporta 3 idiomas con detección automática y persistencia.
+
+---
+
+## Idiomas soportados
+
+| Código | Idioma | Archivo |
+|--------|--------|---------|
+| `en` | English (default) | `src/locales/en/translation.json` |
+| `es` | Español | `src/locales/es/translation.json` |
+| `dk` | Dansk | `src/locales/dk/translation.json` |
+
+---
+
+## Stack
+
+| Paquete | Función |
+|---------|---------|
+| `i18next` | Core de internacionalización |
+| `react-i18next` | Bindings de React (`useTranslation`, `Trans`) |
+| `react-helmet-async` | Actualiza `<html lang>` dinámicamente |
+
+---
+
+## Configuración (`src/i18n.ts`)
+
+```typescript
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import en from './locales/en/translation.json';
+import es from './locales/es/translation.json';
+import dk from './locales/dk/translation.json';
+
+i18n.use(initReactI18next).init({
+  resources: {
+    en: { translation: en },
+    es: { translation: es },
+    dk: { translation: dk },
+  },
+  lng: detectLanguage(),  // lee localStorage → navigator → 'en'
+  fallbackLng: 'en',
+  interpolation: { escapeValue: false },
+});
+```
+
+### Detección del idioma
+
+1. Lee `localStorage('edd-portfolio-lang')`
+2. Si no existe, lee `navigator.language`:
+   - Empieza con `es` → español
+   - Empieza con `da` → danés
+   - Otro → inglés
+3. Fallback final: `'en'`
+
+---
+
+## Uso en componentes
+
+### Texto simple
+
+```tsx
+import { useTranslation } from 'react-i18next';
+
+function AboutSection() {
+  const { t } = useTranslation();
+
+  return <h2>{t('about.title')}</h2>;
+}
+```
+
+### Objetos (testimonios)
+
+```tsx
+const testimonials = t('testimonials', { returnObjects: true }) as Testimonial[];
+```
+
+Los testimonios son arrays completos en el JSON de traducción, lo que permite testimonios completamente localizados por idioma.
+
+---
+
+## Estructura del JSON de traducción
+
+```json
+{
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "title": "Senior Full-Stack Engineer",
+    "cta": "Download CV",
+    "scroll": "Scroll to explore"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "..."
+  },
+  "testimonials": [
+    {
+      "quote": "Working with Edd was...",
+      "author": "John Smith",
+      "role": "CTO",
+      "company": "TechCorp"
+    }
+  ]
+}
+```
+
+---
+
+## Cambio de idioma
+
+El `LanguageSelector` en `StickyNav` cicla entre idiomas al hacer click:
+
+1. Llama a `i18n.changeLanguage(nextLang)`
+2. Guarda en `localStorage('edd-portfolio-lang')`
+3. Actualiza `document.documentElement.lang`
+4. React re-renderiza con las nuevas traducciones
+
+---
+
+## HTML lang y hreflang
+
+El componente `SEO` (via `react-helmet-async`) inyecta:
+
+```html
+<html lang="en">
+<link rel="alternate" hreflang="en" href="https://eddremonts.dk" />
+<link rel="alternate" hreflang="es" href="https://eddremonts.dk?lang=es" />
+<link rel="alternate" hreflang="da" href="https://eddremonts.dk?lang=dk" />
+```
+
+---
+
+## CV localizado
+
+La URL del CV se calcula dinámicamente según idioma + tema:
+
+```tsx
+const cvUrl = `/cv/Eduardo_Inerarte_CV_${lang}_${resolvedTheme}.pdf`;
+```
+
+6 variantes (3 idiomas × 2 temas) se generan con `tools/cv-generator/generate_cv.py`.
+
+---
+
+## Agregar un nuevo idioma
+
+Ver la guía completa: [Adding Languages](../guides/adding-languages.mdx)

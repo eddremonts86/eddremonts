@@ -1,0 +1,178 @@
+# Animations
+
+Sistema de animaciones basado en Framer Motion con constantes compartidas y patrones reutilizables.
+
+---
+
+## Archivo central: `src/lib/motion.ts`
+
+Todas las configuraciones de animación viven en un solo archivo para evitar duplicación y mantener consistencia.
+
+### Constantes exportadas
+
+```tsx
+// Easing Apple — usado en 90% de las transiciones UI
+export const APPLE_EASE = [0.16, 1, 0.3, 1];
+
+// Spring para interacciones generales
+export const SPRING_CONFIG = { stiffness: 150, damping: 20 };
+
+// Spring para el cursor (respuesta rápida)
+export const CURSOR_SPRING = { stiffness: 500, damping: 50 };
+```
+
+### `fadeInView()` — Builder de animaciones scroll-triggered
+
+```tsx
+export function fadeInView(delay = 0) {
+  return {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: '-100px' },
+    transition: {
+      duration: 0.6,
+      delay,
+      ease: APPLE_EASE,
+    },
+  };
+}
+
+// Uso en componentes:
+<motion.div {...fadeInView(0.1)}>
+  <FeatureCard />
+</motion.div>
+```
+
+---
+
+## Tipos de animación
+
+### 1. Scroll-triggered entry
+
+Elementos que aparecen cuando entran al viewport. Patrón más común.
+
+```tsx
+<motion.section
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ ease: APPLE_EASE, duration: 0.6 }}
+>
+```
+
+**Usado en:** Todas las secciones, cards, badges.
+
+### 2. Scroll-linked parallax
+
+Elementos cuya posición está vinculada al progreso de scroll.
+
+```tsx
+const { scrollYProgress } = useScroll({ target: ref });
+const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
+
+<motion.div style={{ y }}>
+```
+
+**Usado en:** HeroSection (parallax del contenido), ScrollRevealText (word reveal).
+
+### 3. Spring physics
+
+Animaciones con física de resorte para interacciones naturales.
+
+```tsx
+const springX = useSpring(mouseX, CURSOR_SPRING);
+```
+
+**Usado en:** MouseFollower, FloatingImagePreview, StatsCounter.
+
+### 4. Staggered entry
+
+Elementos que entran secuencialmente con delay incremental.
+
+```tsx
+{items.map((item, i) => (
+  <motion.div key={item.id} {...fadeInView(i * 0.05)}>
+    <Card item={item} />
+  </motion.div>
+))}
+```
+
+**Usado en:** FeatureCards, ExperienceCards, TechBadges, ProjectListItems.
+
+### 5. AnimatePresence (enter/exit)
+
+Transiciones de entrada y salida para elementos que se montan/desmontan.
+
+```tsx
+<AnimatePresence mode="wait">
+  {isVisible && (
+    <motion.div
+      key="element"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    />
+  )}
+</AnimatePresence>
+```
+
+**Usado en:** StickyNav (show/hide), TestimonialSlide (cambio de slide), CodeBlock (cambio de tab).
+
+### 6. Continuous motion
+
+Animaciones que se repiten infinitamente.
+
+```tsx
+<motion.div
+  animate={{ x: [0, -totalWidth] }}
+  transition={{ repeat: Infinity, duration: 30, ease: 'linear' }}
+/>
+```
+
+**Usado en:** SkillsMarquee.
+
+### 7. Hover interactions
+
+Animaciones en hover para elementos interactivos.
+
+```tsx
+<motion.div
+  whileHover={{ scale: 1.02 }}
+  whileTap={{ scale: 0.98 }}
+/>
+```
+
+---
+
+## Accesibilidad: `useReducedMotion`
+
+Componentes con animación continua **deben** verificar la preferencia del sistema:
+
+```tsx
+import { useReducedMotion } from 'framer-motion';
+
+function SkillsMarquee() {
+  const prefersReduced = useReducedMotion();
+
+  return (
+    <motion.div
+      animate={prefersReduced ? {} : { x: [0, -totalWidth] }}
+    />
+  );
+}
+```
+
+**Componentes que lo verifican:**
+- `MouseFollower` — se desactiva completamente
+- `SkillsMarquee` — pausa la animación
+
+---
+
+## Reglas de animación
+
+1. **Siempre usar constantes de `@/lib/motion`** — nunca hardcodear easings
+2. **`viewport: { once: true }`** en scroll-triggered — no re-animar
+3. **`useMotionValue`** para valores que cambian frecuentemente (cursor, scroll) — evita re-renders
+4. **`useReducedMotion()`** en animaciones continuas
+5. **Springs > durations** para interacciones — se sienten más naturales
+6. **`AnimatePresence`** siempre con `mode="wait"` para transiciones limpias

@@ -35,7 +35,7 @@ export const StickyNav = () => {
           exit={{ y: -100, opacity: 0 }}
           transition={{ duration: 0.5, ease: APPLE_EASE }}
           className="bg-background/80 fixed left-0 top-0 z-[100] w-full border-b border-subtle pt-[env(safe-area-inset-top)] backdrop-blur-xl"
-          aria-label="Main navigation"
+          aria-label={t('a11y.mainNav')}
         >
           <div className="container mx-auto flex items-center justify-between gap-3 px-4 py-3 md:gap-4 md:px-6 md:py-4">
             {/* Brand / Logo */}

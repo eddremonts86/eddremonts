@@ -1,0 +1,129 @@
+# SEO
+
+Estrategia de SEO para un SPA estática client-side.
+
+---
+
+## Componente `SEO`
+
+**Archivo**: `src/components/ui/layout/SEO.tsx`
+
+Usa `react-helmet-async` para inyectar meta tags dinámicamente en el `<head>`.
+
+### Tags inyectados
+
+#### Básicos
+
+```html
+<title>Edd Remonts — Senior Full-Stack Engineer</title>
+<meta name="description" content="..." />
+<link rel="canonical" href="https://eddremonts.dk" />
+```
+
+#### Open Graph
+
+```html
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Edd Remonts — Senior Full-Stack Engineer" />
+<meta property="og:description" content="..." />
+<meta property="og:image" content="https://eddremonts.dk/edd/og-image.jpg" />
+<meta property="og:url" content="https://eddremonts.dk" />
+<meta property="og:locale" content="en_US" />
+```
+
+#### Twitter Card
+
+```html
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Edd Remonts — Senior Full-Stack Engineer" />
+<meta name="twitter:description" content="..." />
+<meta name="twitter:image" content="https://eddremonts.dk/edd/og-image.jpg" />
+```
+
+#### Hreflang alternates
+
+```html
+<link rel="alternate" hreflang="en" href="https://eddremonts.dk" />
+<link rel="alternate" hreflang="es" href="https://eddremonts.dk?lang=es" />
+<link rel="alternate" hreflang="da" href="https://eddremonts.dk?lang=dk" />
+<link rel="alternate" hreflang="x-default" href="https://eddremonts.dk" />
+```
+
+#### JSON-LD Structured Data
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Eduardo Inerarte",
+  "jobTitle": "Senior Full-Stack Engineer",
+  "url": "https://eddremonts.dk",
+  "sameAs": [
+    "https://github.com/eddremonts",
+    "https://linkedin.com/in/eddremonts"
+  ]
+}
+```
+
+---
+
+## Sitemap
+
+Generado automáticamente en build time por `vite-plugin-sitemap`:
+
+```ts
+// vite.config.ts
+import Sitemap from 'vite-plugin-sitemap';
+
+export default defineConfig({
+  plugins: [
+    Sitemap({
+      hostname: 'https://eddremonts.dk',
+    }),
+  ],
+});
+```
+
+Genera `dist/sitemap.xml` en cada build.
+
+---
+
+## robots.txt
+
+```
+# public/robots.txt
+User-agent: *
+Allow: /
+Disallow: /cv/
+
+Sitemap: https://eddremonts.dk/sitemap.xml
+```
+
+- Permite crawling general
+- Bloquea la carpeta `/cv/` (PDFs privados)
+- Referencia el sitemap generado
+
+---
+
+## HTML lang
+
+El atributo `lang` de `<html>` se actualiza dinámicamente:
+
+```tsx
+// SEO component via Helmet
+<Helmet htmlAttributes={{ lang: currentLanguage }} />
+
+// También se actualiza directamente:
+document.documentElement.lang = currentLanguage;
+```
+
+---
+
+## Limitaciones del SPA
+
+Al ser un SPA sin SSR, los crawlers que no ejecutan JavaScript no verán el contenido dinámico. Mitigaciones:
+
+1. **Meta tags** se inyectan via Helmet (no dependen de React rendering para crawlers modernos como Googlebot)
+2. **JSON-LD** está en un `<script>` tag, accesible sin JS
+3. **Sitemap** generado estáticamente
+4. Los crawlers modernos (Google, Bing) ejecutan JavaScript y ven el contenido completo

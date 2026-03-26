@@ -1,0 +1,205 @@
+# Code Conventions
+
+Convenciones de código que todos los desarrolladores del proyecto deben seguir.
+
+---
+
+## Archivos y naming
+
+| Tipo | Naming | Extensión | Ejemplo |
+|------|--------|-----------|---------|
+| Componentes React | PascalCase | `.tsx` | `HeroSection.tsx` |
+| Archivos de datos | camelCase | `.ts` | `cvData.ts` |
+| Custom hooks | camelCase con `use` | `.ts` | `useMousePosition.ts` |
+| Utilidades | camelCase | `.ts` | `motion.ts` |
+| Tests | PascalCase + `.test` | `.test.tsx` | `OptimizedImage.test.tsx` |
+| Traducciones | directorio ISO 639 | `.json` | `en/translation.json` |
+| Assets públicos | kebab-case | varies | `tech-icons/react.svg` |
+
+---
+
+## Exports
+
+```tsx
+// ✅ Named exports (obligatorio para componentes)
+export function HeroSection() { ... }
+export const APPLE_EASE = [0.16, 1, 0.3, 1];
+
+// ❌ No usar default exports (excepto App)
+export default function HeroSection() { ... }
+
+// ❌ No crear barrel exports (index.ts)
+// No: components/index.ts → export { HeroSection } from './hero/HeroSection'
+```
+
+---
+
+## Imports
+
+```tsx
+// ✅ Usar path alias
+import { HeroSection } from '@/components/hero/HeroSection';
+import { cvData } from '@/data/cvData';
+import { APPLE_EASE } from '@/lib/motion';
+
+// ❌ No usar relative paths largos
+import { HeroSection } from '../../../components/hero/HeroSection';
+
+// ✅ Named imports de librerías
+import { motion, useScroll } from 'framer-motion';
+import { Star, Rocket } from 'lucide-react';
+
+// ❌ No wildcard imports de librerías grandes
+import * as LucideIcons from 'lucide-react';
+```
+
+---
+
+## Componentes
+
+### Un componente por archivo
+
+```tsx
+// ✅ Un archivo = un componente
+// HeroSection.tsx
+export function HeroSection() { ... }
+
+// ❌ No múltiples componentes públicos en un archivo
+export function Hero() { ... }
+export function HeroTitle() { ... }  // Debería ser su propio archivo
+```
+
+### Estructura de un componente
+
+```tsx
+// 1. Imports
+import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { fadeInView } from '@/lib/motion';
+
+// 2. Types (si son locales al componente)
+interface FeatureCardProps {
+  icon: string;
+  index: number;
+}
+
+// 3. Component
+export function FeatureCard({ icon, index }: FeatureCardProps) {
+  const { t } = useTranslation();
+
+  return (
+    <motion.div {...fadeInView(index * 0.05)}>
+      {/* JSX */}
+    </motion.div>
+  );
+}
+```
+
+---
+
+## Data files
+
+```tsx
+// ✅ Data files son TypeScript puro — NO importan React
+// src/data/cvData.ts
+export const personalInfo = { ... };
+export const experiences = [ ... ];
+
+// ❌ Nunca importar React en data files
+import { Star } from 'lucide-react';  // NO en data files
+```
+
+Los iconos se referencian como strings y se resuelven en render time por `IconComponent`.
+
+---
+
+## Estilos
+
+```tsx
+// ✅ Usar Tailwind con tokens semánticos
+<div className="bg-background text-foreground" />
+<button className="bg-primary text-white" />
+
+// ❌ Nunca hex directo
+<div className="bg-[#F4F4F5]" />
+<div style={{ color: '#D13426' }} />
+
+// ✅ Glassmorphism con la utilidad
+<div className="apple-glass rounded-xl p-6" />
+
+// ✅ Focus visible para accesibilidad
+<button className="focus-visible:ring-2 focus-visible:ring-primary" />
+```
+
+---
+
+## Animaciones
+
+```tsx
+// ✅ Usar constantes de @/lib/motion
+import { fadeInView, APPLE_EASE, SPRING_CONFIG } from '@/lib/motion';
+
+<motion.div {...fadeInView(0.1)} />
+<motion.div transition={{ ease: APPLE_EASE }} />
+
+// ❌ No hardcodear easings
+<motion.div transition={{ ease: [0.16, 1, 0.3, 1] }} />
+```
+
+---
+
+## i18n
+
+```tsx
+// ✅ Todo texto visible usa traducciones
+const { t } = useTranslation();
+<h2>{t('about.title')}</h2>
+
+// ❌ No hardcodear texto
+<h2>About Me</h2>
+
+// Al agregar texto, actualizar TODOS los locales:
+// src/locales/en/translation.json
+// src/locales/es/translation.json
+// src/locales/dk/translation.json
+```
+
+---
+
+## Accesibilidad
+
+```tsx
+// ✅ Alt text descriptivo
+<OptimizedImage alt={`${project.title} preview (${project.category})`} />
+
+// ✅ Verificar reduced motion
+const prefersReduced = useReducedMotion();
+if (prefersReduced) return null; // o versión estática
+
+// ✅ Focus visible en interactivos
+<button className="focus-visible:ring-2 focus-visible:ring-primary">
+
+// ❌ No omitir alt
+<img src="..." />
+```
+
+---
+
+## TypeScript
+
+```tsx
+// ✅ Strict mode — no any
+const data: Project[] = [...];
+
+// ❌ No usar any
+const data: any = [...];
+
+// ✅ Interfaces para props de componentes
+interface CardProps {
+  title: string;
+  index: number;
+}
+
+// ✅ El build falla si hay errores de tipo
+// pnpm build ejecuta tsc -b primero
+```

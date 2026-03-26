@@ -1,0 +1,102 @@
+# Tech Stack
+
+## Stack principal
+
+| Layer | Tecnología | Versión | Rol |
+|-------|-----------|---------|-----|
+| **Runtime** | React | 19.2 | UI framework con functional components + hooks |
+| **Build** | Vite | 7.3 | Dev server con HMR, bundler basado en Rollup |
+| **Language** | TypeScript | ~5.9 | Tipado estático en modo `strict` |
+| **Styling** | Tailwind CSS | 3.4 | Utility-first CSS con design tokens personalizados |
+| **Animations** | Framer Motion | 12 | Animaciones basadas en física (springs, scroll-linked) |
+| **i18n** | i18next + react-i18next | 25 / 16 | Internacionalización EN/ES/DK |
+| **SEO** | react-helmet-async | 2 | Meta tags dinámicos, OpenGraph, JSON-LD |
+| **Icons** | lucide-react | 0.575 | Set de iconos como componentes React |
+| **Forms** | Formspree | — | Backend de formulario de contacto (SaaS) |
+
+---
+
+## Tipografías
+
+| Familia | Variable CSS | Uso |
+|---------|-------------|-----|
+| **M PLUS 1 Variable** | `font-display` | Headings, títulos de impacto |
+| **Epilogue** | `font-body` | Texto de cuerpo, descripciones |
+| **Cinzel** | `font-serif` | Acentos serif decorativos |
+| **JetBrains Mono** | `font-mono` | Código, etiquetas mono |
+
+---
+
+## DevDependencies
+
+### Testing
+
+| Paquete | Función |
+|---------|---------|
+| `vitest` (4.x) | Test runner compatible con Vite |
+| `@testing-library/react` (16.x) | Testing de componentes React |
+| `@testing-library/user-event` | Simulación de interacciones de usuario |
+| `@testing-library/jest-dom` | Matchers adicionales para DOM |
+| `jsdom` | Entorno DOM para tests |
+
+### Linting & Formatting
+
+| Paquete | Función |
+|---------|---------|
+| `eslint` (9.x) | Linter con flat config |
+| `typescript-eslint` | Reglas TypeScript para ESLint |
+| `eslint-plugin-react-hooks` | Reglas de hooks de React |
+| `eslint-plugin-react-refresh` | Validación de Fast Refresh |
+| `eslint-config-prettier` | Desactiva reglas que colisionan con Prettier |
+| `prettier` (3.8) | Code formatter |
+| `prettier-plugin-tailwindcss` | Ordena clases de Tailwind automáticamente |
+
+### Build & Tooling
+
+| Paquete | Función |
+|---------|---------|
+| `@vitejs/plugin-react` | Plugin de React para Vite (Fast Refresh) |
+| `vite-plugin-sitemap` (0.8) | Genera sitemap.xml en build |
+| `autoprefixer` | PostCSS: vendor prefixes automáticos |
+| `tailwindcss` | Motor de Tailwind via PostCSS |
+| `@playwright/test` | E2E testing + screenshot capture |
+
+---
+
+## Decisiones de arquitectura
+
+### ¿Por qué React 19 + Vite (no Next.js)?
+
+- **SPA estática**: No necesitamos SSR, API routes ni file-system routing
+- **Simpleza**: Una sola página, cero complejidad de routing
+- **Performance**: Vite ofrece HMR ultra-rápido y bundling optimizado con Rollup
+- **Deploy**: Bundle estático en Netlify — sin serverless functions necesarias
+
+### ¿Por qué Tailwind CSS?
+
+- Design tokens como clases utilitarias (`bg-background`, `text-primary`)
+- Tematización light/dark via CSS custom properties + clase `.dark`
+- Plugin de Prettier ordena clases automáticamente
+- Purging automático → CSS final mínimo
+
+### ¿Por qué Framer Motion?
+
+- Animaciones basadas en física (springs) para interacciones naturales
+- `useScroll` + `useTransform` para parallax scroll-linked
+- `AnimatePresence` para transiciones de entrada/salida
+- `useReducedMotion()` para respetar preferencias de accesibilidad
+- API declarativa compatible con React 19
+
+### ¿Por qué i18next?
+
+- Detección automática del idioma del navegador
+- Persistencia en `localStorage`
+- Interpolación y objetos anidados en traducciones
+- `returnObjects: true` permite arrays complejos (testimonios)
+
+### ¿Por qué Formspree?
+
+- No requiere backend propio
+- Protección anti-spam incluida
+- Validación server-side
+- Free tier suficiente para un portfolio

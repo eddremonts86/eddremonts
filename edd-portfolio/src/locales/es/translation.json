@@ -1,5 +1,8 @@
 {
   "nav": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "experience": "Experiencia",
     "title": "Ingeniero Frontend Senior con base Full Stack",
     "description": "Ingeniero orientado a frontend, con raíces full stack y casi dos décadas de experiencia desde 2007. Construyo productos web escalables que convierten reglas de negocio complejas en interfaces rápidas, claras e intuitivas usando React, Vue, Node.js y plataformas cloud.",
     "projects": "Proyectos",
@@ -10,6 +13,9 @@
   "hero": {
     "available": "Disponible para nuevas oportunidades",
     "greeting": "Hola, soy",
+    "role": "Ingeniero Frontend Senior",
+    "titleLine1": "Frontend",
+    "titleLine2": "Artesano.",
     "explore": "Explorar Mi Trabajo",
     "scroll": "Deslizar"
   },
@@ -125,12 +131,22 @@
       "name": "Tu Nombre",
       "email": "Tu Correo",
       "message": "Detalles del proyecto...",
+      "namePlaceholder": "Juan Pérez",
+      "emailPlaceholder": "juan@ejemplo.com",
       "send": "Enviar Mensaje",
       "submitting": "Enviando...",
+      "error": "Error. Por favor, escríbeme directamente por correo.",
       "target": "Iniciar Conexión"
     },
+    "success": {
+      "title": "Mensaje Enviado",
+      "body": "¡Gracias por escribirme! Te responderé lo antes posible.",
+      "reset": "Enviar Otro"
+    },
     "info": {
-      "title": "Detalles de Contacto"
+      "title": "Detalles de Contacto",
+      "emailLabel": "Correo",
+      "locationLabel": "Ubicación"
     }
   },
   "stats": {
@@ -191,6 +207,34 @@
   },
   "footer": {
     "rights": "Todos los derechos reservados.",
+    "inspired": "Hecho con intención.",
     "builtWith": "Confeccionado con React 19 y Minimalismo Anime."
+  },
+  "preloader": {
+    "loading": "Cargando experiencia",
+    "standby": "Espera"
+  },
+  "a11y": {
+    "skipToContent": "Saltar al contenido",
+    "skillsMarquee": "Habilidades tecnológicas",
+    "prevTestimonial": "Testimonio anterior",
+    "nextTestimonial": "Siguiente testimonio",
+    "gotoTestimonial": "Ir al testimonio {{number}}",
+    "mainNav": "Navegación principal",
+    "sectionNav": "Navegación por secciones"
+  },
+  "testimonials_loading": "Cargando testimonios...",
+  "cv": {
+    "aboutTitle": "Sobre Mí",
+    "summary": "Ingeniero orientado a frontend, con raíces full stack y casi dos décadas de experiencia desde 2007. Construyo productos web escalables que convierten reglas de negocio complejas en interfaces rápidas, claras e intuitivas.",
+    "intro": "Entiendo toda la cadena de entrega, colaboro cómodamente con producto, diseño y backend. Adopto la refactorización arquitectónica, manteniendo mi stack técnico, cobertura de pruebas y pipelines CI/CD a la vanguardia.",
+    "experienceTitle": "Experiencia Profesional",
+    "skillsTitle": "Habilidades Técnicas",
+    "langLabel": "Idiomas",
+    "langItems": [
+      { "lang": "Español", "level": "Nativo" },
+      { "lang": "Inglés", "level": "Fluido" },
+      { "lang": "Danés", "level": "B1" }
+    ]
   }
 }

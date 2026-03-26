@@ -24,7 +24,7 @@ export const SEO = ({ title, description, image, url }: SEOProps) => {
 
   const lang = i18n.language;
   const siteTitle = title || `${personalInfo.name} — ${t('hero.role', personalInfo.title)}`;
-  const siteDescription = description || t('about.intro', personalInfo.description);
+  const siteDescription = description || t('personalInfo.description');
   const siteImage = image || OG_IMAGE;
   const siteUrl = url || SITE_URL;
   const locale = LOCALE_MAP[lang] || 'en_US';

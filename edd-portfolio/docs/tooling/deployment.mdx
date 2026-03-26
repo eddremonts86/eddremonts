@@ -1,0 +1,150 @@
+# Deployment
+
+El portfolio se deploya como sitio estático en **Netlify**.
+
+---
+
+## Pipeline de build
+
+```
+pnpm build
+    │
+    ├── 1. tsc -b          # TypeScript check (strict)
+    │      Si hay errores → BUILD FALLA
+    │
+    └── 2. vite build       # Bundle con Rollup
+           ├── Tree shaking
+           ├── Code splitting (React.lazy chunks)
+           ├── CSS purging (Tailwind)
+           ├── Minificación
+           └── Sitemap generation (vite-plugin-sitemap)
+           
+Output: dist/
+```
+
+---
+
+## Configuración de Netlify
+
+**Archivo**: `netlify.toml` (en la raíz del workspace)
+
+```toml
+[build]
+  base = "edd-portfolio"
+  command = "pnpm build"
+  publish = "dist"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
+
+### Campos clave
+
+| Campo | Valor | Función |
+|-------|-------|---------|
+| `base` | `edd-portfolio` | Directorio del proyecto dentro del monorepo |
+| `command` | `pnpm build` | Comando de build |
+| `publish` | `dist` | Directorio de salida |
+| `redirects` | `/* → /index.html` 200 | SPA catch-all — todas las rutas sirven `index.html` |
+
+### Fallback SPA
+
+El redirect catch-all también está duplicado en `public/_redirects` para redundancia:
+
+```
+/*    /index.html   200
+```
+
+---
+
+## Dominio
+
+- **Producción**: `https://eddremonts.dk`
+- El dominio se configura en el dashboard de Netlify
+
+---
+
+## Variables de entorno
+
+No se requieren variables de entorno. Todo el contenido es estático y los servicios externos (Formspree) se configuran via endpoint público.
+
+---
+
+## Build verification
+
+Antes de pushear, verificar localmente:
+
+```bash
+# 1. Build completo
+pnpm build
+
+# 2. Preview del build
+pnpm preview
+# Abrir http://localhost:4173
+
+# 3. Verificar:
+#    - Todas las secciones se renderizan
+#    - Lazy loading funciona (ProjectsGallery, CodeShowcase, Contact)
+#    - Ambos temas funcionan
+#    - Los 3 idiomas funcionan
+#    - Imágenes cargan correctamente
+#    - Formulario de contacto envía
+```
+
+---
+
+## Lighthouse check
+
+Después del build, ejecutar Lighthouse en Chrome Incognito:
+
+```
+Chrome → http://localhost:4173 → DevTools → Lighthouse → Generate report
+```
+
+| Métrica | Target |
+|---------|--------|
+| Performance | ≥ 90 |
+| Accessibility | ≥ 95 |
+| Best Practices | ≥ 95 |
+| SEO | 100 |
+
+---
+
+## Troubleshooting
+
+### Build falla con errores de TypeScript
+
+```bash
+# Ver errores específicos
+npx tsc --noEmit
+```
+
+TypeScript está en modo `strict`. Los errores comunes incluyen:
+- Tipos faltantes en datos nuevos de `cvData.ts`
+- Props incorrectas en componentes
+- Variables no utilizadas
+
+### Build falla con errores de Vite
+
+```bash
+# Build con más verbose
+npx vite build --debug
+```
+
+### Assets no encontrados
+
+Verificar que los archivos están en `public/` (no en `src/`). Los archivos en `public/` se copian tal cual a `dist/`.
+
+### Code splitting no funciona
+
+Verificar que `React.lazy()` usa dynamic import:
+
+```tsx
+// ✅ Correcto — genera chunk separado
+const Component = lazy(() => import('./Component'));
+
+// ❌ Incorrecto — no genera chunk
+import { Component } from './Component';
+```

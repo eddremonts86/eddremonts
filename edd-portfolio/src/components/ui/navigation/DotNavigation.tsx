@@ -48,7 +48,7 @@ export const DotNavigation = () => {
   return (
     <nav
       className="fixed right-6 top-1/2 z-[90] hidden -translate-y-1/2 flex-col gap-4 lg:flex"
-      aria-label="Section navigation"
+      aria-label={t('a11y.sectionNav')}
     >
       {NAV_SECTIONS.map(({ id, labelKey }) => (
         <a

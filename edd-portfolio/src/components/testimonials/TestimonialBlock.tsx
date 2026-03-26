@@ -50,7 +50,7 @@ export const TestimonialBlock = () => {
   if (testimonials.length === 0) {
     return (
       <div className="text-foreground/50 flex justify-center py-24 text-sm">
-        Loading testimonials...
+        {t('testimonials_loading')}
       </div>
     );
   }

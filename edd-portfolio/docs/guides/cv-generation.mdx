@@ -1,0 +1,87 @@
+# Guide: CV Generation
+
+Generación automatizada de CVs en PDF para múltiples idiomas y temas.
+
+---
+
+## Overview
+
+El CV se genera como PDF estático en 6 variantes:
+
+| Variante | Archivo |
+|----------|---------|
+| English Light | `Eduardo_Inerarte_CV_en_light.pdf` |
+| English Dark | `Eduardo_Inerarte_CV_en_dark.pdf` |
+| Spanish Light | `Eduardo_Inerarte_CV_es_light.pdf` |
+| Spanish Dark | `Eduardo_Inerarte_CV_es_dark.pdf` |
+| Danish Light | `Eduardo_Inerarte_CV_dk_light.pdf` |
+| Danish Dark | `Eduardo_Inerarte_CV_dk_dark.pdf` |
+
+Los PDFs se guardan en `public/cv/` y se sirven como archivos estáticos.
+
+---
+
+## Requisitos
+
+| Herramienta | Instalación |
+|-------------|-------------|
+| Python 3 | `brew install python` (macOS) |
+| WeasyPrint | `pip install weasyprint` |
+
+WeasyPrint convierte HTML/CSS a PDF de alta calidad.
+
+---
+
+## Ejecutar el generador
+
+```bash
+cd tools/cv-generator
+python generate_cv.py
+```
+
+El script:
+1. Lee los datos del CV (información, experiencias, skills)
+2. Genera HTML con los estilos correspondientes a cada tema
+3. Convierte a PDF con WeasyPrint
+4. Guarda en `../../public/cv/`
+
+---
+
+## Cómo se usa en la app
+
+El `HeroSection` calcula la URL del CV dinámicamente:
+
+```tsx
+const { i18n } = useTranslation();
+const resolvedTheme = useResolvedTheme();
+
+const cvUrl = `/cv/Eduardo_Inerarte_CV_${i18n.language}_${resolvedTheme}.pdf`;
+```
+
+El botón "Download CV" descarga el PDF correspondiente al idioma y tema activos.
+
+---
+
+## Cuándo regenerar
+
+Regenerar los CVs cuando:
+- Se actualiza `cvData.ts` (nueva experiencia, skill, etc.)
+- Se cambia información personal
+- Se agrega un nuevo idioma
+- Se modifican los estilos del CV
+
+---
+
+## Screenshots de proyectos
+
+Adicionalmente, `tools/screenshots/shoot.bash` captura screenshots de los proyectos:
+
+```bash
+# Requiere Playwright instalado
+npx playwright install chromium
+
+# Ejecutar capturas
+bash tools/screenshots/shoot.bash
+```
+
+El script visita las URLs de los proyectos y captura screenshots a 1200×800px en formato WebP.

@@ -1,0 +1,166 @@
+# Testing
+
+Configuración de testing con Vitest y Testing Library.
+
+---
+
+## Stack de testing
+
+| Paquete | Versión | Función |
+|---------|---------|---------|
+| `vitest` | 4.x | Test runner (compatible con Vite) |
+| `@testing-library/react` | 16.x | Renderizado y queries de componentes |
+| `@testing-library/user-event` | — | Simulación de interacciones (click, type, etc.) |
+| `@testing-library/jest-dom` | — | Matchers adicionales (`.toBeInTheDocument()`, etc.) |
+| `jsdom` | — | Entorno DOM para tests (no necesita browser) |
+
+---
+
+## Configuración
+
+### `vite.config.ts`
+
+Vitest se configura directamente en el config de Vite:
+
+```typescript
+/// <reference types="vitest" />
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  // ...
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/setupTests.ts',
+  },
+});
+```
+
+### `src/setupTests.ts`
+
+Setup global que se ejecuta antes de cada test:
+
+```typescript
+import '@testing-library/jest-dom';
+```
+
+Esto habilita matchers como `.toBeInTheDocument()`, `.toHaveClass()`, etc.
+
+---
+
+## Comandos
+
+```bash
+# Ejecutar tests una vez
+pnpm vitest run
+
+# Modo watch (re-ejecuta al guardar)
+pnpm vitest --watch
+
+# Con coverage
+pnpm vitest run --coverage
+
+# Un solo archivo
+pnpm vitest run src/components/ui/media/OptimizedImage.test.tsx
+```
+
+---
+
+## Tests existentes
+
+| Archivo | Componente | Qué testea |
+|---------|-----------|------------|
+| `OptimizedImage.test.tsx` | `OptimizedImage` | Rendering, lazy loading, fallback |
+| `ThemeToggle.test.tsx` | `ThemeToggle` | Ciclo de temas, persistencia |
+
+---
+
+## Escribir un test
+
+### Estructura básica
+
+```tsx
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { describe, it, expect } from 'vitest';
+import { MyComponent } from './MyComponent';
+
+describe('MyComponent', () => {
+  it('renders correctly', () => {
+    render(<MyComponent title="Hello" />);
+    expect(screen.getByText('Hello')).toBeInTheDocument();
+  });
+
+  it('handles click', async () => {
+    const user = userEvent.setup();
+    const onClick = vi.fn();
+
+    render(<MyComponent onClick={onClick} />);
+    await user.click(screen.getByRole('button'));
+
+    expect(onClick).toHaveBeenCalledOnce();
+  });
+});
+```
+
+### Testear componentes con Context
+
+Componentes que usan `ThemeContext` o `i18n` necesitan providers:
+
+```tsx
+import { ThemeProvider } from '@/contexts/ThemeContext';
+import { I18nextProvider } from 'react-i18next';
+import i18n from '@/i18n';
+
+function renderWithProviders(ui: React.ReactElement) {
+  return render(
+    <I18nextProvider i18n={i18n}>
+      <ThemeProvider>
+        {ui}
+      </ThemeProvider>
+    </I18nextProvider>
+  );
+}
+
+it('works with theme', () => {
+  renderWithProviders(<ThemeToggle />);
+  // ...
+});
+```
+
+### Testear Framer Motion
+
+Para componentes con animaciones, mockar `framer-motion`:
+
+```tsx
+vi.mock('framer-motion', () => ({
+  motion: {
+    div: 'div',
+    span: 'span',
+    // ...
+  },
+  AnimatePresence: ({ children }: any) => children,
+  useReducedMotion: () => false,
+}));
+```
+
+---
+
+## Convenciones
+
+| Convención | Ejemplo |
+|-----------|---------|
+| Archivo de test | `ComponentName.test.tsx` (mismo directorio) |
+| Describe | Nombre del componente |
+| It | Describe el comportamiento esperado |
+| Queries | Preferir `getByRole` > `getByText` > `getByTestId` |
+
+---
+
+## E2E con Playwright
+
+Playwright está instalado pero se usa principalmente para screenshots de proyectos. Para tests E2E:
+
+```bash
+npx playwright test
+```

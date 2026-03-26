@@ -1,0 +1,129 @@
+# Linting & Formatting
+
+Configuración de ESLint y Prettier para mantener la calidad y consistencia del código.
+
+---
+
+## ESLint
+
+### Configuración
+
+**Archivo**: `eslint.config.js` (flat config — ESLint 9)
+
+```javascript
+// eslint.config.js
+import js from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import prettier from 'eslint-config-prettier';
+
+export default tseslint.config(
+  { ignores: ['dist'] },
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  {
+    plugins: {
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
+    rules: {
+      ...reactHooks.configs.recommended.rules,
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+    },
+  },
+  prettier,  // Desactiva reglas que colisionan con Prettier
+);
+```
+
+### Plugins
+
+| Plugin | Función |
+|--------|---------|
+| `typescript-eslint` | Reglas específicas de TypeScript |
+| `eslint-plugin-react-hooks` | Valida reglas de hooks (dependencies, order) |
+| `eslint-plugin-react-refresh` | Valida que los componentes sean compatibles con Fast Refresh |
+| `eslint-config-prettier` | Desactiva reglas de ESLint que conflictúan con Prettier |
+
+### Archivos analizados
+
+- `**/*.ts` y `**/*.tsx`
+- Ignora `dist/`
+
+### Comandos
+
+```bash
+# Verificar errores
+pnpm lint
+
+# Auto-fix
+pnpm lint:fix
+```
+
+---
+
+## Prettier
+
+### Configuración
+
+Prettier se configura implícitamente (usa defaults) con un plugin adicional:
+
+```json
+// package.json
+{
+  "prettier": {
+    "plugins": ["prettier-plugin-tailwindcss"]
+  }
+}
+```
+
+### Plugin de Tailwind
+
+`prettier-plugin-tailwindcss` **ordena automáticamente las clases de Tailwind** según el orden canónico. Esto asegura que las clases siempre aparezcan en el mismo orden en todo el proyecto.
+
+```tsx
+// Antes (desordenado)
+<div className="text-white p-4 bg-primary flex items-center rounded-lg mt-2" />
+
+// Después (Prettier ordena)
+<div className="mt-2 flex items-center rounded-lg bg-primary p-4 text-white" />
+```
+
+### Comandos
+
+```bash
+# Formatear todo el proyecto
+pnpm format
+
+# Verificar formato (sin modificar)
+pnpm format:check
+```
+
+---
+
+## Workflow recomendado
+
+1. **Al guardar**: Configurar VS Code para formatear con Prettier al guardar
+2. **Pre-commit**: Ejecutar `pnpm lint && pnpm format:check`
+3. **En CI**: `pnpm lint && pnpm format:check` como gate
+
+### VS Code settings recomendados
+
+```json
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  }
+}
+```
+
+---
+
+## Resolución de conflictos
+
+Si ESLint y Prettier entran en conflicto:
+- `eslint-config-prettier` ya desactiva las reglas conflictivas
+- Prettier siempre gana en formato (spaces, quotes, semicolons)
+- ESLint se enfoca en lógica (unused vars, hook rules, type errors)

@@ -2,6 +2,7 @@ import { projects } from '@/data/cvData';
 import { useMousePosition } from '@/hooks/useMousePosition';
 import { AnimatePresence } from 'framer-motion';
 import { useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CategoryFilter } from './CategoryFilter';
 import { FloatingImagePreview } from './FloatingImagePreview';
 import { ProjectListItem } from './ProjectListItem';
@@ -9,6 +10,7 @@ import { ProjectListItem } from './ProjectListItem';
 type Project = (typeof projects)[number];
 
 export const ProjectsGallery = () => {
+  const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState('All');
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -30,8 +32,10 @@ export const ProjectsGallery = () => {
       <div className="container mx-auto max-w-[1400px] px-6">
         <div className="mb-20 flex flex-col items-start justify-between gap-8 border-b border-subtle pb-12 md:flex-row md:items-end">
           <h2 className="text-4xl font-light tracking-tight md:text-5xl lg:text-7xl">
-            SELECTED
-            <span className="mt-2 block font-serif italic text-primary">works</span>
+            {t('projects.title')}
+            <span className="mt-2 block font-serif italic text-primary">
+              {t('projects.titleAccent')}
+            </span>
           </h2>
 
           <CategoryFilter active={activeCategory} onSelect={setActiveCategory} />

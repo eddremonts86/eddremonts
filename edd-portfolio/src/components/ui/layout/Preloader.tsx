@@ -1,8 +1,10 @@
 import { AnimatePresence, m } from 'framer-motion';
 import { APPLE_EASE } from '@/lib/motion';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
+  const { t } = useTranslation();
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -48,7 +50,7 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
           className="container relative z-10 flex h-full w-full max-w-[1400px] flex-col justify-between px-6 py-12 md:py-24"
         >
           <div className="flex w-full items-start justify-between font-mono text-[11px] uppercase tracking-widest opacity-40">
-            <span>Loading experience</span>
+            <span>{t('preloader.loading')}</span>
             <span>2024</span>
           </div>
 
@@ -72,7 +74,7 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
           </div>
 
           <div className="flex w-full items-end justify-between font-mono text-[11px] uppercase tracking-widest opacity-40">
-            <span>Stand by</span>
+            <span>{t('preloader.standby')}</span>
             <span>Eduardo Inerarte</span>
           </div>
         </m.div>

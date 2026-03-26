@@ -1,0 +1,136 @@
+# Scripts
+
+Todos los scripts están definidos en `package.json` y se ejecutan con `pnpm`:
+
+## Desarrollo
+
+### `pnpm dev`
+
+```bash
+vite
+```
+
+Inicia el servidor de desarrollo con Hot Module Replacement (HMR).
+
+- **URL**: `http://localhost:5173`
+- **Recarga automática**: cambios en `.tsx`, `.ts`, `.css` se reflejan al instante
+- **Path alias**: `@/` → `src/` funciona automáticamente
+
+---
+
+## Build
+
+### `pnpm build`
+
+```bash
+tsc -b && vite build
+```
+
+Genera el build de producción en `dist/`. Ejecuta **dos pasos en secuencia**:
+
+1. **`tsc -b`**: Compila TypeScript en modo estricto. Si hay errores de tipo, el build **se detiene** antes de generar artefactos.
+2. **`vite build`**: Bundlea con Rollup, tree-shaking, minificación y code splitting.
+
+> Si `tsc` falla, corregir errores de tipo antes de continuar. No existe bypass.
+
+### `pnpm preview`
+
+```bash
+vite preview
+```
+
+Sirve el contenido de `dist/` localmente para verificar el build de producción antes de deployar.
+
+- **URL**: `http://localhost:4173`
+- Útil para probar que el code-splitting y los lazy imports funcionan correctamente.
+
+---
+
+## Calidad de código
+
+### `pnpm lint`
+
+```bash
+eslint .
+```
+
+Ejecuta ESLint con la configuración flat config (`eslint.config.js`). Analiza todos los archivos `.ts` y `.tsx`.
+
+### `pnpm lint:fix`
+
+```bash
+eslint . --fix
+```
+
+Igual que `lint` pero aplica auto-fix cuando es posible.
+
+### `pnpm format`
+
+```bash
+prettier --write .
+```
+
+Formatea **todos** los archivos del proyecto con Prettier (incluye el plugin `prettier-plugin-tailwindcss` para ordenar clases de Tailwind).
+
+### `pnpm format:check`
+
+```bash
+prettier --check .
+```
+
+Verifica que todos los archivos están correctamente formateados sin modificarlos. Ideal para CI.
+
+---
+
+## Testing
+
+### Vitest
+
+```bash
+# Ejecutar tests una vez
+pnpm vitest run
+
+# Modo watch (re-ejecuta al guardar)
+pnpm vitest --watch
+
+# Con coverage
+pnpm vitest run --coverage
+```
+
+> Los tests usan `jsdom` como entorno y `@testing-library/react` para testing de componentes.
+
+---
+
+## Herramientas auxiliares
+
+### CV Generator
+
+```bash
+cd tools/cv-generator
+python generate_cv.py
+```
+
+Genera 6 variantes de CV en PDF (3 idiomas × 2 temas) usando WeasyPrint. Los PDFs se escriben en `public/cv/`.
+
+### Project Screenshots
+
+```bash
+bash tools/screenshots/shoot.bash
+```
+
+Usa Playwright CLI para capturar screenshots de los proyectos a 1200×800px.
+
+---
+
+## Resumen rápido
+
+| Tarea | Comando |
+|-------|---------|
+| Desarrollo | `pnpm dev` |
+| Build producción | `pnpm build` |
+| Preview build | `pnpm preview` |
+| Lint | `pnpm lint` |
+| Fix lint | `pnpm lint:fix` |
+| Formatear | `pnpm format` |
+| Verificar formato | `pnpm format:check` |
+| Tests | `pnpm vitest run` |

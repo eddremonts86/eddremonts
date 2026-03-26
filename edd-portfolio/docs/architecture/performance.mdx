@@ -1,0 +1,168 @@
+# Performance
+
+Estrategias de optimización de rendimiento implementadas en el proyecto.
+
+---
+
+## Code Splitting
+
+### Lazy loading de secciones
+
+Las secciones below-fold se cargan bajo demanda con `React.lazy()`:
+
+| Sección | Tipo |
+|---------|------|
+| HeroSection | ⚡ Eager (above-fold) |
+| StatsCounter | ⚡ Eager (above-fold) |
+| AboutSection | ⚡ Eager (above-fold) |
+| SkillsMarquee | ⚡ Eager (above-fold) |
+| ExperienceTimeline | ⚡ Eager (above-fold) |
+| TestimonialBlock | ⚡ Eager (above-fold) |
+| ProjectsGallery | 💤 Lazy (below-fold) |
+| CodeShowcase | 💤 Lazy (below-fold) |
+| ContactSection | 💤 Lazy (below-fold) |
+
+Esto reduce el bundle inicial y mejora el Time to Interactive (TTI).
+
+---
+
+## Image Optimization
+
+### `OptimizedImage` component
+
+Todas las imágenes usan el componente `OptimizedImage` que implementa:
+
+1. **Lazy loading**: `IntersectionObserver` carga la imagen solo cuando se acerca al viewport
+2. **Blur placeholder**: Muestra un skeleton/blur mientras carga
+3. **Fallback**: Si la imagen falla, usa `fallbackSrc`
+4. **Formato WebP**: Todas las imágenes están en WebP para máxima compresión
+
+### Reglas de optimización
+
+- Todas las imágenes deben ser **WebP**
+- Máximo **200KB** por imagen
+- Proyecto de imágenes en `public/projects/` con variantes de tamaño
+- Fotos personales en `public/edd/`
+
+---
+
+## Animation Performance
+
+### Framer Motion values vs useState
+
+Los valores de animación usan `useMotionValue` y `useSpring` en vez de `useState`. Esto es crítico porque:
+
+- `useMotionValue` **no causa re-renders** — actualiza el DOM directamente
+- `useState` causaría re-renders en cada frame de animación (60fps = 60 re-renders/segundo)
+
+```tsx
+// ✅ Correcto — sin re-renders
+const x = useMotionValue(0);
+const springX = useSpring(x, CURSOR_SPRING);
+
+// ❌ Evitar — re-render por frame
+const [x, setX] = useState(0);
+```
+
+### `useReducedMotion`
+
+Componentes con animación continua verifican la preferencia del sistema:
+
+- **`MouseFollower`**: Se desactiva completamente si `prefers-reduced-motion` está activo
+- **`SkillsMarquee`**: Pausa la animación infinita del marquee
+
+### Constantes compartidas
+
+Todas las configuraciones de animación viven en `src/lib/motion.ts`:
+
+```tsx
+export const APPLE_EASE = [0.16, 1, 0.3, 1];
+export const SPRING_CONFIG = { stiffness: 150, damping: 20 };
+export const CURSOR_SPRING = { stiffness: 500, damping: 50 };
+```
+
+Esto evita crear nuevos objetos de configuración en cada render.
+
+---
+
+## Bundle Optimization
+
+### Tree shaking
+
+Vite (Rollup) elimina código no utilizado automáticamente. Para que funcione correctamente:
+
+- **Named imports**: `import { Star } from 'lucide-react'` (no `import *`)
+- **Sin barrel exports**: imports directos al archivo fuente
+- **Módulos de datos puros**: `src/data/` no importa React — permite tree-shaking agresivo
+
+### Análisis del bundle
+
+```bash
+npx vite-bundle-visualizer
+```
+
+Genera un treemap interactivo para identificar dependencias pesadas.
+
+---
+
+## CSS Performance
+
+### Tailwind CSS purging
+
+Tailwind elimina automáticamente las clases no utilizadas en producción gracias a su configuración de `content`:
+
+```js
+// tailwind.config.js
+content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}']
+```
+
+El CSS final contiene **solo las clases que realmente se usan**.
+
+### CSS Custom Properties
+
+Los design tokens son CSS custom properties definidas una vez en `:root` y `.dark`:
+
+```css
+:root {
+  --background: ...;
+  --foreground: ...;
+}
+```
+
+El cambio de tema solo modifica las variables — no recalcula estilos.
+
+---
+
+## Rendering Performance
+
+### Memoización
+
+- **`useMemo`** para cómputos derivados (filtrado de proyectos, cálculo de stats)
+- **`useCallback`** para handlers pasados a children
+- **`React.memo`** en componentes presentacionales que reciben props estables
+
+### Scroll performance
+
+- `will-change: transform` en elementos con parallax
+- `IntersectionObserver` en vez de `scroll` event listeners
+- Framer Motion gestiona las actualizaciones fuera del ciclo de React
+
+---
+
+## Lighthouse targets
+
+| Métrica | Target |
+|---------|--------|
+| Performance | 90+ |
+| Accessibility | 95+ |
+| Best Practices | 95+ |
+| SEO | 100 |
+
+### Verificar performance
+
+```bash
+# Build + preview
+pnpm build && pnpm preview
+
+# Abrir en Chrome Incognito → Lighthouse → Run audit
+```

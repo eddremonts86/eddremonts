@@ -1,0 +1,53 @@
+# Tech Icons — Data Layer
+
+`src/data/techIcons.ts` mapea nombres de tecnologías a las rutas de sus iconos SVG.
+
+---
+
+## Estructura
+
+```typescript
+export const techIconMap: Record<string, string> = {
+  'React': '/tech-icons/react.svg',
+  'TypeScript': '/tech-icons/typescript.svg',
+  'Node.js': '/tech-icons/nodejs.svg',
+  'PostgreSQL': '/tech-icons/postgresql.svg',
+  // ... más tecnologías
+};
+```
+
+---
+
+## Ubicación de iconos
+
+Todos los iconos SVG viven en `public/tech-icons/`:
+
+```
+public/tech-icons/
+├── react.svg
+├── typescript.svg
+├── nodejs.svg
+├── postgresql.svg
+├── docker.svg
+├── aws.svg
+├── tailwind.svg
+└── ... (uno por tecnología)
+```
+
+---
+
+## Consumidores
+
+| Componente | Uso |
+|-----------|-----|
+| `TechBadge` | Muestra el icono SVG junto al nombre de la skill |
+| `SkillsMarquee` | Iconos en el marquee infinito |
+
+---
+
+## Agregar un icono
+
+1. Conseguir el SVG de la tecnología (preferiblemente monocromo o con colores del brand)
+2. Colocar en `public/tech-icons/{nombre}.svg`
+3. Agregar la entrada en `techIconMap` con el nombre **exacto** de la skill como key
+4. El nombre de la skill debe coincidir con el string usado en `cvData.skills` y `experience.tech`

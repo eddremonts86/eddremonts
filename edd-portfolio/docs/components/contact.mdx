@@ -1,0 +1,110 @@
+# Contact
+
+Sección de contacto con información personal y formulario enviado via Formspree.
+
+---
+
+## Componentes
+
+### `ContactSection`
+
+**Archivo**: `src/components/contact/ContactSection.tsx`
+
+Contenedor de la sección con dos columnas: info de contacto a la izquierda, formulario a la derecha.
+
+**Estado interno:**
+- `formStatus: FormStatus` — `'idle' | 'sending' | 'success' | 'error'`
+
+**Datos:**
+- `cvData.personalInfo` → email, location, phone
+- Traducciones via `useTranslation()`
+
+**Form handler:**
+```tsx
+const handleSubmit = async (data: FormData) => {
+  setFormStatus('sending');
+  const response = await fetch('https://formspree.io/f/xgonbeaj', {
+    method: 'POST',
+    body: data,
+    headers: { Accept: 'application/json' },
+  });
+  setFormStatus(response.ok ? 'success' : 'error');
+};
+```
+
+**Import:** `React.lazy()` — se carga bajo demanda.
+
+---
+
+### `ContactForm`
+
+**Archivo**: `src/components/contact/ContactForm.tsx`
+
+Formulario controlado con 3 campos.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `status` | `FormStatus` | Estado actual del formulario |
+| `onSubmit` | `(data: FormData) => void` | Handler de envío |
+
+**Campos:**
+| Campo | Tipo | Validación |
+|-------|------|-----------|
+| Name | `text` | Required |
+| Email | `email` | Required, formato email |
+| Message | `textarea` | Required |
+
+**Estados visuales:**
+- `idle`: formulario normal
+- `sending`: botón deshabilitado con indicador de loading
+- `error`: mensaje de error con opción de reintentar
+
+---
+
+### `SuccessMessage`
+
+**Archivo**: `src/components/contact/SuccessMessage.tsx`
+
+Mensaje mostrado después de un envío exitoso.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `onReset` | `() => void` | Regresa al formulario vacío |
+
+---
+
+## Flujo visual
+
+```
+┌──────────────────────┬──────────────────────────┐
+│                      │                          │
+│  LET'S CONNECT       │   Name                   │
+│                      │   ┌───────────────┐      │
+│  StatusBadge         │   │               │      │
+│  "Available"         │   └───────────────┘      │
+│                      │                          │
+│  📧 edd@example.com  │   Email                   │
+│  📍 Copenhagen, DK   │   ┌───────────────┐      │
+│  📱 +45 12345678     │   │               │      │
+│                      │   └───────────────┘      │
+│  (ContactInfoItems)  │                          │
+│                      │   Message                 │
+│                      │   ┌───────────────┐      │
+│                      │   │               │      │
+│                      │   │               │      │
+│                      │   └───────────────┘      │
+│                      │                          │
+│                      │          [Send Message]   │
+│                      │                          │
+└──────────────────────┴──────────────────────────┘
+```
+
+## Dependencias
+
+- `@/data/cvData` → `personalInfo`
+- `@/components/ui/badges/StatusBadge`
+- `@/components/ui/badges/ContactInfoItem`
+- `@/lib/motion` → `fadeInView()`
+- `framer-motion` → `motion`
+- `react-i18next` → `useTranslation`
+- `lucide-react` → `Mail`, `MapPin`, `Phone`, `Send`

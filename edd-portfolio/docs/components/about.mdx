@@ -1,0 +1,103 @@
+# About Section
+
+Sección que presenta la bio del desarrollador con texto que se revela al scroll y tarjetas de servicios/features.
+
+---
+
+## Componentes
+
+### `AboutSection`
+
+**Archivo**: `src/components/about/AboutSection.tsx`
+
+Contenedor principal con layout de dos columnas: columna izquierda sticky con el texto de scroll-reveal, columna derecha con tarjetas de features.
+
+**Datos:**
+- `cvData.aboutMe` → texto de la bio
+- `cvData.services` → array de servicios (icon, title, description)
+- Traducciones via `useTranslation()`
+
+**Layout:**
+- Grid de 2 columnas en desktop
+- Columna izquierda: `ScrollRevealText` (sticky)
+- Columna derecha: Grid de `FeatureCard`
+
+---
+
+### `ScrollRevealText`
+
+**Archivo**: `src/components/about/ScrollRevealText.tsx`
+
+Texto que revela cada palabra progresivamente según el scroll del usuario. Usa `useScroll` de Framer Motion.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `text` | `string` | Texto completo a revelar |
+
+**Funcionamiento:**
+1. Divide `text` en palabras
+2. Cada palabra es un `<RevealWord>` independiente
+3. El progreso de scroll (`scrollYProgress`) se distribuye entre las palabras
+4. Cada palabra anima opacity (0.2 → 1) y Y position basándose en su rango de scroll
+
+---
+
+### `RevealWord`
+
+**Archivo**: `src/components/about/RevealWord.tsx`
+
+Componente individual que anima una sola palabra según el progreso de scroll.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `word` | `string` | La palabra a mostrar |
+| `index` | `number` | Posición en el array de palabras |
+| `total` | `number` | Total de palabras |
+| `scrollYProgress` | `MotionValue<number>` | Progreso de scroll del padre |
+
+**Animación:** Usa `useTransform` para mapear el rango de scroll de la palabra a valores de opacity y translateY.
+
+---
+
+### `FeatureCard`
+
+**Archivo**: `src/components/about/FeatureCard.tsx`
+
+Tarjeta animada que muestra un servicio con icono, número de índice, título y descripción.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `icon` | `string` | Nombre del icono (resuelto por `IconComponent`) |
+| `index` | `number` | Número de la tarjeta (mostrado como badge) |
+
+**Animación:** Entrada con `fadeInView()` y stagger basado en el índice.
+
+---
+
+## Flujo visual
+
+```
+┌─────────────────────┬─────────────────────────┐
+│                     │                         │
+│   ABOUT ME          │    01  FeatureCard      │
+│                     │    ┌──────────────┐     │
+│   "I am a senior    │    │ 🚀 Feature   │     │
+│    full-stack..."   │    │ Description  │     │
+│                     │    └──────────────┘     │
+│   (scroll-reveal    │                         │
+│    word by word)    │    02  FeatureCard      │
+│                     │    ┌──────────────┐     │
+│   (sticky column)   │    │ 🛡️ Feature   │     │
+│                     │    │ Description  │     │
+│                     │    └──────────────┘     │
+│                     │                         │
+└─────────────────────┴─────────────────────────┘
+```
+
+## Dependencias
+
+- `@/data/cvData` → `aboutMe`, `services`
+- `@/components/ui/media/IconComponent`
+- `@/lib/motion` → `fadeInView()`
+- `framer-motion` → `useScroll`, `useTransform`, `motion`
+- `react-i18next` → `useTranslation`

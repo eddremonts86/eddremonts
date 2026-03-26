@@ -1,0 +1,68 @@
+# Guide: Adding Experiences
+
+Paso a paso para agregar una nueva experiencia laboral al portfolio.
+
+---
+
+## 1. Editar `cvData.ts`
+
+Abrir `src/data/cvData.ts` y agregar un objeto al **inicio** del array `experiences` (orden cronológico inverso — el más reciente primero):
+
+```typescript
+export const experiences: Experience[] = [
+  // ↓ NUEVO — siempre al inicio
+  {
+    company: 'New Company',
+    period: '2026 - Present',
+    role: 'Senior Full-Stack Engineer',
+    description: 'Led development of customer-facing platform serving 500K+ users. Reduced API response time by 40% through query optimization and caching strategies.',
+    tech: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Docker'],
+  },
+
+  // ... experiencias existentes
+];
+```
+
+---
+
+## 2. Tips para la descripción
+
+- Incluir **métricas concretas** (%, usuarios, tiempo)
+- Mencionar **impacto** (no solo tareas)
+- Mantener entre 1-3 oraciones
+- Usar verbos de acción: "Led", "Delivered", "Reduced", "Built", "Migrated"
+
+### Ejemplos buenos:
+
+> "Led development of customer-facing platform serving 500K+ users. Reduced API response time by 40% through query optimization."
+
+> "Architected and delivered 15+ features for the core product. Set up CI/CD pipeline reducing deployment time from 2h to 15min."
+
+---
+
+## 3. Tecnologías
+
+El array `tech` acepta cualquier string. Si la tecnología tiene un icono en `techIcons.ts`, se mostrará automáticamente en el `TechArsenal`.
+
+Si necesitas agregar un icono nuevo:
+1. Agrega el SVG en `public/tech-icons/`
+2. Registra en `src/data/techIcons.ts`
+
+---
+
+## 4. Verificar
+
+```bash
+pnpm build   # TypeScript check
+pnpm dev     # Verificar visualmente la sección Experience
+```
+
+---
+
+## Lo que NO necesitas hacer
+
+- ❌ Modificar `ExperienceTimeline.tsx` ni `ExperienceCard.tsx`
+- ❌ Actualizar contadores de stats (se calculan automáticamente desde el array)
+- ❌ Regenerar el timeline visual
+
+El `ExperienceTimeline` renderiza automáticamente cada entrada del array. El `StatsCounter` recalcula "Years of Experience" y "Companies" dinámicamente.

@@ -1,0 +1,115 @@
+# Components Index
+
+Mapa completo de todos los componentes del proyecto organizados por sección.
+
+---
+
+## Secciones de la página
+
+Cada sección ocupa un viewport completo y se renderiza como un bloque de scroll vertical en `App.tsx`.
+
+| # | Sección | Carpeta | Componente principal | Import |
+|---|---------|---------|---------------------|--------|
+| 1 | Hero | `hero/` | `HeroSection` | ⚡ Eager |
+| 2 | Stats | `stats/` | `StatsCounter` | ⚡ Eager |
+| 3 | About | `about/` | `AboutSection` | ⚡ Eager |
+| 4 | Skills | `skills/` | `SkillsMarquee` | ⚡ Eager |
+| 5 | Experience | `experience/` | `ExperienceTimeline` | ⚡ Eager |
+| 6 | Testimonials | `testimonials/` | `TestimonialBlock` | ⚡ Eager |
+| 7 | Projects | `projects/` | `ProjectsGallery` | 💤 Lazy |
+| 8 | Code | `code/` | `CodeShowcase` | 💤 Lazy |
+| 9 | Contact | `contact/` | `ContactSection` | 💤 Lazy |
+| — | Footer | `footer/` | `Footer` | ⚡ Eager |
+
+---
+
+## UI Primitives
+
+Componentes reutilizables compartidos entre múltiples secciones:
+
+| Subcarpeta | Componentes | Función |
+|-----------|------------|---------|
+| `ui/badges/` | `StatusBadge`, `TechBadge`, `ContactInfoItem` | Etiquetas, pills, items de info |
+| `ui/layout/` | `Preloader`, `MouseFollower`, `SEO` | Layout global y meta |
+| `ui/media/` | `OptimizedImage`, `IconComponent` | Imágenes y iconos |
+| `ui/navigation/` | `StickyNav`, `DotNavigation`, `LanguageSelector`, `ThemeToggle` | Navegación global |
+
+---
+
+## Grafo de dependencias
+
+```
+App.tsx
+├── Preloader (layout)
+├── StickyNav (navigation)
+│   ├── LanguageSelector
+│   └── ThemeToggle
+├── DotNavigation (navigation)
+├── MouseFollower (layout)
+├── SEO (layout)
+│
+├── HeroSection
+│   ├── BackgroundReveal
+│   ├── AmbientLight
+│   ├── ScrollIndicator
+│   └── StatusBadge (badge)
+│
+├── StatsCounter
+│
+├── AboutSection
+│   ├── FeatureCard
+│   │   └── IconComponent (media)
+│   └── ScrollRevealText
+│       └── RevealWord
+│
+├── SkillsMarquee
+│   └── TechBadge (badge)
+│
+├── ExperienceTimeline
+│   ├── ExperienceCard
+│   └── TechArsenal
+│       └── TechBadge (badge)
+│
+├── TestimonialBlock
+│   ├── TestimonialSlide
+│   └── CarouselControls
+│
+├── ProjectsGallery (lazy)
+│   ├── CategoryFilter
+│   ├── ProjectListItem
+│   │   └── OptimizedImage (media)
+│   └── FloatingImagePreview
+│
+├── CodeShowcase (lazy)
+│   └── CodeBlock
+│       ├── WindowChrome
+│       ├── CodeArea
+│       └── StatusBar
+│
+├── ContactSection (lazy)
+│   ├── ContactForm
+│   ├── SuccessMessage
+│   ├── StatusBadge (badge)
+│   └── ContactInfoItem (badge)
+│
+└── Footer
+    └── StatusBadge (badge)
+```
+
+---
+
+## Documentación por sección
+
+Cada sección tiene su propia página de documentación con detalles de props, estado interno y dependencias:
+
+- [Hero Section](hero.mdx)
+- [About Section](about.mdx)
+- [Experience](experience.mdx)
+- [Projects](projects.mdx)
+- [Code Showcase](code-showcase.mdx)
+- [Skills Marquee](skills.mdx)
+- [Stats Counter](stats.mdx)
+- [Testimonials](testimonials.mdx)
+- [Contact](contact.mdx)
+- [Footer](footer.mdx)
+- [UI Primitives](ui.mdx)

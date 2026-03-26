@@ -1,0 +1,225 @@
+# Typography# Typography — Design System
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Se importan en `src/index.css` y están disponibles globalmente.```@fontsource/jetbrains-mono@fontsource/cinzel@fontsource/epilogue@fontsource-variable/m-plus-1```Las fuentes se importan como paquetes npm de `@fontsource`:## Fuentes instaladas---```</span>  {skill.name}<span className="font-mono text-xs tracking-wide">// Code / Badge</p>  {experience.description}<p className="font-body text-base text-foreground/70 leading-relaxed">// Body</h2>  {t('about.title')}<h2 className="font-display text-4xl md:text-5xl font-semibold tracking-tight">// Section title</h1>  {personalInfo.name}<h1 className="font-display text-6xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter">// Hero```tsx## Ejemplo de uso en componentes---| Compact UI | `leading-snug` (1.375) || Body text | `leading-relaxed` (1.625) || Headings | `leading-none` (1) o `leading-tight` (1.25) ||-----|-------|| Uso | Clase |## Line height---| Mono/badges | `tracking-wide` (0.025em) || Body text | `tracking-normal` (0) || Section titles | `tracking-tight` (-0.025em) || Hero title | `tracking-tighter` (-0.05em) ||-----|-------|| Uso | Clase |## Tracking (letter-spacing)---| Captions/labels | Medium (500) | `font-medium` || Emphasized body | Medium (500) | `font-medium` || Body text | Regular (400) | `font-normal` || Títulos de sección | Semibold (600) | `font-semibold` || Headings de impacto | Bold (700) | `font-bold` ||-----|--------|-------|| Uso | Weight | Clase |## Peso tipográfico---| Badge | `text-xs` | TechBadge, StatusBadge || Code block | `text-sm` | Contenido del CodeShowcase ||-------|---------------|-----|| Nivel | Clase Tailwind | Uso |### Mono (font-mono)| Caption | `text-xs` | Labels, timestamps || Small body | `text-sm` | Descripciones secundarias, metadata || Base body | `text-base` | Texto general || Large body | `text-lg md:text-xl` | Párrafos destacados ||-------|---------------|-----|| Nivel | Clase Tailwind | Uso |### Body text (font-body)| Card title | `text-xl md:text-2xl` | Títulos de tarjetas || Subsection | `text-2xl md:text-3xl` | Subtítulos dentro de secciones || Section title | `text-4xl md:text-5xl lg:text-6xl` | Títulos de sección || Hero title | `text-6xl md:text-8xl lg:text-[10rem]` | Nombre principal en el Hero ||-------|---------------|-----|| Nivel | Clase Tailwind | Uso |### Headings (font-display)## Escala tipográfica---```}  mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],  serif: ['Cinzel', ...defaultTheme.fontFamily.serif],  body: ['Epilogue', ...defaultTheme.fontFamily.sans],  display: ['M PLUS 1 Variable', ...defaultTheme.fontFamily.sans],fontFamily: {// tailwind.config.js```js### Configuración en Tailwind| `font-mono` | **JetBrains Mono** | Código, etiquetas monoespaciadas, badges tech || `font-serif` | **Cinzel** | Acentos serif decorativos (uso limitado) || `font-body` | **Epilogue** | Texto de cuerpo, párrafos, descripciones || `font-display` | **M PLUS 1 Variable** | Headings de impacto, títulos grandes ||-------------|---------|-----|| Variable CSS | Familia | Uso |## Familias tipográficas---Sistema tipográfico con 4 familias, cada una con un rol semántico.
+El sistema tipográfico usa 4 familias con roles específicos.
+
+---
+
+## Familias tipográficas
+
+| Familia | Variable CSS | Clase Tailwind | Uso |
+|---------|-------------|---------------|-----|
+| **M PLUS 1 Variable** | `font-display` | `font-display` | Headlines, títulos de impacto |
+| **Epilogue** | `font-body` | `font-body` | Texto de cuerpo, descripciones |
+| **Cinzel** | `font-serif` | `font-serif` | Acentos serif decorativos |
+| **JetBrains Mono** | `font-mono` | `font-mono` | Código, etiquetas mono |
+
+> Las fuentes se cargan via `@fontsource-variable` (self-hosted, sin requests externos a Google Fonts).
+
+---
+
+## Escala tipográfica
+
+### Hero (heading principal)
+
+```tsx
+<h1 className="font-display text-6xl md:text-8xl lg:text-[10rem] font-bold tracking-tight">
+  EDO REMONTS
+</h1>
+```
+
+### Section headings
+
+```tsx
+<h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold">
+  Section Title
+</h2>
+```
+
+### Subtítulos
+
+```tsx
+<p className="font-body text-lg md:text-xl text-secondary">
+  Section description text
+</p>
+```
+
+### Body text
+
+```tsx
+<p className="font-body text-base text-foreground/80">
+  Regular paragraph text
+</p>
+```
+
+### Code / Mono
+
+```tsx
+<code className="font-mono text-sm">
+  const greeting = "Hello";
+</code>
+```
+
+### Badges / Labels
+
+```tsx
+<span className="font-mono text-xs uppercase tracking-wider">
+  LABEL TEXT
+</span>
+```
+
+---
+
+## Configuración en Tailwind
+
+```js
+// tailwind.config.js
+theme: {
+  extend: {
+    fontFamily: {
+      display: ['M PLUS 1 Variable', ...defaultTheme.fontFamily.sans],
+      body: ['Epilogue', ...defaultTheme.fontFamily.sans],
+      serif: ['Cinzel', ...defaultTheme.fontFamily.serif],
+      mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
+    }
+  }
+}
+```
+
+---
+
+## Principios de diseño tipográfico
+
+1. **Contraste extremo**: El hero usa tipografía gigante (10rem) contra espacios vacíos amplios
+2. **Jerarquía clara**: `font-display` para títulos, `font-body` para lectura, `font-mono` para labels técnicos
+3. **Tracking tight en headings**: `tracking-tight` (-0.025em) para compactar letras en títulos
+4. **Tracking wide en labels**: `tracking-wider` (0.05em) para labels uppercase mono
+5. **Opacidad para jerarquía**: `text-foreground/80`, `text-foreground/60` para niveles secundarios

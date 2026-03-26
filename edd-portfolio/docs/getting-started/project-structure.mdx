@@ -1,0 +1,166 @@
+# Project Structure
+
+## Vista general
+
+```
+edd-portfolio/
+├── docs/                          # 📖 Documentación del proyecto (estás aquí)
+├── public/                        # 📁 Assets estáticos (servidos directamente)
+│   ├── _redirects                 # Netlify SPA fallback
+│   ├── robots.txt                 # SEO: reglas para crawlers
+│   ├── logo.svg                   # Logo del sitio
+│   ├── cv/                        # PDFs generados (3 idiomas × 2 temas)
+│   ├── edd/                       # Fotos de perfil (light/dark)
+│   ├── projects/                  # Imágenes de proyectos (.webp)
+│   └── tech-icons/                # Iconos SVG de tecnologías
+├── src/                           # 🧩 Código fuente
+│   ├── App.tsx                    # Root: preloader → secciones
+│   ├── main.tsx                   # Bootstrap: providers → App
+│   ├── i18n.ts                    # Configuración de i18next
+│   ├── index.css                  # CSS variables + Tailwind layers
+│   ├── components/                # Componentes React
+│   ├── contexts/                  # React Context providers
+│   ├── data/                      # Archivos de datos puros (sin React)
+│   ├── hooks/                     # Custom hooks reutilizables
+│   ├── lib/                       # Utilidades compartidas
+│   └── locales/                   # Archivos de traducción JSON
+├── tools/                         # 🔧 Scripts de herramientas
+│   ├── cv-generator/              # Generador de CV en PDF (Python)
+│   └── screenshots/               # Capturador de screenshots (Playwright)
+├── agent.md                       # Instrucciones para agentes AI
+├── eslint.config.js               # ESLint flat config
+├── index.html                     # HTML entry point (Vite)
+├── package.json                   # Dependencias y scripts
+├── postcss.config.js              # PostCSS (Tailwind)
+├── tailwind.config.js             # Configuración de Tailwind CSS
+├── tsconfig.json                  # TypeScript config raíz
+├── tsconfig.app.json              # TS config para la app
+├── tsconfig.node.json             # TS config para tooling (Vite)
+└── vite.config.ts                 # Configuración de Vite
+```
+
+---
+
+## `src/components/` — Organización por feature
+
+Cada carpeta dentro de `components/` agrupa **todos los componentes de una sección** del sitio:
+
+```
+components/
+├── about/                # Sección "About Me"
+│   ├── AboutSection.tsx      # Contenedor principal
+│   ├── FeatureCard.tsx       # Tarjeta de servicio
+│   ├── RevealWord.tsx        # Palabra individual animada
+│   └── ScrollRevealText.tsx  # Texto que se revela al scroll
+├── code/                 # Sección "Code Showcase"
+│   ├── CodeShowcase.tsx      # Contenedor
+│   ├── CodeBlock.tsx         # Editor con tabs
+│   ├── WindowChrome.tsx      # Barra de título macOS
+│   ├── CodeArea.tsx          # Renderizador de tokens
+│   ├── StatusBar.tsx         # Barra de estado VS Code-style
+│   └── codeBlockTokens.ts   # Datos de tokens y colores
+├── contact/              # Sección "Contact"
+│   ├── ContactSection.tsx    # Contenedor + lógica Formspree
+│   ├── ContactForm.tsx       # Formulario controlado
+│   └── SuccessMessage.tsx    # Mensaje post-envío
+├── experience/           # Sección "Experience"
+│   ├── ExperienceTimeline.tsx # Grid: timeline + tech arsenal
+│   ├── ExperienceCard.tsx     # Entrada de experiencia
+│   └── TechArsenal.tsx        # Sidebar de badges de tech
+├── footer/               # Footer
+│   └── Footer.tsx
+├── hero/                 # Sección "Hero"
+│   ├── HeroSection.tsx       # Hero viewport completo
+│   ├── BackgroundReveal.tsx  # Imagen animada en hover
+│   ├── AmbientLight.tsx      # Blobs de luz animados
+│   └── ScrollIndicator.tsx   # Indicador de scroll
+├── projects/             # Sección "Projects"
+│   ├── ProjectsGallery.tsx   # Lista + filtro + preview
+│   ├── ProjectListItem.tsx   # Fila de proyecto
+│   ├── CategoryFilter.tsx    # Filtro por categoría
+│   └── FloatingImagePreview.tsx # Preview flotante en cursor
+├── skills/               # Sección "Skills"
+│   └── SkillsMarquee.tsx     # Marquee infinito
+├── stats/                # Sección "Stats"
+│   └── StatsCounter.tsx      # Contadores animados
+├── testimonials/         # Sección "Testimonials"
+│   ├── TestimonialBlock.tsx  # Carrusel auto-cycling
+│   ├── TestimonialSlide.tsx  # Slide individual
+│   └── CarouselControls.tsx  # Controles prev/next/dots
+└── ui/                   # Componentes UI reutilizables
+    ├── badges/               # StatusBadge, TechBadge, ContactInfoItem
+    ├── layout/               # Preloader, MouseFollower, SEO
+    ├── media/                # OptimizedImage, IconComponent
+    └── navigation/           # StickyNav, DotNavigation, LanguageSelector, ThemeToggle
+```
+
+---
+
+## `src/data/` — Datos puros
+
+Archivos TypeScript que exportan datos sin importar React. Son la **fuente única de verdad** del contenido.
+
+| Archivo | Contenido |
+|---------|-----------|
+| `cvData.ts` | Info personal, experiencias, proyectos, skills, servicios |
+| `navigation.ts` | Array `NAV_SECTIONS` para DotNavigation y StickyNav |
+| `techIcons.ts` | Mapeo skill → ruta de icono SVG |
+| `projectImageConfig.ts` | Metadata de las imágenes de proyectos |
+
+---
+
+## `src/contexts/` — Estado global
+
+| Archivo | Función |
+|---------|---------|
+| `ThemeContextBase.ts` | Definición del tipo `Theme` y creación del contexto |
+| `ThemeContext.tsx` | `ThemeProvider` con persistencia en `localStorage` |
+
+---
+
+## `src/hooks/` — Custom hooks
+
+| Hook | Función |
+|------|---------|
+| `useClickOutside.ts` | Detecta clicks fuera + tecla Escape |
+| `useMousePosition.ts` | Posición del mouse con spring smoothing |
+| `useResolvedTheme.ts` | Resuelve `'system'` a `'light'` o `'dark'` |
+
+---
+
+## `src/lib/` — Utilidades
+
+| Archivo | Función |
+|---------|---------|
+| `motion.ts` | Constantes de Framer Motion: `APPLE_EASE`, springs, `fadeInView()` |
+
+---
+
+## `src/locales/` — Traducciones
+
+```
+locales/
+├── en/translation.json   # Inglés (default)
+├── es/translation.json   # Español
+└── dk/translation.json   # Danés
+```
+
+---
+
+## Convenciones de nombrado
+
+| Tipo | Convención | Ejemplo |
+|------|-----------|---------|
+| Componentes React | PascalCase `.tsx` | `HeroSection.tsx` |
+| Data/utilidades | camelCase `.ts` | `cvData.ts`, `motion.ts` |
+| Hooks | camelCase con prefijo `use` | `useMousePosition.ts` |
+| Traducciones | Directorio ISO 639-1 | `en/`, `es/`, `dk/` |
+| Assets públicos | kebab-case | `tech-icons/`, `edd_light.jpg` |
+
+---
+
+## Imports
+
+- **Alias**: `@/` → `src/`
+- **No barrel exports**: importar directamente desde el archivo
+- **Named exports**: todos los componentes usan named exports (excepto `App`)

@@ -1,0 +1,169 @@
+# UI Primitives
+
+Componentes de UI reutilizables organizados en subcarpetas por categoría.
+
+---
+
+## Badges (`ui/badges/`)
+
+### `StatusBadge`
+
+**Archivo**: `src/components/ui/badges/StatusBadge.tsx`
+
+Etiqueta con punto pulsante. Usada en el Hero y Contact para indicar disponibilidad.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `label` | `string` | Texto del badge (ej: "Available for work") |
+| `className` | `string?` | Clases CSS adicionales |
+
+### `TechBadge`
+
+**Archivo**: `src/components/ui/badges/TechBadge.tsx`
+
+Pill animado que muestra una tecnología. Opcionalmente incluye el icono SVG de la tech.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `skill` | `string` | Nombre de la tecnología |
+| `index` | `number?` | Índice para stagger de animación |
+
+**Icono:** Resuelto desde `techIcons.ts` → `/tech-icons/{skill}.svg`.
+
+### `ContactInfoItem`
+
+**Archivo**: `src/components/ui/badges/ContactInfoItem.tsx`
+
+Fila de información de contacto con icono, label y valor.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `icon` | `LucideIcon` | Componente de icono |
+| `label` | `string` | Etiqueta descriptiva |
+| `value` | `string` | Valor a mostrar |
+| `href` | `string?` | Si existe, envuelve en `<a>` |
+
+---
+
+## Layout (`ui/layout/`)
+
+### `Preloader`
+
+**Archivo**: `src/components/ui/layout/Preloader.tsx`
+
+Pantalla de carga que se muestra mientras la app se inicializa. Bloquea el scroll hasta completarse.
+
+**Animación:** Contador de `%` (0→100) con animación spring, seguido de un fade out.
+
+### `MouseFollower`
+
+**Archivo**: `src/components/ui/layout/MouseFollower.tsx`
+
+Punto personalizado que sigue el cursor con spring smoothing.
+
+**Comportamiento:**
+- Solo visible en **desktop** (no touch devices)
+- Se expande al pasar sobre elementos interactivos (`<a>`, `<button>`)
+- Se desactiva si `useReducedMotion()` es `true`
+- Usa `useMousePosition()` para tracking con spring
+
+### `SEO`
+
+**Archivo**: `src/components/ui/layout/SEO.tsx`
+
+Wrapper de `<Helmet>` que gestiona todos los meta tags del sitio.
+
+**Inyecta:**
+- `<title>` y `<meta description>`
+- OpenGraph tags (`og:title`, `og:description`, `og:image`)
+- Twitter Card tags
+- `hreflang` alternates para cada idioma
+- JSON-LD `Person` schema (structured data)
+- `lang` en `<html>` vía `htmlAttributes`
+
+---
+
+## Media (`ui/media/`)
+
+### `OptimizedImage`
+
+**Archivo**: `src/components/ui/media/OptimizedImage.tsx`
+
+Componente de imagen con lazy loading y placeholder de blur.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `src` | `string` | URL de la imagen |
+| `alt` | `string` | Texto alternativo |
+| `fallbackSrc` | `string?` | Imagen de respaldo si `src` falla |
+| `blurDataURL` | `string?` | Base64 de imagen tiny para placeholder |
+
+**Funcionamiento:**
+1. Muestra skeleton/blur placeholder
+2. `IntersectionObserver` detecta que entra al viewport
+3. Carga la imagen real
+4. Fade in suave de la imagen
+5. Si falla, usa `fallbackSrc`
+
+### `IconComponent`
+
+**Archivo**: `src/components/ui/media/IconComponent.tsx`
+
+Mapea nombres de string a iconos Lucide.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `name` | `string` | Nombre del icono (ej: "rocket", "shield") |
+| `className` | `string?` | Clases CSS |
+
+**Mapping:** `users` → Users, `rocket` → Rocket, `shield` → Shield, `layout` → Layout, `server` → Server. Default: `Star`.
+
+---
+
+## Navigation (`ui/navigation/`)
+
+### `StickyNav`
+
+**Archivo**: `src/components/ui/navigation/StickyNav.tsx`
+
+Barra de navegación que aparece al scrollear más allá del hero.
+
+**Contenido:**
+- Logo (link a `#top`)
+- Links de navegación (de `NAV_SECTIONS`)
+- `LanguageSelector`
+- `ThemeToggle`
+- Hamburger menu (mobile)
+
+**Animación:** Slide-in desde arriba con `AnimatePresence`.
+
+### `DotNavigation`
+
+**Archivo**: `src/components/ui/navigation/DotNavigation.tsx`
+
+Navegación de puntos fija en el lateral derecho. Solo visible en desktop.
+
+**Funcionamiento:**
+- Un dot por sección del array `NAV_SECTIONS`
+- `IntersectionObserver` detecta qué sección está visible
+- El dot activo se resalta
+- Click en un dot scrollea a esa sección
+
+### `LanguageSelector`
+
+**Archivo**: `src/components/ui/navigation/LanguageSelector.tsx`
+
+Botón que cicla entre idiomas: EN → ES → DK → EN.
+
+**Persistencia:** `localStorage('edd-portfolio-lang')`  
+**Side effect:** Actualiza `document.documentElement.lang`
+
+### `ThemeToggle`
+
+**Archivo**: `src/components/ui/navigation/ThemeToggle.tsx`
+
+Botón que cicla entre temas: Light → Dark → System → Light.
+
+**Iconos:** Sun (light) / Moon (dark) / Monitor (system)  
+**Animación:** Transición animada entre iconos con Framer Motion.  
+**Persistencia:** `localStorage('edd-portfolio-theme')`

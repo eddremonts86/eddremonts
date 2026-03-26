@@ -1,5 +1,6 @@
 {
   "nav": {
+    "home": "Home",
     "about": "About",
     "experience": "Experience",
     "projects": "Projects",
@@ -10,6 +11,9 @@
   "hero": {
     "available": "Available for new opportunities",
     "greeting": "Hello, I'm",
+    "role": "Senior Frontend Engineer",
+    "titleLine1": "Frontend",
+    "titleLine2": "Craftsman.",
     "explore": "Explore My Work",
     "scroll": "Scroll"
   },
@@ -125,12 +129,22 @@
       "name": "Your Name",
       "email": "Your Email",
       "message": "Project Details...",
+      "namePlaceholder": "John Doe",
+      "emailPlaceholder": "john@example.com",
       "send": "Send Message",
       "submitting": "Sending...",
+      "error": "Error. Please try emailing me directly.",
       "target": "Initiate Connection"
     },
+    "success": {
+      "title": "Message Sent",
+      "body": "Thanks for reaching out! I'll get back to you as soon as possible.",
+      "reset": "Send Another"
+    },
     "info": {
-      "title": "Contact Details"
+      "title": "Contact Details",
+      "emailLabel": "Email",
+      "locationLabel": "Location"
     }
   },
   "stats": {
@@ -191,6 +205,34 @@
   },
   "footer": {
     "rights": "All rights reserved.",
+    "inspired": "Crafted with intent.",
     "builtWith": "Engineered with React 19 & Anime minimalism."
+  },
+  "preloader": {
+    "loading": "Loading experience",
+    "standby": "Stand by"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "skillsMarquee": "Technology skills",
+    "prevTestimonial": "Previous testimonial",
+    "nextTestimonial": "Next testimonial",
+    "gotoTestimonial": "Go to testimonial {{number}}",
+    "mainNav": "Main navigation",
+    "sectionNav": "Section navigation"
+  },
+  "testimonials_loading": "Loading testimonials...",
+  "cv": {
+    "aboutTitle": "About Me",
+    "summary": "Frontend-first engineer with full-stack roots and nearly two decades of experience since 2007. I build scalable web products that turn complex business rules into fast, intuitive interfaces.",
+    "intro": "I understand the full delivery chain, collaborate comfortably with product, design, and backend teams, and build interfaces that stay maintainable as products grow. I embrace architectural refactoring, keeping my tech stack, testing coverage, and CI/CD pipelines at the bleeding edge.",
+    "experienceTitle": "Professional Experience",
+    "skillsTitle": "Technical Skills",
+    "langLabel": "Languages",
+    "langItems": [
+      { "lang": "Spanish", "level": "Native" },
+      { "lang": "English", "level": "Fluent" },
+      { "lang": "Danish", "level": "B1" }
+    ]
   }
 }

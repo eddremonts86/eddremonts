@@ -1,0 +1,47 @@
+# Skills Marquee
+
+Marquee infinito que muestra todas las tecnologías del desarrollador en un scroll horizontal continuo.
+
+---
+
+## Componente
+
+### `SkillsMarquee`
+
+**Archivo**: `src/components/skills/SkillsMarquee.tsx`
+
+**Datos:**
+- `cvData.skills` → array de skills
+
+**Funcionamiento:**
+1. El array de skills se **triplica** para crear un loop infinito sin huecos
+2. Framer Motion anima el `x` del contenedor de 0% a -33.33% (un tercio = un set completo)
+3. Al completar la animación, se repite infinitamente
+
+**Accesibilidad:**
+- Verifica `useReducedMotion()` de Framer Motion
+- Si el usuario prefiere menos movimiento, la animación se **pausa**
+
+**Cada skill se renderiza como:**
+- Un `TechBadge` (de `ui/badges/`) con icono SVG de la tecnología
+
+---
+
+## Flujo visual
+
+```
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+  [React] [TypeScript] [Node.js] [PostgreSQL] [Docker] [React] [TypeScript]...
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+```
+
+El marquee se mueve de derecha a izquierda de forma continua. Es un patrón visual decorativo que refuerza las competencias técnicas.
+
+---
+
+## Dependencias
+
+- `@/data/cvData` → `skills`
+- `@/data/techIcons` → mapeo skill → ruta de icono SVG
+- `@/components/ui/badges/TechBadge`
+- `framer-motion` → `motion`, `useReducedMotion`

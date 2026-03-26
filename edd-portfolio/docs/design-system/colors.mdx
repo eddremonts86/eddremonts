@@ -1,0 +1,106 @@
+# Colors — Design System
+
+El proyecto usa **CSS custom properties** como design tokens, mapeados a clases utilitarias de Tailwind CSS. Nunca se usan hex/rgb directamente en componentes.
+
+---
+
+## Tokens de color
+
+### Modo Light (`:root`)
+
+| Token | Valor | Uso |
+|-------|-------|-----|
+| `--background` | `#F4F4F5` (zinc-100) | Fondo principal |
+| `--foreground` | `#1D1D1F` | Texto principal |
+| `--primary` | `#D13426` (Crimson Red) | Acentos principales, CTAs |
+| `--secondary` | `#A08C73` (Warm Taupe) | Acentos secundarios |
+| `--accent` | `#2E3339` (Deep Slate) | Acentos terciarios |
+| `--surface` | `rgba(255,255,255,0.7)` | Superficie de cards (glass) |
+| `--border` | `rgba(0,0,0,0.06)` | Bordes sutiles |
+
+### Modo Dark (`.dark`)
+
+| Token | Valor | Uso |
+|-------|-------|-----|
+| `--background` | `#09090B` (zinc-950) | Fondo principal |
+| `--foreground` | `#F5F5F7` | Texto principal |
+| `--primary` | `#D13426` (Crimson Red) | Acentos principales |
+| `--secondary` | `#A08C73` (Warm Taupe) | Acentos secundarios |
+| `--accent` | `#B0B8C1` (Light Slate) | Acentos terciarios |
+| `--surface` | `rgba(0,0,0,0.5)` | Superficie de cards (glass) |
+| `--border` | `rgba(255,255,255,0.08)` | Bordes sutiles |
+
+---
+
+## Mapping en Tailwind
+
+Las CSS variables se mapean a clases de Tailwind en `tailwind.config.js`:
+
+```js
+theme: {
+  extend: {
+    colors: {
+      background: 'var(--background)',
+      foreground: 'var(--foreground)',
+      primary: 'var(--primary)',
+      secondary: 'var(--secondary)',
+      accent: 'var(--accent)',
+      surface: 'var(--surface)',
+      border: 'var(--border)',
+    }
+  }
+}
+```
+
+---
+
+## Uso en componentes
+
+```tsx
+// ✅ Correcto — usa tokens semánticos
+<div className="bg-background text-foreground">
+  <h1 className="text-primary">Title</h1>
+  <p className="text-secondary">Subtitle</p>
+  <button className="bg-primary text-white">CTA</button>
+</div>
+
+// ❌ Incorrecto — nunca hex directo
+<div className="bg-[#F4F4F5] text-[#1D1D1F]">
+```
+
+---
+
+## Clases utilitarias especiales
+
+### `.apple-glass`
+
+Efecto de glassmorphism para superficies de cards:
+
+```css
+.apple-glass {
+  background: var(--surface);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+```
+
+### `.neon-glow-*`
+
+Efectos de brillo en hover para elementos interactivos. Definidos en `src/index.css`.
+
+---
+
+## Dónde se configuran
+
+| Archivo | Responsabilidad |
+|---------|-----------------|
+| `src/index.css` | CSS custom properties en `:root` y `.dark` |
+| `tailwind.config.js` | Mapping de variables a clases Tailwind |
+| `src/contexts/ThemeContext.tsx` | Aplica/remueve clase `.dark` en `<html>` |
+
+---
+
+## Cómo cambiar colores
+
+Consulta la guía: [Changing Colors](../guides/changing-colors.mdx)

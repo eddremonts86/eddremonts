@@ -1,0 +1,97 @@
+# Installation
+
+## Requisitos previos
+
+| Herramienta | Versión mínima | Verificar |
+|-------------|---------------|-----------|
+| **Node.js** | 18+ | `node -v` |
+| **pnpm** | 9+ | `pnpm -v` |
+| **Git** | 2.30+ | `git -v` |
+
+> **pnpm** es el package manager del proyecto. No uses `npm` ni `yarn` — el lockfile es `pnpm-lock.yaml`.
+
+### Instalar pnpm (si no lo tienes)
+
+```bash
+npm install -g pnpm
+```
+
+---
+
+## Setup del proyecto
+
+### 1. Clonar el repositorio
+
+```bash
+git clone <repo-url>
+cd eddremonts/edd-portfolio
+```
+
+### 2. Instalar dependencias
+
+```bash
+pnpm install
+```
+
+### 3. Iniciar el servidor de desarrollo
+
+```bash
+pnpm dev
+```
+
+El servidor arranca en `http://localhost:5173` con Hot Module Replacement (HMR) activo.
+
+---
+
+## Verificar que todo funciona
+
+```bash
+# TypeScript compila sin errores
+pnpm build
+
+# ESLint sin warnings
+pnpm lint
+
+# Prettier verifica formato
+pnpm format:check
+```
+
+---
+
+## Herramientas opcionales
+
+### CV Generator (Python)
+
+Para generar los PDFs del CV se necesita Python 3 + WeasyPrint:
+
+```bash
+cd tools/cv-generator
+pip install weasyprint
+python generate_cv.py
+```
+
+### Screenshots (Playwright)
+
+Para capturar screenshots de los proyectos:
+
+```bash
+npx playwright install chromium
+bash tools/screenshots/shoot.bash
+```
+
+---
+
+## Path alias
+
+El proyecto usa el alias `@/` que apunta a `src/`. Esto está configurado en:
+
+- `vite.config.ts` → `resolve.alias`
+- `tsconfig.app.json` → `compilerOptions.paths`
+
+```tsx
+// En vez de:
+import { cvData } from '../../../data/cvData';
+
+// Usa:
+import { cvData } from '@/data/cvData';
+```

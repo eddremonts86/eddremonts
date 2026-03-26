@@ -1,0 +1,97 @@
+# Hero Section
+
+La sección hero ocupa el viewport completo y es lo primero que ve el usuario. Incluye el nombre, título profesional, descarga de CV y una foto que se revela al hover.
+
+---
+
+## Componentes
+
+### `HeroSection`
+
+**Archivo**: `src/components/hero/HeroSection.tsx`
+
+Componente contenedor principal del hero. Gestiona el estado de hover para disparar el reveal de la foto y el parallax al scroll.
+
+**Estado interno:**
+- `isHovered: boolean` — controla la visibilidad de `BackgroundReveal` y `AmbientLight`
+
+**Datos:**
+- Info personal desde `cvData.personalInfo`
+- Traducciones via `useTranslation()`
+- URL del CV calculada dinámicamente: `/cv/Eduardo_Inerarte_CV_{lang}_{theme}.pdf`
+
+**Animaciones:**
+- Parallax scroll-linked en el contenido (se desplaza con `useScroll` + `useTransform`)
+- Entrada staggered de elementos con `fadeInView()`
+
+---
+
+### `BackgroundReveal`
+
+**Archivo**: `src/components/hero/BackgroundReveal.tsx`
+
+Imagen de fondo que se revela con animación cuando el usuario hace hover sobre el hero.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `src` | `string` | URL de la imagen a revelar |
+
+**Animación:** Transición de opacity 0→1 y scale con easing de spring.
+
+---
+
+### `AmbientLight`
+
+**Archivo**: `src/components/hero/AmbientLight.tsx`
+
+Dos blobs de luz animados que se muestran cuando hay hover. Usan blend mode `screen`/`lighten` para un efecto de iluminación ambiental.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `hidden` | `boolean` | Si `true`, los blobs están ocultos |
+
+---
+
+### `ScrollIndicator`
+
+**Archivo**: `src/components/hero/ScrollIndicator.tsx`
+
+Indicador visual vertical en la base del hero que invita al usuario a hacer scroll.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `label` | `string` | Texto del indicador (ej: "Scroll") |
+| `isHovered` | `boolean` | Modifica la opacidad durante hover del hero |
+
+---
+
+## Flujo visual
+
+```
+┌──────────────────────────────────────┐
+│              StatusBadge             │  "Available for work"
+│                                      │
+│          EDO REMONTS                 │  Nombre (font-display, text-8xl)
+│     Senior Full-Stack Engineer       │  Título
+│                                      │
+│   [Download CV]  [Let's Talk]        │  CTAs
+│                                      │
+│         ScrollIndicator ↓            │
+│                                      │
+│  ┌──────────────────────────────┐    │
+│  │     BackgroundReveal         │    │  Aparece en hover
+│  │     (foto de perfil)         │    │
+│  └──────────────────────────────┘    │
+│                                      │
+│  AmbientLight (blobs)                │  Aparecen en hover
+└──────────────────────────────────────┘
+```
+
+## Dependencias
+
+- `@/data/cvData` → `personalInfo`
+- `@/hooks/useResolvedTheme` → determina la URL del CV (light/dark)
+- `@/lib/motion` → `fadeInView()`, `APPLE_EASE`
+- `framer-motion` → `useScroll`, `useTransform`, `motion`
+- `react-i18next` → `useTranslation`
+- `lucide-react` → `Download`, `MessageCircle`

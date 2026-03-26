@@ -1,0 +1,117 @@
+# Code Showcase
+
+Sección decorativa que muestra un editor de código falso estilo VS Code con tabs, syntax highlighting y animaciones.
+
+---
+
+## Componentes
+
+### `CodeShowcase`
+
+**Archivo**: `src/components/code/CodeShowcase.tsx`
+
+Contenedor de la sección. Envuelve el `CodeBlock` con título y descripción.
+
+**Import:** `React.lazy()` — se carga bajo demanda.
+
+---
+
+### `CodeBlock`
+
+**Archivo**: `src/components/code/CodeBlock.tsx`
+
+Editor de código con tabs navegables. Gestiona qué tab está activo.
+
+**Estado interno:**
+- `activeTab: string` — tab activo actual
+
+**Sub-componentes:**
+- `WindowChrome` — barra de título
+- `CodeArea` — contenido del código
+- `StatusBar` — barra inferior
+
+---
+
+### `WindowChrome`
+
+**Archivo**: `src/components/code/WindowChrome.tsx`
+
+Barra de título estilo macOS con botones de semáforo (rojo/amarillo/verde) y tabs.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `activeTab` | `string` | Tab activo actual |
+| `onTabChange` | `(tab: string) => void` | Callback al cambiar de tab |
+
+---
+
+### `CodeArea`
+
+**Archivo**: `src/components/code/CodeArea.tsx`
+
+Renderizador de tokens de código con gutter de números de línea.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `tokens` | `Token[]` | Array de tokens a renderizar |
+| `lineCount` | `number` | Número total de líneas |
+| `tabKey` | `string` | Key del tab activo (para animación de entrada) |
+| `containerVariants` | `Variants` | Variantes de animación del contenedor |
+| `tokenVariants` | `Variants` | Variantes de animación por token |
+
+**Tokens:** Cada token tiene `content` (texto) y `color` (referencia al mapa de colores Catppuccin Mocha).
+
+---
+
+### `StatusBar`
+
+**Archivo**: `src/components/code/StatusBar.tsx`
+
+Barra de estado inferior estilo VS Code.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `lineCount` | `number` | Líneas totales del archivo actual |
+
+---
+
+### `codeBlockTokens.ts`
+
+**Archivo**: `src/components/code/codeBlockTokens.ts`
+
+Archivo de datos que define:
+- **`CATPPUCCIN_MOCHA`**: Mapa de colores del tema Catppuccin Mocha
+- **`TAB_CONTENT`**: Contenido de cada tab (tokens, lineCount)
+- **Tipos**: `Token`, `TabData`
+
+---
+
+## Flujo visual
+
+```
+┌─────────────────────────────────────────────┐
+│  ● ● ●   │ app.tsx │ styles.css │ data.ts │  │  WindowChrome
+├─────────────────────────────────────────────┤
+│  1 │ import { motion } from 'framer-motion' │  CodeArea
+│  2 │                                         │
+│  3 │ export function App() {                 │
+│  4 │   return (                              │
+│  5 │     <motion.div                         │
+│  6 │       initial={{ opacity: 0 }}          │
+│  7 │       animate={{ opacity: 1 }}          │
+│  8 │     >                                   │
+│  9 │       Hello World                       │
+│ 10 │     </motion.div>                       │
+│ 11 │   )                                     │
+│ 12 │ }                                       │
+├─────────────────────────────────────────────┤
+│  TypeScript │ UTF-8 │ Ln 12, Col 1          │  StatusBar
+└─────────────────────────────────────────────┘
+```
+
+## Dependencias
+
+- `./codeBlockTokens` → tokens, colores, datos de tabs
+- `@/lib/motion` → `APPLE_EASE`
+- `framer-motion` → `motion`, `AnimatePresence`
+- `react-i18next` → `useTranslation`

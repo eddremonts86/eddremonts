@@ -1,0 +1,91 @@
+# Guide: Adding Projects
+
+Paso a paso para agregar un nuevo proyecto al portfolio.
+
+---
+
+## 1. Preparar la imagen
+
+1. Obtener una imagen representativa del proyecto (screenshot, mockup o generada)
+2. **Formato**: WebP obligatorio
+3. **Tamaño máximo**: 200KB
+4. **Dimensiones recomendadas**: 1200 × 800 px
+
+### Alternativa: capturar screenshot automáticamente
+
+Si el proyecto tiene URL pública:
+
+```bash
+# Editar tools/screenshots/shoot.bash con la URL del proyecto
+bash tools/screenshots/shoot.bash
+```
+
+### Guardar las imágenes
+
+```bash
+# Guardar en public/projects/ con el formato:
+public/projects/{project-id}-md.webp
+```
+
+---
+
+## 2. Agregar el proyecto a `cvData.ts`
+
+Editar `src/data/cvData.ts` y agregar un objeto al array `projects`:
+
+```typescript
+export const projects: Project[] = [
+  // ... proyectos existentes
+
+  {
+    id: 'my-new-project',           // ID único (usado para imágenes)
+    title: 'My New Project',         // Nombre visible
+    description: 'A brief description of what this project does and its impact.',
+    category: 'Frontend',            // "Frontend" | "Full Stack" | nueva categoría
+    tech: ['React', 'TypeScript', 'Tailwind CSS'],
+    url: 'https://my-project.com',   // URL en vivo (opcional)
+    github: 'https://github.com/user/repo', // Repo (opcional)
+    image: '/projects/my-new-project-md.webp',
+  },
+];
+```
+
+---
+
+## 3. (Opcional) Agregar metadata de imagen
+
+Si la imagen tiene licencia o fue generada con AI, agregar en `src/data/projectImageConfig.ts`:
+
+```typescript
+licenses: {
+  'my-new-project': {
+    source: 'Screenshot captured with Playwright',
+    license: 'Personal',
+  },
+},
+```
+
+---
+
+## 4. Verificar
+
+```bash
+# Verificar que TypeScript compila
+pnpm build
+
+# Verificar visualmente
+pnpm dev
+# Navegar a la sección Projects → verificar que aparece
+# Verificar el filtro de categoría
+# Verificar el hover preview
+```
+
+---
+
+## Lo que NO necesitas hacer
+
+- ❌ Modificar ningún componente React
+- ❌ Actualizar el filtro de categorías (se auto-genera)
+- ❌ Registrar la imagen en ningún otro lugar
+
+El sistema es completamente **data-driven** — agregar el objeto al array y la imagen al directorio es suficiente.

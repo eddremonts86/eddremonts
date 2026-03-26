@@ -1,0 +1,88 @@
+# Testimonials
+
+Carrusel auto-cycling de testimonios con controles manuales.
+
+---
+
+## Componentes
+
+### `TestimonialBlock`
+
+**Archivo**: `src/components/testimonials/TestimonialBlock.tsx`
+
+Contenedor del carrusel. Gestiona el cycling automático y manual.
+
+**Estado interno:**
+- `currentIndex: number` — slide activo
+- `direction: number` — dirección de la transición (-1 = prev, 1 = next)
+
+**Datos:**
+- Testimonios desde i18n: `t('testimonials', { returnObjects: true })` — permite tener testimonios localizados en cada idioma
+
+**Comportamiento:**
+- Auto-cycling cada **8 segundos**
+- Se pausa al hacer hover sobre el carrusel
+- Controles manuales (prev/next/dots) restablecen el timer
+- Transición con blur + slide horizontal
+
+---
+
+### `TestimonialSlide`
+
+**Archivo**: `src/components/testimonials/TestimonialSlide.tsx`
+
+Slide individual con animación de entrada/salida.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `testimonial` | `Testimonial` | Datos: quote, author name, role, company |
+| `index` | `number` | Índice del slide |
+| `direction` | `number` | Dirección de la transición animada |
+
+**Animación:** Entrada desde la dirección indicada con blur + fade. Salida en la dirección opuesta.
+
+---
+
+### `CarouselControls`
+
+**Archivo**: `src/components/testimonials/CarouselControls.tsx`
+
+Controles de navegación del carrusel.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `total` | `number` | Número total de slides |
+| `current` | `number` | Índice del slide activo |
+| `onPrev` | `() => void` | Ir al slide anterior |
+| `onNext` | `() => void` | Ir al slide siguiente |
+| `onGoto` | `(index: number) => void` | Ir a un slide específico |
+
+**UI:** Botón prev ← | dots indicator ●●○●● | Botón next →
+
+---
+
+## Flujo visual
+
+```
+┌─────────────────────────────────────────────┐
+│                                             │
+│  "Working with Edd was an exceptional       │
+│   experience. His attention to detail       │
+│   and technical expertise..."               │
+│                                             │
+│   — John Smith                              │
+│     CTO, TechCorp                           │
+│                                             │
+│          ← ● ● ○ ● ● →                     │  CarouselControls
+│                                             │
+└─────────────────────────────────────────────┘
+     ← Auto-cycles every 8s →
+     ← Pauses on hover →
+```
+
+## Dependencias
+
+- Traducciones `testimonials` key (array) via `react-i18next`
+- `framer-motion` → `motion`, `AnimatePresence`
+- `@/lib/motion` → `APPLE_EASE`
+- `lucide-react` → `ChevronLeft`, `ChevronRight`, `Quote`

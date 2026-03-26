@@ -1,0 +1,157 @@
+# Design Patterns
+
+Patrones de diseño implementados en el proyecto, basados en [patterns.dev](https://www.patterns.dev).
+
+---
+
+## 1. Hooks Pattern
+
+**Categoría**: React Pattern
+
+Todo el proyecto usa functional components con hooks. No hay class components.
+
+### Hooks utilizados
+
+| Hook | Origen | Uso |
+|------|--------|-----|
+| `useState` | React | Estado local de UI |
+| `useEffect` | React | Side effects, subscripciones |
+| `useRef` | React | Referencias al DOM |
+| `useMemo` | React | Memoización de cómputos |
+| `useCallback` | React | Estabilización de callbacks |
+| `useSyncExternalStore` | React | Suscripción a `matchMedia` en `useResolvedTheme` |
+| `useContext` | React | Acceso a `ThemeContext` |
+| `useTranslation` | react-i18next | Acceso a traducciones |
+| `useScroll`, `useTransform` | Framer Motion | Animaciones scroll-linked |
+| `useSpring`, `useMotionValue` | Framer Motion | Valores animados con física |
+| `useReducedMotion` | Framer Motion | Detección de preferencia de accesibilidad |
+| `useInView` | Framer Motion | Detección de visibilidad en viewport |
+
+### Custom hooks del proyecto
+
+| Hook | Archivo | Responsabilidad |
+|------|---------|-----------------|
+| `useTheme` | `contexts/ThemeContextBase.ts` | Acceso al tema + setter |
+| `useResolvedTheme` | `hooks/useResolvedTheme.ts` | Resuelve `'system'` → `'light'`/`'dark'` |
+| `useClickOutside` | `hooks/useClickOutside.ts` | Click fuera + Escape |
+| `useMousePosition` | `hooks/useMousePosition.ts` | Posición del mouse con spring |
+
+---
+
+## 2. Module Pattern (ES Modules)
+
+**Categoría**: JavaScript Pattern
+
+Cada archivo es un módulo ES con `import`/`export` explícitos:
+
+- **Un componente por archivo** con named export
+- **Datos separados de componentes**: `src/data/` no importa React
+- **Constantes compartidas** en `src/lib/motion.ts`
+- **Sin barrel exports** — imports directos al archivo
+
+```tsx
+// ✅ Correcto
+import { HeroSection } from '@/components/hero/HeroSection';
+import { APPLE_EASE } from '@/lib/motion';
+
+// ❌ Evitar
+import { HeroSection } from '@/components'; // no hay index.ts
+```
+
+---
+
+## 3. Container / Presentational Pattern
+
+**Categoría**: React Pattern
+
+Separación entre lógica y presentación a través de hooks:
+
+| Rol | Ejemplo | Responsabilidad |
+|-----|---------|-----------------|
+| **Container** (hook) | `useMousePosition` | Lógica, estado, side effects |
+| **Presentational** | `MouseFollower` | Renderizado puro basado en props |
+| **Section** | `ProjectsGallery` | Orquesta hooks + componentes presentacionales |
+
+Los componentes en `ui/` son puramente presentacionales. Los componentes de sección orquestan la lógica.
+
+---
+
+## 4. Observer Pattern
+
+**Categoría**: JavaScript Pattern
+
+Usado implícitamente a través de APIs del navegador y Framer Motion:
+
+| Implementación | Uso |
+|---------------|-----|
+| `IntersectionObserver` | Lazy loading en `OptimizedImage`, tracking de sección activa en `DotNavigation` |
+| `useScroll` (Framer Motion) | Parallax y scroll-linked animations |
+| `matchMedia` listener | `useResolvedTheme` detecta cambios del tema de sistema |
+
+> Todos los observers se limpian en el cleanup del `useEffect`.
+
+---
+
+## 5. Code Splitting (Dynamic Import)
+
+**Categoría**: Performance Pattern
+
+Secciones below-fold se importan con `React.lazy()` + `<Suspense>`:
+
+```tsx
+const ProjectsGallery = lazy(() =>
+  import('@/components/projects/ProjectsGallery')
+);
+
+// En JSX:
+<Suspense fallback={null}>
+  <ProjectsGallery />
+</Suspense>
+```
+
+Las secciones above-fold (Hero, Stats, About, Skills, Experience, Testimonials) permanecen con imports eager para no afectar el LCP.
+
+---
+
+## 6. Singleton Pattern (via Context)
+
+**Categoría**: JavaScript Pattern
+
+Dos singletons en la app:
+
+1. **`ThemeContext`**: Un único estado de tema compartido por toda la app. Implementado con React Context + Provider en la raíz.
+
+2. **`i18n` instance**: Singleton a nivel módulo — una instancia configurada en `i18n.ts` exportada e importada por `react-i18next`.
+
+---
+
+## 7. Data-Driven Rendering
+
+**Categoría**: Architectural Pattern
+
+Los componentes no contienen contenido hardcoded. Renderizan arrays de datos dinámicamente:
+
+```tsx
+// ExperienceTimeline mapea el array de experiencias
+{experiences.map((exp, index) => (
+  <ExperienceCard key={exp.company} exp={exp} index={index} />
+))}
+
+// ProjectsGallery filtra y mapea proyectos
+{filteredProjects.map((project, index) => (
+  <ProjectListItem key={project.id} project={project} index={index} />
+))}
+```
+
+**Beneficio**: Agregar contenido nunca requiere modificar componentes.
+
+---
+
+## Patrones no aplicables
+
+| Patrón | Motivo |
+|--------|--------|
+| SSR / ISG / Streaming | SPA estática sin servidor |
+| React Server Components | Requiere framework server (Next.js) |
+| Proxy / Flyweight / Factory | No hay casos de uso en esta app |
+| Mediator / Middleware | No hay comunicación compleja inter-componentes |

@@ -1,0 +1,41 @@
+# Navigation — Data Layer
+
+`src/data/navigation.ts` define las secciones de navegación del sitio. Es la fuente única de verdad compartida por `StickyNav` y `DotNavigation`.
+
+---
+
+## Estructura
+
+```typescript
+export const NAV_SECTIONS = [
+  { id: 'about', labelKey: 'nav.about' },
+  { id: 'experience', labelKey: 'nav.experience' },
+  { id: 'projects', labelKey: 'nav.projects' },
+  { id: 'contact', labelKey: 'nav.contact' },
+];
+```
+
+### Campos
+
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| `id` | `string` | ID del `<section>` en el HTML — usado como hash anchor (`#about`) |
+| `labelKey` | `string` | Key de traducción i18n — resuelto con `t(labelKey)` |
+
+---
+
+## Consumidores
+
+| Componente | Uso |
+|-----------|-----|
+| `StickyNav` | Renderiza links de navegación en la barra sticky |
+| `DotNavigation` | Renderiza dots laterales + tracking de sección activa |
+| `Footer` | Links de navegación en el footer |
+
+---
+
+## Agregar una sección
+
+1. Agregar el entry a `NAV_SECTIONS` con el `id` del section element y el `labelKey`
+2. Agregar la key de traducción en los 3 archivos de locales (`en`, `es`, `dk`)
+3. Asegurarse de que el componente de sección tenga `id={sectionId}` en su `<section>`

@@ -1,0 +1,104 @@
+# CV Data — Data Layer
+
+`src/data/cvData.ts` es la **fuente única de verdad** para todo el contenido del portfolio. Los componentes renderizan este archivo dinámicamente — nunca contienen contenido hardcodeado.
+
+---
+
+## Estructura del archivo
+
+```typescript
+// Exportaciones principales
+export const personalInfo: PersonalInfo;
+export const experiences: Experience[];
+export const projects: Project[];
+export const skills: string[];
+export const aboutMe: string;
+export const services: Service[];
+```
+
+---
+
+## Tipos
+
+### `PersonalInfo`
+
+```typescript
+{
+  name: string;           // "Eduardo Inerarte"
+  title: string;          // "Senior Full-Stack Engineer"
+  email: string;          // email de contacto
+  location: string;       // "Copenhagen, Denmark"
+  phone: string;          // teléfono
+  website: string;        // URL del sitio
+  github: string;         // URL de GitHub
+  linkedin: string;       // URL de LinkedIn
+  photo: {
+    light: string;        // "/edd/edd_light.jpg"
+    dark: string;         // "/edd/edd_dark.jpg"
+  }
+}
+```
+
+### `Experience`
+
+```typescript
+{
+  company: string;        // "TechCorp"
+  period: string;         // "2024 - Present"
+  role: string;           // "Senior Full-Stack Engineer"
+  description: string;    // Descripción del rol
+  tech: string[];         // ["React", "TypeScript", "Node.js"]
+}
+```
+
+### `Project`
+
+```typescript
+{
+  id: string;             // "my-project" (usado para images)
+  title: string;          // "My Project"
+  description: string;    // Descripción corta
+  category: string;       // "Frontend" | "Full Stack"
+  tech: string[];         // Stack tecnológico
+  url?: string;           // URL del proyecto en vivo
+  github?: string;        // URL del repo
+  image: string;          // Path a la imagen principal
+}
+```
+
+### `Service`
+
+```typescript
+{
+  icon: string;           // Nombre del icono (resuelto por IconComponent)
+  title: string;          // "Frontend Development"
+  description: string;    // Descripción del servicio
+}
+```
+
+---
+
+## Consumidores
+
+| Componente | Datos que consume |
+|-----------|------------------|
+| `HeroSection` | `personalInfo` |
+| `StatsCounter` | `experiences`, `skills` (calcula métricas) |
+| `AboutSection` | `aboutMe`, `services` |
+| `ExperienceTimeline` | `experiences` |
+| `TechArsenal` | `skills` |
+| `ProjectsGallery` | `projects` |
+| `SkillsMarquee` | `skills` |
+| `ContactSection` | `personalInfo` |
+| `Footer` | `personalInfo` |
+| `SEO` | `personalInfo` |
+
+---
+
+## Reglas
+
+1. **Nunca importar React en este archivo** — es un módulo de datos puros
+2. **Los iconos se referencian como strings** — se resuelven en render time por `IconComponent`
+3. **Experiencias en orden cronológico inverso** — las más recientes primero
+4. **Categorías de proyectos** se parsean automáticamente por `CategoryFilter`
+5. **Al agregar un item**, no se necesita modificar ningún componente — solo este archivo

@@ -102,7 +102,7 @@ export const HeroSection = () => {
                 transition={{ duration: 1.2, ease: APPLE_EASE, delay: 0.4 }}
                 className="mt-2 block font-display font-medium tracking-tighter mix-blend-difference md:mt-4"
               >
-                Frontend
+                {t('hero.titleLine1')}
               </m.span>
 
               <m.span
@@ -111,7 +111,7 @@ export const HeroSection = () => {
                 transition={{ duration: 1.2, ease: APPLE_EASE, delay: 0.5 }}
                 className="ml-[10%] block font-serif italic opacity-70 sm:ml-[15%] lg:ml-[20%]"
               >
-                Craftsman.
+                {t('hero.titleLine2')}
               </m.span>
             </h1>
           </div>

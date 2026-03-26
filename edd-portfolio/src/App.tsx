@@ -1,5 +1,6 @@
 import { AnimatePresence, domAnimation, LazyMotion, m } from 'framer-motion';
 import { lazy, Suspense, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { AboutSection } from './components/about/AboutSection';
 import { ExperienceTimeline } from './components/experience/ExperienceTimeline';
 import { Footer } from './components/footer/Footer';
@@ -25,6 +26,7 @@ const ContactSection = lazy(() =>
 );
 
 function App() {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
 
   return (
@@ -42,7 +44,7 @@ function App() {
           >
             <SEO />
             <a href="#about" className="skip-to-content">
-              Skip to content
+              {t('a11y.skipToContent')}
             </a>
             <MouseFollower />
             <StickyNav />

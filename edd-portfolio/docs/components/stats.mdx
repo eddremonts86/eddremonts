@@ -1,0 +1,47 @@
+# Stats Counter
+
+Tira horizontal de estadísticas con contadores animados que cuentan hacia arriba cuando entran en el viewport.
+
+---
+
+## Componente
+
+### `StatsCounter`
+
+**Archivo**: `src/components/stats/StatsCounter.tsx`
+
+**Stats mostradas:**
+4 métricas calculadas en tiempo de ejecución desde `cvData.ts`:
+
+| Stat | Fuente | Cálculo |
+|------|--------|---------|
+| Years of Experience | `cvData.experiences` | Deriva de la experiencia más antigua |
+| Companies | `cvData.experiences` | `experiences.length` |
+| Technologies | `cvData.skills` | `skills.length` |
+| Lighthouse Score | Estática | Valor fijo: 90 |
+
+**Animación de conteo:**
+- Cada stat usa `useMotionValue(0)` + `useSpring` para contar de 0 al valor final
+- La animación se dispara al entrar en el viewport (via `useInView`)
+- El valor se redondea con `Math.round()` para mostrar enteros
+- El `+` al final indica "más de"
+
+---
+
+## Flujo visual
+
+```
+┌──────────┬──────────┬──────────┬──────────┐
+│   7+     │    4+    │   20+    │   90     │
+│  Years   │Companies │  Tech    │Lighthouse│
+│Experience│          │ Skills   │  Score   │
+└──────────┴──────────┴──────────┴──────────┘
+```
+
+---
+
+## Dependencias
+
+- `@/data/cvData` → `experiences`, `skills`
+- `framer-motion` → `useMotionValue`, `useSpring`, `useInView`, `motion`
+- `react-i18next` → `useTranslation`

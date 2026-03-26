@@ -1,5 +1,6 @@
 {
   "nav": {
+    "home": "Hjem",
     "about": "Om",
     "experience": "Erfaring",
     "projects": "Projekter",
@@ -10,6 +11,9 @@
   "hero": {
     "available": "Ledig for nye muligheder",
     "greeting": "Hej, jeg er",
+    "role": "Senior Frontend Engineer",
+    "titleLine1": "Frontend",
+    "titleLine2": "Håndværker.",
     "explore": "Udforsk mit arbejde",
     "scroll": "Rul ned"
   },
@@ -125,12 +129,22 @@
       "name": "Dit Navn",
       "email": "Din Email",
       "message": "Projekt Detaljer...",
+      "namePlaceholder": "Jens Jensen",
+      "emailPlaceholder": "jens@eksempel.dk",
       "send": "Send Besked",
       "submitting": "Sender...",
+      "error": "Fejl. Prøv venligst at sende mig en e-mail direkte.",
       "target": "Start Forbindelse"
     },
+    "success": {
+      "title": "Besked Sendt",
+      "body": "Tak fordi du skrev! Jeg vender tilbage hurtigst muligt.",
+      "reset": "Send Endnu En"
+    },
     "info": {
-      "title": "Kontakt Information"
+      "title": "Kontakt Information",
+      "emailLabel": "E-mail",
+      "locationLabel": "Placering"
     }
   },
   "stats": {
@@ -191,6 +205,34 @@
   },
   "footer": {
     "rights": "Alle rettigheder forbeholdes.",
+    "inspired": "Skabt med intention.",
     "builtWith": "Udviklet i React 19 og Anime minimalisme."
+  },
+  "preloader": {
+    "loading": "Indlæser oplevelse",
+    "standby": "Vent venligst"
+  },
+  "a11y": {
+    "skipToContent": "Spring til indhold",
+    "skillsMarquee": "Teknologiske kompetencer",
+    "prevTestimonial": "Forrige anbefaling",
+    "nextTestimonial": "Næste anbefaling",
+    "gotoTestimonial": "Gå til anbefaling {{number}}",
+    "mainNav": "Hovednavigation",
+    "sectionNav": "Sektionsnavigation"
+  },
+  "testimonials_loading": "Indlæser anbefalinger...",
+  "cv": {
+    "aboutTitle": "Om Mig",
+    "summary": "Frontend-fokuseret engineer med full-stack baggrund og næsten to årtiers erfaring siden 2007. Jeg bygger skalerbare webprodukter, der omsætter kompleks forretningslogik til hurtige og intuitive interfaces.",
+    "intro": "Jeg forstår hele leverancekæden, samarbejder naturligt med produkt, design og backend, og bygger interfaces der forbliver vedligeholdelige. Jeg holder min teknologistak, testdækning og CI/CD-pipelines på forkant.",
+    "experienceTitle": "Professionel Erfaring",
+    "skillsTitle": "Tekniske Kompetencer",
+    "langLabel": "Sprog",
+    "langItems": [
+      { "lang": "Spansk", "level": "Modersmål" },
+      { "lang": "Engelsk", "level": "Flydende" },
+      { "lang": "Dansk", "level": "B1" }
+    ]
   }
 }

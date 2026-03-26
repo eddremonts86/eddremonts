@@ -1,0 +1,134 @@
+# Guide: Adding Languages
+
+Paso a paso para agregar un nuevo idioma al portfolio.
+
+---
+
+## 1. Crear el archivo de traducción
+
+Copiar el archivo de inglés como base:
+
+```bash
+cp src/locales/en/translation.json src/locales/fr/translation.json
+```
+
+Traducir todas las keys al nuevo idioma. Mantener la misma estructura JSON exacta:
+
+```json
+{
+  "nav": {
+    "about": "À propos",
+    "experience": "Expérience",
+    "projects": "Projets",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Bonjour, je suis",
+    ...
+  },
+  "testimonials": [
+    {
+      "quote": "Travailler avec Edd...",
+      "author": "John Smith",
+      "role": "CTO",
+      "company": "TechCorp"
+    }
+  ]
+}
+```
+
+> **Importante**: Los testimonios son un array completo en cada idioma. Puedes tener testimonios diferentes por idioma.
+
+---
+
+## 2. Registrar en `i18n.ts`
+
+Editar `src/i18n.ts`:
+
+```typescript
+import fr from './locales/fr/translation.json';
+
+i18n.use(initReactI18next).init({
+  resources: {
+    en: { translation: en },
+    es: { translation: es },
+    dk: { translation: dk },
+    fr: { translation: fr },  // ← NUEVO
+  },
+  // ...
+});
+```
+
+Actualizar la función de detección para reconocer el nuevo idioma:
+
+```typescript
+function detectLanguage(): string {
+  const saved = localStorage.getItem('edd-portfolio-lang');
+  if (saved) return saved;
+
+  const browserLang = navigator.language.toLowerCase();
+  if (browserLang.startsWith('es')) return 'es';
+  if (browserLang.startsWith('da')) return 'dk';
+  if (browserLang.startsWith('fr')) return 'fr';  // ← NUEVO
+  return 'en';
+}
+```
+
+---
+
+## 3. Actualizar `LanguageSelector`
+
+Editar `src/components/ui/navigation/LanguageSelector.tsx` para incluir el nuevo idioma en el ciclo:
+
+```typescript
+// Ciclo actual: EN → ES → DK → EN
+// Nuevo: EN → ES → DK → FR → EN
+const languages = ['en', 'es', 'dk', 'fr'];
+```
+
+---
+
+## 4. Actualizar SEO hreflang
+
+En `src/components/ui/layout/SEO.tsx`, agregar el `hreflang` alternate:
+
+```tsx
+<link rel="alternate" hreflang="fr" href="https://eddremonts.dk?lang=fr" />
+```
+
+---
+
+## 5. (Opcional) Generar CV en el nuevo idioma
+
+Si deseas un CV en el nuevo idioma:
+
+1. Editar `tools/cv-generator/generate_cv.py` para incluir la plantilla del nuevo idioma
+2. Ejecutar `python tools/cv-generator/generate_cv.py`
+3. Los PDFs se generan en `public/cv/`
+
+---
+
+## 6. Verificar
+
+```bash
+pnpm build   # TypeScript check
+
+pnpm dev
+# Verificar:
+# - LanguageSelector cicla al nuevo idioma
+# - Todas las secciones muestran texto traducido
+# - Los testimonios se muestran en el idioma correcto
+# - El <html lang> se actualiza
+```
+
+---
+
+## Checklist
+
+- [ ] Archivo `src/locales/{code}/translation.json` con todas las keys traducidas
+- [ ] Registrado en `i18n.ts` resources
+- [ ] Detección del idioma en `detectLanguage()`
+- [ ] Agregado al ciclo del `LanguageSelector`
+- [ ] `hreflang` alternate en `SEO.tsx`
+- [ ] CV generado (opcional)
+- [ ] Verificado visualmente en dev

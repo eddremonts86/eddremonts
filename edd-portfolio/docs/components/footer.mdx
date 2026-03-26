@@ -1,0 +1,47 @@
+# Footer
+
+Pie de página del sitio con copyright, links sociales y logo.
+
+---
+
+## Componente
+
+### `Footer`
+
+**Archivo**: `src/components/footer/Footer.tsx`
+
+**Datos:**
+- `cvData.personalInfo` → nombre, año, links sociales
+- Traducciones via `useTranslation()`
+
+**Contenido:**
+- Logo del sitio
+- Links de navegación a secciones
+- Links a redes sociales (GitHub, LinkedIn, etc.)
+- Copyright con año dinámico
+- `StatusBadge` con estado de disponibilidad
+
+---
+
+## Flujo visual
+
+```
+┌─────────────────────────────────────────────┐
+│                                             │
+│  [Logo]     About  Projects  Contact        │
+│                                             │
+│  GitHub  LinkedIn  Twitter                  │
+│                                             │
+│  © 2026 Edd Remonts. All rights reserved.   │
+│  StatusBadge: "Available for work"          │
+│                                             │
+└─────────────────────────────────────────────┘
+```
+
+## Dependencias
+
+- `@/data/cvData` → `personalInfo`
+- `@/data/navigation` → `NAV_SECTIONS`
+- `@/components/ui/badges/StatusBadge`
+- `react-i18next` → `useTranslation`
+- `lucide-react` → iconos sociales

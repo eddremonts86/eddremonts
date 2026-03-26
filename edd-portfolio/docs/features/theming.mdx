@@ -1,0 +1,94 @@
+# Theming
+
+Sistema de temas light/dark/system con persistencia en localStorage y cambio instantáneo sin flash.
+
+---
+
+## Modos disponibles
+
+| Modo | Descripción | Icono en ThemeToggle |
+|------|-------------|---------------------|
+| `light` | Tema claro forzado | ☀️ Sun |
+| `dark` | Tema oscuro forzado | 🌙 Moon |
+| `system` | Sigue preferencia del SO | 🖥️ Monitor |
+
+---
+
+## Arquitectura
+
+```
+ThemeContextBase.ts          ThemeContext.tsx              ThemeToggle.tsx
+ (tipos + hook)           (Provider + lógica)          (UI de cambio)
+     │                        │                            │
+     │  type Theme =          │  ThemeProvider              │  Cicla:
+     │  'light'|'dark'        │  - lee localStorage        │  light → dark
+     │  |'system'             │  - aplica .dark a html     │  → system
+     │                        │  - escucha matchMedia       │  → light
+     │  useTheme() hook       │  - persiste cambios         │
+     └────────────────────────┴────────────────────────────┘
+                                       │
+                              useResolvedTheme.ts
+                              (resuelve 'system' → actual)
+```
+
+---
+
+## Archivos involucrados
+
+| Archivo | Responsabilidad |
+|---------|-----------------|
+| `src/contexts/ThemeContextBase.ts` | Define `Theme` type, crea el contexto, exporta `useTheme()` hook |
+| `src/contexts/ThemeContext.tsx` | `ThemeProvider` — lógica de persistencia y aplicación del tema |
+| `src/hooks/useResolvedTheme.ts` | Resuelve `'system'` al tema real (`'light'` o `'dark'`) |
+| `src/components/ui/navigation/ThemeToggle.tsx` | UI del toggle de tema |
+| `src/index.css` | Variables CSS en `:root` (light) y `.dark` (dark) |
+| `tailwind.config.js` | `darkMode: 'class'` — Tailwind usa la clase `.dark` |
+
+---
+
+## Flujo de cambio de tema
+
+1. **Usuario clickea ThemeToggle** → cicla entre light/dark/system
+2. **`ThemeProvider`** recibe el nuevo valor via `setTheme()`
+3. **Persiste** en `localStorage('edd-portfolio-theme')`
+4. **Aplica/remueve** la clase `.dark` en `<html>`:
+   - `'light'` → remueve `.dark`
+   - `'dark'` → agrega `.dark`
+   - `'system'` → verifica `matchMedia('(prefers-color-scheme: dark)')`, aplica acorde
+5. **CSS variables** cambian automáticamente (`:root` vs `.dark`)
+6. **Toda la UI** se actualiza instantáneamente
+
+---
+
+## `useResolvedTheme()`
+
+Hook que devuelve el tema **efectivo** (siempre `'light'` o `'dark'`, nunca `'system'`):
+
+```tsx
+const resolvedTheme = useResolvedTheme();
+// Si theme='system' y SO es dark → resolvedTheme='dark'
+
+// Usado para:
+// - Elegir la foto correcta (edd_light.jpg vs edd_dark.jpg)
+// - Elegir el CV correcto (CV_en_light.pdf vs CV_en_dark.pdf)
+```
+
+Implementado con `useSyncExternalStore` para suscribirse a cambios de `matchMedia`.
+
+---
+
+## localStorage
+
+| Key | Valores posibles | Default |
+|-----|-----------------|---------|
+| `edd-portfolio-theme` | `'light'`, `'dark'`, `'system'` | `'system'` |
+
+---
+
+## Prevención de flash
+
+El tema se lee de `localStorage` **antes** del primer render, evitando el flash blanco→oscuro (FOUC):
+
+1. `ThemeProvider` lee `localStorage` en el `useState` initial value
+2. Un `useEffect` aplica la clase `.dark` inmediatamente
+3. Como las CSS variables cambian con `.dark`, la UI pinta correctamente desde el primer frame

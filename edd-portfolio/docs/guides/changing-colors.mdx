@@ -1,0 +1,127 @@
+# Guide: Changing Colors
+
+Paso a paso para cambiar la paleta de colores del portfolio.
+
+---
+
+## Arquitectura del sistema de colores
+
+```
+index.css (CSS variables)  →  tailwind.config.js (mapping)  →  Components (clases)
+    :root { --primary }         colors: { primary }              bg-primary
+    .dark { --primary }                                          text-primary
+```
+
+Solo necesitas editar **un archivo** (`index.css`) para re-skinear toda la UI.
+
+---
+
+## 1. Editar CSS custom properties
+
+Abrir `src/index.css` y modificar las variables en `:root` (light) y `.dark` (dark):
+
+```css
+:root {
+  /* Fondo y texto */
+  --background: #F4F4F5;
+  --foreground: #1D1D1F;
+
+  /* Colores de acento */
+  --primary: #D13426;      /* ← Cambiar este para el color principal */
+  --secondary: #A08C73;    /* ← Color secundario */
+  --accent: #2E3339;       /* ← Color terciario */
+
+  /* Superficies */
+  --surface: rgba(255, 255, 255, 0.7);
+  --border: rgba(0, 0, 0, 0.06);
+}
+
+.dark {
+  --background: #09090B;
+  --foreground: #F5F5F7;
+
+  --primary: #D13426;      /* Puede ser igual o más brillante en dark */
+  --secondary: #A08C73;
+  --accent: #B0B8C1;
+
+  --surface: rgba(0, 0, 0, 0.5);
+  --border: rgba(255, 255, 255, 0.08);
+}
+```
+
+---
+
+## 2. Verificar contraste
+
+Después de cambiar colores, verificar que el contraste pasa WCAG AA:
+
+- **`primary` sobre `background`**: ratio ≥ 4.5:1
+- **`foreground` sobre `background`**: ratio ≥ 4.5:1
+- **`foreground` sobre `surface`**: ratio ≥ 4.5:1
+
+Herramienta: [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
+
+---
+
+## 3. (Opcional) Ajustar efectos
+
+Si cambias `--primary`, puedes querer ajustar los efectos de glow:
+
+```css
+/* En index.css */
+.neon-glow-primary {
+  box-shadow: 0 0 20px var(--primary);
+}
+```
+
+Y el `.apple-glass` si necesitas ajustar la opacidad de la superficie:
+
+```css
+.apple-glass {
+  background: var(--surface);
+  backdrop-filter: blur(24px) saturate(180%);
+}
+```
+
+---
+
+## 4. Verificar
+
+```bash
+pnpm dev
+# Verificar en ambos temas (light + dark):
+# - Hero: texto principal, botones CTA
+# - About: feature cards
+# - Experience: timeline dots, tech badges
+# - Projects: hover effects
+# - Contact: botón de submit
+# - StickyNav: links activos
+```
+
+---
+
+## Lo que NO necesitas hacer
+
+- ❌ Editar `tailwind.config.js` (ya mapea las variables)
+- ❌ Editar ningún componente (usan tokens semánticos)
+- ❌ Cambiar clases CSS en componentes
+
+Toda la UI usa `bg-primary`, `text-primary`, `border-primary`, etc. — estos se resuelven automáticamente a las CSS variables.
+
+---
+
+## Ejemplo: Cambiar de crimson red a electric blue
+
+```css
+/* Antes */
+:root {
+  --primary: #D13426;  /* Crimson Red */
+}
+
+/* Después */
+:root {
+  --primary: #2563EB;  /* Electric Blue */
+}
+```
+
+Toda la app cambia instantáneamente.

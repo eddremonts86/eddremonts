@@ -1,0 +1,87 @@
+# Experience
+
+Sección con la línea de tiempo profesional y un sidebar de tecnologías.
+
+---
+
+## Componentes
+
+### `ExperienceTimeline`
+
+**Archivo**: `src/components/experience/ExperienceTimeline.tsx`
+
+Contenedor principal con layout grid: lista de experiencias a la izquierda, `TechArsenal` sticky a la derecha.
+
+**Datos:**
+- `cvData.experiences` → array de experiencias (company, period, role, description, tech)
+- Traducciones via `useTranslation()`
+
+---
+
+### `ExperienceCard`
+
+**Archivo**: `src/components/experience/ExperienceCard.tsx`
+
+Entrada individual de experiencia laboral en la línea de tiempo.
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `exp` | `Experience` | Objeto con company, period, role, description, tech |
+| `index` | `number` | Posición en la lista (para stagger de animación) |
+
+**Contenido mostrado:**
+- Nombre de la empresa
+- Período (fechas)
+- Rol / título
+- Descripción de responsabilidades
+- Lista de tecnologías usadas
+
+**Animación:** Entrada con `fadeInView()` + delay basado en `index`.
+
+---
+
+### `TechArsenal`
+
+**Archivo**: `src/components/experience/TechArsenal.tsx`
+
+Sidebar sticky que muestra todas las tecnologías del desarrollador como pills animados.
+
+**Datos:**
+- `cvData.skills` → array de skills
+- Cada skill se renderiza como un `TechBadge`
+
+**Comportamiento:**
+- Sticky en desktop (se queda visible mientras scrolleas la timeline)
+- Los badges entran con animación staggered
+
+---
+
+## Flujo visual
+
+```
+┌─────────────────────────────┬──────────────────┐
+│                             │                  │
+│  ● Company A                │   TECH ARSENAL   │
+│    2024 - Present           │                  │
+│    Senior Engineer          │   [React]        │
+│    Delivered 15+ features   │   [TypeScript]   │
+│                             │   [Node.js]      │
+│  ● Company B                │   [PostgreSQL]   │
+│    2021 - 2024              │   [Docker]       │
+│    Full Stack Developer     │   [AWS]          │
+│    Led team of 8 engineers  │   [GraphQL]      │
+│                             │   [Tailwind]     │
+│  ● Company C                │   ...            │
+│    2019 - 2021              │                  │
+│    Frontend Developer       │  (sticky column) │
+│                             │                  │
+└─────────────────────────────┴──────────────────┘
+```
+
+## Dependencias
+
+- `@/data/cvData` → `experiences`, `skills`
+- `@/components/ui/badges/TechBadge`
+- `@/lib/motion` → `fadeInView()`
+- `framer-motion` → `motion`, `useInView`
+- `react-i18next` → `useTranslation`

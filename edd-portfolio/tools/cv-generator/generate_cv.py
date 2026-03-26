@@ -6,11 +6,15 @@ Generates 6 PDF variants: 3 languages × 2 themes.
 WeasyPrint implements CSS Paged Media spec properly, so @page backgrounds,
 margins, and page-break-inside work as expected.
 
+All content is read from the project's single sources of truth:
+  - src/data/cv-source.json          → personal info, experience structure, skills
+  - src/locales/{lang}/translation.json → translated text (roles, descriptions, CV section titles)
+
 Output: edd-portfolio/public/cv/
 """
 
 import base64
-import os
+import json
 from pathlib import Path
 from weasyprint import HTML
 from weasyprint.text.fonts import FontConfiguration
@@ -19,6 +23,45 @@ SCRIPT_DIR = Path(__file__).parent
 PROJECT_ROOT = SCRIPT_DIR.parent.parent          # edd-portfolio/
 ASSETS_DIR = PROJECT_ROOT / "public" / "edd"     # photos
 OUT_DIR = PROJECT_ROOT / "public" / "cv"          # pdf output
+
+# ── Load project data ────────────────────────────────────────────
+def load_json(path: Path) -> dict:
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+cv_source = load_json(PROJECT_ROOT / "src" / "data" / "cv-source.json")
+personal_info = cv_source["personalInfo"]
+experiences_raw = cv_source["experiences"]
+skills_list = cv_source["skills"]
+
+locales: dict[str, dict] = {}
+for lang_code in ("en", "es", "dk"):
+    locales[lang_code] = load_json(
+        PROJECT_ROOT / "src" / "locales" / lang_code / "translation.json"
+    )
+
+
+def get_translations(lang: str) -> dict:
+    """Build the translations dict expected by build_html from locale files."""
+    locale = locales[lang]
+    cv = locale["cv"]
+    exp_items = locale["experience"]["items"]
+
+    return {
+        "title": locale["personalInfo"]["title"],
+        "aboutTitle": cv["aboutTitle"],
+        "summary": cv["summary"],
+        "intro": cv["intro"],
+        "experienceTitle": cv["experienceTitle"],
+        "skillsTitle": cv["skillsTitle"],
+        "present": locale["experience"]["present"],
+        "langLabel": cv["langLabel"],
+        "langItems": cv["langItems"],
+        "items": {
+            int(k): {"role": v["role"], "desc": v["description"]}
+            for k, v in exp_items.items()
+        },
+    }
 
 # ── SVG Icons ────────────────────────────────────────────────────
 icons = {
@@ -29,135 +72,6 @@ icons = {
     "github": '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>',
     "globe": '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>',
     "link": '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>',
-}
-
-# ── Personal Info ────────────────────────────────────────────────
-personal_info = {
-    "name": "Eduardo Inerarte",
-    "email": "eddremonts86@gmail.com",
-    "phone": "(+45) 61436173",
-    "location": "Copenhagen, Denmark",
-    "linkedin": "eduardo-inerarte",
-    "linkedin_url": "https://www.linkedin.com/in/eduardo-inerarte-643843bb",
-    "github": "eddremonts86",
-    "github_url": "https://github.com/eddremonts86",
-    "web": "eddremonts.com",
-    "web_url": "https://eddremonts.com",
-}
-
-# ── Experience ───────────────────────────────────────────────────
-experiences = [
-    {"id": 12, "period": "08/2024 - Present", "company": "Schilling Aps", "location": "Copenhagen", "url": "https://schilling.dk"},
-    {"id": 11, "period": "08/2022 - 07/2024", "company": "Resights Aps", "location": "Copenhagen", "url": "https://resights.dk"},
-    {"id": 10, "period": "08/2020 - 07/2022", "company": "Novo Nordisk", "location": "Copenhagen", "url": "https://www.novonordisk.com"},
-    {"id": 9,  "period": "02/2020 - 09/2020", "company": "Wunderman Nordic", "location": "Copenhagen", "url": "https://www.vml.com"},
-    {"id": 8,  "period": "12/2017 - 01/2020", "company": "GiG Media Copenhagen", "location": "Copenhagen", "url": "https://www.gig.com"},
-    {"id": 7,  "period": "06/2017 - 12/2017", "company": "Rebel Penguins Aps", "location": "Copenhagen", "url": ""},
-    {"id": 6,  "period": "11/2015 - 06/2017", "company": "Rebel Penguins Aps", "location": "Copenhagen", "url": ""},
-    {"id": 5,  "period": "05/2015 - 10/2015", "company": "Plan Denmark", "location": "Copenhagen", "url": "https://planbornefonden.dk"},
-    {"id": 4,  "period": "12/2014 - 05/2015", "company": "Viruta Studio Creativo", "location": "Pinar del Rio, Cuba", "url": ""},
-    {"id": 3,  "period": "10/2012 - 06/2014", "company": "I & D Agency, GEOCUBA", "location": "Pinar del Rio, Cuba", "url": "https://www.geocuba.cu"},
-    {"id": 2,  "period": "09/2010 - 10/2012", "company": "Provincial Office ONEI", "location": "Pinar del Rio, Cuba", "url": ""},
-    {"id": 1,  "period": "02/2007 - 06/2010", "company": "UCI", "location": "Havana, Cuba", "url": "https://www.uci.cu"},
-]
-
-skills_list = [
-    "React", "Vue.js", "Next.js", "Nuxt.js", "TypeScript", "JavaScript",
-    "Tailwind CSS", "HTML5", "CSS3", "SCSS", "Node.js",
-    "PHP", "Laravel", "MySQL", "PostgreSQL",
-    "Git", "GitHub Actions", "Docker", "Linux",
-    "Cypress", "Vitest", "Framer Motion",
-]
-
-# ── Translations ─────────────────────────────────────────────────
-translations = {
-    "en": {
-        "title": "Senior Frontend Engineer with Full-Stack Roots",
-        "aboutTitle": "About Me",
-        "summary": "Frontend-first engineer with full-stack roots and nearly two decades of experience since 2007. I build scalable web products that turn complex business rules into fast, intuitive interfaces.",
-        "intro": "I understand the full delivery chain, collaborate comfortably with product, design, and backend teams, and build interfaces that stay maintainable as products grow. I embrace architectural refactoring, keeping my tech stack, testing coverage, and CI/CD pipelines at the bleeding edge.",
-        "experienceTitle": "Professional Experience",
-        "skillsTitle": "Technical Skills",
-        "present": "Present",
-        "langLabel": "Languages",
-        "langItems": [
-            {"lang": "Spanish", "level": "Native"},
-            {"lang": "English", "level": "Fluent"},
-            {"lang": "Danish", "level": "B1"},
-        ],
-        "items": {
-            12: {"role": "Senior Frontend Developer", "desc": "Leading frontend development for Schilling web applications and data products, working with React 18/19, TypeScript, Node.js, Tailwind, and Shadcn UI to scale complex real-estate workflows."},
-            11: {"role": "Senior Frontend Developer", "desc": "Led frontend development for Resights web applications and data products, working with Vue 2/3, Nuxt 2/3, TypeScript, Pinia/Vuex, Node.js, and Vuetify to scale complex real-estate workflows."},
-            10: {"role": "Senior Frontend Developer", "desc": "Built internal health and administration tools for Novo Nordisk with Vue, Vuetify, HTML, and CSS, focusing on reliable UI foundations for regulated medical teams."},
-            9:  {"role": "Senior Frontend Developer", "desc": "Delivered accessible campaign and landing experiences for Wunderman Nordic using Vue, SCSS, Bootstrap, and C# integrations."},
-            8:  {"role": "Lead Frontend Developer", "desc": "Led frontend development at GiG Media Copenhagen across affiliate and content platforms, modernizing legacy systems built on Laravel, Drupal, October CMS, MySQL, jQuery, Bootstrap, and PHP."},
-            7:  {"role": "Frontend Developer", "desc": "Worked on high-conversion affiliate products at Rebel Penguins, shipping frontend improvements, experiments, and UI iterations."},
-            6:  {"role": "Full-Stack Developer", "desc": "Developed internal dashboards and external client sites end-to-end at Rebel Penguins using PHP, MySQL, jQuery, Bootstrap, Drupal, October CMS, and Laravel."},
-            5:  {"role": "Volunteer", "desc": "Supported Plan Denmark\u2019s sponsorship department by registering and validating documents."},
-            4:  {"role": "Full-Stack Developer", "desc": "Founded Viruta Studio Creativo and built custom products for local organizations and media outlets using PHP, MySQL, PostgreSQL, Joomla, and Drupal."},
-            3:  {"role": "Full-Stack Developer", "desc": "Built internal systems at GEOCUBA\u2019s R&D agency, combining PHP, MySQL, PostgreSQL, Ext JS, jQuery, Bootstrap, and geospatial tooling."},
-            2:  {"role": "Full-Stack Developer", "desc": "Developed statistical and administrative solutions for the Provincial Office of ONEI using PHP, MySQL, HTML, CSS, and Ext JS."},
-            1:  {"role": "Full-Stack Developer", "desc": "Started my professional career on the National Library project at UCI, building Drupal, PHP, and MySQL solutions while coordinating junior developers."},
-        },
-    },
-    "es": {
-        "title": "Ingeniero Frontend Senior con base Full Stack",
-        "aboutTitle": "Sobre M\u00ed",
-        "summary": "Ingeniero orientado a frontend, con ra\u00edces full stack y casi dos d\u00e9cadas de experiencia desde 2007. Construyo productos web escalables que convierten reglas de negocio complejas en interfaces r\u00e1pidas, claras e intuitivas.",
-        "intro": "Entiendo toda la cadena de entrega, colaboro c\u00f3modamente con producto, dise\u00f1o y backend. Adopto la refactorizaci\u00f3n arquitect\u00f3nica, manteniendo mi stack t\u00e9cnico, cobertura de pruebas y pipelines CI/CD a la vanguardia.",
-        "experienceTitle": "Experiencia Profesional",
-        "skillsTitle": "Habilidades T\u00e9cnicas",
-        "present": "Actual",
-        "langLabel": "Idiomas",
-        "langItems": [
-            {"lang": "Espa\u00f1ol", "level": "Nativo"},
-            {"lang": "Ingl\u00e9s", "level": "Fluido"},
-            {"lang": "Dan\u00e9s", "level": "B1"},
-        ],
-        "items": {
-            12: {"role": "Desarrollador Frontend S\u00e9nior", "desc": "Liderando el desarrollo frontend de las aplicaciones web y productos de datos de Schilling, trabajando con React 18/19, TypeScript, Node.js, Tailwind y Shadcn UI para escalar flujos de trabajo complejos en el sector inmobiliario."},
-            11: {"role": "Desarrollador Frontend S\u00e9nior", "desc": "Lider\u00e9 el desarrollo frontend de las aplicaciones y productos de datos de Resights, trabajando con Vue 2/3, Nuxt 2/3, TypeScript, Pinia/Vuex, Node.js y Vuetify para escalar flujos de trabajo complejos."},
-            10: {"role": "Desarrollador Frontend S\u00e9nior", "desc": "Constru\u00ed herramientas internas de salud y administraci\u00f3n para Novo Nordisk con Vue, Vuetify, HTML y CSS, enfoc\u00e1ndome en una base de interfaz fiable para equipos m\u00e9dicos."},
-            9:  {"role": "Desarrollador Frontend S\u00e9nior", "desc": "Entregu\u00e9 campa\u00f1as y p\u00e1ginas de destino accesibles para Wunderman Nordic usando Vue, SCSS, Bootstrap e integraciones con C#."},
-            8:  {"role": "L\u00edder de Desarrollo Frontend", "desc": "Lider\u00e9 el desarrollo frontend en GiG Media Copenhagen a trav\u00e9s de productos de afiliaci\u00f3n y contenido, modernizando plataformas legacy construidas con Laravel, Drupal y PHP."},
-            7:  {"role": "Desarrollador Frontend", "desc": "Trabaj\u00e9 en productos de afiliaci\u00f3n de alta conversi\u00f3n en Rebel Penguins, entregando mejoras de frontend, experimentos e iteraciones de UI."},
-            6:  {"role": "Desarrollador Full-Stack", "desc": "Desarroll\u00e9 de extremo a extremo dashboards internos y sitios externos en Rebel Penguins usando PHP, MySQL, jQuery, Bootstrap y Laravel."},
-            5:  {"role": "Voluntario", "desc": "Apoy\u00e9 al departamento de patrocinio de Plan Denmark registrando y validando documentos."},
-            4:  {"role": "Desarrollador Full-Stack", "desc": "Fund\u00e9 Viruta Studio Creativo y desarroll\u00e9 productos a medida para organizaciones locales y medios usando PHP, MySQL, PostgreSQL y Drupal."},
-            3:  {"role": "Desarrollador Full-Stack", "desc": "Constru\u00ed sistemas internos en la agencia de I+D de GEOCUBA combinando PHP, MySQL, PostgreSQL, Ext JS, jQuery y Bootstrap."},
-            2:  {"role": "Desarrollador Full-Stack", "desc": "Desarroll\u00e9 soluciones estad\u00edsticas y administrativas para la Oficina Provincial de la ONEI utilizando PHP, MySQL, HTML, CSS y Ext JS."},
-            1:  {"role": "Desarrollador Full-Stack", "desc": "Inici\u00e9 mi carrera profesional en el proyecto Biblioteca Nacional de la UCI, desarrollando soluciones con Drupal, PHP y MySQL."},
-        },
-    },
-    "dk": {
-        "title": "Senior Frontend Engineer med Full-Stack baggrund",
-        "aboutTitle": "Om Mig",
-        "summary": "Frontend-fokuseret engineer med full-stack baggrund og n\u00e6sten to \u00e5rtiers erfaring siden 2007. Jeg bygger skalerbare webprodukter, der oms\u00e6tter kompleks forretningslogik til hurtige og intuitive interfaces.",
-        "intro": "Jeg forst\u00e5r hele leverancek\u00e6den, samarbejder naturligt med produkt, design og backend, og bygger interfaces der forbliver vedligeholdelige. Jeg holder min teknologistak, testd\u00e6kning og CI/CD-pipelines p\u00e5 forkant.",
-        "experienceTitle": "Professionel Erfaring",
-        "skillsTitle": "Tekniske Kompetencer",
-        "present": "Nu",
-        "langLabel": "Sprog",
-        "langItems": [
-            {"lang": "Spansk", "level": "Modersm\u00e5l"},
-            {"lang": "Engelsk", "level": "Flydende"},
-            {"lang": "Dansk", "level": "B1"},
-        ],
-        "items": {
-            12: {"role": "Senior Frontend-udvikler", "desc": "Leder frontend-udviklingen af Schillings webapplikationer og dataprodukter med fokus p\u00e5 React 18/19, TypeScript, Node.js, Tailwind og Shadcn UI til at skalere komplekse ejendomsworkflows."},
-            11: {"role": "Senior Frontend-udvikler", "desc": "Ledte frontend-udviklingen af Resights webapplikationer og dataprodukter med Vue 2/3, Nuxt 2/3, TypeScript, Pinia/Vuex, Node.js og Vuetify."},
-            10: {"role": "Senior Frontend-udvikler", "desc": "Byggede interne sundheds- og administrationsv\u00e6rkt\u00f8jer for Novo Nordisk med Vue, Vuetify, HTML og CSS med fokus p\u00e5 stabile UI-fundamenter."},
-            9:  {"role": "Senior Frontend-udvikler", "desc": "Leverede tilg\u00e6ngelige kampagner og landing pages for Wunderman Nordic med Vue, SCSS, Bootstrap og C#-integrationer."},
-            8:  {"role": "Lead Frontend-udvikler", "desc": "Ledte frontend-udviklingen hos GiG Media Copenhagen og moderniserede legacy-platforme bygget i Laravel, Drupal og PHP."},
-            7:  {"role": "Frontend-udvikler", "desc": "Arbejdede p\u00e5 high-conversion affiliate-produkter hos Rebel Penguins og leverede frontend-forbedringer og UI-iterationer."},
-            6:  {"role": "Full-stack-udvikler", "desc": "Udviklede interne dashboards og eksterne websites end-to-end hos Rebel Penguins med PHP, MySQL, jQuery og Laravel."},
-            5:  {"role": "Frivillig", "desc": "St\u00f8ttede Plan Denmarks sponsorafdeling med registrering og validering af dokumenter."},
-            4:  {"role": "Full-stack-udvikler", "desc": "Grundlagde Viruta Studio Creativo og byggede skr\u00e6ddersyede produkter for lokale organisationer med PHP, MySQL, PostgreSQL og Drupal."},
-            3:  {"role": "Full-stack-udvikler", "desc": "Byggede interne systemer i GEOCUBAs forsknings- og udviklingsafdeling ved at kombinere PHP, MySQL, PostgreSQL og Ext JS."},
-            2:  {"role": "Full-stack-udvikler", "desc": "Udviklede statistiske og administrative l\u00f8sninger for det provinsielle ONEI-kontor med PHP, MySQL, HTML, CSS og Ext JS."},
-            1:  {"role": "Full-stack-udvikler", "desc": "Startede min professionelle karriere p\u00e5 National Library-projektet ved UCI, hvor jeg byggede l\u00f8sninger i Drupal, PHP og MySQL."},
-        },
-    },
 }
 
 # ── Theme palettes ───────────────────────────────────────────────
@@ -182,14 +96,14 @@ def get_photo_data_url(theme: str) -> str:
 
 
 def build_html(lang: str, theme: str) -> str:
-    t = translations[lang]
+    t = get_translations(lang)
     c = themes[theme]
     photo_url = get_photo_data_url(theme)
 
     experience_html = ""
-    for exp in experiences:
+    for exp in experiences_raw:
         item = t["items"][exp["id"]]
-        period = exp["period"].replace("Present", t["present"])
+        period = exp["period"].replace("Present day", t["present"]).replace("Present", t["present"])
         company_name = exp["company"]
         if exp.get("url"):
             company_name = f'<a href="{exp["url"]}" class="company-link">{exp["company"]}</a>'
@@ -438,16 +352,16 @@ def build_html(lang: str, theme: str) -> str:
           {themed_icons['phone']} <span>{p['phone']}</span>
         </div>
         <div class="contact-item">
-          {themed_icons['globe']} <a href="{p['web_url']}">{p['web']} {themed_icons['link']}</a>
+          {themed_icons['globe']} <a href="{p['webUrl']}">{p['web']} {themed_icons['link']}</a>
         </div>
         <div class="contact-item">
           {themed_icons['mapPin']} <span>{p['location']}</span>
         </div>
         <div class="contact-item">
-          {themed_icons['linkedin']} <a href="{p['linkedin_url']}">{p['linkedin']} {themed_icons['link']}</a>
+          {themed_icons['linkedin']} <a href="{p['linkedinUrl']}">{p['linkedin']} {themed_icons['link']}</a>
         </div>
         <div class="contact-item">
-          {themed_icons['github']} <a href="{p['github_url']}">{p['github']} {themed_icons['link']}</a>
+          {themed_icons['github']} <a href="{p['githubUrl']}">{p['github']} {themed_icons['link']}</a>
         </div>
       </div>
     </div>

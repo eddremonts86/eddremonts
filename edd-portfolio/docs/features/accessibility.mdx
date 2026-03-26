@@ -1,0 +1,129 @@
+# Accessibility (a11y)
+
+Estándares de accesibilidad implementados en el proyecto, alineados con WCAG 2.1 AA.
+
+---
+
+## Navegación por teclado
+
+### Skip to content
+
+`App.tsx` incluye un link "Skip to main content" como primer elemento focusable:
+
+```tsx
+<a href="#main" className="sr-only focus:not-sr-only">
+  Skip to main content
+</a>
+```
+
+### Focus visible
+
+Todos los elementos interactivos tienen estilos de focus visibles:
+
+```tsx
+className="focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+```
+
+Se usa `focus-visible` (no `focus`) para que solo aparezca con navegación por teclado, no con clicks de mouse.
+
+---
+
+## Imágenes
+
+### Alt text
+
+Todas las imágenes tienen `alt` descriptivo:
+
+```tsx
+// ✅ Correcto
+<OptimizedImage
+  alt={`${project.title} project preview (${project.category})`}
+/>
+
+// ❌ Incorrecto
+<img alt="" />
+<img alt="image" />
+```
+
+### Imágenes decorativas
+
+Imágenes puramente decorativas (AmbientLight blobs, etc.) usan `aria-hidden="true"` o `alt=""`.
+
+---
+
+## Color y contraste
+
+- Los colores `primary` sobre `background` pasan **WCAG AA** (ratio ≥ 4.5:1) en ambos temas
+- Se usan tokens de opacidad (`text-foreground/80`) que mantienen contraste adecuado
+- Verificar contraste con herramientas como [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
+
+---
+
+## Reduced motion
+
+Componentes con animación continua verifican `useReducedMotion()`:
+
+| Componente | Comportamiento con reduced motion |
+|-----------|----------------------------------|
+| `MouseFollower` | Se desactiva completamente |
+| `SkillsMarquee` | Pausa la animación del marquee |
+| Scroll animations | Framer Motion aplica animaciones instantáneas |
+
+```tsx
+import { useReducedMotion } from 'framer-motion';
+
+const prefersReduced = useReducedMotion();
+
+// Componente se desactiva si reduced motion está activo
+if (prefersReduced) return null;
+```
+
+---
+
+## Semántica HTML
+
+### Landmarks
+
+```html
+<header>  → StickyNav
+<main>    → Contenido principal (todas las secciones)
+<section> → Cada sección de la página
+<footer>  → Footer
+```
+
+### Headings
+
+La jerarquía de headings sigue el orden lógico:
+- `<h1>` → Nombre en el Hero (uno solo por página)
+- `<h2>` → Título de cada sección
+- `<h3>` → Subtítulos dentro de secciones
+
+---
+
+## Formulario de contacto
+
+- Labels asociados con `htmlFor` / `id`
+- Estados de error comunicados con `aria-invalid` y `aria-describedby`
+- Botón de submit deshabilitado durante envío con `aria-busy="true"`
+- Mensaje de éxito anunciado a screen readers
+
+---
+
+## Idioma
+
+- `<html lang>` se actualiza dinámicamente al cambiar idioma
+- `hreflang` alternates en el head para indicar versiones en otros idiomas
+
+---
+
+## Checklist
+
+- [ ] Focus visible en todos los elementos interactivos
+- [ ] Skip to main content link funcional
+- [ ] Alt text en todas las imágenes significativas
+- [ ] Contraste WCAG AA en textos principales
+- [ ] `useReducedMotion()` en animaciones continuas
+- [ ] Landmarks HTML semánticos (`header`, `main`, `section`, `footer`)
+- [ ] Jerarquía de headings lógica (h1 → h2 → h3)
+- [ ] Formulario con labels y estados accesibles
+- [ ] `lang` en `<html>` actualizado dinámicamente

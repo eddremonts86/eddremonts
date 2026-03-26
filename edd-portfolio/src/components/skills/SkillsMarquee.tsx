@@ -1,17 +1,19 @@
 import { m, useReducedMotion } from 'framer-motion';
 import { skills } from '@/data/cvData';
 import { techIconMap } from '@/data/techIcons';
+import { useTranslation } from 'react-i18next';
 
 // Triple the skills for seamless infinite loop
 const tripled = [...skills, ...skills, ...skills];
 
 export const SkillsMarquee = () => {
+  const { t } = useTranslation();
   const reduceMotion = useReducedMotion();
 
   return (
     <section
       className="relative z-20 overflow-hidden border-y border-subtle bg-surface py-12"
-      aria-label="Technology skills"
+      aria-label={t('a11y.skillsMarquee')}
     >
       <m.div
         className="flex items-center gap-12 whitespace-nowrap"

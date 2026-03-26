@@ -1,0 +1,126 @@
+# Architecture Overview
+
+## Tipo de aplicación
+
+**Single Page Application (SPA)** — una sola página donde todas las secciones se renderizan como bloques de scroll verticales. No hay React Router ni rutas del lado del servidor.
+
+---
+
+## Diagrama de alto nivel
+
+```
+┌─────────────────────────────────────────────┐
+│                  index.html                  │
+│              (Vite entry point)              │
+└──────────────────┬──────────────────────────┘
+                   │
+┌──────────────────▼──────────────────────────┐
+│               main.tsx                       │
+│  HelmetProvider → ThemeProvider → App        │
+└──────────────────┬──────────────────────────┘
+                   │
+┌──────────────────▼──────────────────────────┐
+│                App.tsx                        │
+│  Preloader gate → Layout + Sections          │
+├─────────────────────────────────────────────┤
+│  ABOVE FOLD (eager imports):                 │
+│  ┌─ HeroSection                              │
+│  ├─ StatsCounter                             │
+│  ├─ AboutSection                             │
+│  ├─ SkillsMarquee                            │
+│  ├─ ExperienceTimeline                       │
+│  └─ TestimonialBlock                         │
+│                                              │
+│  BELOW FOLD (React.lazy + Suspense):         │
+│  ┌─ ProjectsGallery                          │
+│  ├─ CodeShowcase                             │
+│  └─ ContactSection                           │
+├─────────────────────────────────────────────┤
+│  PERSISTENT UI:                              │
+│  ┌─ StickyNav (aparece al scrollear)         │
+│  ├─ DotNavigation (lateral derecho)          │
+│  ├─ MouseFollower (cursor personalizado)     │
+│  └─ Footer                                   │
+└─────────────────────────────────────────────┘
+```
+
+---
+
+## Flujo de datos
+
+```
+                  cvData.ts
+                 (fuente única)
+                      │
+          ┌───────────┼───────────┐
+          ▼           ▼           ▼
+    Components    navigation.ts  techIcons.ts
+          │
+          ├── useState (UI local)
+          ├── ThemeContext (tema global)
+          ├── i18next (traducciones)
+          └── Framer Motion values (animaciones)
+```
+
+### Principios clave
+
+1. **Data-driven**: Todo el contenido vive en `src/data/cvData.ts`. Los componentes renderizan arrays dinámicamente — agregar un proyecto o experiencia es solo agregar un objeto al array.
+
+2. **Sin estado global complejo**: No hay Redux, Zustand ni ningún state manager externo. El estado se maneja con:
+   - **`ThemeContext`** para el tema (light/dark/system) con persistencia en `localStorage`
+   - **`i18next`** para el idioma activo con persistencia en `localStorage`
+   - **`useState`** para estado local de UI (loading, form status, hover, active tab, etc.)
+   - **`useMotionValue`/`useSpring`** para valores de animación (posición del cursor, scroll progress, contadores)
+
+3. **Navegación por hash**: No hay router. La navegación usa anchor links (`#about`, `#projects`) con `scroll-behavior: smooth` nativo del CSS. El array `NAV_SECTIONS` en `navigation.ts` es la fuente de verdad de las secciones.
+
+---
+
+## Code splitting
+
+Las secciones visibles al cargar la página se importan directamente. Las secciones below-fold usan `React.lazy()` dentro de `<Suspense>`:
+
+```tsx
+// Above fold - eager imports
+import { HeroSection } from '@/components/hero/HeroSection';
+import { StatsCounter } from '@/components/stats/StatsCounter';
+// ...
+
+// Below fold - lazy imports
+const ProjectsGallery = lazy(() =>
+  import('@/components/projects/ProjectsGallery')
+);
+const CodeShowcase = lazy(() =>
+  import('@/components/code/CodeShowcase')
+);
+const ContactSection = lazy(() =>
+  import('@/components/contact/ContactSection')
+);
+```
+
+---
+
+## Bootstrap sequence
+
+1. **`index.html`** carga el script de Vite
+2. **`main.tsx`** monta la app: `HelmetProvider` → `ThemeProvider` → `App`
+3. **`i18n.ts`** se ejecuta al importarse — detecta idioma de `localStorage` → `navigator.language` → `en`
+4. **`App.tsx`** muestra el `Preloader` (animación de carga con %)
+5. Cuando el preloader termina, se monta el layout: `StickyNav`, `DotNavigation`, `MouseFollower` + todas las secciones
+6. Las secciones lazy se cargan cuando entran al viewport
+
+---
+
+## Renderizado
+
+Todo el renderizado es **client-side**. No hay SSR, SSG ni React Server Components. El deploy es un bundle estático servido por Netlify.
+
+### SEO sin SSR
+
+El componente `<SEO>` usa `react-helmet-async` para inyectar dinámicamente:
+- Meta tags (title, description, OpenGraph, Twitter Card)
+- `hreflang` alternates para cada idioma
+- JSON-LD `Person` schema para structured data
+- `document.documentElement.lang` actualizado dinámicamente
+
+El sitemap se genera en build time por `vite-plugin-sitemap`.

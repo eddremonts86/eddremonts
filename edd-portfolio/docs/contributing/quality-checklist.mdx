@@ -1,0 +1,86 @@
+# Quality Checklist
+
+Checklist a completar antes de pushear cambios al repositorio.
+
+---
+
+## Pre-push obligatorio
+
+### Build
+
+- [ ] `pnpm build` pasa sin errores (TypeScript + Vite)
+- [ ] `pnpm lint` muestra cero errores
+- [ ] `pnpm format:check` pasa (código formateado)
+
+### Funcionalidad
+
+- [ ] El sitio funciona en **light mode**
+- [ ] El sitio funciona en **dark mode**
+- [ ] El sitio funciona en **system mode**
+- [ ] Los 3 idiomas (EN / ES / DK) muestran texto correcto
+- [ ] La navegación por hash scroll funciona
+- [ ] El formulario de contacto envía correctamente
+
+### Contenido
+
+- [ ] Todos los archivos de traducción tienen las **mismas keys** (`en`, `es`, `dk`)
+- [ ] Si se agregó un proyecto: la imagen está en `public/projects/` y es **WebP < 200KB**
+- [ ] Si se agregó una experiencia: está al **inicio** del array (orden cronológico inverso)
+
+### Performance
+
+- [ ] Lighthouse **Performance** ≥ 90
+- [ ] No hay imágenes sin comprimir (> 200KB)
+- [ ] Las secciones below-fold usan `React.lazy()`
+- [ ] No hay `import *` de librerías grandes
+
+### Accesibilidad
+
+- [ ] Lighthouse **Accessibility** ≥ 95
+- [ ] Imágenes significativas tienen **alt text** descriptivo
+- [ ] Elementos interactivos tienen **focus-visible**
+- [ ] Animaciones continuas verifican `useReducedMotion()`
+- [ ] Contraste de colores pasa **WCAG AA**
+- [ ] Headings en orden lógico (h1 → h2 → h3)
+
+### SEO
+
+- [ ] Lighthouse **SEO** = 100
+- [ ] `<title>` y `<meta description>` presentes
+- [ ] OpenGraph tags correctos
+- [ ] `hreflang` alternates para todos los idiomas
+- [ ] JSON-LD schema válido
+
+---
+
+## Para nuevos componentes
+
+- [ ] Usa **named export** (no default)
+- [ ] Un componente por archivo
+- [ ] Usa tokens semánticos de Tailwind (no hex directo)
+- [ ] Animaciones usan constantes de `@/lib/motion`
+- [ ] Texto visible usa `t()` de i18n
+- [ ] Props están tipadas con interface
+- [ ] Si tiene animación continua → verifica `useReducedMotion()`
+
+---
+
+## Para cambios en datos
+
+- [ ] `cvData.ts` no importa React
+- [ ] Si se agrega un skill nuevo con icono → SVG en `public/tech-icons/` + entrada en `techIcons.ts`
+- [ ] Si se agrega un proyecto → imagen en `public/projects/`
+- [ ] Verificar que `StatsCounter` sigue mostrando valores correctos
+
+---
+
+## Verificación rápida
+
+```bash
+# Ejecutar todo de una vez
+pnpm build && pnpm lint && pnpm format:check
+
+# Preview visual
+pnpm preview
+# Abrir http://localhost:4173 → verificar ambos temas y los 3 idiomas
+```
