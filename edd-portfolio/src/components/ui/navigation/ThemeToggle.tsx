@@ -19,7 +19,7 @@ export const ThemeToggle = () => {
   return (
     <button
       onClick={next}
-      className="text-foreground/70 group relative flex h-10 min-h-[40px] w-10 min-w-[40px] items-center justify-center overflow-hidden rounded-full border border-subtle bg-surface shadow-sm transition-colors duration-500 hover:text-foreground"
+      className="text-foreground/70 group relative flex h-10 min-h-[40px] w-10 min-w-[40px] items-center justify-center overflow-hidden rounded-full   border-subtle transition-colors duration-500 hover:text-foreground"
       aria-label={`Theme: ${theme}. Click to switch.`}
     >
       <m.div
@@ -31,7 +31,7 @@ export const ThemeToggle = () => {
         transition={{ duration: 0.3, ease: APPLE_EASE }}
         className="absolute"
       >
-        <Moon className="text-foreground/70 h-4 w-4 transition-colors group-hover:text-foreground" />
+        <Moon className="w-4 h-4 transition-colors text-primary group-hover:text-foreground" />
       </m.div>
       <m.div
         initial={false}
@@ -42,7 +42,7 @@ export const ThemeToggle = () => {
         transition={{ duration: 0.3, ease: APPLE_EASE }}
         className="absolute"
       >
-        <Sun className="text-foreground/70 h-4 w-4 transition-colors group-hover:text-foreground" />
+        <Sun className="w-4 h-4 transition-colors text-primary group-hover:text-foreground" />
       </m.div>
       <m.div
         initial={false}
@@ -53,9 +53,9 @@ export const ThemeToggle = () => {
         transition={{ duration: 0.3, ease: APPLE_EASE }}
         className="absolute"
       >
-        <Monitor className="text-foreground/70 h-4 w-4 transition-colors group-hover:text-foreground" />
+        <Monitor className="w-4 h-4 transition-colors text-primary group-hover:text-foreground" />
       </m.div>
-      <span className="invisible h-4 w-4" aria-hidden="true" />
+      <span className="invisible w-4 h-4" aria-hidden="true" />
     </button>
   );
 };

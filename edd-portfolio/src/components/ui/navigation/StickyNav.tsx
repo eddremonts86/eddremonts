@@ -38,19 +38,19 @@ export const StickyNav = () => {
           className="bg-background/80 fixed left-0 top-0 z-[100] w-full border-b border-subtle pt-[env(safe-area-inset-top)] backdrop-blur-xl"
           aria-label={t('a11y.mainNav')}
         >
-          <div className="container mx-auto flex items-center justify-between gap-3 px-4 py-3 md:gap-4 md:px-6 md:py-4">
+          <div className="container flex items-center justify-between gap-3 px-4 py-3 mx-auto md:gap-4 md:px-6 md:py-4">
             {/* Brand / Logo */}
-            <a href="#hero" className="shrink-0 text-foreground transition-opacity hover:opacity-80">
-              <Logo className="h-10 w-auto md:h-12" />
+            <a href="#hero" className="transition-opacity shrink-0 text-foreground hover:opacity-80">
+              <Logo className="w-auto h-10 md:h-12" />
             </a>
 
             {/* Nav Links — hidden on mobile, visible on md+ */}
-            <div className="hide-scrollbar hidden items-center gap-6 overflow-x-auto md:flex lg:gap-8">
+            <div className="items-center hidden gap-6 overflow-x-auto hide-scrollbar md:flex lg:gap-8">
               {navLinks.map(({ id, labelKey }) => (
                 <a
                   key={id}
                   href={`#${id}`}
-                  className="text-foreground/50 whitespace-nowrap font-mono text-[11px] uppercase tracking-widest transition-all hover:text-foreground"
+                  className="text-primary whitespace-nowrap font-mono text-[11px] uppercase tracking-widest transition-all hover:text-foreground"
                 >
                   {t(labelKey)}
                 </a>
@@ -58,14 +58,14 @@ export const StickyNav = () => {
             </div>
 
             {/* Controls */}
-            <div className="flex shrink-0 items-center gap-2 sm:gap-4">
+            <div className="flex items-center gap-2 shrink-0 sm:gap-4">
               <LanguageSelector />
               <ThemeToggle />
 
               {/* Hamburger — visible only on mobile */}
               <button
                 onClick={() => setMobileOpen((prev) => !prev)}
-                className="text-foreground/70 flex h-10 w-10 items-center justify-center rounded-full border border-subtle bg-surface transition-colors duration-300 hover:text-foreground md:hidden"
+                className="flex items-center justify-center w-10 h-10 transition-colors duration-300 border rounded-full text-foreground/70 border-subtle bg-surface hover:text-foreground md:hidden"
                 aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={mobileOpen}
               >
@@ -78,7 +78,7 @@ export const StickyNav = () => {
                       exit={{ rotate: 90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <X className="h-4 w-4" />
+                      <X className="w-4 h-4" />
                     </m.span>
                   ) : (
                     <m.span
@@ -88,7 +88,7 @@ export const StickyNav = () => {
                       exit={{ rotate: -90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Menu className="h-4 w-4" />
+                      <Menu className="w-4 h-4" />
                     </m.span>
                   )}
                 </AnimatePresence>
@@ -106,7 +106,7 @@ export const StickyNav = () => {
                 transition={{ duration: 0.3, ease: APPLE_EASE }}
                 className="overflow-hidden border-t border-subtle md:hidden"
               >
-                <div className="container mx-auto flex flex-col gap-3 px-4 py-4">
+                <div className="container flex flex-col gap-3 px-4 py-4 mx-auto">
                   {navLinks.map(({ id, labelKey }, i) => (
                     <m.a
                       key={id}
@@ -115,7 +115,7 @@ export const StickyNav = () => {
                       initial={{ x: -16, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: i * 0.05, duration: 0.3, ease: APPLE_EASE }}
-                      className="text-foreground/60 py-2 font-mono text-xs uppercase tracking-widest transition-colors hover:text-foreground"
+                      className="py-2 font-mono text-xs tracking-widest uppercase transition-colors text-primary hover:text-foreground"
                     >
                       {t(labelKey)}
                     </m.a>
