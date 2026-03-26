@@ -1,3 +1,4 @@
+import { Logo } from '@/components/ui/media/Logo';
 import { LanguageSelector } from '@/components/ui/navigation/LanguageSelector';
 import { ThemeToggle } from '@/components/ui/navigation/ThemeToggle';
 import { NAV_SECTIONS } from '@/data/navigation';
@@ -39,12 +40,8 @@ export const StickyNav = () => {
         >
           <div className="container mx-auto flex items-center justify-between gap-3 px-4 py-3 md:gap-4 md:px-6 md:py-4">
             {/* Brand / Logo */}
-            <a href="#hero" className="shrink-0 transition-opacity hover:opacity-80">
-              <img
-                src="/logo.svg"
-                alt="Inerarte — Eduardo, Senior Full-Stack / Frontend Engineer"
-                className="h-10 w-auto md:h-12"
-              />
+            <a href="#hero" className="shrink-0 text-foreground transition-opacity hover:opacity-80">
+              <Logo className="h-10 w-auto md:h-12" />
             </a>
 
             {/* Nav Links — hidden on mobile, visible on md+ */}

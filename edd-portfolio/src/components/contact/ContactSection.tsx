@@ -46,7 +46,7 @@ export const ContactSection = () => {
     >
       {/* Subtle Abstract Background */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden opacity-[0.03]">
-        <h2 className="whitespace-nowrap text-[25vw] font-black uppercase leading-none tracking-tighter">
+        <h2 className="whitespace-nowrap text-[25vw] font-black uppercase leading-none tracking-tighter text-inherit">
           {t('nav.contact')}
         </h2>
       </div>
@@ -64,7 +64,7 @@ export const ContactSection = () => {
                 className="border-background/20 bg-background/5 text-background/80 mb-8"
               />
 
-              <h2 className="mb-6 text-5xl font-black uppercase leading-tight tracking-tighter md:text-7xl lg:text-8xl">
+              <h2 className="mb-6 text-5xl font-black uppercase leading-tight tracking-tighter text-background md:text-7xl lg:text-8xl">
                 {t('contact.title')} <br />
                 <span className="text-primary">{t('contact.titleAccent')}</span>
               </h2>

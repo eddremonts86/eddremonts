@@ -100,7 +100,7 @@ export const HeroSection = () => {
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.2, ease: APPLE_EASE, delay: 0.4 }}
-                className="mt-2 block font-display font-medium tracking-tighter mix-blend-difference md:mt-4"
+                className="mt-2 block font-display font-medium tracking-tighter dark:mix-blend-difference md:mt-4"
               >
                 {t('hero.titleLine1')}
               </m.span>

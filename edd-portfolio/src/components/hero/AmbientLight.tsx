@@ -2,7 +2,7 @@ import { m } from 'framer-motion';
 
 export const AmbientLight = ({ hidden }: { hidden: boolean }) => (
   <div
-    className={`pointer-events-none absolute inset-0 overflow-hidden mix-blend-screen transition-opacity duration-1000 dark:mix-blend-lighten ${hidden ? 'opacity-0' : 'opacity-40 dark:opacity-20'}`}
+    className={`pointer-events-none absolute inset-0 overflow-hidden mix-blend-multiply transition-opacity duration-1000 dark:mix-blend-lighten ${hidden ? 'opacity-0' : 'opacity-40 dark:opacity-20'}`}
   >
     <m.div
       animate={{ opacity: [0.3, 0.6, 0.3] }}

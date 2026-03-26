@@ -1,3 +1,4 @@
+import { Logo } from '@/components/ui/media/Logo';
 import { personalInfo } from '@/data/cvData';
 import { fadeInView } from '@/lib/motion';
 import { m } from 'framer-motion';
@@ -16,12 +17,8 @@ export const Footer = () => {
         >
           {/* Logo / Branding */}
           <div className="text-center md:text-left">
-            <a href="#hero" className="inline-block transition-opacity hover:opacity-80">
-              <img
-                src="/logo.svg"
-                alt="Inerarte — Eduardo, Senior Full-Stack / Frontend Engineer"
-                className="mb-3 h-16 w-auto md:h-28"
-              />
+            <a href="#hero" className="inline-block text-foreground transition-opacity hover:opacity-80">
+              <Logo className="mb-3 h-16 w-auto md:h-28" />
             </a>
             <p className="text-foreground/40 font-mono text-[10px] uppercase tracking-widest">
               {t('footer.inspired', 'Crafted with intent.')}
