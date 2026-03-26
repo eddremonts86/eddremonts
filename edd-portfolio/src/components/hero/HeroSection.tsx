@@ -33,20 +33,38 @@ export const HeroSection = () => {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
   const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
-  const textColor = isHovered ? 'text-white' : 'text-foreground';
-  const mutedTextColor = isHovered ? 'text-white/80' : 'text-foreground/80';
-  const sublineTextColor = isHovered ? 'text-white/60' : 'text-foreground/60';
-  const borderColor = isHovered ? 'border-white/20' : 'border-foreground/20';
-  const buttonHover = isHovered
+  const isLightHover = isHovered && resolvedTheme === 'light';
+  const isDarkHover = isHovered && resolvedTheme === 'dark';
+  const textColor = isDarkHover ? 'text-white' : isLightHover ? 'text-black' : 'text-foreground';
+  const mutedTextColor = isDarkHover
+    ? 'text-white/80'
+    : isLightHover
+      ? 'text-black/80'
+      : 'text-foreground/80';
+  const sublineTextColor = isDarkHover
+    ? 'text-white/60'
+    : isLightHover
+      ? 'text-black/60'
+      : 'text-foreground/60';
+  const borderColor = isDarkHover
+    ? 'border-white/20'
+    : isLightHover
+      ? 'border-black/20'
+      : 'border-foreground/20';
+  const buttonHover = isDarkHover
     ? 'hover:bg-white hover:text-black'
-    : 'hover:bg-foreground hover:text-background';
+    : isLightHover
+      ? 'hover:bg-black hover:text-white'
+      : 'hover:bg-foreground hover:text-background';
 
   return (
     <section
       ref={containerRef}
-      className={`relative flex min-h-[100svh] min-h-screen flex-col justify-end overflow-hidden pb-24 transition-colors duration-1000 md:pb-32 ${isHovered ? 'bg-black' : 'bg-background'}`}
+      className={`relative flex min-h-[100svh] min-h-screen flex-col justify-end overflow-hidden pb-24 transition-colors duration-1000 md:pb-32 ${isDarkHover ? 'bg-black' : isLightHover ? 'bg-white' : 'bg-background'}`}
     >
-      <AnimatePresence>{isHovered && <BackgroundReveal src={dynamicBG} />}</AnimatePresence>
+      <AnimatePresence>
+        {isHovered && <BackgroundReveal src={dynamicBG} theme={resolvedTheme} />}
+      </AnimatePresence>
 
       <AmbientLight hidden={isHovered} />
 
@@ -86,7 +104,7 @@ export const HeroSection = () => {
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.2, ease: APPLE_EASE, delay: 0.3 }}
-                className={`group relative w-fit cursor-crosshair font-serif transition-colors duration-700 ${isHovered ? 'text-white' : 'text-primary'}`}
+                className={`group relative w-fit cursor-crosshair font-serif transition-colors duration-700 ${isDarkHover ? 'text-white' : isLightHover ? 'text-black' : 'text-primary'}`}
                 onPointerEnter={() => setIsHovered(true)}
                 onPointerLeave={() => setIsHovered(false)}
               >
@@ -149,6 +167,8 @@ export const HeroSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`inline-flex items-center justify-center gap-4 whitespace-nowrap rounded-full border px-6 py-3 text-[11px] font-bold uppercase tracking-widest transition-all duration-700 md:text-xs ${textColor} ${borderColor} ${buttonHover}`}
+                onPointerEnter={() => setIsHovered(true)}
+                onPointerLeave={() => setIsHovered(false)}
               >
                 <span>{t('nav.resume')}</span>
               </a>
@@ -157,7 +177,11 @@ export const HeroSection = () => {
         </div>
       </m.div>
 
-      <ScrollIndicator label={t('hero.scroll', 'Scroll')} isHovered={isHovered} />
+      <ScrollIndicator
+        label={t('hero.scroll', 'Scroll')}
+        isHovered={isHovered}
+        theme={resolvedTheme}
+      />
     </section>
   );
 };

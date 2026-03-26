@@ -1,15 +1,34 @@
 import { m } from 'framer-motion';
 
-export const ScrollIndicator = ({ label, isHovered }: { label: string; isHovered: boolean }) => {
-  const trackColor = isHovered ? 'bg-white/20' : 'bg-foreground/20';
-  const thumbColor = isHovered ? 'bg-white' : 'bg-foreground';
+export const ScrollIndicator = ({
+  label,
+  isHovered,
+  theme,
+}: {
+  label: string;
+  isHovered: boolean;
+  theme: 'light' | 'dark';
+}) => {
+  const isDarkHover = isHovered && theme === 'dark';
+  const isLightHover = isHovered && theme === 'light';
+  const trackColor = isDarkHover
+    ? 'bg-white/20'
+    : isLightHover
+      ? 'bg-black/20'
+      : 'bg-foreground/20';
+  const thumbColor = isDarkHover ? 'bg-white' : isLightHover ? 'bg-black' : 'bg-foreground';
+  const textColor = isDarkHover
+    ? 'text-white/60'
+    : isLightHover
+      ? 'text-black/60'
+      : 'text-foreground/60';
 
   return (
     <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 2, duration: 1 }}
-      className={`absolute bottom-8 left-6 flex items-center gap-4 transition-colors duration-700 md:left-12 ${isHovered ? 'text-white/60' : 'text-foreground/60'}`}
+      className={`absolute bottom-8 left-6 flex items-center gap-4 transition-colors duration-700 md:left-12 ${textColor}`}
     >
       <span
         className="rotate-180 text-xs font-bold uppercase tracking-widest"
