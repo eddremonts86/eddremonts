@@ -80,14 +80,14 @@ export const HeroSection = () => {
       </m.div>
 
       {/* Main Content */}
-      <m.div style={{ opacity, scale, y }} className="container relative z-10 mx-auto w-full px-6">
+      <m.div style={{ opacity, scale, y }} className="container relative z-10 w-full px-6 mx-auto">
         <div className="mx-auto w-full max-w-[1400px] xl:pl-12">
           {/* Top Label */}
           <m.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 1, ease: APPLE_EASE }}
-            className="mb-4 flex flex-col items-baseline gap-4 sm:flex-row sm:items-center md:mb-8"
+            className="flex flex-col items-baseline gap-4 mb-4 sm:flex-row sm:items-center md:mb-8"
           >
             <StatusBadge
               label={t('hero.available', 'STATUS: ACCEPTING SELECT PROJECTS')}
@@ -108,8 +108,8 @@ export const HeroSection = () => {
                 onPointerEnter={() => setIsHovered(true)}
                 onPointerLeave={() => setIsHovered(false)}
               >
-                <span className="relative z-10 transition-colors duration-500">
-                  {t('hero.greeting', "Hello, I'm")} Edd.
+                <span className="relative z-10 transition-colors duration-100">
+                  {t('hero.greeting', "Hello, I'm")} Eddy.
                 </span>
                 <span className="bg-primary/30 absolute -bottom-2 left-0 right-0 h-[2px] origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100 md:-bottom-4 md:h-[4px]" />
               </m.span>
@@ -118,7 +118,7 @@ export const HeroSection = () => {
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.2, ease: APPLE_EASE, delay: 0.4 }}
-                className="mt-2 block font-display font-medium tracking-tighter dark:mix-blend-difference md:mt-4"
+                className="block mt-2 font-medium tracking-tighter font-display dark:mix-blend-difference md:mt-4"
               >
                 {t('hero.titleLine1')}
               </m.span>
@@ -135,7 +135,7 @@ export const HeroSection = () => {
           </div>
 
           {/* Description & CTAs */}
-          <div className="mt-12 flex flex-col gap-8 md:mt-24 md:flex-row md:items-end">
+          <div className="flex flex-col gap-8 mt-12 md:mt-24 md:flex-row md:items-end">
             <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -153,14 +153,14 @@ export const HeroSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 1.5 }}
-              className="flex shrink-0 flex-col items-start gap-3"
+              className="flex flex-col items-start gap-3 shrink-0"
             >
               <a
                 href="#projects"
                 className={`group inline-flex items-center justify-center gap-4 whitespace-nowrap rounded-full border bg-transparent px-6 py-3 text-[11px] font-medium uppercase tracking-widest transition-all duration-700 md:text-xs ${textColor} ${borderColor} ${buttonHover}`}
               >
                 <span>{t('hero.explore')}</span>
-                <ArrowRight className="h-3 w-3 shrink-0 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-3 h-3 transition-transform shrink-0 group-hover:translate-x-1" />
               </a>
               <a
                 href={cvUrl}

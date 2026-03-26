@@ -16,7 +16,7 @@ export const ScrollIndicator = ({
     : isLightHover
       ? 'bg-black/20'
       : 'bg-foreground/20';
-  const thumbColor = isDarkHover ? 'bg-white' : isLightHover ? 'bg-black' : 'bg-foreground';
+  const thumbColor = isDarkHover ? 'bg-white' : isLightHover ? 'bg-black' : 'bg-primary';
   const textColor = isDarkHover
     ? 'text-white/60'
     : isLightHover
@@ -31,7 +31,7 @@ export const ScrollIndicator = ({
       className={`absolute bottom-8 left-6 flex items-center gap-4 transition-colors duration-700 md:left-12 ${textColor}`}
     >
       <span
-        className="rotate-180 text-xs font-bold uppercase tracking-widest"
+        className="text-xs font-bold tracking-widest uppercase rotate-180"
         style={{ writingMode: 'vertical-rl' }}
       >
         {label}

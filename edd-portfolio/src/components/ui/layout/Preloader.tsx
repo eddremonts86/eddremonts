@@ -51,10 +51,10 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
         >
           <div className="flex w-full items-start justify-between font-mono text-[11px] uppercase tracking-widest opacity-40">
             <span>{t('preloader.loading')}</span>
-            <span>2024</span>
+            <span>2026</span>
           </div>
 
-          <div className="flex w-full flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center w-full">
             <m.div
               className="text-foreground/80 font-serif text-7xl font-light lowercase leading-none tracking-tight md:text-[8rem]"
               initial={{ opacity: 0, y: 10 }}
@@ -65,7 +65,7 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
             </m.div>
             <div className="bg-subtle relative mt-12 h-[1px] w-full max-w-xs overflow-hidden">
               <m.div
-                className="absolute left-0 top-0 h-full bg-foreground"
+                className="absolute top-0 left-0 h-full bg-foreground"
                 initial={{ width: '0%' }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.1 }}
@@ -75,7 +75,7 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
 
           <div className="flex w-full items-end justify-between font-mono text-[11px] uppercase tracking-widest opacity-40">
             <span>{t('preloader.standby')}</span>
-            <span>Eduardo Inerarte</span>
+            <span className='text-primary'>Eduardo Inerarte</span>
           </div>
         </m.div>
       </m.div>
