@@ -1,17 +1,15 @@
-import { useTheme } from '@/contexts/ThemeContextBase';
+import { useTheme, THEME_CYCLE } from '@/contexts/ThemeContextBase';
 import type { Theme } from '@/contexts/ThemeContextBase';
 import { APPLE_EASE } from '@/lib/motion';
 import { m } from 'framer-motion';
 import { Monitor, Moon, Sun } from 'lucide-react';
 
-const CYCLE: Theme[] = ['light', 'dark', 'system'];
-
 export const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
 
   const next = () => {
-    const idx = CYCLE.indexOf(theme);
-    setTheme(CYCLE[(idx + 1) % CYCLE.length]);
+    const idx = THEME_CYCLE.indexOf(theme);
+    setTheme(THEME_CYCLE[(idx + 1) % THEME_CYCLE.length]);
   };
 
   const isActive = (t: Theme) => theme === t;
@@ -19,7 +17,7 @@ export const ThemeToggle = () => {
   return (
     <button
       onClick={next}
-      className="text-foreground/70 group relative flex h-10 min-h-[40px] w-10 min-w-[40px] items-center justify-center overflow-hidden rounded-full   border-subtle transition-colors duration-500 hover:text-foreground"
+      className="text-foreground/70 group relative flex h-10 min-h-[40px] w-10 min-w-[40px] items-center justify-center overflow-hidden rounded-full border-subtle transition-colors duration-500 hover:text-foreground"
       aria-label={`Theme: ${theme}. Click to switch.`}
     >
       <m.div
@@ -31,7 +29,7 @@ export const ThemeToggle = () => {
         transition={{ duration: 0.3, ease: APPLE_EASE }}
         className="absolute"
       >
-        <Moon className="w-4 h-4 transition-colors text-primary group-hover:text-foreground" />
+        <Moon className="h-4 w-4 text-primary transition-colors group-hover:text-foreground" />
       </m.div>
       <m.div
         initial={false}
@@ -42,7 +40,7 @@ export const ThemeToggle = () => {
         transition={{ duration: 0.3, ease: APPLE_EASE }}
         className="absolute"
       >
-        <Sun className="w-4 h-4 transition-colors text-primary group-hover:text-foreground" />
+        <Sun className="h-4 w-4 text-primary transition-colors group-hover:text-foreground" />
       </m.div>
       <m.div
         initial={false}
@@ -53,9 +51,9 @@ export const ThemeToggle = () => {
         transition={{ duration: 0.3, ease: APPLE_EASE }}
         className="absolute"
       >
-        <Monitor className="w-4 h-4 transition-colors text-primary group-hover:text-foreground" />
+        <Monitor className="h-4 w-4 text-primary transition-colors group-hover:text-foreground" />
       </m.div>
-      <span className="invisible w-4 h-4" aria-hidden="true" />
+      <span className="invisible h-4 w-4" aria-hidden="true" />
     </button>
   );
 };

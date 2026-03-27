@@ -1,5 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import { LANGUAGES, resolveBrowserLang } from '@/data/languages';
+import { STORAGE_KEYS } from '@/lib/storageKeys';
 
 import translationDK from '@/locales/dk/translation.json';
 import translationEN from '@/locales/en/translation.json';
@@ -13,17 +15,12 @@ const resources = {
 
 // Retrieve saved language or default to generic browser navigator
 const savedLanguage =
-  localStorage.getItem('edd-portfolio-lang') ||
-  (navigator.language.split('-')[0] === 'es'
-    ? 'es'
-    : navigator.language.split('-')[0] === 'da'
-      ? 'dk'
-      : 'en');
+  localStorage.getItem(STORAGE_KEYS.lang) || resolveBrowserLang(navigator.language);
 
 i18n.use(initReactI18next).init({
   resources,
   lng: savedLanguage,
-  fallbackLng: 'en',
+  fallbackLng: LANGUAGES[0].code,
   interpolation: {
     escapeValue: false,
   },

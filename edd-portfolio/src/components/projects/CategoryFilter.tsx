@@ -1,11 +1,5 @@
+import { PROJECT_CATEGORIES, CATEGORY_KEYS } from '@/data/projectCategories';
 import { useTranslation } from 'react-i18next';
-
-const categories = ['All', 'Frontend', 'Full Stack'];
-const categoryKeys: Record<string, string> = {
-  All: 'all',
-  Frontend: 'frontend',
-  'Full Stack': 'fullStack',
-};
 
 export const CategoryFilter = ({
   active,
@@ -18,7 +12,7 @@ export const CategoryFilter = ({
 
   return (
     <div className="hide-scrollbar mt-8 flex w-full gap-4 overflow-x-auto pb-4 md:mt-0 md:w-auto md:pb-0">
-      {categories.map((cat) => (
+      {PROJECT_CATEGORIES.map((cat) => (
         <button
           key={cat}
           onClick={() => onSelect(cat)}
@@ -29,7 +23,7 @@ export const CategoryFilter = ({
               : 'text-foreground/50 hover:border-foreground/30 border-subtle bg-transparent hover:text-foreground'
           }`}
         >
-          {t(`projects.filters.${categoryKeys[cat]}`)}
+          {t(`projects.filters.${CATEGORY_KEYS[cat]}`)}
         </button>
       ))}
     </div>

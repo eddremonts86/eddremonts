@@ -1,7 +1,8 @@
 import { APPLE_EASE } from '@/lib/motion';
 import type { HTMLMotionProps } from 'framer-motion';
 import { m } from 'framer-motion';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 interface OptimizedImageProps extends HTMLMotionProps<'img'> {
   src: string;
@@ -19,33 +20,11 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   ...props
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isInView, setIsInView] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
-
-  // Intersection Observer to detect when the image enters the viewport
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsInView(true);
-          observer.disconnect();
-        }
-      },
-      {
-        rootMargin: '50px', // Start loading slightly before it enters the viewport
-        threshold: 0.1,
-      },
-    );
-
-    if (imgRef.current) {
-      observer.observe(imgRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
+  const { ref: imgRef, isInView } = useIntersectionObserver<HTMLDivElement>({
+    rootMargin: '50px',
+    threshold: 0.1,
+  });
 
   const handleLoad = () => {
     setIsLoaded(true);

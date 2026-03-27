@@ -4,40 +4,15 @@ import { personalInfo } from '@/data/cvData';
 import { fadeInView } from '@/lib/motion';
 import { m } from 'framer-motion';
 import { Mail, MapPin } from 'lucide-react';
-import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useFormspree } from '@/hooks/useFormspree';
+import { FORMSPREE_FORM_ID } from '@/lib/config';
 import { ContactForm } from './ContactForm';
 import { SuccessMessage } from './SuccessMessage';
 
-type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
-
 export const ContactSection = () => {
   const { t } = useTranslation();
-  const [formStatus, setFormStatus] = useState<FormStatus>('idle');
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setFormStatus('submitting');
-    const form = e.currentTarget;
-    const data = new FormData(form);
-
-    try {
-      const response = await fetch('https://formspree.io/f/xgonbeaj', {
-        method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
-      });
-
-      if (response.ok) {
-        setFormStatus('success');
-        form.reset();
-      } else {
-        setFormStatus('error');
-      }
-    } catch {
-      setFormStatus('error');
-    }
-  };
+  const { status: formStatus, handleSubmit, reset } = useFormspree(FORMSPREE_FORM_ID);
 
   return (
     <section
@@ -97,7 +72,7 @@ export const ContactSection = () => {
             <div className="bg-primary/10 pointer-events-none absolute -right-32 -top-32 h-64 w-64 rounded-full blur-[100px]" />
 
             {formStatus === 'success' ? (
-              <SuccessMessage onReset={() => setFormStatus('idle')} />
+              <SuccessMessage onReset={reset} />
             ) : (
               <ContactForm status={formStatus} onSubmit={handleSubmit} />
             )}

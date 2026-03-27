@@ -1,51 +1,11 @@
 import { NAV_SECTIONS } from '@/data/navigation';
 import { m } from 'framer-motion';
-import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useScrollSpy } from '@/hooks/useScrollSpy';
 
 export const DotNavigation = () => {
   const { t } = useTranslation();
-  const [activeSection, setActiveSection] = useState('hero');
-  const [isVisible, setIsVisible] = useState(false);
-  const rafId = useRef(0);
-
-  const updateActiveSection = useCallback(() => {
-    const viewportMid = window.innerHeight / 2;
-    let closestId = '';
-    let closestDist = Infinity;
-
-    for (const { id } of NAV_SECTIONS) {
-      const el = id === 'hero' ? document.querySelector('section') : document.getElementById(id);
-      if (!el) continue;
-      const rect = el.getBoundingClientRect();
-      // Distance from section center to viewport center
-      const sectionMid = rect.top + rect.height / 2;
-      const dist = Math.abs(sectionMid - viewportMid);
-      if (dist < closestDist) {
-        closestDist = dist;
-        closestId = id;
-      }
-    }
-
-    if (closestId) setActiveSection(closestId);
-    setIsVisible(window.scrollY > window.innerHeight * 0.85);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      cancelAnimationFrame(rafId.current);
-      rafId.current = requestAnimationFrame(updateActiveSection);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    // Run once on mount in case page is already scrolled
-    rafId.current = requestAnimationFrame(updateActiveSection);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      cancelAnimationFrame(rafId.current);
-    };
-  }, [updateActiveSection]);
+  const { activeSection, isVisible } = useScrollSpy(NAV_SECTIONS);
 
   if (!isVisible) return null;
 

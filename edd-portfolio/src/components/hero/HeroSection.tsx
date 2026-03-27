@@ -2,10 +2,13 @@ import { LanguageSelector } from '@/components/ui/navigation/LanguageSelector';
 import { StatusBadge } from '@/components/ui/badges/StatusBadge';
 import { ThemeToggle } from '@/components/ui/navigation/ThemeToggle';
 import { useResolvedTheme } from '@/hooks/useResolvedTheme';
+import { useHeroParallax } from '@/hooks/useHeroParallax';
 import { APPLE_EASE } from '@/lib/motion';
-import { m, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { getCvUrl } from '@/lib/cvUrl';
+import { getHoverColors } from '@/lib/hoverColors';
+import { m, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { useRef, useState, useMemo } from 'react';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AmbientLight } from './AmbientLight';
 import { BackgroundReveal } from './BackgroundReveal';
@@ -17,50 +20,26 @@ export const HeroSection = () => {
   const containerRef = useRef<HTMLElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
-  const cvUrl = useMemo(() => {
-    const lang = ['en', 'es', 'dk'].includes(i18n.language) ? i18n.language : 'en';
-    return `/cv/Eduardo_Inerarte_CV_${lang}_${resolvedTheme}.pdf`;
-  }, [i18n.language, resolvedTheme]);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end start'],
-  });
+  const cvUrl = getCvUrl(i18n.language, resolvedTheme);
+  const { opacity, scale, y } = useHeroParallax(containerRef);
 
   const dynamicBG = resolvedTheme === 'dark' ? '/edd/edd_dark.jpg' : '/edd/edd_light.jpg';
 
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
-
-  const isLightHover = isHovered && resolvedTheme === 'light';
-  const isDarkHover = isHovered && resolvedTheme === 'dark';
-  const textColor = isDarkHover ? 'text-white' : isLightHover ? 'text-black' : 'text-foreground';
-  const mutedTextColor = isDarkHover
-    ? 'text-white/80'
-    : isLightHover
-      ? 'text-black/80'
-      : 'text-foreground/80';
-  const sublineTextColor = isDarkHover
-    ? 'text-white/60'
-    : isLightHover
-      ? 'text-black/60'
-      : 'text-foreground/60';
-  const borderColor = isDarkHover
-    ? 'border-white/20'
-    : isLightHover
-      ? 'border-black/20'
-      : 'border-foreground/20';
-  const buttonHover = isDarkHover
-    ? 'hover:bg-white hover:text-black'
-    : isLightHover
-      ? 'hover:bg-black hover:text-white'
-      : 'hover:bg-foreground hover:text-background';
+  const {
+    bgColor,
+    textColor,
+    mutedTextColor,
+    sublineTextColor,
+    borderColor,
+    buttonHover,
+    isDarkHover,
+    isLightHover,
+  } = getHoverColors(isHovered, resolvedTheme);
 
   return (
     <section
       ref={containerRef}
-      className={`relative flex min-h-[100svh] min-h-screen flex-col justify-end overflow-hidden pb-24 transition-colors duration-1000 md:pb-32 ${isDarkHover ? 'bg-black' : isLightHover ? 'bg-white' : 'bg-background'}`}
+      className={`relative flex min-h-[100svh] min-h-screen flex-col justify-end overflow-hidden pb-24 transition-colors duration-1000 md:pb-32 ${bgColor}`}
     >
       <AnimatePresence>
         {isHovered && <BackgroundReveal src={dynamicBG} theme={resolvedTheme} />}
@@ -80,14 +59,14 @@ export const HeroSection = () => {
       </m.div>
 
       {/* Main Content */}
-      <m.div style={{ opacity, scale, y }} className="container relative z-10 w-full px-6 mx-auto">
+      <m.div style={{ opacity, scale, y }} className="container relative z-10 mx-auto w-full px-6">
         <div className="mx-auto w-full max-w-[1400px] xl:pl-12">
           {/* Top Label */}
           <m.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 1, ease: APPLE_EASE }}
-            className="flex flex-col items-baseline gap-4 mb-4 sm:flex-row sm:items-center md:mb-8"
+            className="mb-4 flex flex-col items-baseline gap-4 sm:flex-row sm:items-center md:mb-8"
           >
             <StatusBadge
               label={t('hero.available', 'STATUS: ACCEPTING SELECT PROJECTS')}
@@ -118,7 +97,7 @@ export const HeroSection = () => {
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.2, ease: APPLE_EASE, delay: 0.4 }}
-                className="block mt-2 font-medium tracking-tighter font-display dark:mix-blend-difference md:mt-4"
+                className="mt-2 block font-display font-medium tracking-tighter dark:mix-blend-difference md:mt-4"
               >
                 {t('hero.titleLine1')}
               </m.span>
@@ -135,7 +114,7 @@ export const HeroSection = () => {
           </div>
 
           {/* Description & CTAs */}
-          <div className="flex flex-col gap-8 mt-12 md:mt-24 md:flex-row md:items-end">
+          <div className="mt-12 flex flex-col gap-8 md:mt-24 md:flex-row md:items-end">
             <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -153,14 +132,14 @@ export const HeroSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 1.5 }}
-              className="flex flex-col items-start gap-3 shrink-0"
+              className="flex shrink-0 flex-col items-start gap-3"
             >
               <a
                 href="#projects"
                 className={`group inline-flex items-center justify-center gap-4 whitespace-nowrap rounded-full border bg-transparent px-6 py-3 text-[11px] font-medium uppercase tracking-widest transition-all duration-700 md:text-xs ${textColor} ${borderColor} ${buttonHover}`}
               >
                 <span>{t('hero.explore')}</span>
-                <ArrowRight className="w-3 h-3 transition-transform shrink-0 group-hover:translate-x-1" />
+                <ArrowRight className="h-3 w-3 shrink-0 transition-transform group-hover:translate-x-1" />
               </a>
               <a
                 href={cvUrl}

@@ -1,36 +1,11 @@
 import { useMousePosition } from '@/hooks/useMousePosition';
-import { useEffect, useState } from 'react';
+import { useInteractiveHover } from '@/hooks/useInteractiveHover';
 import { m, useReducedMotion } from 'framer-motion';
 
-const INTERACTIVE_SELECTOR = 'a, button, [role="button"], input, textarea, select';
-
 export const MouseFollower = () => {
-  const [isHovering, setIsHovering] = useState(false);
+  const isHovering = useInteractiveHover();
   const reduceMotion = useReducedMotion();
   const { springX, springY } = useMousePosition();
-
-  useEffect(() => {
-    if (reduceMotion) return;
-
-    const handleOver = (e: MouseEvent) => {
-      if ((e.target as Element)?.closest?.(INTERACTIVE_SELECTOR)) {
-        setIsHovering(true);
-      }
-    };
-    const handleOut = (e: MouseEvent) => {
-      if ((e.target as Element)?.closest?.(INTERACTIVE_SELECTOR)) {
-        setIsHovering(false);
-      }
-    };
-
-    document.addEventListener('mouseover', handleOver, { passive: true });
-    document.addEventListener('mouseout', handleOut, { passive: true });
-
-    return () => {
-      document.removeEventListener('mouseover', handleOver);
-      document.removeEventListener('mouseout', handleOut);
-    };
-  }, [reduceMotion]);
 
   if (reduceMotion) return null;
 

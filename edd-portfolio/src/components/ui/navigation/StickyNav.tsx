@@ -3,20 +3,16 @@ import { LanguageSelector } from '@/components/ui/navigation/LanguageSelector';
 import { ThemeToggle } from '@/components/ui/navigation/ThemeToggle';
 import { NAV_SECTIONS } from '@/data/navigation';
 import { APPLE_EASE } from '@/lib/motion';
-import { AnimatePresence, m, useMotionValueEvent, useScroll } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useScrollVisibility } from '@/hooks/useScrollVisibility';
 
 export const StickyNav = () => {
   const { t } = useTranslation();
-  const [visible, setVisible] = useState(false);
+  const visible = useScrollVisibility();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { scrollY } = useScroll();
-
-  useMotionValueEvent(scrollY, 'change', (latest) => {
-    setVisible(latest > window.innerHeight * 0.85);
-  });
 
   // Close mobile menu when nav becomes hidden
   useEffect(() => {
@@ -38,19 +34,22 @@ export const StickyNav = () => {
           className="bg-background/80 fixed left-0 top-0 z-[100] w-full border-b border-subtle pt-[env(safe-area-inset-top)] backdrop-blur-xl"
           aria-label={t('a11y.mainNav')}
         >
-          <div className="container flex items-center justify-between gap-3 px-4 py-3 mx-auto md:gap-4 md:px-6 md:py-4">
+          <div className="container mx-auto flex items-center justify-between gap-3 px-4 py-3 md:gap-4 md:px-6 md:py-4">
             {/* Brand / Logo */}
-            <a href="#hero" className="transition-opacity shrink-0 text-foreground hover:opacity-80">
-              <Logo className="w-auto h-10 md:h-12" />
+            <a
+              href="#hero"
+              className="shrink-0 text-foreground transition-opacity hover:opacity-80"
+            >
+              <Logo className="h-10 w-auto md:h-12" />
             </a>
 
             {/* Nav Links — hidden on mobile, visible on md+ */}
-            <div className="items-center hidden gap-6 overflow-x-auto hide-scrollbar md:flex lg:gap-8">
+            <div className="hide-scrollbar hidden items-center gap-6 overflow-x-auto md:flex lg:gap-8">
               {navLinks.map(({ id, labelKey }) => (
                 <a
                   key={id}
                   href={`#${id}`}
-                  className="text-primary whitespace-nowrap font-mono text-[11px] uppercase tracking-widest transition-all hover:text-foreground"
+                  className="whitespace-nowrap font-mono text-[11px] uppercase tracking-widest text-primary transition-all hover:text-foreground"
                 >
                   {t(labelKey)}
                 </a>
@@ -58,14 +57,14 @@ export const StickyNav = () => {
             </div>
 
             {/* Controls */}
-            <div className="flex items-center gap-2 shrink-0 sm:gap-4">
+            <div className="flex shrink-0 items-center gap-2 sm:gap-4">
               <LanguageSelector />
               <ThemeToggle />
 
               {/* Hamburger — visible only on mobile */}
               <button
                 onClick={() => setMobileOpen((prev) => !prev)}
-                className="flex items-center justify-center w-10 h-10 transition-colors duration-300 border rounded-full text-foreground/70 border-subtle bg-surface hover:text-foreground md:hidden"
+                className="text-foreground/70 flex h-10 w-10 items-center justify-center rounded-full border border-subtle bg-surface transition-colors duration-300 hover:text-foreground md:hidden"
                 aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={mobileOpen}
               >
@@ -78,7 +77,7 @@ export const StickyNav = () => {
                       exit={{ rotate: 90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <X className="w-4 h-4" />
+                      <X className="h-4 w-4" />
                     </m.span>
                   ) : (
                     <m.span
@@ -88,7 +87,7 @@ export const StickyNav = () => {
                       exit={{ rotate: -90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Menu className="w-4 h-4" />
+                      <Menu className="h-4 w-4" />
                     </m.span>
                   )}
                 </AnimatePresence>
@@ -106,7 +105,7 @@ export const StickyNav = () => {
                 transition={{ duration: 0.3, ease: APPLE_EASE }}
                 className="overflow-hidden border-t border-subtle md:hidden"
               >
-                <div className="container flex flex-col gap-3 px-4 py-4 mx-auto">
+                <div className="container mx-auto flex flex-col gap-3 px-4 py-4">
                   {navLinks.map(({ id, labelKey }, i) => (
                     <m.a
                       key={id}
@@ -115,7 +114,7 @@ export const StickyNav = () => {
                       initial={{ x: -16, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: i * 0.05, duration: 0.3, ease: APPLE_EASE }}
-                      className="py-2 font-mono text-xs tracking-widest uppercase transition-colors text-primary hover:text-foreground"
+                      className="py-2 font-mono text-xs uppercase tracking-widest text-primary transition-colors hover:text-foreground"
                     >
                       {t(labelKey)}
                     </m.a>

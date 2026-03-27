@@ -1,39 +1,11 @@
 import { AnimatePresence, m } from 'framer-motion';
 import { APPLE_EASE } from '@/lib/motion';
-import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useFakeProgress } from '@/hooks/useFakeProgress';
 
 export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
   const { t } = useTranslation();
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    // Disable scroll while loading
-    document.body.style.overflow = 'hidden';
-
-    let currentProgress = 0;
-    const interval = setInterval(() => {
-      currentProgress += Math.floor(Math.random() * 15) + 5;
-      if (currentProgress >= 100) {
-        currentProgress = 100;
-        setProgress(100);
-        clearInterval(interval);
-
-        // Wait a tiny bit at 100% then trigger complete
-        setTimeout(() => {
-          onComplete();
-          document.body.style.overflow = '';
-        }, 500);
-      } else {
-        setProgress(currentProgress);
-      }
-    }, 100);
-
-    return () => {
-      clearInterval(interval);
-      document.body.style.overflow = '';
-    };
-  }, [onComplete]);
+  const progress = useFakeProgress(onComplete);
 
   return (
     <AnimatePresence>
@@ -54,7 +26,7 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
             <span>2026</span>
           </div>
 
-          <div className="flex flex-col items-center justify-center w-full">
+          <div className="flex w-full flex-col items-center justify-center">
             <m.div
               className="text-foreground/80 font-serif text-7xl font-light lowercase leading-none tracking-tight md:text-[8rem]"
               initial={{ opacity: 0, y: 10 }}
@@ -65,7 +37,7 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
             </m.div>
             <div className="bg-subtle relative mt-12 h-[1px] w-full max-w-xs overflow-hidden">
               <m.div
-                className="absolute top-0 left-0 h-full bg-foreground"
+                className="absolute left-0 top-0 h-full bg-foreground"
                 initial={{ width: '0%' }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.1 }}
@@ -75,7 +47,7 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
 
           <div className="flex w-full items-end justify-between font-mono text-[11px] uppercase tracking-widest opacity-40">
             <span>{t('preloader.standby')}</span>
-            <span className='text-primary'>Eduardo Inerarte</span>
+            <span className="text-primary">Eduardo Inerarte</span>
           </div>
         </m.div>
       </m.div>

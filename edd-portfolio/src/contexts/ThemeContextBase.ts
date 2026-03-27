@@ -3,6 +3,9 @@ import { createContext, useContext } from 'react';
 
 export type Theme = 'light' | 'dark' | 'system';
 
+/** Ordered cycle used by ThemeToggle to step through theme options */
+export const THEME_CYCLE: Theme[] = ['light', 'dark', 'system'];
+
 export interface ThemeProviderProps {
   children: React.ReactNode;
   defaultTheme?: Theme;

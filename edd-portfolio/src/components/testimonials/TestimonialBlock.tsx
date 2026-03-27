@@ -1,6 +1,7 @@
 import { AnimatePresence, m } from 'framer-motion';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useCarousel } from '@/hooks/useCarousel';
 import { CarouselControls } from './CarouselControls';
 import { TestimonialSlide } from './TestimonialSlide';
 
@@ -13,39 +14,9 @@ export const TestimonialBlock = () => {
     [rawTestimonials],
   );
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
-  const [isPaused, setIsPaused] = useState(false);
-
-  const paginate = useCallback(
-    (newDirection: number) => {
-      setDirection(newDirection);
-      setCurrentIndex((prevIndex) => {
-        let nextIndex = prevIndex + newDirection;
-        if (nextIndex < 0) nextIndex = testimonials.length - 1;
-        if (nextIndex >= testimonials.length) nextIndex = 0;
-        return nextIndex;
-      });
-    },
-    [testimonials.length],
+  const { currentIndex, direction, setIsPaused, paginate, handleGoto } = useCarousel(
+    testimonials.length,
   );
-
-  const handleGoto = useCallback(
-    (idx: number) => {
-      setDirection(idx > currentIndex ? 1 : -1);
-      setCurrentIndex(idx);
-    },
-    [currentIndex],
-  );
-
-  useEffect(() => {
-    if (isPaused || !testimonials || testimonials.length <= 1) return;
-
-    const timer = setInterval(() => {
-      paginate(1);
-    }, 8000);
-    return () => clearInterval(timer);
-  }, [paginate, isPaused, testimonials]);
 
   if (testimonials.length === 0) {
     return (
@@ -77,10 +48,7 @@ export const TestimonialBlock = () => {
 
           <div className="relative mx-auto flex min-h-[350px] w-full max-w-4xl items-center justify-center overflow-hidden md:min-h-[220px]">
             <AnimatePresence initial={false} custom={direction} mode="wait">
-              <TestimonialSlide
-                testimonial={currentTestimonial}
-                direction={direction}
-              />
+              <TestimonialSlide testimonial={currentTestimonial} direction={direction} />
             </AnimatePresence>
           </div>
 

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { ThemeProviderContext, type Theme, type ThemeProviderProps } from './ThemeContextBase';
+import { STORAGE_KEYS } from '@/lib/storageKeys';
 
 export const ThemeProvider = ({
   children,
   defaultTheme = 'system',
-  storageKey = 'edd-portfolio-theme',
+  storageKey = STORAGE_KEYS.theme,
   ...props
 }: ThemeProviderProps) => {
   const [theme, setTheme] = useState<Theme>(
