@@ -23,11 +23,13 @@ const getYearsExperience = () => {
 
 const getCompaniesCount = () => new Set(experiences.map((experience) => experience.company)).size;
 
+const LIGHTHOUSE_SCORE = 90;
+
 const stats: StatItem[] = [
   { value: getYearsExperience(), suffix: '+', labelKey: 'stats.yearsExperience' },
   { value: getCompaniesCount(), suffix: '+', labelKey: 'stats.companies' },
   { value: skills.length, suffix: '+', labelKey: 'stats.technologies' },
-  { value: 90, suffix: '+', labelKey: 'stats.lighthouse' },
+  { value: LIGHTHOUSE_SCORE, suffix: '+', labelKey: 'stats.lighthouse' },
 ];
 
 const AnimatedNumber = ({ value, suffix }: { value: number; suffix: string }) => {

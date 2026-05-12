@@ -11,7 +11,7 @@ describe('ThemeToggle', () => {
       </ThemeProvider>,
     );
 
-    const button = screen.getByRole('button', { name: /toggle theme/i });
+    const button = screen.getByRole('button', { name: /theme:/i });
     expect(button).toBeInTheDocument();
 
     // Fire click to toggle theme

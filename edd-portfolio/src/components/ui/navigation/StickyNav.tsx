@@ -5,19 +5,15 @@ import { NAV_SECTIONS } from '@/data/navigation';
 import { APPLE_EASE } from '@/lib/motion';
 import { AnimatePresence, m } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useScrollVisibility } from '@/hooks/useScrollVisibility';
 
 export const StickyNav = () => {
   const { t } = useTranslation();
   const visible = useScrollVisibility();
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  // Close mobile menu when nav becomes hidden
-  useEffect(() => {
-    if (!visible) setMobileOpen(false);
-  }, [visible]);
+  const [_mobileOpen, setMobileOpen] = useState(false);
+  const mobileOpen = visible && _mobileOpen;
 
   const closeMobile = useCallback(() => setMobileOpen(false), []);
 

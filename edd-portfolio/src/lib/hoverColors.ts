@@ -5,38 +5,24 @@ export interface HoverColors {
   sublineTextColor: string;
   borderColor: string;
   buttonHover: string;
-  isDarkHover: boolean;
-  isLightHover: boolean;
+  greetingTextColor: string;
 }
 
 export function getHoverColors(isHovered: boolean, resolvedTheme: string): HoverColors {
-  const isDarkHover = isHovered && resolvedTheme === 'dark';
-  const isLightHover = isHovered && resolvedTheme === 'light';
+  const isDark = isHovered && resolvedTheme === 'dark';
+  const isLight = isHovered && resolvedTheme === 'light';
 
   return {
-    isDarkHover,
-    isLightHover,
-    bgColor: isDarkHover ? 'bg-black' : isLightHover ? 'bg-white' : 'bg-background',
-    textColor: isDarkHover ? 'text-white' : isLightHover ? 'text-black' : 'text-foreground',
-    mutedTextColor: isDarkHover
-      ? 'text-white/80'
-      : isLightHover
-        ? 'text-black/80'
-        : 'text-foreground/80',
-    sublineTextColor: isDarkHover
-      ? 'text-white/60'
-      : isLightHover
-        ? 'text-black/60'
-        : 'text-foreground/60',
-    borderColor: isDarkHover
-      ? 'border-white/20'
-      : isLightHover
-        ? 'border-black/20'
-        : 'border-foreground/20',
-    buttonHover: isDarkHover
+    bgColor: isDark ? 'bg-black' : isLight ? 'bg-white' : 'bg-background',
+    textColor: isDark ? 'text-white' : isLight ? 'text-black' : 'text-foreground',
+    mutedTextColor: isDark ? 'text-white/80' : isLight ? 'text-black/80' : 'text-foreground/80',
+    sublineTextColor: isDark ? 'text-white/60' : isLight ? 'text-black/60' : 'text-foreground/60',
+    borderColor: isDark ? 'border-white/20' : isLight ? 'border-black/20' : 'border-foreground/20',
+    buttonHover: isDark
       ? 'hover:bg-white hover:text-black'
-      : isLightHover
+      : isLight
         ? 'hover:bg-black hover:text-white'
         : 'hover:bg-foreground hover:text-background',
+    greetingTextColor: isDark ? 'text-white' : isLight ? 'text-black' : 'text-primary',
   };
 }

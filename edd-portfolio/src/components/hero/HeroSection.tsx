@@ -25,16 +25,8 @@ export const HeroSection = () => {
 
   const dynamicBG = resolvedTheme === 'dark' ? '/edd/edd_dark.jpg' : '/edd/edd_light.jpg';
 
-  const {
-    bgColor,
-    textColor,
-    mutedTextColor,
-    sublineTextColor,
-    borderColor,
-    buttonHover,
-    isDarkHover,
-    isLightHover,
-  } = getHoverColors(isHovered, resolvedTheme);
+  const { bgColor, textColor, mutedTextColor, sublineTextColor, borderColor, buttonHover, greetingTextColor } =
+    getHoverColors(isHovered, resolvedTheme);
 
   return (
     <section
@@ -83,7 +75,7 @@ export const HeroSection = () => {
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.2, ease: APPLE_EASE, delay: 0.3 }}
-                className={`group relative w-fit cursor-crosshair font-serif transition-colors duration-700 ${isDarkHover ? 'text-white' : isLightHover ? 'text-black' : 'text-primary'}`}
+                className={`group relative w-fit cursor-crosshair font-serif transition-colors duration-700 ${greetingTextColor}`}
                 onPointerEnter={() => setIsHovered(true)}
                 onPointerLeave={() => setIsHovered(false)}
               >

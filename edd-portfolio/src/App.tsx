@@ -25,7 +25,7 @@ const ContactSection = lazy(() =>
   import('./components/contact/ContactSection').then((m) => ({ default: m.ContactSection })),
 );
 
-function App() {
+export function App() {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
 
@@ -71,4 +71,4 @@ function App() {
   );
 }
 
-export default App;
+
